@@ -182,7 +182,10 @@ class MerchantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('merchant.edit-product');
+        $product = merchant::where('id',$id)->first();
+        return view('merchant.edit-product',compact(
+            'product',
+        ));
     }
 
     /**

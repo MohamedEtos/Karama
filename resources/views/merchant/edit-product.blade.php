@@ -1,5 +1,7 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
+<!---Internal Fileupload css-->
+<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -41,7 +43,101 @@
 				<!-- row -->
 				<div class="row">
 
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5 h4">
+									تعدي المنتج
+								</div>
+								{{-- <p class="mg-b-20">المنتج رقم </p> --}}
+								<form action="">
 
+									<div class="row row-sm mt-2">
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">اسم المنتج: </label>
+												<input class="form-control" name="name" placeholder="لا يمكنك ترك الاسم فارغ" required="" value="{{$product->name}}" type="text">
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">القسم: </label>
+												<input class="form-control" name="category" placeholder="لا يمكنك ترك القسم فارغ" required="" value="{{$product->category}}" type="text">
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">وصف المنتج: </label>
+												<input class="form-control" name="productDescription" placeholder="لا يمكنك ترك الوصف فارغ" required="" value="{{$product->productDescription}}" type="text">
+											</div>
+										</div>
+									</div>
+
+
+									<div class="row row-sm mt-2">
+										<div class="col-12">
+											<div class="form-group mg-b-0">
+												<label class="form-label">تفاصيل المنتج: </label>
+												<textarea class="form-control" name="name" placeholder="لا يمكنك ترك التفاصيل فارغه" required="" type="text">{{$product->productDetalis}}</textarea>
+											</div>
+										</div>
+									</div>
+
+									<div class="row row-sm mt-2">
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">السعر ₪:  </label>
+												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->price}}" type="text">
+											</div>
+										</div>
+									
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">الخصم %: </label>
+												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->discount}}" type="text">
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">السعر بعد الخصم ₪: </label>
+												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
+											</div>
+										</div>
+									</div>
+
+													<!-- row -->
+									<div class="row mt-2">
+										<div class="col-lg-12 col-md-12">
+											<div class="card">
+												<div class="card-body">
+													<div>
+														<h6 class="card-title mb-1">افلت الصور هنا </h6>
+														<p class="text-muted card-sub-title"></p>
+													</div>
+													<div class="row mb-4">
+														<div class="col-sm-12 col-md-4">
+															<input type="file" class="dropify" data-height="200" />
+														</div>
+														<div class="col-sm-12 col-md-4">
+															<input type="file" class="dropify" data-height="200" />
+														</div>
+														<div class="col-sm-12 col-md-4">
+															<input type="file" class="dropify" data-height="200" />
+														</div>
+													</div>
+													<div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- row closed -->
+
+
+								</form>
+							</div>
+						</div>
+					</div>
 
 				</div>
 				<!-- row closed -->
@@ -51,5 +147,9 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-
+<!--Internal Fileuploads js-->
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 @endsection
+
+
