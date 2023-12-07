@@ -1,7 +1,6 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
-<!---Internal Fileupload css-->
-<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/imageUploader/imageUploader.css')}}">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -104,32 +103,46 @@
 											</div>
 										</div>
 									</div>
+									<!-- row -->
+									<div class="row mt-4">
 
-													<!-- row -->
-									<div class="row mt-2">
-										<div class="col-lg-12 col-md-12">
-											<div class="card">
-												<div class="card-body">
-													<div>
-														<h6 class="card-title mb-1">افلت الصور هنا </h6>
-														<p class="text-muted card-sub-title"></p>
-													</div>
-													<div class="row mb-4">
-														<div class="col-sm-12 col-md-4">
-															<input type="file" class="dropify" data-height="200" />
-														</div>
-														<div class="col-sm-12 col-md-4">
-															<input type="file" class="dropify" data-height="200" />
-														</div>
-														<div class="col-sm-12 col-md-4">
-															<input type="file" class="dropify" data-height="200" />
-														</div>
-													</div>
-													<div>
+										<div class="col-md-4">
+											<div class="avatar-upload">
+												<div class="avatar-edit">
+													<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+													<label for="imageUpload"></label>
+												</div>
+												<div class="avatar-preview">
+													<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
 													</div>
 												</div>
 											</div>
 										</div>
+										<div class="col-md-4">
+											<div class="avatar-upload">
+												<div class="avatar-edit">
+													<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+													<label for="imageUpload"></label>
+												</div>
+												<div class="avatar-preview">
+													<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="avatar-upload">
+												<div class="avatar-edit">
+													<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+													<label for="imageUpload"></label>
+												</div>
+												<div class="avatar-preview">
+													<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
 									<!-- row closed -->
 
@@ -147,9 +160,9 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-<!--Internal Fileuploads js-->
-<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+
+<script src="{{asset('assets/plugins/imageUploader/imageUploader.js')}}"></script>
+
 @endsection
 
 
