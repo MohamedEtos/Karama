@@ -17,7 +17,6 @@ class merchant extends Model
         'price',
         'discount',
         'ThePriceAfterDiscount',
-        'img',
         'append',
         'productViews',
     ];
@@ -26,4 +25,6 @@ class merchant extends Model
     {
         return $this->belongsTo(category::class,'categoryId');
     }
+
+    
 }

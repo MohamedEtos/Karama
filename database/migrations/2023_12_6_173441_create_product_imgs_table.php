@@ -13,10 +13,26 @@ return new class extends Migration
      */
     public function up()
     {
+
+
+
         Schema::create('product_imgs', function (Blueprint $table) {
             $table->id();
+            $table->string('mainImage')->nullable();
+            $table->string('img2')->nullable();
+            $table->string('img3')->nullable();
+            // $table->bigInteger('productId')->unsigned()->nullable();
+            $table->foreignId('productId')->nullable()->constrained('merchant','id');
+            // $table->foreign('productId')->references('id')->on('merchants')->onDelete('cascade');  
+
             $table->timestamps();
         });
+
+
+
+
+
+
     }
 
     /**

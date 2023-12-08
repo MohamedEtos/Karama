@@ -24,7 +24,6 @@ return new class extends Migration
             $table->decimal('price',9,3);
             $table->string('discount');
             $table->decimal('ThePriceAfterDiscount',9,3);
-            $table->string('img')->nullable();
             $table->integer('append')->default('0');
             $table->integer('productViews')->default('1');
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\visitorsCount;
 use App\Models\merchant;
 use App\Models\category;
+use App\Models\productImg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -85,17 +86,7 @@ class MerchantController extends Controller
             // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
         ]);
 
-        if($request->hasFile('img')){
 
-            $image  = ImageManagerStatic::make($request->file('img'))->encode('webp')->resize(600,350);
-  
-            $imageName = Str::random().'.webp';
-      
-            $image->save(public_path('upload/products/img/'. $imageName));
-    
-            $save_url = 'upload/products/img/'. $imageName;
-
-        }
 
         merchant::create([
             'merchantName'=>Auth::User()->name,
@@ -106,7 +97,29 @@ class MerchantController extends Controller
             'price'=>$request->price,
             'discount'=>$request->discount,
             'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
-            'img'=> $save_url,
+        ]);
+
+        // save images ///
+
+
+
+
+        if($request->hasFile('mainImg')){
+
+            $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
+  
+            $imageName = Str::random().'.webp';
+      
+            $image->save(public_path('upload/products/img/'. $imageName));
+    
+            $save_url = 'upload/products/img/'. $imageName;
+
+        }
+
+        productImg::create([
+            'mainImage',$save_url,
+            'img2','2',
+            'img3','3',
         ]);
 
 
