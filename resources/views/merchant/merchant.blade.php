@@ -61,9 +61,7 @@
 								<div class="d-flex mb-0">
 									<div class="">
 										<h4 class="mb-1 font-weight-bold">
-                                            @foreach ($visitors as $visitor)
-                                                {{$visitor->views}}
-                                            @endforeach
+
                                             <span class="text-danger tx-13 ml-2"></span></h4>
 										<p class="mb-2 tx-12 text-muted">Overview of Last month</p>
 									</div>
