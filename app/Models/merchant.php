@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class merchant extends Model
 {
     use HasFactory;
     protected $fillable = [
         'merchantName',
         'name',
-        'category',
+        'categoryId',
         'productDescription',
         'productDetalis',
         'price',
@@ -21,4 +21,9 @@ class merchant extends Model
         'append',
         'productViews',
     ];
+
+    public function productionToCategoryRealtions(): BelongsTo
+    {
+        return $this->belongsTo(category::class,'categoryId');
+    }
 }
