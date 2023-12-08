@@ -92,11 +92,17 @@
 												<input type="text" name="name" class="form-control" id="name" placeholder="قم بكتابه اسم للمنتج بشكل واضح">
 												<small id="name_error" class="mt-2 text-danger"></small>
 											</div>
-											<div class="control-group form-group">
+											
+											<div class="form-group control-group form-group">
 												<label class="form-label">القسم</label>
-												<input type="text" name="category" class="form-control" placeholder="مثال : ملابس رجالي">
-												<small id="category_error" class="mt-2 text-danger"></small>
+												<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
+													<option selected>اختار</option>
+													@foreach ($category as $data)
+														<option value="{{$data->id}}">{{$data->name}}</option>
+													@endforeach
+												</select>
 											</div>
+												<small id="category_error" class="mt-2 text-danger"></small>
 
 											<div class="control-group form-group mb-0">
 												<label class="form-label">وصف المنتج</label>

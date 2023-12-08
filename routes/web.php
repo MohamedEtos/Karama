@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -33,9 +34,24 @@ Route::get('addadmin',function(){
         'password'=>Hash::make('11223344'),
     ]);
 
-    return redirect('/');
+
+    category::create([
+        'name'=>'ملابس ',
+        'descrption'=>'ملابس رجالي'
+    ]);
+    category::create([
+        'name'=>'سيارات ',
+        'descrption'=>'قطع غيار'
+    ]);
+    category::create([
+        'name'=>'عطور ',
+        'descrption'=>'عطور نسائيه'
+    ]);
+
+    return redirect('merchant/merchant');
 
 });
+
 
 
 // merchant
