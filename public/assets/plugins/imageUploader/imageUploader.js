@@ -32,6 +32,7 @@ function readURL3(input3) {
         var reader3 = new FileReader();
         reader3.onload = function(e) {
             $('#imagePreview3').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview3').append('<img id="sss">');
             $('#imagePreview3').hide();
             $('#imagePreview3').fadeIn(650);
         }

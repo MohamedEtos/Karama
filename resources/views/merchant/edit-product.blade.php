@@ -87,11 +87,11 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload1" accept=".png, .jpg, .jpeg" />
+													<input type='img1' id="imageUpload1" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+													<div id="imagePreview" style="background-image: url({{asset($product->img)}});">
 													</div>
 												</div>
 											</div>
@@ -99,11 +99,12 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+													<input type='img2' id="imageUpload2" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload2"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview2" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+													<div id="imagePreview2" style="background-image: url({{asset($product->img)}});">
+														
 													</div>
 												</div>
 											</div>
@@ -111,11 +112,11 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload3" accept=".png, .jpg, .jpeg" />
+													<input type='img3' id="imageUpload3" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload3"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview3" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+													<div id="imagePreview3" style="background-image: url({{asset($product->img)}});">
 													</div>
 												</div>
 											</div>
