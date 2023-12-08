@@ -66,8 +66,8 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('edit-product/{id}',[MerchantController::class,'update'])->name('edit-product');
 
 });
-
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
+
 
 
 

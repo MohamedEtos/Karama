@@ -169,7 +169,7 @@
 															<div class="row mb-4">
 
 																<div class="col-sm-12 col-md-4">
-																	<input type="file" name="img" class="form-control" data-height="200" />
+																	<input type="file" name="mainImg" class="form-control" data-height="200" />
 																	{{-- <input type="text" name="img"  value="222" class="" /> --}}
 																</div>
 															</div>

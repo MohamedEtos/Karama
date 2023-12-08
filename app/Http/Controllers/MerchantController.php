@@ -99,10 +99,12 @@ class MerchantController extends Controller
             'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
         ]);
 
+        // get last id to save image
+
+        $lastId = merchant::where('merchantName',Auth::User()->name)->orderby('id','DESC')->first()->id;
+
+
         // save images ///
-
-
-
 
         if($request->hasFile('mainImg')){
 
@@ -117,9 +119,10 @@ class MerchantController extends Controller
         }
 
         productImg::create([
-            'mainImage',$save_url,
-            'img2','2',
-            'img3','3',
+            'mainImage'=>$save_url,
+            'productId'=>$lastId,
+            'img2'=>'2',
+            'img3'=>'3',
         ]);
 
 
