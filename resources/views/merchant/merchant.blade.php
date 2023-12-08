@@ -24,6 +24,7 @@
 				<!-- /breadcrumb -->
 @endsection
 @section('content')
+
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -59,7 +60,11 @@
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1 font-weight-bold"> سسس <span class="text-danger tx-13 ml-2"></span></h4>
+										<h4 class="mb-1 font-weight-bold">
+                                            @foreach ($visitors as $visitor)
+                                                {{$visitor->views}}
+                                            @endforeach
+                                            <span class="text-danger tx-13 ml-2"></span></h4>
 										<p class="mb-2 tx-12 text-muted">Overview of Last month</p>
 									</div>
 									<div class="card-chart bg-pink-transparent brround mr-auto mt-0">

@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('visitors_counts', function (Blueprint $table) {
+        Schema::create('counters', function (Blueprint $table) {
             $table->id();
-            $table->integer('merchant_id');
-            $table->integer('visits')->default('1');
-            $table->string('ip_address');
-            $table->integer('productId')->nullable();
+            $table->integer('views');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('visitors_counts');
+        Schema::dropIfExists('counters');
     }
 };

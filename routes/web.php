@@ -18,6 +18,9 @@ use App\Http\Controllers\MerchantController;
 |
 */
 
+//Admin Routes
+Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
 
 Route::get('addadmin',function(){
 
