@@ -33,10 +33,18 @@
 						<a class="side-menu__item" href="{{ url('merchant/merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-house  fa-xl"></i> &nbsp; الرئيسيه</span><span class="badge badge-success side-badge">1</span></a>
 					</li>
                     <li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاصناف</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاصناف</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('add.category') }}">اضافه صنف</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-flot') }}">كل الاصناف</a></li>
+							<li><a class="slide-item" href="{{ route('all.category') }}"> كل الاصناف</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-flot') }}"> اضافه صنف</a></li>
+
+						</ul>
+					</li>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  المستخدمين</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ route('all.merchant') }}"> التجار</a></li>
+							<li><a class="slide-item" href="{{ route('all.user') }}"> الاعضاء</a></li>
 
 						</ul>
 					</li>

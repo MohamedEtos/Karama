@@ -11,6 +11,9 @@
 		@include('layouts.head')
 	</head>
 
+
+
+
 	<body class="main-body app sidebar-mini karama-bg-img2">
 		<!-- Loader -->
 		{{-- <div id="global-loader"> --}}
@@ -40,5 +43,8 @@
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')
+
 	</body>
+
+
 </html>
