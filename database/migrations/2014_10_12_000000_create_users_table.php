@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
+            $table->timestamp('last_seen');
             $table->timestamps();
         });
     }

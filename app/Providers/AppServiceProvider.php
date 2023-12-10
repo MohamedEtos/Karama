@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\User;
 
 use Illuminate\pagination\Paginator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        View::composer('*', function ($view) {
+            $onlineUsersCount = User::where('last_seen', '>=', now()->subMinutes(5))->count();
+            $view->with('onlineUsersCount', $onlineUsersCount);
+        });
     }
 }
