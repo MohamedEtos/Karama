@@ -64,6 +64,7 @@ class MerchantController extends Controller
     public function store(Request $request)
     {
 
+        return $request->all();
         $request->validate([
             'name'=>'required|string',
             // 'category'=>'required|string',
@@ -106,21 +107,51 @@ class MerchantController extends Controller
 
         // save images ///
 
-        if($request->hasFile('mainImg')){
+        if($request->hasFile('mainImage')){
 
+            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
+  
             $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
 
             $imageName = Str::random().'.webp';
 
             $image->save(public_path('upload/products/img/'. $imageName));
+    
+            $mainImage = 'upload/products/img/'. $imageName;
+
+        }
+        if($request->hasFile('img2')){
+
+            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,350);
+  
+            $imageName = Str::random().'.webp';
+      
+            $image->save(public_path('upload/products/img/'. $imageName));
+    
+            $img2 = 'upload/products/img/'. $imageName;
+
+        }
+        if($request->hasFile('img3')){
+
+            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,350);
+  
+            $imageName = Str::random().'.webp';
+      
+            $image->save(public_path('upload/products/img/'. $imageName));
+    
+            $img3 = 'upload/products/img/'. $imageName;
 
             $save_url = 'upload/products/img/'. $imageName;
 
         }
 
+
+
         productImg::create([
-            'mainImage'=>$save_url,
             'productId'=>$lastId,
+            'mainImage'=>$mainImage,
+            'img2'=>$img2,
+            'img3'=>$img3,
             'img2'=>'2',
             'img3'=>'388',
         ]);

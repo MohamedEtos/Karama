@@ -1,7 +1,7 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
 <!---Internal Fileupload css-->
-<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/imageUploader/imageUploader.css')}}">
 <!---Internal Fancy uploader css-->
 <link href="{{URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
 <!--- Internal Select2 css-->
@@ -51,13 +51,10 @@
 
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-lg-12 col-md-12 ">
-
-
-
 						<div class="card ">
-						<form id="product_data" enctype="multipart/form-data">
+						<form id="product_data" enctype="multipart/form-data" >
+							@csrf
 							<div class="loader_cu">
 								<div class="loading">
 									<div class="loading-bar"></div>
@@ -68,20 +65,12 @@
 								</div>
 							</div>
 							<div class="card-body  ">
-
-									@csrf
-
-
-
 									<div class="text-success smoth mt-3 =" id="Success" ></div>
-
 								</div>
 									<div class="main-content-label m-3 mg-b-5">
 										<h4>اضافه منتج</h4>
 
 									<p class="mt-3 mg-b-20">قم بملئ كل البيانات </p>
-
-
 
 									<div id="wizard3" class="loader">
 
@@ -159,23 +148,43 @@
 										<h3>صور المنتج</h3>
 										<section>
 											<div class="row ">
-												<div class="col-lg-12 col-md-12 ">
-
-														<div class="card-body">
-
-															<div>
-																<h6 class="card-title mb-1">File Upload</h6>
-															</div>
-															<div class="row mb-4">
-
-																<div class="col-sm-12 col-md-4">
-																	<input type="file" name="mainImg" class="form-control" data-height="200" />
-																	{{-- <input type="text" name="img"  value="222" class="" /> --}}
-																</div>
+												<div class="col-md-4">
+													<div class="avatar-upload">
+														<div class="avatar-edit">
+															<input type='file' id="imageUpload3" name="mainImage" accept=".png, .jpg, .jpeg" />
+															<label for="imageUpload3"></label>
+														</div>
+														<div class="avatar-preview">
+															<div id="imagePreview3" style="background-image: url({{asset('assets/img/imageUploader.svg')}});">
 															</div>
 														</div>
-
-														<small class="h4" id="error"></small>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="avatar-upload">
+														<div class="avatar-edit">
+															<input type='file' id="imageUpload2" name="img2" accept=".png, .jpg, .jpeg" />
+															<label for="imageUpload2"></label>
+														</div>
+														<div class="avatar-preview">
+															<div id="imagePreview2" style="background-image: url({{asset('assets/img/imageUploader.svg')}});">
+																
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="avatar-upload">
+														<div class="avatar-edit">
+															<input type='file' id="imageUpload3" name="image_3" accept=".png, .jpg, .jpeg" />
+															<label for="imageUpload3"></label>
+														</div>
+														<div class="avatar-preview">
+															<div id="imagePreview3" style="background-image: url({{asset('assets/img/imageUploader.svg')}});">
+																
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</section>
@@ -202,16 +211,20 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+
 <!--Internal  Select2 js -->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <!-- Internal Jquery.steps js -->
 <script src="{{URL::asset('assets/plugins/jquery-steps/jquery.steps.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
 <!--Internal  Form-wizard js -->
-<script src="{{URL::asset('assets/js/form-wizard.js')}}"></script>
 
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
+
+<script src="{{asset('assets/plugins/imageUploader/imageUploader.js')}}"></script>
+<script src="{{URL::asset('assets/js/form-wizard.js')}}"></script>
+
 
 
 <script>
