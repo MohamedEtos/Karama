@@ -111,8 +111,10 @@ class MerchantController extends Controller
 
             $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
   
+            $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
+
             $imageName = Str::random().'.webp';
-      
+
             $image->save(public_path('upload/products/img/'. $imageName));
     
             $mainImage = 'upload/products/img/'. $imageName;
@@ -139,6 +141,8 @@ class MerchantController extends Controller
     
             $img3 = 'upload/products/img/'. $imageName;
 
+            $save_url = 'upload/products/img/'. $imageName;
+
         }
 
 
@@ -148,6 +152,8 @@ class MerchantController extends Controller
             'mainImage'=>$mainImage,
             'img2'=>$img2,
             'img3'=>$img3,
+            'img2'=>'2',
+            'img3'=>'388',
         ]);
 
 
@@ -194,7 +200,7 @@ class MerchantController extends Controller
         ->inRandomOrder()
         ->limit(4)
         ->get();
-        
+
         return view('product-details',compact(
             'product_details',
             'related_products',
@@ -210,7 +216,7 @@ class MerchantController extends Controller
      */
     public function edit(Request $request)
     {
-        
+
         $products_data = merchant::get();
 
         return view('merchant.list-product',compact(

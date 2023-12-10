@@ -35,3 +35,15 @@
 {{-- fontawome --}}
 
 <script src="{{URL::asset('assets/plugins/fontawesome-free/js/all.min.js')}}"></script>
+
+{{-- sweetalert --}}
+<script src="{{ asset('backend/assets/js/code/code.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.18/sweetalert2.all.js" integrity="sha512-g3O6A0g+uyT9Z0ohz1AcyHCV+KgvaR27pvKHNIs5s8d4/8VuzBQSl/BCQdZknXNbjcX+AQTocT4+VCEEOvXn5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+  {{-- data table --}}
+  <script src="{{asset('assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
+  <script src="{{asset('assets/js/data-table.js')}}"></script>
+    {{-- End data table --}}

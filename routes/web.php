@@ -5,6 +5,7 @@ use App\Models\category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
 
@@ -21,6 +22,27 @@ use App\Http\Controllers\MerchantController;
 
 //Admin Routes
 Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('/all/category', 'AllCategory')->name('all.category');
+    Route::post('/store/category', 'StoreCategory')->name('store.category');
+    Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
+    Route::post('/update/category/{id}', 'UpdateCategory')->name('update.category');
+    Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
+
+});
+
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/all/merchant', 'AllMerchant')->name('all.merchant');
+    Route::get('/all/user', 'AllUser')->name('all.user');
+    Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
+    Route::get('/delete/merchant/{id}', 'DeleteMerchant')->name('delete.merchant');
+    // Route::post('/store/category', 'StoreCategory')->name('store.category');
+    // Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
+    // Route::post('/update/category/{id}', 'UpdateCategory')->name('update.category');
+    // Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
+
+});
 
 
 Route::get('addadmin',function(){
