@@ -81,8 +81,19 @@ Route::get('addadmin',function(){
     return redirect('merchant/merchant');
 
 });
+Route::get('addadmin2',function(){
 
+    User::create([
+        'name'=>'yassen ',
+        'usercode'=>'11223344',
+        'phone_number'=>'01017373391',
+        'email'=>'user@user.com',
+        'subtype'=>'user',
+        'password'=>Hash::make('11223333'),
+    ]);
+    return redirect('merchant/merchant');
 
+});
 
 // merchant
 
