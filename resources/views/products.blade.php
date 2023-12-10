@@ -1,5 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.users.master')
 @section('css')
+
 <!-- Internal Nice-select css  -->
 <link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
 @endsection
@@ -8,7 +9,7 @@
 				<div class="breadcrumb-header justify-content-between m-2">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto p-2 rounded-4 ripple btn-danger">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> </span>
+							<h4 class="content-title mb-0 my-auto p-2 rounded-4  alert aler-danger">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> </span>
 						</div>
 					</div>
 
@@ -85,7 +86,7 @@ $products = App\Models\merchant::latest()->paginate(15);
                 </div>
 					<div class="col-xl-2 col-lg-2 col-md-12 mb-3 mb-md-0">
 						<div class="card 	">
-							<div class="card-header border-bottom pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Category</div>
+							<div class="card-header border-bottom pt-3 pb-3 mb-0 font-weight-bold text-uppercase">الفلاتر</div>
 							<div class="card-body pb-0">
 								<div class="form-group">
 									<label class="form-label">الفئات</label>

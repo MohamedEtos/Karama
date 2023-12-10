@@ -18,8 +18,12 @@ class LastSeenUpdateMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            Auth::user()->last_seen = now();
-            Auth::user()->save();
+
+        Auth::where('name', Auth::user()->name)->update([
+            'last_seen',now(),
+        ]);
+            // Auth::user()->last_seen = now();
+            // Auth::user()->save();
         }
         return $next($request);
     }

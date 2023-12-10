@@ -57,7 +57,7 @@ Route::get('addadmin',function(){
     ]);
     User::create([
         'name'=>'yassen ',
-        'usercode'=>'11223344',
+        'usercode'=>'1122334455',
         'phone_number'=>'01017373391',
         'email'=>'user@user.com',
         'subtype'=>'user',

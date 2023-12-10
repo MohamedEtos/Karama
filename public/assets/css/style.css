@@ -456,6 +456,9 @@ pre {
   .responsive-logo {
     display: none; } }
 
+    .responsive-logo{
+      background-color: red;
+    }
 @media (min-width: 992px) {
   .container {
     max-width: 960px; } }

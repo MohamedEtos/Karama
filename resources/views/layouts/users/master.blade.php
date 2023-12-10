@@ -10,21 +10,20 @@
 		@include('layouts.head')
 	</head>
 
-	<body class="main-body app sidebar-mini karama-bg-img">
+	<body class="main-body app  karama-bg-img">
 		<!-- Loader -->
 		<div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
-		@include('layouts.main-sidebar')
+		{{-- @include('layouts.users.sidebar_users') --}}
 		<!-- main-content -->
-		<div class="main-content app-content">
-			@include('layouts.main-header')
+		{{-- <div class="main-content app-content"> --}}
+			@include('layouts.users.main-header')
 			<!-- container -->
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
-				@include('layouts.merchant.sidebar_merchant')
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')

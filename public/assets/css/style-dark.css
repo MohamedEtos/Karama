@@ -358,6 +358,8 @@ body.dark-theme {
   background-color: #555c6e; }
 
 /*----- Left-Sidemenu -----*/
+
+
 @media (max-width: 991px) and (min-width: 574px) {
   .dark-theme .responsive-logo .dark-logo-2, .dark-theme .responsive-logo .logo-2 {
     dispLay: none; }

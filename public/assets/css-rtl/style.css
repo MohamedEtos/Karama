@@ -452,15 +452,36 @@ pre {
   margin-right: auto;
   margin-left: auto; }
 
+
+
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px; } }
+
 
 @media (min-width: 768px) {
   .container {
     max-width: 720px; }
   .responsive-logo {
-    display: none; } }
+    display: block;
+  
+  } 
+
+
+  .responsive-logo .logo-1{
+    display: block;
+    width: 7rem;
+  }
+  .responsive-logo .logo-2{
+    display: none;
+  }
+
+  }
+  
+
+
+
 
 @media (min-width: 992px) {
   .container {
@@ -469,6 +490,8 @@ pre {
 @media (min-width: 1200px) {
   .container {
     max-width: 1200px; } }
+
+
 
 .row {
   display: flex;
@@ -12142,6 +12165,14 @@ pre {
 .nav-sub-item .sub-slide-item {
   color: #fff; }
 
+@media (max-width: 1700px) {
+  .responsive-logo .logo-2 {
+    dispLay: none; }
+  .responsive-logo .logo-1 {
+    height: 2rem;
+    dispLay: block;
+  } }
+
 @media (max-width: 768px) and (min-width: 574px) {
   .responsive-logo .logo-2 {
     dispLay: none; }
@@ -18557,7 +18588,7 @@ pre {
     z-index: 975 !important;
     width: 100% !important;
     right: 0;
-    padding-right: 250px;
+    padding-right: 50px;
     position: fixed; }
   .app.sidenav-toggled .main-header {
     padding-right: 80px;
