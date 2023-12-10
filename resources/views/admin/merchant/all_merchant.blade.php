@@ -79,7 +79,8 @@
 </div> --}}
 
 
-
+<a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">اضافة تاجر</a>
+<br><br>
 
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -118,6 +119,74 @@
 </div>
     </div>
 </div>
+
+
+<!-- Button trigger modal -->
+<div class="modal" id="modaldemo1">
+    <div class="modal-dialog" role="document">
+<div class="modal-content modal-content-demo">
+    <div class="modal-header">
+        <h6 class="modal-title">Basic Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="modal-body">
+        <form method="post" action="{{route('store.merchant')}}" id="storeUser">
+            @csrf
+        <div class="mb-3">
+            <label for="name"> الاسم</label>
+            <input name="name" id="name"  type="text" autofocus class="form-control @error('name') is-invalid @enderror">
+            @error('name')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+           @enderror
+        </div>
+        <div class="mb-3">
+            <label for="name"> رقم الكود</label>
+            <input name="usercode" id="usercode" type="number" autofocus class="form-control @error('name') is-invalid @enderror">
+            @error('descrption')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+           @enderror
+        </div>
+        <div class="mb-3">
+            <label for="name"> رقم الهاتف</label>
+            <input name="phone_number" id="descrption" type="tel" autofocus class="form-control @error('name') is-invalid @enderror">
+            @error('descrption')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+           @enderror
+        </div>
+        <div class="mb-3">
+            <label for="name">  البريد الالكترونى</label>
+            <input name="email" id="descrption" type="email" autofocus class="form-control @error('name') is-invalid @enderror">
+            @error('descrption')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+           @enderror
+        </div>
+        <div class="mb-3">
+            <label for="name"> الرقم السرى</label>
+            <input name="password" id="descrption" type="text" autofocus class="form-control @error('name') is-invalid @enderror">
+            @error('descrption')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+           @enderror
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn ripple btn-primary" type="submit" form="storeUser" >Save changes</button>
+        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+ {{-- End Modal --}}
+
 
 <script>
     $(function(){
