@@ -49,7 +49,7 @@ class AdminController extends Controller
             'password' => $request->password,
             'subtype' => 'merchant',
         ]);
-        return to_route('all/merchant');
+        return to_route('all.merchant');
     }
 
     public function DeleteMerchant($id){
@@ -87,4 +87,12 @@ class AdminController extends Controller
         User::findorfail($id)->delete();
         return to_route('all.user');
     }
+
+    public function changeStatus(request $request){
+        $user = User::findorfail($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+
+        return response()->json(['success'=>'Status Changes Successfully']);
+     }
 }

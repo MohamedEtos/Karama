@@ -1,6 +1,10 @@
 @extends('admin.layout.admin_master')
 @section('css')
 <link rel="stylesheet" href="{{URL::asset('assets/css-rtl/football-loader.css')}}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+ {{-- Toggle Button  --}}
+ <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+ {{-- Toggle Button  --}}
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -96,6 +100,8 @@
         <th>الرقم الكودى</th>
         <th>رقم الهاتف</th>
         <th>البريد الاكترونى</th>
+        <th>الحاله</th>
+        <th>تغيير</th>
         <th>حذف</th>
       </tr>
     </thead>
@@ -107,6 +113,17 @@
                 <td>{{$merchant->usercode}}</td>
                 <td>{{$merchant->phone_number}}</td>
                 <td>{{$merchant->email}}</td>
+                <td>
+                    @if($merchant->status == 'active')
+                <span class="badge rounded-pill bg-success">مفعل</span>
+                @else
+                <span class="badge rounded-pill bg-danger">غير مفعل</span>
+                  @endif
+                </td>
+                <td>
+                    <input data-id="{{ $merchant->id }}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger"  data-toggle="toggle" data-on="active" data-off="inactive" {{ $merchant->status ? 'checked' : ' ' }} >
+
+                     </td>
                 <td><a class="remove-from-cart m-3 swal-ajax" id="delete" data-toggle="tooltip" title="" href="{{route('delete.merchant',$merchant->id)}}" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
                 </a></td>
             </tr>
@@ -220,6 +237,52 @@
   });
 </script>
 
+<script type="text/javascript">
+    $(function() {
+      $('.toggle-class').change(function() {
+          var status = $(this).prop('checked') == true ? 1 : 0;
+          var user_id = $(this).data('id');
+
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: '/changeStatus',
+              data: {'status': status, 'user_id': user_id},
+              success: function(data){
+                // console.log(data.success)
+
+                  // Start Message
+
+              const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+              })
+              if ($.isEmptyObject(data.error)) {
+
+                      Toast.fire({
+                      type: 'success',
+                      title: data.success,
+                      })
+
+              }else{
+
+             Toast.fire({
+                      type: 'error',
+                      title: data.error,
+                      })
+                  }
+
+                // End Message
+
+
+              }
+          });
+      })
+    })
+  </script>
 
 
 @endsection

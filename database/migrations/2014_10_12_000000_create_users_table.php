@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('usercode');
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
-            $table->string('subtype');  
+            $table->string('subtype');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
             $table->timestamps();
         });
