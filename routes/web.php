@@ -61,7 +61,7 @@ Route::get('addadmin',function(){
         'phone_number'=>'01017373391',
         'email'=>'user@user.com',
         'subtype'=>'user',
-        'password'=>Hash::make('11223333'),
+        'password'=>Hash::make('11223344'),
     ]);
 
 
@@ -81,7 +81,6 @@ Route::get('addadmin',function(){
     return redirect('merchant/merchant');
 
 });
-
 
 
 // merchant

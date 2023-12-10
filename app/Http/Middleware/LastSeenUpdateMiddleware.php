@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class LastSeenUpdateMiddleware
 {
@@ -17,13 +19,15 @@ class LastSeenUpdateMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
+        // if (Auth::check()) {
+        //     Auth::user()->last_seen = now();
+        //     Auth::user()->save();
+        // }
 
-        Auth::where('name', Auth::user()->name)->update([
-            'last_seen',now(),
-        ]);
-            // Auth::user()->last_seen = now();
-            // Auth::user()->save();
+        if(Auth::check()) {
+            $expiresAt = now()->addMinutes(2);
+            Cache::put('user-is-online-'. Auth::user()->id, true, $expiresAt);
+            User::where('id',Auth::user()->id)->update(['last_seen' => now()]);
         }
         return $next($request);
     }
