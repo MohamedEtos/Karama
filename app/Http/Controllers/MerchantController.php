@@ -151,9 +151,7 @@ class MerchantController extends Controller
             'productId'=>$lastId,
             'mainImage'=>$mainImage,
             'img2'=>$img2,
-            // 'img3'=>$img3,
-            // 'img2'=>'2',
-            'img3'=>'test',
+            'img3'=>$img3,
         ]);
 
 
@@ -189,13 +187,13 @@ class MerchantController extends Controller
         $visitor->save();
         // $visitors = visitorsCount::count();
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
-
         merchant::where('id', $id)->increment('productViews');
-        $product_details = merchant::where('id',$id)->get();
-        $product = merchant::findorfail($id);
-        $product_cat = $product->category;
 
-        $related_products = merchant::where('category',$product_cat)
+        $product_details = productImg::where('productId',$id)->get();
+        $product = merchant::findorfail($id);
+        $product_cat = $product->categoryId;
+
+        $related_products = productImg::where('id',$product_cat)
         ->where('id','!=',$id)
         ->inRandomOrder()
         ->limit(4)

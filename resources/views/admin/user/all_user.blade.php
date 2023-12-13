@@ -2,6 +2,7 @@
 @section('css')
 <link rel="stylesheet" href="{{URL::asset('assets/css-rtl/football-loader.css')}}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.18/sweetalert2.all.js" integrity="sha512-g3O6A0g+uyT9Z0ohz1AcyHCV+KgvaR27pvKHNIs5s8d4/8VuzBQSl/BCQdZknXNbjcX+AQTocT4+VCEEOvXn5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  {{-- Toggle Button  --}}
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  {{-- Toggle Button  --}}

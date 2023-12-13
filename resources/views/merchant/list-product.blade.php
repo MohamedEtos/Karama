@@ -66,7 +66,7 @@
 										</thead>
 										<tbody>
 											@foreach ($products as $data )
-											<tr id="row{{$data->id}}">
+											<tr id="row{{$data->productionToImgRealtions->id}}">
 													<td>
 														<div class="media">
 															<div class="card-aside-img">

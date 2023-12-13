@@ -5,7 +5,6 @@
 <!-- Internal Select2 css -->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <!--- Internal Sweet-Alert css-->
 <link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
 
@@ -35,43 +34,41 @@
 					
 @foreach ($product_details as $item)
 
-
-
 					<div class="col-xl-12">
 						<div class="card ">
 							<div class="card-body h-100 ">
 								<div class="row row-sm ">
 									<div class=" col-xl-5 col-lg-12 col-md-12">
 										<div class="preview-pic tab-content">
-										  <div class="tab-pane active" id="pic-1"><img src="{{asset($item->img)}}" alt="image"/></div>
-										  <div class="tab-pane" id="pic-2"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></div>
-										  <div class="tab-pane" id="pic-3"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></div>
-										  <div class="tab-pane" id="pic-4"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></div>
-										  <div class="tab-pane" id="pic-5"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></div>
+										  <div class="tab-pane active" id="pic-1"><img src="{{asset($item->mainImage)}}" alt="image"/></div>
+										  <div class="tab-pane" id="pic-2"><img src="{{asset($item->img2)}}" alt="image"/></div>
+										  <div class="tab-pane" id="pic-3"><img src="{{asset($item->img3)}}" alt="image"/></div>
+										  <div class="tab-pane" id="pic-4"><img src="{{asset($item->img2)}}" alt="image"/></div>
+										  <div class="tab-pane" id="pic-5"><img src="{{asset($item->mainImage)}}" alt="image"/></div>
 										</div>
 										<ul class="preview-thumbnail nav nav-tabs">
-										  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></a></li>
-										  <li><a data-target="#pic-2" data-toggle="tab"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></a></li>
-										  <li><a data-target="#pic-3" data-toggle="tab"><img src="{{URL::asset('assets/img/products/HR4607_25_model.jpg')}}" alt="image"/></a></li>
-										  <li><a data-target="#pic-4" data-toggle="tab"><img src="{{URL::asset('assets/img/products/HR4607_21_model.jpg')}}" alt="image"/></a></li>
-										  <li><a data-target="#pic-5" data-toggle="tab"><img src="{{URL::asset('assets/img/products/HR4607_25_model.jpg')}}" alt="image"/></a></li>
+										  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{asset($item->mainImage)}}" alt="image"/></a></li>
+										  <li><a data-target="#pic-2" data-toggle="tab"><img src="{{asset($item->img2)}}" alt="image"/></a></li>
+										  <li><a data-target="#pic-3" data-toggle="tab"><img src="{{asset($item->img3)}}" alt="image"/></a></li>
+										  <li><a data-target="#pic-4" data-toggle="tab"><img src="{{asset($item->img2)}}" alt="image"/></a></li>
+										  <li><a data-target="#pic-5" data-toggle="tab"><img src="{{asset($item->mainImage)}}" alt="image"/></a></li>
 										</ul>
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
 										<div class="merchant-logo-bg">
 											<img  class="merchant-logo " src="{{ asset('assets/img/merchant/Adidas_logo.png') }}" alt="">
 										</div>
-										<h4 class="product-title mb-1">{{$item->name}}</h4>
-										<p class="text-muted tx-13 mb-1">{{$item->category}}</p>
+										<h4 class="product-title mb-1">{{$item->productionToImgRealtions->name}}</h4>
+										<p class="text-muted tx-13 mb-1">{{$item->productionToImgRealtions->category}}</p>
 										<div class="rating mb-1">
 
 											<span class="review-no"> reviews {{$productRevew}} </span>
 										</div>
-										<h6 class="price mt-2">خصم <span class="h3 ml-2 ">{{$item->discount}}</span></h6>
-										<h6 class="price">السعر بعض الخصم <span class="h3 ml-2">₪{{$item->ThePriceAfterDiscount}}</span> <span class="prev-price">₪ {{$item->price}}</span></h6>
+										<h6 class="price mt-2">خصم <span class="h3 ml-2 ">{{$item->productionToImgRealtions->discount}}</span></h6>
+										<h6 class="price">السعر بعض الخصم <span class="h3 ml-2">₪{{$item->productionToImgRealtions->ThePriceAfterDiscount}}</span> <span class="prev-price">₪ {{$item->productionToImgRealtions->price}}</span></h6>
 										<h6 class="price mt-3"> <span class="h3 ml-2 ">وصف المنتج </span></h6>
-										<p class="price mt-3 h5">{{$item->productDescription}}</p>
-										<p class="product-description  ">{{$item->productDetails}}</p>
+										<p class="price mt-3 h5">{{$item->productionToImgRealtions->productDescription}}</p>
+										<p class="product-description  ">{{$item->productionToImgRealtions->productDetails}}</p>
 										{{-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> --}}
 										{{-- <div class="sizes d-flex">sizes:
 											<span class="size d-flex"  data-toggle="tooltip" title="small"><label class="rdiobox mb-0"><input checked="" name="rdio" type="radio"> <span class="font-weight-bold">s</span></label></span>
@@ -161,28 +158,28 @@
 
 				<div class="row">
                     @foreach ($related_products as $item)
-						<a href="{{url('product-details/'.$item->id)}}">
+						<a href="{{url('product-details/'.$item->productionToImgRealtions->id)}}">
 							<div class="col-lg-3">
 
 								<div class="card item-card">
 
 									<div class="card-body pb-0 h-100">
 										<div class="text-center">
-											<img src="{{asset($item->img)}}" alt="img" class="img-fluid">
+											<img src="{{asset($item->mainImage)}}" alt="img" class="img-fluid">
 										</div>
 										<div class="card-body cardbody relative">
 											<div class="cardtitle">
-												<span>{{$item->name}}</span>
-												<a>{{$item->category}}</a>
+												<span>{{$item->productionToImgRealtions->name}}</span>
+												<a>{{$item->productionToImgRealtions->category}}</a>
 											</div>
 											<div class="cardprice">
-												<span class="type--strikethrough">${{$item->price}}</span>
-												<span>${{$item->ThePriceAfterDiscount}}</span>
+												<span class="type--strikethrough">${{$item->productionToImgRealtions->price}}</span>
+												<span>${{$item->productionToImgRealtions->ThePriceAfterDiscount}}</span>
 											</div>
 										</div>
 									</div>
 									<div class="text-center border-top pt-3 pb-3 pl-2 pr-2 ">
-										<a href="{{url('product-details/'.$item->id)}}" class="btn btn-primary"> View More</a>
+										<a href="{{url('product-details/'.$item->productionToImgRealtions->id)}}" class="btn btn-primary"> View More</a>
 										<a href="#" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Add to cart</a>
 									</div>
 
@@ -214,7 +211,6 @@
 <!-- Sweet-alert js  -->
 <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
 <script src="{{URL::asset('assets/js/sweet-alert.js')}}"></script>
-
 <script>
 
 function myFunction() {
@@ -239,7 +235,7 @@ $(function(e) {
 				animation: true,
 			})
 		});
-	});
+});
 
 
 

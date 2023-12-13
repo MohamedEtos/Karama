@@ -45,6 +45,40 @@ Route::controller(AdminController::class)->group(function(){
 });
 
 
+
+// merchant
+
+Route::prefix('merchant')->middleware('auth')->group(function () {
+
+    Route::get('merchant',[MerchantController::class, 'index'])->name('merchant');
+    Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');
+    Route::get('list-product',[MerchantController::class, 'edit'])->name('list-product');
+    Route::post('store_product',[MerchantController::class, 'store'])->name('store_product');
+    Route::post('destroy',[MerchantController::class,'destroy'])->name('destroy');
+    Route::get('edit-product/{id}',[MerchantController::class,'update'])->name('edit-product');
+
+});
+Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
+
+
+
+// users
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('products');
+    });
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+
+
+
+
 Route::get('addadmin',function(){
 
     User::create([
@@ -81,44 +115,6 @@ Route::get('addadmin',function(){
     return redirect('merchant/merchant');
 
 });
-
-
-// merchant
-
-Route::prefix('merchant')->middleware('auth')->group(function () {
-
-    Route::get('merchant',[MerchantController::class, 'index'])->name('merchant');
-    Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');
-    Route::get('list-product',[MerchantController::class, 'edit'])->name('list-product');
-    Route::post('store_product',[MerchantController::class, 'store'])->name('store_product');
-    Route::post('destroy',[MerchantController::class,'destroy'])->name('destroy');
-    Route::get('edit-product/{id}',[MerchantController::class,'update'])->name('edit-product');
-
-});
-Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
-
-
-
-
-Route::middleware('auth')->group(function () {
-
-    Route::get('/', function () {
-        return view('products');
-    });
-
-});
-
-// users
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-
-
 
 //theme
 Route::get('/{page}', [AdminController::class, 'index']);
