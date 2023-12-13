@@ -64,7 +64,7 @@ class MerchantController extends Controller
     public function store(Request $request)
     {
 
-        return $request->all();
+        // return $request->all();
         $request->validate([
             'name'=>'required|string',
             // 'category'=>'required|string',
@@ -111,7 +111,7 @@ class MerchantController extends Controller
 
             $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
   
-            $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
+            // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
 
             $imageName = Str::random().'.webp';
 
@@ -151,9 +151,9 @@ class MerchantController extends Controller
             'productId'=>$lastId,
             'mainImage'=>$mainImage,
             'img2'=>$img2,
-            'img3'=>$img3,
-            'img2'=>'2',
-            'img3'=>'388',
+            // 'img3'=>$img3,
+            // 'img2'=>'2',
+            'img3'=>'test',
         ]);
 
 
@@ -217,10 +217,10 @@ class MerchantController extends Controller
     public function edit(Request $request)
     {
 
-        $products_data = merchant::get();
+        $products = productImg::get(); //get product from image table relation
 
         return view('merchant.list-product',compact(
-            'products_data',
+            'products',
         ));
     }
 
@@ -234,8 +234,10 @@ class MerchantController extends Controller
     public function update(Request $request, $id)
     {
         $product = merchant::where('id',$id)->first();
+        $product_image = productImg::where('productId',$id)->first();
         return view('merchant.edit-product',compact(
             'product',
+            'product_image',
         ));
     }
 

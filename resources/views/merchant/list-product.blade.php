@@ -65,41 +65,41 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach ($products_data as $data )
+											@foreach ($products as $data )
 											<tr id="row{{$data->id}}">
 													<td>
 														<div class="media">
 															<div class="card-aside-img">
-																<img src="{{URL::asset($data->img)}}" alt="img" class="h-80 w-80">
+																<img src="{{URL::asset($data->mainImage)}}" alt="img" class="h-80 w-80">
 															</div>
 															<div class="media-body">
 																<div class="card-item-desc mt-0">
-																	<h6 class="font-weight-semibold mt-0 text-uppercase">{{$data->name}}</h6>
+																	<h6 class="font-weight-semibold mt-0 text-uppercase">{{$data->productionToImgRealtions->name}}</h6>
 																	<dl class="card-item-desc-1">
 																	<dt>القسم: </dt>
-																	<dd>{{$data->category}}</dd>
+																	<dd>{{$data->productionToImgRealtions->category}}</dd>
 																	</dl>
 																	<dl class="card-item-desc-1">
 																	<dt>وصف المنتج: </dt>
-																	<dd>{{$data->productDescription}}</dd>
+																	<dd>{{$data->productionToImgRealtions->productDescription}}</dd>
 																	</dl>
 																</div>
 															</div>
 														</div>
 													</td>
-													<td class="text-center text-lg text-medium">{{$data->price}} <b>₪</b></td>
+													<td class="text-center text-lg text-medium">{{$data->productionToImgRealtions->price}} <b>₪</b></td>
 	
-													<td class="text-center text-lg text-medium">{{$data->discount}} <b>%</b></td>
-													<td class="text-center text-lg text-medium">{{$data->ThePriceAfterDiscount}} <b>₪</b></td>
+													<td class="text-center text-lg text-medium">{{$data->productionToImgRealtions->discount}} <b>%</b></td>
+													<td class="text-center text-lg text-medium">{{$data->productionToImgRealtions->ThePriceAfterDiscount}} <b>₪</b></td>
 
 													<td class="text-center">
 
-														<a class="remove-from-cart m-3" href="{{url('merchant/edit-product/'.$data->id)}}" data-toggle="tooltip" title="" data-original-title="تعديل المنتج"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i>
+														<a class="remove-from-cart m-3" href="{{url('merchant/edit-product/'.$data->productionToImgRealtions->id)}}" data-toggle="tooltip" title="" data-original-title="تعديل المنتج"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i>
 														</a>
-														<a class="remove-from-cart m-3 swal-ajax"  href="#" proId='{{$data->id}}' data-toggle="tooltip" title="" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
+														<a class="remove-from-cart m-3 swal-ajax"  href="#" proId='{{$data->productionToImgRealtions->id}}' data-toggle="tooltip" title="" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
 														</a>
 														<form>
-															<input type="hidden" name="proId" value="{{$data->id}}" >
+															<input type="hidden" name="proId" value="{{$data->productionToImgRealtions->id}}" >
 														</form>
 														
 													</td>

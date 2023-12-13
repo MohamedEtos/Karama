@@ -91,7 +91,7 @@
 													<label for="imageUpload1"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview" style="background-image: url({{asset($product->img)}});">
+													<div id="imagePreview" style="background-image: url({{asset($product_image->mainImage)}});">
 													</div>
 												</div>
 											</div>
@@ -103,7 +103,7 @@
 													<label for="imageUpload2"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview2" style="background-image: url({{asset($product->img)}});">
+													<div id="imagePreview2" style="background-image: url({{asset($product_image->img2)}});">
 														
 													</div>
 												</div>
@@ -116,7 +116,7 @@
 													<label for="imageUpload3"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview3" style="background-image: url({{asset($product->img)}});">
+													<div id="imagePreview3" style="background-image: url({{asset($product_image->img3)}});">
 													</div>
 												</div>
 											</div>
