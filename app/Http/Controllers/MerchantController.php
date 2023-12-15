@@ -35,7 +35,7 @@ class MerchantController extends Controller
         $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
         $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
         
-        if($unappendPersent>0 or $appendPersent>0){
+        if($unappendPersent>=0 or $appendPersent>=0){
          $persent = 0;   
         } else{
             $persent = ($unappendPersent/$appendPersent*100);
