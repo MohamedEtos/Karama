@@ -260,7 +260,7 @@ class MerchantController extends Controller
 
     public function previewProduct($id)
     {
-        $previewProduct = productImg::findOrFail($id);
+        $previewProduct = merchant::findOrFail($id);
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
         return view('merchant.preview-product',compact([
             'previewProduct',
