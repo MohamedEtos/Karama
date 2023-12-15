@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.users.master')
 @section('css')
 <!--Internal  Nice-select css  -->
 <link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
@@ -112,7 +112,7 @@
 								<div class="card item-card">
 
 									<div class="card-body pb-0 h-100">
-										<div class="text-center">
+										<div class="text-center"> 
 											<img src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="img" class="img-fluid">
 										</div>
 										<div class="card-body cardbody relative">
