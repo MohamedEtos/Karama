@@ -232,6 +232,19 @@ function result (){
         form.classList.add('was-validated')
       }, false)
     })
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+        //   event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+
+
 })()
 
 
@@ -317,7 +330,7 @@ function result (){
 						
                     var response = $.parseJSON(reject.responseText);
                     $.each(response.errors,function(key,val){
-                        $("#" + key + "_error").text(val[0]);
+                        $("#" + key + "_error").html(val[0]);
 					});
 					
 					$('form').append('<input id="errors" type="hidden" value="يوجد بعض المشكلا برجاء مرجعه الحقول ">');

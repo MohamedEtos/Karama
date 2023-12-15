@@ -34,8 +34,9 @@ class merchant extends Model
 
     public function userToProduct(): BelongsTo
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class,'userId');
     }
 
     
 }
+

@@ -113,7 +113,7 @@
 
 									<div class="card-body pb-0 h-100">
 										<div class="text-center">
-											<img src="{{asset($item->mainImage)}}" alt="img" class="img-fluid">
+											<img src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="img" class="img-fluid">
 										</div>
 										<div class="card-body cardbody relative">
 											<div class="cardtitle">

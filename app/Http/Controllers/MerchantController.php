@@ -21,6 +21,13 @@ class MerchantController extends Controller
      */
     public function index(Request $request)
     {
+
+        // get user with relations
+        // $product = visitorsCount::with('productionToviewrsRealtions.userToProduct')->first();
+        // $product->productionToviewrsRealtions->userToProduct->name; // get user name
+
+        $storeViews = visitorsCount::where('userId',Auth::User()->id)->count();
+
         $products_data = merchant::where('userid',Auth::User()->id)->get();
         $products_count = merchant::where('userid',Auth::User()->id)->count();
 
@@ -45,6 +52,7 @@ class MerchantController extends Controller
             'persent',
             'appended',
             'unappended',
+            'storeViews',
             // 'VisitorsCountController',
         ));
     }
@@ -178,11 +186,16 @@ class MerchantController extends Controller
 
     public function ProductDetails(Request $request ,$id){
 
+        // get id user
+
+        $userId = merchant::where('id',$id)->first();
+
         // count visetors
         $ip = $request->ip();
         $visitor = visitorsCount::firstOrCreate([
             'ip_address' => $ip,
             'productId' => $id,
+            'userId' => $userId->userToProduct->id,
         ]);
         $visitor->increment('visits');
         $visitor->save();
