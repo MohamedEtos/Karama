@@ -33,15 +33,11 @@ class MerchantController extends Controller
 
         // calculate append product present
         $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
-        $appended = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
-        $unappended = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
         $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
-        if($appendPersent > 1 or $unappendPersent > 1){
-            $persent = $appendPersent / $unappendPersent * 100;
-            $persent = round($persent,'1');
-        }else{
-            $persent = '0';
-        }
+        
+        $persent = ($unappendPersent/$appendPersent*100);
+
+        // $persent = round($persent,'1');
 
 
         return view('merchant.merchant',compact(
@@ -50,8 +46,6 @@ class MerchantController extends Controller
             'appendPersent',
             'unappendPersent',
             'persent',
-            'appended',
-            'unappended',
             'storeViews',
             // 'VisitorsCountController',
         ));
@@ -76,7 +70,6 @@ class MerchantController extends Controller
     public function store(Request $request)
     {
 
-        // return $request->all();
         $request->validate([
             'name'=>'required|string',
             // 'category'=>'required|string',
@@ -236,21 +229,86 @@ class MerchantController extends Controller
         ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\merchant  $merchant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function show_update (Request $request,$id)
     {
-        $product = merchant::where('id',$id)->where('id',Auth::User()->id)->first();
+
+
+        // get current product data 
+        $product = merchant::where('id',$id)->first();
         $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
+
         return view('merchant.edit-product',compact(
             'product',
             'category',
         ));
+    }
+
+
+
+
+
+     
+    public function update(Request $request, $id)
+    {
+
+
+
+        // update product 
+        if($request->hasFile('mainImage')){
+            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
+            // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/products/img/'. $imageName));
+            $mainImage = 'upload/products/img/'. $imageName;
+            productImg::where('id',$id)->update([
+                'mainImage'=>$mainImage,
+            ]);
+        }
+
+        if($request->hasFile('img2')){
+            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,350);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/products/img/'. $imageName));
+            $img2 = 'upload/products/img/'. $imageName;
+            productImg::where('id',$id)->update([
+                'img2'=>$img2,
+            ]);
+        }
+
+        if($request->hasFile('img3')){
+            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,350);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/products/img/'. $imageName));
+            $img3 = 'upload/products/img/'. $imageName;
+            $save_url = 'upload/products/img/'. $imageName;
+            productImg::where('id',$id)->update([
+                'img3'=>$img3,
+            ]);
+        }
+
+        merchant::where('id',$id)->update([
+            'name'=>$request->name,
+            'categoryId'=>$request->categoryId,
+            'productDescription'=>$request->productDescription,
+            'productDetalis'=>$request->productDetalis,
+            'price'=>$request->price,
+            'ThePriceAfterDiscount'=>$request->ThePriceAfterDiscount,
+        ]);
+
+                // get current product data 
+                $product = merchant::where('id',$id)->first();
+                $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
+        
+                return view('merchant.edit-product',compact(
+                    'product',
+                    'category',
+                ));
+
+
+
+
     }
 
     /**

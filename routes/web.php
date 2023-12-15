@@ -54,8 +54,9 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');
     Route::get('list-product',[MerchantController::class, 'edit'])->name('list-product');
     Route::post('store_product',[MerchantController::class, 'store'])->name('store_product');
+    Route::post('update_product/{id}',[MerchantController::class, 'update'])->name('update_product');
     Route::post('destroy',[MerchantController::class,'destroy'])->name('destroy');
-    Route::get('edit-product/{id}',[MerchantController::class,'update'])->name('edit-product');
+    Route::get('edit-product/{id}',[MerchantController::class,'show_update'])->name('edit-product');
     Route::get('preview-product/{id}',[MerchantController::class,'previewProduct'])->name('preview-product');
 
 });

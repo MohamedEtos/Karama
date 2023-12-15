@@ -27,8 +27,8 @@
 									تعدي المنتج
 								</div>
 								{{-- <p class="mg-b-20">المنتج رقم </p> --}}
-								<form action="">
-
+								<form action="{{url('merchant/update_product/'.$product->id)}}" method="post" enctype="multipart/form-data">
+									@csrf
 									<div class="row row-sm mt-2">
 										<div class="col-4">
 											<div class="form-group mg-b-0">
@@ -62,7 +62,7 @@
 										<div class="col-12">
 											<div class="form-group mg-b-0">
 												<label class="form-label">تفاصيل المنتج: </label>
-												<textarea class="form-control" name="name" placeholder="لا يمكنك ترك التفاصيل فارغه" required="" type="text">{{$product->productDetalis}}</textarea>
+												<textarea class="form-control" name="productDetalis" placeholder="لا يمكنك ترك التفاصيل فارغه" required="" type="text">{{$product->productDetalis}}</textarea>
 											</div>
 										</div>
 									</div>
@@ -71,20 +71,20 @@
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر ₪:  </label>
-												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->price}}" type="text">
+												<input class="form-control" name="price" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->price}}" type="text">
 											</div>
 										</div>
 									
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الخصم %: </label>
-												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->discount}}" type="text">
+												<input class="form-control" name="discount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->discount}}" type="text">
 											</div>
 										</div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر بعد الخصم ₪: </label>
-												<input class="form-control" name="name" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
+												<input class="form-control" name="ThePriceAfterDiscount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
 											</div>
 										</div>
 									</div>
@@ -94,7 +94,7 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload1" accept=".png, .jpg, .jpeg" />
+													<input type='file' id="imageUpload1" name="mainImage" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
 												</div>
 												<div class="avatar-preview">
@@ -106,7 +106,7 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+													<input type='file' name="img2" id="imageUpload2" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload2"></label>
 												</div>
 												<div class="avatar-preview">
@@ -119,7 +119,7 @@
 										<div class="col-md-4">
 											<div class="avatar-upload">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload3" accept=".png, .jpg, .jpeg" />
+													<input type='file' name="img3" id="imageUpload3" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload3"></label>
 												</div>
 												<div class="avatar-preview">

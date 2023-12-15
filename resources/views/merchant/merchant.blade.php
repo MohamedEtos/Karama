@@ -36,11 +36,11 @@
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1 font-weight-bold">{{$appended}}<span class="text-success tx-13 ml-2"> </span></h4>
-										<p class="mb-2 tx-12 text-muted"> منتجلت تحت المراجعه ({{$unappended}})</p>
+										<h4 class="mb-1 font-weight-bold">{{$appendPersent}}<span class="text-success tx-13 ml-2"> </span></h4>
+										<p class="mb-2 tx-12 text-muted"> منتجلت تحت المراجعه ({{$unappendPersent}})</p>
 									</div>
 									<div class="card-chart bg-primary-transparent brround mr-auto mt-0">
-										<i class="typcn typcn-group-outline text-primary tx-24"></i>
+										<i class="fa-solid fa-box text-primary tx-24"></i>
 									</div>
 								</div>
 
@@ -63,17 +63,18 @@
 										<h4 class="mb-1 font-weight-bold">
 											{{$storeViews}}
                                             <span class="text-danger tx-13 ml-2"></span></h4>
-										<p class="mb-2 tx-12 text-muted">Overview of Last month</p>
+										<p class="mb-2 tx-12 text-muted">تاجر مميز</p>
 									</div>
 									<div class="card-chart bg-pink-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-chart-line-outline text-pink tx-24"></i>
+										
 									</div>
 								</div>
 
 								<div class="progress progress-sm mt-2">
-									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar bg-pink wd-50p" role="progressbar"></div>
+									<div  style="width: {{$storeViews}}%" aria-valuenow="{{$storeViews}}" aria-valuemin="0" aria-valuemax="100"  class="progress-bar bg-pink " role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">Monthly<span class="float-left text-muted">50%</span></small>
+								<small class="mb-0  text-muted">استمر لتحصل علي مميزات اكثر<span class="float-left text-muted">{{$storeViews}}%</span></small>
 							</div>
 						</div>
 					</div>
@@ -81,13 +82,13 @@
 						<div class="card">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">Bounce Rate</h4>
+									<h4 class="card-title mb-3">حاله الحساب</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1   font-weight-bold">76.3%<span class="text-success tx-13 ml-2">(+13.52%)</span></h4>
-										<p class="mb-2 tx-12 text-muted">Overview of Last month</p>
+										<h4 class="mb-1   font-weight-bold text-success">يعمل جيدا<span class="text-success tx-13 ml-2"></span></h4>
+										{{-- <p class="mb-2 tx-12 text-muted">Overview of Last month</p> --}}
 									</div>
 									<div class="card-chart bg-teal-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-chart-bar-outline text-teal tx-20"></i>
@@ -95,9 +96,9 @@
 								</div>
 
 								<div class="progress progress-sm mt-2">
-									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar bg-teal wd-60p" role="progressbar"></div>
+									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar bg-success wd-100p" role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">Monthly<span class="float-left text-muted">60%</span></small>
+								<small class="mb-0  text-muted">ممتازه <span class="float-left text-muted">100%</span></small>
 							</div>
 						</div>
 					</div>
@@ -105,23 +106,23 @@
 						<div class="card">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">Visits Duration</h4>
+									<h4 class="card-title mb-3">الوصول السريع</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1 font-weight-bold">5m 24s<span class="text-success tx-13 ml-2">(+19.5%)</span></h4>
-										<p class="mb-2 tx-12 text-muted">Overview of Last month</p>
+										<h4 class="mb-3 mt-3 font-weight-bold">اضافه منتج<span class="text-success tx-13 ml-2"></span></h4>
 									</div>
-									<div class="card-chart bg-purple-transparent brround mr-auto mt-0">
-										<i class="typcn typcn-time  text-purple tx-24"></i>
+									<div class="card-chart bg-purple-transparent brround mr-auto mt-1">
+										<a href="{{ url('merchant/new-product') }}">
+											<i class="fa-solid fa-plus  tx-24"></i>
+										</a>
 									</div>
 								</div>
 
-								<div class="progress progress-sm mt-2">
-									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar bg-purple wd-40p" role="progressbar"></div>
+								<div class="progress progress-sm mt-2 mb-3">
+									<div aria-valuemax="100" aria-val	uemin="0" aria-valuenow="100" class="progress-bar bg-purple wd-100p" role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">Monthly<span class="float-left text-muted">40%</span></small>
 							</div>
 						</div>
 					</div>
@@ -157,7 +158,7 @@
 
 											<tr class="text-center">
 												<td>{{$data->name}}</td>
-												<td>{{$data->category}}</td>
+												<td>{{$data->productionToCategoryRealtions->name}}</td>
 												<td>{{$data->price}}</td>
 												<td>{{$data->discount}}</td>
 												<td>{{$data->ThePriceAfterDiscount}}</td>

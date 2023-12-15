@@ -108,18 +108,9 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="shopping-cart-footer  border-top-0">
-									<div class="column">
-										<form class="coupon-form" method="post">
-											<input class="form-control" type="text" placeholder="Coupon code" required="">
-											<button class="btn btn-outline-primary" type="submit">Apply Coupon</button>
-										</form>
-									</div>
-									<div class="column text-lg">Subtotal: <span class="tx-20 font-weight-bold mr-2">$112</span></div>
-								</div>
+
 								<div class="shopping-cart-footer">
-									<div class="column"><a class="btn btn-secondary" href="#">Back to Shopping</a></div>
-									<div class="column"><a class="btn btn-primary" href="#" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" href="#">Checkout</a></div>
+									<div class="column"><a class="btn btn-danger" href="{{url('merchant/merchant')}}">رجعوع لمركز التحكم</a></div>
 
 								</div>
 							</div>
