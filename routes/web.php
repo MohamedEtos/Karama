@@ -56,6 +56,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::post('store_product',[MerchantController::class, 'store'])->name('store_product');
     Route::post('destroy',[MerchantController::class,'destroy'])->name('destroy');
     Route::get('edit-product/{id}',[MerchantController::class,'update'])->name('edit-product');
+    Route::get('preview-product/{id}',[MerchantController::class,'previewProduct'])->name('preview-product');
 
 });
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);

@@ -168,7 +168,7 @@
 													@elseif ($data->append == 2)
 													<td class="text-danger">تم الرفض <i class="fas fa-ban"></i></td>
 													@endif
-												<td><a href="	" class="btn btn-sm btn-outline-primary">تفاصيل</a></td>
+												<td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-primary">عرض</a></td>
 											</tr>
 
 

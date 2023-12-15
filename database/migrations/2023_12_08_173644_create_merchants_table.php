@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
-            $table->string('merchantName',100);
+            $table->bigInteger('userId')->unsigned();
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->string('name',100);
             $table->bigInteger('categoryId')->unsigned();
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->string('discount');
             $table->decimal('ThePriceAfterDiscount',9,3);
             $table->integer('append')->default('0');
-            $table->integer('productViews')->default('1');
+            // $table->integer('productViews')->default('1');
             $table->timestamps();
         });
     }

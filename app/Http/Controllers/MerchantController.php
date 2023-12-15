@@ -25,8 +25,8 @@ class MerchantController extends Controller
         $products_count = merchant::count();
 
         // calculate append product present
-        $appendPersent = merchant::where('merchantName',Auth::User()->name)->where('append','1')->count();
-        $unappendPersent = merchant::where('merchantName',Auth::User()->name)->where('append','0')->count();
+        $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
+        $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
         if($appendPersent > 1 or $unappendPersent > 1){
             $persent = $appendPersent / $unappendPersent * 100;
             $persent = round($persent,'1');
@@ -90,7 +90,7 @@ class MerchantController extends Controller
 
 
         merchant::create([
-            'merchantName'=>Auth::User()->name,
+            'userId'=>Auth::User()->id,
             'name'=>$request->name,
             'categoryId'=>$request->categoryId,
             'productDescription'=>$request->productDescription,
@@ -102,7 +102,7 @@ class MerchantController extends Controller
 
         // get last id to save image
 
-        $lastId = merchant::where('merchantName',Auth::User()->name)->orderby('id','DESC')->first()->id;
+        $lastId = merchant::where('userId',Auth::User()->id)->orderby('id','DESC')->first()->id;
 
 
         // save images ///
@@ -187,7 +187,7 @@ class MerchantController extends Controller
         $visitor->save();
         // $visitors = visitorsCount::count();
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
-        merchant::where('id', $id)->increment('productViews');
+        // merchant::where('id', $id)->increment('productViews');
 
         $product_details = productImg::where('productId',$id)->get();
         $product = merchant::findorfail($id);
@@ -254,5 +254,16 @@ class MerchantController extends Controller
         return response()->json(["id" => $request->id,'test'=>public_path().$imgName]);
 
 
+    }
+
+
+    public function previewProduct($id)
+    {
+        $previewProduct = productImg::findOrFail($id);
+        $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
+        return view('merchant.preview-product',compact([
+            'previewProduct',
+            'productRevew',
+        ]));
     }
 }

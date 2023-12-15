@@ -136,7 +136,7 @@
 										حدد نسبه خصم بين 1% % الي 100 %
 									</div>
 									</div>
-									<div class="col-4 mt-4">
+									<div class="col-md-4 mt-4">
 										<label for="ThePriceAfterDiscount" class="form-label">الاجمالي</label>
 										<input name="ThePriceAfterDiscount" class="form-control" minlength="1" step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">

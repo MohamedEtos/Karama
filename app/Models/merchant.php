@@ -9,7 +9,7 @@ class merchant extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'merchantName',
+        'userId',
         'name',
         'categoryId',
         'productDescription',
@@ -24,6 +24,11 @@ class merchant extends Model
     public function productionToCategoryRealtions(): BelongsTo
     {
         return $this->belongsTo(category::class,'categoryId');
+    }
+
+    public function userToProduct(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 
     

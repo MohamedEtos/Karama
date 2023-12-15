@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('visitors_counts', function (Blueprint $table) {
             $table->id();
-            $table->integer('merchant_id');
+            // $table->integer('merchant_id');
             $table->integer('visits')->default('1');
             $table->string('ip_address');
             $table->integer('productId')->nullable();
