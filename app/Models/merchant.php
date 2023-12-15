@@ -12,6 +12,7 @@ class merchant extends Model
         'userId',
         'name',
         'categoryId',
+        'imgId',
         'productDescription',
         'productDetalis',
         'price',
@@ -24,6 +25,11 @@ class merchant extends Model
     public function productionToCategoryRealtions(): BelongsTo
     {
         return $this->belongsTo(category::class,'categoryId');
+    }
+
+    public function productionToImgRealtions(): BelongsTo
+    {
+        return $this->belongsTo(productImg::class,'imgId');
     }
 
     public function userToProduct(): BelongsTo

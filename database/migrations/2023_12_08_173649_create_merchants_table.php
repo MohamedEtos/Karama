@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('discount');
             $table->decimal('ThePriceAfterDiscount',9,3);
             $table->integer('append')->default('0');
+            $table->bigInteger('imgId')->unsigned();
+            $table->foreign('imgId')->references('id')->on('product_imgs')->onDelete('cascade');  
             // $table->integer('productViews')->default('1');
             $table->timestamps();
         });

@@ -34,13 +34,13 @@
 						</div>
 @php
 // $products = App\Models\merchant::latest()->paginate(15);
-$image = App\Models\productImg::latest()->paginate(15);
+$products = App\Models\merchant::latest()->paginate(15);
 @endphp
 
 
 
 					<div class="row row-sm">
-                        @foreach ($image as $product)
+                        @foreach ($products as $product)
 							<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
 
 								<div class="card shadow-none">
@@ -54,20 +54,20 @@ $image = App\Models\productImg::latest()->paginate(15);
 												<div class="badge bg-success">عروض المتجر</div>
 												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
 											</div>
-											<a href="{{url('product-details/'.$product->productionToImgRealtions->id)}}">
-												<img class="w-100" src="{{asset($product->mainImage)}}" alt="product-image">
+											<a href="{{url('product-details/'.$product->id)}}">
+												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
 											<a href="#" class="adtocart overflow-hidden "> <img class="" src="{{URL::asset('assets/img/merchant/Adidas_logo.png')}}" alt="merchant-logo"></i>
 											</a>
 										</div>
 										<div class="text-center pt-3">
-											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$product->productionToImgRealtions->name}}</h3>
+											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$product->name}}</h3>
 											<span class="tx-15 ml-auto">
-												% الخصم <b>{{$product->productionToImgRealtions->discount}}</b>
+												% الخصم <b>{{$product->discount}}</b>
 				
 
 											</span>
-											<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">₪{{$product->productionToImgRealtions->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
+											<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
 										</div>
 
 									</div>
@@ -80,7 +80,7 @@ $image = App\Models\productImg::latest()->paginate(15);
 
 					</div>
 					<div class="col-12 w-100 pagination ">
-						{{$image->links()}}
+						{{$products->links()}}
 					</div>
                 </div>
 					<div class="col-xl-2 col-lg-2 col-md-12 mb-3 mb-md-0">

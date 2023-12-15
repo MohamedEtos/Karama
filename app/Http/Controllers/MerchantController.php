@@ -21,11 +21,13 @@ class MerchantController extends Controller
      */
     public function index(Request $request)
     {
-        $products_data = merchant::get();
-        $products_count = merchant::count();
+        $products_data = merchant::where('userid',Auth::User()->id)->get();
+        $products_count = merchant::where('userid',Auth::User()->id)->count();
 
         // calculate append product present
         $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
+        $appended = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
+        $unappended = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
         $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
         if($appendPersent > 1 or $unappendPersent > 1){
             $persent = $appendPersent / $unappendPersent * 100;
@@ -41,6 +43,8 @@ class MerchantController extends Controller
             'appendPersent',
             'unappendPersent',
             'persent',
+            'appended',
+            'unappended',
             // 'VisitorsCountController',
         ));
     }
@@ -89,23 +93,6 @@ class MerchantController extends Controller
 
 
 
-        merchant::create([
-            'userId'=>Auth::User()->id,
-            'name'=>$request->name,
-            'categoryId'=>$request->categoryId,
-            'productDescription'=>$request->productDescription,
-            'productDetalis'=>$request->productDetalis,
-            'price'=>$request->price,
-            'discount'=>$request->discount,
-            'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
-        ]);
-
-        // get last id to save image
-
-        $lastId = merchant::where('userId',Auth::User()->id)->orderby('id','DESC')->first()->id;
-
-
-        // save images ///
 
         if($request->hasFile('mainImage')){
 
@@ -148,10 +135,24 @@ class MerchantController extends Controller
 
 
         productImg::create([
-            'productId'=>$lastId,
+            'userId'=>Auth::User()->id, // this colum for show userid only (not relations)
             'mainImage'=>$mainImage,
             'img2'=>$img2,
             'img3'=>$img3,
+        ]);
+        $getLastImageId = productImg::where('userId',Auth::User()->id)->latest()->first()->id;
+
+
+        merchant::create([
+            'userId'=>Auth::User()->id,
+            'name'=>$request->name,
+            'categoryId'=>$request->categoryId,
+            'productDescription'=>$request->productDescription,
+            'productDetalis'=>$request->productDetalis,
+            'price'=>$request->price,
+            'discount'=>$request->discount,
+            'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
+            'imgId'=>$getLastImageId,
         ]);
 
 
@@ -189,11 +190,11 @@ class MerchantController extends Controller
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
         // merchant::where('id', $id)->increment('productViews');
 
-        $product_details = productImg::where('productId',$id)->get();
+        $product_details = merchant::where('id',$id)->get();
         $product = merchant::findorfail($id);
         $product_cat = $product->categoryId;
 
-        $related_products = productImg::where('id',$product_cat)
+        $related_products = merchant::where('id',$product_cat)
         ->where('id','!=',$id)
         ->inRandomOrder()
         ->limit(4)
@@ -215,7 +216,7 @@ class MerchantController extends Controller
     public function edit(Request $request)
     {
 
-        $products = productImg::get(); //get product from image table relation
+        $products = merchant::where('userid',Auth::User()->id)->get(); //get product from image table relation
 
         return view('merchant.list-product',compact(
             'products',
@@ -231,11 +232,11 @@ class MerchantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = merchant::where('id',$id)->first();
-        $product_image = productImg::where('productId',$id)->first();
+        $product = merchant::where('id',$id)->where('id',Auth::User()->id)->first();
+        $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
         return view('merchant.edit-product',compact(
             'product',
-            'product_image',
+            'category',
         ));
     }
 

@@ -18,12 +18,12 @@ return new class extends Migration
 
         Schema::create('product_imgs', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('userId');
             $table->string('mainImage')->nullable();
             $table->string('img2')->nullable();
             $table->string('img3')->nullable();
             // $table->foreignId('productId')->nullable()->constrained('merchant','id');
-            $table->bigInteger('productId')->unsigned();
-            $table->foreign('productId')->references('id')->on('merchants')->onDelete('cascade');  
+
 
             $table->timestamps();
         });

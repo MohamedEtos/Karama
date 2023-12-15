@@ -39,7 +39,14 @@
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">القسم: </label>
-												<input class="form-control" name="category" placeholder="لا يمكنك ترك القسم فارغ" required="" value="{{$product->category}}" type="text">
+												{{-- <input class="form-control" name="category" placeholder="لا يمكنك ترك القسم فارغ" required="" value="{{$product->category}}" type="text"> --}}
+												<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
+													{{-- <option disabled selected>اختار</option> --}}
+													<option selected value="{{$product->productionToCategoryRealtions->id}}">{{$product->productionToCategoryRealtions->name}}</option>
+													@foreach ($category as $data)
+														<option value="{{$data->id}}">{{$data->name}}</option>
+													@endforeach
+												</select>
 											</div>
 										</div>
 										<div class="col-4">
@@ -91,7 +98,7 @@
 													<label for="imageUpload1"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview" style="background-image: url({{asset($product_image->mainImage)}});">
+													<div id="imagePreview" style="background-image: url({{asset($product->productionToImgRealtions->mainImage)}});">
 													</div>
 												</div>
 											</div>
@@ -103,7 +110,7 @@
 													<label for="imageUpload2"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview2" style="background-image: url({{asset($product_image->img2)}});">
+													<div id="imagePreview2" style="background-image: url({{asset($product->productionToImgRealtions->img2)}});">
 														
 													</div>
 												</div>
@@ -116,7 +123,7 @@
 													<label for="imageUpload3"></label>
 												</div>
 												<div class="avatar-preview">
-													<div id="imagePreview3" style="background-image: url({{asset($product_image->img3)}});">
+													<div id="imagePreview3" style="background-image: url({{asset($product->productionToImgRealtions->img3)}});">
 													</div>
 												</div>
 											</div>

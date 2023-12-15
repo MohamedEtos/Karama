@@ -36,8 +36,8 @@
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-1 font-weight-bold">{{$products_count}}<span class="text-success tx-13 ml-2"> </span></h4>
-										<p class="mb-2 tx-12 text-muted">المنتجات اللتي تم الموافقه عليها</p>
+										<h4 class="mb-1 font-weight-bold">{{$appended}}<span class="text-success tx-13 ml-2"> </span></h4>
+										<p class="mb-2 tx-12 text-muted"> منتجلت تحت المراجعه ({{$unappended}})</p>
 									</div>
 									<div class="card-chart bg-primary-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-group-outline text-primary tx-24"></i>

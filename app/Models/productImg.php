@@ -10,15 +10,12 @@ class productImg extends Model
     use HasFactory;
 
     protected $fillable = [
+        'userId',
         'mainImage',
         'img2',
         'img3',
-        'productId',
     ];
 
 
-        public function productionToImgRealtions(): BelongsTo
-        {
-            return $this->belongsTo(merchant::class,'productId');
-        }
+
 }
