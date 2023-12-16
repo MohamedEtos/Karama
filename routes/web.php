@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\ProfileMerchantController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,13 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::post('destroy',[MerchantController::class,'destroy'])->name('destroy');
     Route::get('edit-product/{id}',[MerchantController::class,'show_update'])->name('edit-product');
     Route::get('preview-product/{id}',[MerchantController::class,'previewProduct'])->name('preview-product');
+    Route::get('editProfile',[MerchantController::class,'previewProduct'])->name('preview-product');
+
+
+    // profile 
+    Route::get('editProfile', [ProfileMerchantController::class, 'edit'])->name('editProfile');
+    Route::get('profileDetials', [ProfileMerchantController::class, 'profileDetials'])->name('profileDetials');
+
 
 });
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);

@@ -44,8 +44,8 @@
 					<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-user fa-xl"></i> &nbsp; الملف الشخصي</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-morris') }}">كلمه المرور</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-flot') }}">العنوان</a></li>
+							<li><a class="slide-item" href="{{ url('merchant/profileDetials') }}">البينات الاساسيه</a></li>
+							<li><a class="slide-item" href="{{ url('merchant/editProfile') }}">كلمه المرور</a></li>
 						</ul>
 
 				</ul>
