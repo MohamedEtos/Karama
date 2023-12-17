@@ -9,7 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProfileMerchantController;
-
+use App\Http\Controllers\UserDetalisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
 
     // profile 
     Route::get('editProfile', [ProfileMerchantController::class, 'edit'])->name('editProfile');
-    Route::get('profileDetials', [ProfileMerchantController::class, 'profileDetials'])->name('profileDetials');
+    Route::get('profileDetials', [UserDetalisController::class, 'profileDetials'])->name('profileDetials');
 
 
 });
