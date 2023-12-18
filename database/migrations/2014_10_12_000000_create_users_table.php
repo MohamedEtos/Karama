@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('usercode');
-            $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->string('subtype');
             $table->timestamp('email_verified_at')->nullable();

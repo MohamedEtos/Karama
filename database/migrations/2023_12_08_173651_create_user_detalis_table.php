@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('location')->nullable();
             $table->text('bio')->nullable();
-            $table->string('storeImage')->nullable();
             $table->string('ProfileImage')->nullable();
             $table->string('nationalId')->nullable();
             

@@ -7,6 +7,12 @@
 {{-- imageuploader --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/imageUploaderProfile/imageUploader.css')}}">
 
+<style>
+
+
+
+</style>
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -31,16 +37,31 @@
 									<div class="main-profile-overview">
 
 										<div class="col-12 text-center d-flex p-2">
+											
 											<div class="avatar-upload ">
+												<form id="imageUploadform" enctype="multipart/form-data">
+													@csrf
+													<div class="loader_cu">
+														<div class="loading">
+															<div class="loading-bar"></div>
+															<div class="loading-bar"></div>
+															<div class="loading-bar"></div>
+															<div class="loading-bar"></div>
+															<div class="loading-bar"></div>
+														</div>
+													</div>
+
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload1" accept=".png, .jpg, .jpeg" />
+													<input type='file' id="imageUpload1" name="ProfileImage" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
 												</div>
-												<div class="avatar-preview">
-													<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+												<div class="avatar-preview avatar-preview-animate">
+													<div id="imagePreview" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
 													</div>
 												</div>
+											</form>	
 											</div>	
+
 										</div>
 										<div class="d-flex justify-content-between mg-b-20">
 											<div>
@@ -156,8 +177,8 @@
 												<i class="icon-layers text-primary"></i>
 											</div>
 											<div class="mr-auto text-center">
-												<h5 class="tx-13">المنتجات المعروضه</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
+												<h5 class="tx-13">كل المنتجات</h5>
+												<h2 class="mb-0 tx-22 mb-1 mt-1">{{$countProuduct}}</h2>
 											</div>
 										</div>
 									</div>
@@ -167,12 +188,12 @@
 								<div class="card ">
 									<div class="card-body">
 										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-danger-transparent">
-												<i class="icon-paypal text-danger"></i>
+											<div class="counter-icon bg-danger-transparent text-center">
+												<i class="icon-user"></i>
 											</div>
 											<div class="mr-auto text-center">
 												<h5 class="tx-13">زوار المتجر</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
+												<h2 class="mb-0 tx-22 mb-1 mt-1">{{$storeViews}}</h2>
 												<p class="text-muted mb-0 tx-11"><i class="si si-arrow-up-circle text-success mr-1"></i></p>
 											</div>
 										</div>
@@ -202,7 +223,7 @@
 									<!-- Tabs -->
 									<ul class="nav nav-tabs profile navtab-custom panel-tabs">
 										<li class="active">
-											<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">من انا </span> </a>
+											<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">من نحن	 </span> </a>
 										</li>
 										<li class="">
 											<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">المنتجات</span> </a>
@@ -211,142 +232,102 @@
 											<a href="#social" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa-solid fa-hashtag"></i></span> <span class="hidden-xs">التواصل الاجتماعي</span> </a>
 										</li>	
 										<li class="">
-											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">الاعدادت</span> </a>
+											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">البيانات الاساسيه</span> </a>
 										</li>	
 									</ul>
 								</div>
 								<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
 									<div class="tab-pane active" id="home">
-										<h4 class="tx-15 text-uppercase mb-3">نبذه تعريفيه</h4>
+										<h4 class="tx-15 text-uppercase text-primary mb-3">نبذه تعريفيه</h4>
 										<p class="m-b-5">
-											متجر ايداس متخصص في الملابس الرياضيه وكل ما هو جديد في عالم الملابس والاحذية
-
+										{{$userDetalis->bio}}
 										</p>
 										<hr>
 										<div class="m-t-30">
-											<h4 class="tx-15 text-uppercase mt-3">العنوان</h4>
+											<h4 class="tx-15 text-uppercase text-primary mt-3">العنوان</h4>
 											<div class=" p-t-10">
-												<h5 class=" m-b-5 tx-14">نابلس</h5>
-												<p><b>2010-2015</b></p>
-												<p class="text-muted tx-13 m-b-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+												<h5 class=" m-b-5 tx-14"></h5>
+												{{-- <p><b>2010-2015</b></p> --}}
+												<p class="text-muted tx-13 m-b-0">
+													{{$userDetalis->location}}
+												</p>
 											</div>
 											<hr>
 											<div class="">
-												<h5 class="text-primary m-b-5 tx-14">Senior Graphic Designer</h5>
-												<p class="">coderthemes.com</p>
-												<p><b>2007-2009</b></p>
-												<p class="text-muted tx-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+												<h5 class="text-primary m-b-5 tx-14">نوع الاشتراك</h5>
+												<p><b>
+													@if (Auth::user()->subtype == 'admin')
+													مشرف
+													@elseif (Auth::user()->subtype == 'merchant')
+													تاجر
+													@elseif (Auth::user()->subtype == 'user')
+													مستخدم
+													@endif	
+												
+												</b></p>
 											</div>
 										</div>
 									</div>
 									<div class="tab-pane" id="profile">
 										<div class="row">
-											<div class="col-sm-4">
-												<div class="border p-1 card thumb">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
+											@foreach ($productData as $productDataa )
+												<div class="col-sm-4">
+													<div class=" border p-1 card thumb  mb-xl-0">
+														<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{asset($productDataa->productionToImgRealtions->mainImage)}}" class="thumb-img" alt="work-thumbnail"> </a>
+														<h4 class="text-center tx-14 mt-3 mb-0">{{$productDataa->name}}</h4>
+														<div class="ga-border"></div>
+														<p class="text-muted text-center"><small>{{$productDataa->productionToCategoryRealtions->name}}</small></p>
+													</div>
 												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class=" border p-1 card thumb">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class=" border p-1 card thumb">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class=" border p-1 card thumb  mb-xl-0">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class=" border p-1 card thumb  mb-xl-0">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class=" border p-1 card thumb  mb-xl-0">
-													<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-													<h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-											</div>
+											@endforeach
+
 										</div>
 									</div>
 									<div class="tab-pane" id="social">
 										<form role="form" class="needs-validation">
 											<div class="form-group">
 												<label for="FullName">رقم الهاتف</label>
-									  			<input type="text" minlength="9" name="name" maxlength="9" class="form-control" placeholder="010000000" id="validationCustom01" required>
+												<i class="fa-solid fa-phone text-primary"></i>								
+
+												<input name="phone" value="{{$userDetalis->phone}}" class="form-control" min="9" minlength="9" maxlength="9" max="999999999"  type="text"   id="phone" placeholder="0927X XXXX"  required>
 											</div>
 											<div class="form-group">
-												<label for="Email">Email</label>
-												<input type="email" value="first.last@example.com" id="Email" class="form-control">
+												<label for="whatsapp">واتس اب</label>
+												<i class="fa-brands fa-whatsapp text-success "></i>
+												<input name="whatsapp" class="form-control" value="{{$userDetalis->whatsapp}}" min="9" minlength="9" maxlength="9" max="999999999"  type="text"   id="whatsapp" placeholder="0927X XXXX"  required>
 											</div>
 											<div class="form-group">
-												<label for="Username">Username</label>
-												<input type="text" value="john" id="Username" class="form-control">
+												<label for="facebook">فيس بوك</label>
+												<i class="fa-brands fa-facebook text-info"></i>
+												<input name="facebook" class="form-control" min="9" value="{{$userDetalis->facebook}}"value="{{$userDetalis->phone}}" minlength="9" maxlength="60" max="60"  type="text"   id="facebook" placeholder="fb.com/mohamed.etos"  required>
+
 											</div>
 											<div class="form-group">
-												<label for="Password">Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="Password" class="form-control">
+												<label for="website">الموقع الالكتروني</label>
+												<i class="icon ion-md-link text-danger"></i>
+												<input name="facebook" class="form-control" min="9" minlength="9" value="{{$userDetalis->website}}"maxlength="60" max="60"  type="text"   id="facebook" placeholder="fb.com/mohamed.etos"  required>
+
 											</div>
-											<div class="form-group">
-												<label for="RePassword">Re-Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="RePassword" class="form-control">
-											</div>
-											<div class="form-group">
-												<label for="AboutMe">About Me</label>
-												<textarea id="AboutMe" class="form-control">Loren gypsum dolor sit mate, consecrate disciplining lit, tied diam nonunion nib modernism tincidunt it Loretta dolor manga Amalia erst volute. Ur wise denim ad minim venial, quid nostrum exercise ration perambulator suspicious cortisol nil it applique ex ea commodore consequent.</textarea>
-											</div>
-											<button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save</button>
+
+											<button class="btn btn-danger btn-block waves-effect waves-light w-md" type="submit">حفظ</button>
 										</form>
 									</div>
 									<div class="tab-pane" id="settings">
-										<form role="form">
+										<form role="form" class="needs-validation">
 											<div class="form-group">
-												<label for="FullName">Full Name</label>
-												<input type="text" value="John Doe" id="FullName" class="form-control">
+												<label for="name">الاسم</label>
+												<input type="text" name="name" value="{{Auth::User()->name}}" minlength="3" maxlength="20" id="name" class="form-control" required>
 											</div>
 											<div class="form-group">
-												<label for="Email">Email</label>
-												<input type="email" value="first.last@example.com" id="Email" class="form-control">
+												<label for="bio">نبذه عن المتجر</label>
+												<textarea type="text"  placeholder="نبذه عن المتجر" id="bio" class="form-control" required>{{$userDetalis->bio}} </textarea>
 											</div>
 											<div class="form-group">
-												<label for="Username">Username</label>
-												<input type="text" value="john" id="Username" class="form-control">
+												<label for="location">العنوان</label>
+												<textarea type="text" placeholder="العنوان"  id="location" class="form-control" required>{{$userDetalis->location}} </textarea>
 											</div>
-											<div class="form-group">
-												<label for="Password">Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="Password" class="form-control">
-											</div>
-											<div class="form-group">
-												<label for="RePassword">Re-Password</label>
-												<input type="password" placeholder="6 - 15 Characters" id="RePassword" class="form-control">
-											</div>
-											<div class="form-group">
-												<label for="AboutMe">About Me</label>
-												<textarea id="AboutMe" class="form-control">Loren gypsum dolor sit mate, consecrate disciplining lit, tied diam nonunion nib modernism tincidunt it Loretta dolor manga Amalia erst volute. Ur wise denim ad minim venial, quid nostrum exercise ration perambulator suspicious cortisol nil it applique ex ea commodore consequent.</textarea>
-											</div>
-											<button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save</button>
+
+											<button class="btn btn-danger btn-block waves-effect waves-light w-md" type="submit">حفظ</button>
 										</form>
 									</div>
 								</div>
@@ -407,6 +388,71 @@
     })
 
 
+
+
+
+	
+	
+	
+	
 })()	
+
+// image uploader 
+
+$("#imageUpload1").change(function(e) {
+
+
+	e.preventDefault();
+	let formData = new FormData($('#imageUploadform')[0]);
+	// $("#name").text('');
+	$.ajax({
+
+		beforeSend: function() {
+			$('.loader_cu').css('display','flex');
+			$('.avatar-preview').css('border-color','red').delay(500);
+
+		},
+		type: "post",
+		url: "{{route('ProfileImage')}}",
+		data : formData,
+		processData:false,
+		contentType:false,
+		cache:false,
+		success: function (data) {
+			$('form').append('<input id="nofic" type="hidden" value="">');
+			$('#nofic').val(data.MSG);	
+			function not7() {
+					notif({
+						msg: $('#nofic').val(),
+						type: "success"
+					});
+				};
+				not7();
+			$('.loader_cu').css('display','none');
+			$('.avatar-preview').css('border-color','green').delay(500);
+
+
+		},complete: function(){
+			$('.loader_cu').css('display','none')
+		},error: function(reject){
+			$('.avatar-preview').addClass('avatar-preview-animate-danger');
+			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
+			$('#errors').val();	
+			function not7() {
+					notif({
+						msg: $('#errors').val(),
+						type: "error"
+					});
+			};
+			not7();
+
+		}
+
+	});
+
+
+
+});
+
 </script>
 @endsection
