@@ -43,10 +43,30 @@ class UserDetalisController extends Controller
      */
     public function ProfileImage(Request $request)
     {
-     
+
+
+       
         if($request->hasFile('ProfileImage')){
 
-            $image  = ImageManagerStatic::make($request->file('ProfileImage'))->encode('webp')->resize(400,400);
+
+            $ImageFile =  $request->file('ProfileImage');
+            $data = getimagesize($ImageFile);
+            $width = $data[0];
+            $height = $data[1];
+    
+            if($width > '1024'){
+                $width = '1024';
+            }elseif($width < '1024'){
+                $width;
+            };
+            if($height > '1024'){
+                $height = '1024';
+            }elseif($height < '1024'){
+                $height;
+            };
+
+
+            $image  = ImageManagerStatic::make($request->file('ProfileImage'))->encode('webp')->resize($width,$height);
   
             $imageName = Str::random().'.webp';
 

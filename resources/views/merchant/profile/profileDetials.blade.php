@@ -19,7 +19,8 @@
 				<div class="breadcrumb-header justify-content-between m-2">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto text-danger">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+							<h4 class="content-title mb-0 my-auto text-secondary">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+
 						</div>
 					</div>
 
@@ -55,8 +56,8 @@
 													<input type='file' id="imageUpload1" name="ProfileImage" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
 												</div>
-												<div class="avatar-preview avatar-preview-animate">
-													<div id="imagePreview" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
+												<div class="avatar-preview">
+													<div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
 													</div>
 												</div>
 											</form>	
@@ -83,7 +84,7 @@
 										</div><!-- main-profile-bio -->
 										<div class="row">
 											<div class="col-md-4 col text-center mb20">
-												<h5>947</h5>
+												<h5>{{$storeViews}}</h5>
 												<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
 											</div>
 											<div class="col-md-4 col text-center mb20">
@@ -91,7 +92,7 @@
 												<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
 											</div>
 											<div class="col-md-4 col text-center mb20">
-												<h5>48</h5>
+												<h5>{{$countProuduct}}</h5>
 												<h6 class="text-small text-muted mb-0">المنتجات</h6>
 											</div>
 										</div>
@@ -100,9 +101,10 @@
 										<div class="main-profile-social-list">
 											<div class="media">
 												<div class="media-icon bg-primary-transparent text-primary">
-													<i class="fa-solid fa-phone"></i>									</div>
+													<i class="fa-solid fa-phone"></i>									
+												</div>
 												<div class="media-body">
-													<span>رقم الهاتف</span> <a href="">twitter.com/spruko.me</a>
+													<span>رقم الهاتف</span> <a href="tel:{{$userDetalis->phone}}">{{$userDetalis->phone}}</a>
 												</div>
 											</div>
 											<div class="media">
@@ -111,7 +113,7 @@
 													<i class="fa-brands fa-whatsapp "></i>
 												</div>
 												<div class="media-body">
-													<span>واتس اب</span> <a href="">github.com/spruko</a>
+													<span>واتس اب</span> <a href="https://wa.me/{{$userDetalis->whatsapp}}">{{$userDetalis->whatsapp}}</a>
 												</div>
 											</div>
 
@@ -120,7 +122,7 @@
 													<i class="fa-brands fa-facebook"></i>
 												</div>
 												<div class="media-body">
-													<span>فيس بوك</span> <a href="">linkedin.com/in/spruko</a>
+													<span>فيس بوك</span> <a href="{{$userDetalis->facebook}}">{{$userDetalis->facebook}}</a>
 												</div>
 											</div>
 											<div class="media">
@@ -128,7 +130,7 @@
 													<i class="icon ion-md-link"></i>
 												</div>
 												<div class="media-body">
-													<span>موقع الويب</span> <a href="">spruko.com/</a>
+													<span>موقع الويب</span> <a href="{{$userDetalis->website}}">{{$userDetalis->website}}</a>
 												</div>
 											</div>
 										</div>
@@ -409,7 +411,7 @@ $("#imageUpload1").change(function(e) {
 
 		beforeSend: function() {
 			$('.loader_cu').css('display','flex');
-			$('.avatar-preview').css('border-color','red').delay(500);
+			// $('.avatar-preview').css('border-color','red').delay(500);
 
 		},
 		type: "post",
@@ -419,6 +421,9 @@ $("#imageUpload1").change(function(e) {
 		contentType:false,
 		cache:false,
 		success: function (data) {
+
+
+			// nofication 
 			$('form').append('<input id="nofic" type="hidden" value="">');
 			$('#nofic').val(data.MSG);	
 			function not7() {
@@ -429,7 +434,13 @@ $("#imageUpload1").change(function(e) {
 				};
 				not7();
 			$('.loader_cu').css('display','none');
-			$('.avatar-preview').css('border-color','green').delay(500);
+
+			// image uploader animated
+				$('.avatar-preview').removeClass('avatar-preview-animate-danger');
+				$('.avatar-preview').addClass('avatar-preview-animate');
+				setTimeout(function() {
+					$('.avatar-preview').removeClass('avatar-preview-animate');
+				}, 3000);
 
 
 		},complete: function(){
