@@ -134,37 +134,8 @@
 												</div>
 											</div>
 										</div>
-										{{-- <hr class="mg-y-30"> --}}
-										{{-- <h6>Skills</h6>
-										<div class="skill-bar mb-4 clearfix mt-3">
-											<span>HTML5 / CSS3</span>
-											<div class="progress mt-2">
-												<div class="progress-bar bg-primary-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
-											</div>
-										</div>
-										<!--skill bar-->
-										<div class="skill-bar mb-4 clearfix">
-											<span>Javascript</span>
-											<div class="progress mt-2">
-												<div class="progress-bar bg-danger-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div>
-											</div>
-										</div>
-										<!--skill bar-->
-										<div class="skill-bar mb-4 clearfix">
-											<span>Bootstrap</span>
-											<div class="progress mt-2">
-												<div class="progress-bar bg-success-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-											</div>
-										</div>
-										<!--skill bar-->
-										<div class="skill-bar clearfix">
-											<span>Coffee</span>
-											<div class="progress mt-2">
-												<div class="progress-bar bg-info-gradient" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-											</div>
-										</div>
-										<!--skill bar--> --}}
-									</div><!-- main-profile-overview -->
+
+									</div>
 								</div>
 							</div>
 						</div>
@@ -231,7 +202,7 @@
 											<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">المنتجات</span> </a>
 										</li>
 										<li class="">
-											<a href="#social" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa-solid fa-hashtag"></i></span> <span class="hidden-xs">التواصل الاجتماعي</span> </a>
+											<a href="#social" data-toggle="tab" class="" aria-expanded="false"> <span class="visible-xs"><i class="fa-solid fa-hashtag "></i></span> <span class="hidden-xs">التواصل الاجتماعي</span> </a>
 										</li>	
 										<li class="">
 											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">البيانات الاساسيه</span> </a>
@@ -275,7 +246,7 @@
 											@foreach ($productData as $productDataa )
 												<div class="col-sm-4">
 													<div class=" border p-1 card thumb  mb-xl-0">
-														<a href="#" class="image-popup" title="Screenshot-2"> <img src="{{asset($productDataa->productionToImgRealtions->mainImage)}}" class="thumb-img" alt="work-thumbnail"> </a>
+														<a href="{{url('merchant/preview-product/'.$productDataa->id)}}" class="image-popup" title="Screenshot-2"> <img src="{{asset($productDataa->productionToImgRealtions->mainImage)}}" class="thumb-img" alt="work-thumbnail"> </a>
 														<h4 class="text-center tx-14 mt-3 mb-0">{{$productDataa->name}}</h4>
 														<div class="ga-border"></div>
 														<p class="text-muted text-center"><small>{{$productDataa->productionToCategoryRealtions->name}}</small></p>
@@ -286,7 +257,18 @@
 										</div>
 									</div>
 									<div class="tab-pane" id="social">
-										<form role="form" class="needs-validation">
+										<form id="formSochial" method="POST" action="{{Route('updateSochial')}}" class="needs-validation">
+
+											@csrf
+											<div class="loader_cu">
+												<div class="loading">
+													<div class="loading-bar"></div>
+													<div class="loading-bar"></div>
+													<div class="loading-bar"></div>
+													<div class="loading-bar"></div>
+													<div class="loading-bar"></div>
+												</div>
+											</div>
 											<div class="form-group">
 												<label for="FullName">رقم الهاتف</label>
 												<i class="fa-solid fa-phone text-primary"></i>								
@@ -307,29 +289,77 @@
 											<div class="form-group">
 												<label for="website">الموقع الالكتروني</label>
 												<i class="icon ion-md-link text-danger"></i>
-												<input name="facebook" class="form-control" min="9" minlength="9" value="{{$userDetalis->website}}"maxlength="60" max="60"  type="text"   id="facebook" placeholder="fb.com/mohamed.etos"  required>
+												<input name="website" class="form-control" min="9" minlength="9" value="{{$userDetalis->website}}"maxlength="60" max="60"  type="text"   id="facebook" placeholder="fb.com/mohamed.etos"  required>
 
 											</div>
 
-											<button class="btn btn-danger btn-block waves-effect waves-light w-md" type="submit">حفظ</button>
+											<!--  Modal effects-->
+											<div class="modal" id="modaldemo8">
+												<div class="modal-dialog modal-dialog-centered" role="document">
+													<div class="modal-content modal-content-demo">
+														<div class="modal-header">
+															<h6 class="modal-title">تحديث بينات</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+														</div>
+														<div class="modal-body">
+															<h6>اجراء امني</h6>
+															<p>قم بكتابه كلمه المرور لتاكيد الاجراء</p>
+															<input type="password" class="form-control"  name="password" required>
+														</div>
+														<div class="modal-footer">
+															<button class="btn ripple btn-danger" type="submit">تاكيد</button>
+															<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- End Modal effects-->
+
+											{{-- <input id="submitBTN" data-target="#select2modal" data-effect="effect-rotate-left" data-toggle="modal" class="btn btn-danger btn-block waves-effect waves-light w-md" value="تحديث" type="button" type=""> --}}
+										<a class="modal-effect btn btn-danger btn-block" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo8">تاكيد</a>
+
+
 										</form>
 									</div>
 									<div class="tab-pane" id="settings">
-										<form role="form" class="needs-validation">
+										<form  method="POST" action="{{Route('updateBasicProfile')}}" class="needs-validation">
+											@csrf
 											<div class="form-group">
 												<label for="name">الاسم</label>
 												<input type="text" name="name" value="{{Auth::User()->name}}" minlength="3" maxlength="20" id="name" class="form-control" required>
 											</div>
 											<div class="form-group">
 												<label for="bio">نبذه عن المتجر</label>
-												<textarea type="text"  placeholder="نبذه عن المتجر" id="bio" class="form-control" required>{{$userDetalis->bio}} </textarea>
+												<textarea type="text" name="bio"  placeholder="نبذه عن المتجر" id="bio" class="form-control" required>{{$userDetalis->bio}} </textarea>
 											</div>
 											<div class="form-group">
 												<label for="location">العنوان</label>
-												<textarea type="text" placeholder="العنوان"  id="location" class="form-control" required>{{$userDetalis->location}} </textarea>
+												<textarea type="text" name="location" placeholder="العنوان"  id="location" class="form-control" required>{{$userDetalis->location}} </textarea>
 											</div>
 
-											<button class="btn btn-danger btn-block waves-effect waves-light w-md" type="submit">حفظ</button>
+												<!--  Modal effects-->
+												<div class="modal" id="modaldemo9">
+													<div class="modal-dialog modal-dialog-centered" role="document">
+														<div class="modal-content modal-content-demo">
+															<div class="modal-header">
+																<h6 class="modal-title">تحديث بينات</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+															</div>
+															<div class="modal-body">
+																<h6>اجراء امني</h6>
+																<p>قم بكتابه كلمه المرور لتاكيد الاجراء</p>
+																<input type="password" class="form-control"  name="password" required>
+															</div>
+															<div class="modal-footer">
+																<button class="btn ripple btn-danger" type="submit">تاكيد</button>
+																<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- End Modal effects-->
+	
+												{{-- <input id="submitBTN" data-target="#select2modal" data-effect="effect-rotate-left" data-toggle="modal" class="btn btn-danger btn-block waves-effect waves-light w-md" value="تحديث" type="button" type=""> --}}
+											<a class="modal-effect btn btn-danger btn-block" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">تاكيد</a>
+
 										</form>
 									</div>
 								</div>
@@ -338,10 +368,47 @@
 					</div>
 				</div>
 				<!-- row closed -->
+
+
+
+
+				{{-- nofications  --}}
+					@if(Session::has('success'))
+					<input id="success" type="hidden" value="{{Session::get('success')}}">
+					<script>
+						window.onload = function not7() {
+							notif({
+								msg: $('#success').val(),
+								type: "success"
+							});
+						}
+						</script>
+					@endif
+					@if(Session::has('faild'))
+					<input id="faild" type="hidden" value="{{Session::get('faild')}}">
+					<script>
+						window.onload = function not7() {
+							notif({
+								msg: $('#faild').val(),
+								type: "error"
+							});
+						}
+						</script>
+					@endif
+				{{-- nofications  --}}
+
+
+
+
 			</div>
 			<!-- Container closed -->
 		</div>
 		<!-- main-content closed -->
+
+
+
+
+		
 @endsection
 @section('js')
 <!--Internal  Chart.bundle js -->
@@ -355,6 +422,7 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
+<script src="{{URL::asset('assets/js/modal.js')}}"></script>
 
 
 <script>
@@ -398,6 +466,7 @@
 	
 	
 })()	
+
 
 // image uploader 
 
@@ -466,4 +535,60 @@ $("#imageUpload1").change(function(e) {
 });
 
 </script>
+
+
+{{-- <script>
+
+	// sochial update
+
+$('#submitBTN').on('click', function(e) {
+
+	e.preventDefault();
+	let formData = new FormData($('#formSochial')[0]);
+$.ajax({
+
+	beforeSend: function() {
+		$('.loader_cu').css('display','flex');
+	},
+	type: "post",
+	url: "{{route('updateProfile')}}",
+	data : formData,
+	processData:false,
+	contentType:false,
+	cache:false,
+	success: function (data) {
+
+		// nofication 
+		$('form').append('<input id="nofic" type="hidden" value="">');
+		$('#nofic').val(data.MSG);	
+		function not7() {
+				notif({
+					msg: $('#nofic').val(),
+					type: "success"
+				});
+			};
+			not7();
+		$('.loader_cu').css('display','none');
+
+	},complete: function(){
+		$('.loader_cu').css('display','none')
+	},error: function(reject){
+		$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
+		$('#errors').val();	
+		function not7() {
+				notif({
+					msg: $('#errors').val(),
+					type: "error"
+				});
+		};
+		not7();
+
+	}
+
+});
+
+
+
+});
+</script> --}}
 @endsection

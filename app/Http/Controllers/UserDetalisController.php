@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\visitorsCount;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
 
 class UserDetalisController extends Controller
 {
-
-
 
     public function profileDetials(Request $request){
 
@@ -86,79 +86,45 @@ class UserDetalisController extends Controller
 
         
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function updateSochial(Request $request)
     {
-        //
+        $hashedPassword = User::findOrFail(Auth::User()->id)->password;
+        if (Hash::check($request->password,$hashedPassword) ) {
+            userDetalis::where('userId',Auth::User()->id)->update([
+                'phone' => $request->phone,
+                'whatsapp' => $request->whatsapp,
+                'facebook' => $request->facebook,
+                'website' => $request->website,
+            ]);
+        }else{
+            return back()->with('faild','كلمه المرور غير صحيحه');
+        }
+        // return response()->json(["MSG" => "تم التحديث"]);
+        return back()->with('success','تم التحديث');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function updateBasicProfile(Request $request)
     {
-        //
+        $hashedPassword = User::findOrFail(Auth::User()->id)->password;
+        if (Hash::check($request->password,$hashedPassword) ) {
+            User::where('id',Auth::User()->id)->update([
+                'name' => $request->name,
+            ]);
+            userDetalis::where('userId',Auth::User()->id)->update([
+                'bio' => $request->bio,
+                'location' => $request->location,
+            ]);
+        }else{
+            return back()->with('faild','كلمه المرور غير صحيحه');
+        }
+        // return response()->json(["MSG" => "تم التحديث"]);
+        return back()->with('success','تم التحديث');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\userDetalis  $userDetalis
-     * @return \Illuminate\Http\Response
-     */
-    public function show(userDetalis $userDetalis)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\userDetalis  $userDetalis
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(userDetalis $userDetalis)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\userDetalis  $userDetalis
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, userDetalis $userDetalis)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\userDetalis  $userDetalis
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(userDetalis $userDetalis)
-    {
-        //
-    }
+
 }

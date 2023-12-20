@@ -68,6 +68,8 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('editProfile', [ProfileMerchantController::class, 'edit'])->name('editProfile');
     Route::get('profileDetials', [UserDetalisController::class, 'profileDetials'])->name('profileDetials');
     Route::post('ProfileImage', [UserDetalisController::class, 'ProfileImage'])->name('ProfileImage');
+    Route::post('updateSochial', [UserDetalisController::class, 'updateSochial'])->name('updateSochial');
+    Route::post('updateBasicProfile', [UserDetalisController::class, 'updateBasicProfile'])->name('updateBasicProfile');
 
 
 });
