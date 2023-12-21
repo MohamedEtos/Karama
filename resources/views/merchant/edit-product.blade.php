@@ -155,6 +155,19 @@
 
 <script src="{{asset('assets/plugins/imageUploader/imageUploader.js')}}"></script>
 
+<script>
+	// calculate discount 
+function result (){
+	var price =     document.getElementById("price").value;
+	var discount = document.getElementById("discount").value;
+	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
+
+	match =  price -(discount*price/100)  ;
+	ThePriceAfterDiscount.value = match.toFixed(2);
+};
+
+
+</script>
 @endsection
 
 

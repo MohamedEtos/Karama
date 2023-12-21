@@ -155,12 +155,12 @@ Route::get('addadmin',function(){
 });
 
 //theme
-Route::get('/{page}', [AdminController::class, 'index']);
+// Route::get('/{page}', [AdminController::class, 'index']);
 
 
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');

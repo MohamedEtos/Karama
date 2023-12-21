@@ -6,6 +6,7 @@ use App\Models\visitorsCount;
 use App\Models\merchant;
 use App\Models\category;
 use App\Models\productImg;
+use App\Models\userDetalis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -338,9 +339,11 @@ class MerchantController extends Controller
     {
         $previewProduct = merchant::findOrFail($id);
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
+        $userDetails = userDetalis::where('userId',Auth::user()->id)->first();
         return view('merchant.preview-product',compact([
             'previewProduct',
             'productRevew',
+            'userDetails',
         ]));
     }
 }

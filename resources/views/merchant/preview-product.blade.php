@@ -51,7 +51,7 @@
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
 										<div class="merchant-logo-bg">
-											<img  class="merchant-logo " src="{{ asset('assets/img/merchant/Adidas_logo.png') }}" alt="">
+											<img  class="merchant-logo " src="{{ asset($userDetails->ProfileImage) }}" alt="">
 										</div>
 										<h4 class="product-title mb-1">{{$previewProduct->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$previewProduct->category}}</p>
@@ -72,22 +72,28 @@
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
 												<button class="btn btn-secondary  btn-with-icon btn-block " onclick="myFunction()" id='swal-image'>نسخ الرقم<i class="la la-phone"></i></button>
-												<input type="text" id="myInput" class="invisible" value="{{Auth::user()->phone_number}}">
+												<input type="text" id="myInput" class="invisible" value="{{$userDetails->phone}}">
 											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
-												<a href="tel:{{Auth::user()->phone_number}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
+												<a href="tel:{{$userDetails->phone}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
 											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="https://wa.me/01033441143"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
-												</a></div>
+												<a href="https://wa.me/{{$userDetails->whatsapp}}"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
+												</a>
+											</div>
+
+											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+												<a href="{{$userDetails->website}}"  target="_blank" class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
+												</a>
+											</div>
 										</div>
 
 										<h6 class="price mt-4 h5">نبذه عن المتحر</h6>
-										<p class="text-muted">لأكثر من 80 عاماً ومجموعة أديداس تلعب دوراً رئيسياً في عالم الرياضة على جميع الأصعدة بتقديمها أكثر المنتجات تطوراً من الأحذية والملابس والأكسسوارات الرياضية. واليوم، تتمتع أديداس بمكانة ريادية عالمياً في قطاع المنتجات الرياضية وتقدم مجموعة واسعة من المنتجات متوفرة في جميع أنحاء العالم.</p>
+										<p class="text-muted">{{$userDetails->bio}}</p>
 										<h6 class="price mt-3 h5">فروعنا</h6>
-										<P class="text-muteD">اديداس رام الله نستقبلكم يوميا من الساعة 10 صباحا حتى الساعة 11 مساء</P>
+										<p class="text-muted">{{$userDetails->location}}</p>
 									</div>
 								</div>
 							</div>
