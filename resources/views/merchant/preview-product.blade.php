@@ -67,13 +67,8 @@
 
 										<h6 class="price mt-3 h5">تواصل معي المتجر</h6>
 
-										<div class="row row-xs wd-xl-80p">
+										<div class="row  ">
 
-
-											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
-												<button class="btn btn-secondary  btn-with-icon btn-block " onclick="myFunction()" id='swal-image'>نسخ الرقم<i class="la la-phone"></i></button>
-												<input type="text" id="myInput" class="invisible" value="{{$userDetails->phone}}">
-											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
 												<a href="tel:{{$userDetails->phone}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
@@ -83,9 +78,13 @@
 												<a href="https://wa.me/{{$userDetails->whatsapp}}"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
 												</a>
 											</div>
+											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+												<a href="{{$userDetails->facebook}}"  target="_blank" class="btn btn-info btn-with-icon btn-block">   فيس بوك  &nbsp;<i class="fa-brands fa-facebook fa-xl"> </i></i>
+												</a>
+											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="{{$userDetails->website}}"  target="_blank" class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
+												<a href="{{$userDetails->website}}" target="_blank"  class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
 												</a>
 											</div>
 										</div>

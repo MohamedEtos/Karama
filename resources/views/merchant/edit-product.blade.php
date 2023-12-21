@@ -27,7 +27,7 @@
 									تعدي المنتج
 								</div>
 								{{-- <p class="mg-b-20">المنتج رقم </p> --}}
-								<form action="{{url('merchant/update_product/'.$product->id)}}" method="post" enctype="multipart/form-data">
+								<form action="{{url('merchant/update_product/'.$product->id)}}" class="needs-validation	" method="post" enctype="multipart/form-data">
 									@csrf
 									<div class="row row-sm mt-2">
 										<div class="col-4">
@@ -71,20 +71,20 @@
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر ₪:  </label>
-												<input class="form-control" name="price" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->price}}" type="text">
+												<input class="form-control" name="price" id="price" placeholder="لا يمكنك ترك السعر فارغ" required="" onkeyup="result()" value="{{$product->price}}" type="text">
 											</div>
 										</div>
 									
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الخصم %: </label>
-												<input class="form-control" name="discount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->discount}}" type="text">
+												<input class="form-control" name="discount" id="discount" placeholder="لا يمكنك ترك السعر فارغ" required=""  onkeyup="result()"value="{{$product->discount}}" type="text">
 											</div>
 										</div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر بعد الخصم ₪: </label>
-												<input class="form-control" name="ThePriceAfterDiscount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
+												<input class="form-control" name="ThePriceAfterDiscount" id="ThePriceAfterDiscount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
 											</div>
 										</div>
 									</div>
@@ -167,6 +167,42 @@ function result (){
 };
 
 
+</script>
+
+<script>
+	// live validation js inputs
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('keypress', function (event) {
+        if (!form.checkValidity()) {
+        //   event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+        //   event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+
+
+})()
 </script>
 @endsection
 
