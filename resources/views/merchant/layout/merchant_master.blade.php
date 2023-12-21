@@ -31,12 +31,12 @@
 		@include('merchant.layout.main-sidebar')		
 		<!-- main-content -->
 		<div class="main-content app-content">
-			@include('layouts.main-header')			
+			@include('merchant.layout.main-header')			
 			<!-- container -->
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
-				@include('layouts.sidebar')
+				{{-- @include('layouts.sidebar') --}}
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	
