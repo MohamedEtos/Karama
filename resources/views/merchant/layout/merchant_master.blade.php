@@ -33,6 +33,7 @@
 		<div class="main-content app-content">
 			@include('merchant.layout.main-header')			
 			<!-- container -->
+			@yield('contentWithOutContiner')
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')

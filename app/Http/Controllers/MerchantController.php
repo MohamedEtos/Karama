@@ -6,6 +6,7 @@ use App\Models\visitorsCount;
 use App\Models\merchant;
 use App\Models\category;
 use App\Models\productImg;
+use App\Models\User;
 use App\Models\userDetalis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -188,6 +189,7 @@ class MerchantController extends Controller
         // get id user
 
         $userId = merchant::where('id',$id)->first();
+        
 
         // count visetors
         $ip = $request->ip();
@@ -202,6 +204,15 @@ class MerchantController extends Controller
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
         // merchant::where('id', $id)->increment('productViews');
 
+                // get user with relations
+        // $test = userDetalis::with('userDetails')->first();
+        // $test->userDetails; // get user name
+
+        // return $test;
+
+        // get merchant id 
+
+
         $product_details = merchant::where('id',$id)->get();
         $product = merchant::findorfail($id);
         $product_cat = $product->categoryId;
@@ -212,10 +223,16 @@ class MerchantController extends Controller
         ->limit(4)
         ->get();
 
+        $merchantId = merchant::where('id',$id)->first()->userId;
+
+        $merchantData = userDetalis::where('userId',$merchantId)->first();
+
+
         return view('product-details',compact(
             'product_details',
             'related_products',
             'productRevew',
+            'merchantData',
         ));
     }
 

@@ -59,7 +59,7 @@
 
 											<span class="review-no"> reviews {{$productRevew}} </span>
 										</div>
-										<h6 class="price mt-2">خصم <span class="h3 ml-2 ">{{$previewProduct->discount}}</span></h6>
+										<h6 class="price mt-2">خصم <span class="h3 ml-2 ">{{$previewProduct->discount}}</span>%</h6>
 										<h6 class="price">السعر بعض الخصم <span class="h3 ml-2">₪{{$previewProduct->ThePriceAfterDiscount}}</span> <span class="prev-price">₪ {{$previewProduct->price}}</span></h6>
 										<h6 class="price mt-3"> <span class="h3 ml-2 ">وصف المنتج </span></h6>
 										<p class="price mt-3 h5">{{$previewProduct->productDescription}}</p>

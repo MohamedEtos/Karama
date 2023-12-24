@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MarketProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProfileMerchantController;
@@ -71,9 +72,10 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::post('updateSochial', [UserDetalisController::class, 'updateSochial'])->name('updateSochial');
     Route::post('updateBasicProfile', [UserDetalisController::class, 'updateBasicProfile'])->name('updateBasicProfile');
 
-
+    
 });
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
+Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name('MarketProfile');
 
 
 
@@ -154,13 +156,13 @@ Route::get('addadmin',function(){
 
 });
 
-//theme
-// Route::get('/{page}', [AdminController::class, 'index']);
+// theme
+Route::get('/{page}', [AdminController::class, 'index']);
 
 
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');

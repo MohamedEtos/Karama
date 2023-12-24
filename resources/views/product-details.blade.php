@@ -22,7 +22,7 @@
 
 				<div class="row  title-brand mb-3 mt-2">
 					<div class="col-12 p-3 text-white">
-						<h3>Adidas</h3>
+						<h3><a href="{{url('MarketProfile/'.$merchantData->userDetails->id)}}" class="text-white">{{$merchantData->userDetails->name}}</a></h3>
 					</div>
 				</div>
 				<!-- breadcrumb -->
@@ -55,9 +55,9 @@
 										</ul>
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
-										<div class="merchant-logo-bg">
-											<img  class="merchant-logo " src="{{ asset('assets/img/merchant/Adidas_logo.png') }}" alt="">
-										</div>
+											<a href="{{url('MarketProfile/'.$merchantData->userDetails->id)}}" class="merchant-logo-bg">
+												<img  class="merchant-logo " src="{{asset($merchantData->ProfileImage)}}" alt="">
+											</a>
 										<h4 class="product-title mb-1">{{$item->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$item->category}}</p>
 										<div class="rating mb-1">
@@ -72,27 +72,32 @@
 
 										<h6 class="price mt-3 h5">تواصل معي المتجر</h6>
 
-										<div class="row row-xs wd-xl-80p">
+										<div class="row  ">
 
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
-												<button class="btn btn-secondary  btn-with-icon btn-block " onclick="myFunction()" id='swal-image'>نسخ الرقم<i class="la la-phone"></i></button>
-												<input type="text" id="myInput" class="invisible" value="{{Auth::user()->phone_number}}">
-											</div>
-
-											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
-												<a href="tel:{{Auth::user()->phone_number}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
+												<a href="tel:{{$merchantData->phone}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
 											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="https://wa.me/01033441143"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
-												</a></div>
+												<a href="https://wa.me/{{$merchantData->whatsapp}}"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
+												</a>
+											</div>
+											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+												<a href="{{$merchantData->facebook}}"  target="_blank" class="btn btn-info btn-with-icon btn-block">   فيس بوك  &nbsp;<i class="fa-brands fa-facebook fa-xl"> </i></i>
+												</a>
+											</div>
+
+											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
+												<a href="{{$merchantData->website}}" target="_blank"  class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
+												</a>
+											</div>
 										</div>
 
 										<h6 class="price mt-4 h5">نبذه عن المتحر</h6>
-										<p class="text-muted">لأكثر من 80 عاماً ومجموعة أديداس تلعب دوراً رئيسياً في عالم الرياضة على جميع الأصعدة بتقديمها أكثر المنتجات تطوراً من الأحذية والملابس والأكسسوارات الرياضية. واليوم، تتمتع أديداس بمكانة ريادية عالمياً في قطاع المنتجات الرياضية وتقدم مجموعة واسعة من المنتجات متوفرة في جميع أنحاء العالم.</p>
+										<p class="text-muted">{{$merchantData->bio}}</p>
 										<h6 class="price mt-3 h5">فروعنا</h6>
-										<P class="text-muteD">اديداس رام الله نستقبلكم يوميا من الساعة 10 صباحا حتى الساعة 11 مساء</P>
+										<p class="text-muted">{{$merchantData->location}}</p>
 									</div>
 								</div>
 							</div>
