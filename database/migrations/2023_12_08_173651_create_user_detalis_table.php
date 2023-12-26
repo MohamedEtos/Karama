@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->text('bio')->nullable();
             $table->string('ProfileImage')->nullable();
+            $table->string('coverImage')->nullable();
             $table->string('nationalId')->nullable();
             
             $table->timestamps();

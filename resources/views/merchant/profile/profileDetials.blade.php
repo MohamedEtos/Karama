@@ -6,6 +6,7 @@
 <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 {{-- imageuploader --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/imageUploaderProfile/imageUploader.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css-rtl/profileDetials.css')}}">
 
 <style>
 
@@ -37,31 +38,55 @@
 								<div class="pl-0">
 									<div class="main-profile-overview">
 
-										<div class="col-12 text-center d-flex p-2">
+										<div class="col-12 ">
 											
-											<div class="avatar-upload ">
-												<form id="imageUploadform" enctype="multipart/form-data">
-													@csrf
-													<div class="loader_cu">
-														<div class="loading">
-															<div class="loading-bar"></div>
-															<div class="loading-bar"></div>
-															<div class="loading-bar"></div>
-															<div class="loading-bar"></div>
-															<div class="loading-bar"></div>
+											<div class="row ">
+
+												<div class="loader_cu">
+													<div class="loading">
+														<div class="loading-bar"></div>
+														<div class="loading-bar"></div>
+														<div class="loading-bar"></div>
+														<div class="loading-bar"></div>
+														<div class="loading-bar"></div>
+													</div>
+												</div>
+
+												{{-- merchant cover  --}}
+
+												<div class="avatar-upload  cover-upload  col-12 ">
+													<form id="coverUploadform" class="text-center" enctype="multipart/form-data">
+														@csrf
+
+	
+													<div class="avatar-edit">
+														<input type='file' id="imageUpload1" name="coverImage" accept=".png, .jpg, .jpeg" />
+														<label for="imageUpload1"></label>
+													</div>
+													<div class="avatar-preview cover-preview">
+														<div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون الصورره  1600*400 بكسل" style="background-image: url('{{asset($userDetalis->coverImage)}}'); ">
 														</div>
 													</div>
+												</form>	
+												</div>	
 
-												<div class="avatar-edit">
-													<input type='file' id="imageUpload1" name="ProfileImage" accept=".png, .jpg, .jpeg" />
-													<label for="imageUpload1"></label>
-												</div>
-												<div class="avatar-preview">
-													<div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
+
+												{{-- /mechant image  --}}
+	
+												<form id="imageUploadform" class="merchant_image" enctype="multipart/form-data">
+												<div class="avatar-upload  col-12">
+														@csrf
+													<div class="avatar-edit">
+														<input type='file' id="imageUpload2" name="ProfileImage" accept=".png, .jpg, .jpeg" />
+														<label for="imageUpload2"></label>
 													</div>
-												</div>
+													<div class="avatar-preview merchant-preview ">
+														<div id="imagePreview2" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
+														</div>
+													</div>
+												</div>	
 											</form>	
-											</div>	
+											</div>
 
 										</div>
 										<div class="d-flex justify-content-between mg-b-20">
@@ -470,7 +495,7 @@
 
 // image uploader 
 
-$("#imageUpload1").change(function(e) {
+$("#imageUpload2").change(function(e) {
 
 
 	e.preventDefault();
@@ -505,17 +530,79 @@ $("#imageUpload1").change(function(e) {
 			$('.loader_cu').css('display','none');
 
 			// image uploader animated
-				$('.avatar-preview').removeClass('avatar-preview-animate-danger');
-				$('.avatar-preview').addClass('avatar-preview-animate');
+				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
+				$('.merchant-preview').addClass('avatar-preview-animate');
 				setTimeout(function() {
-					$('.avatar-preview').removeClass('avatar-preview-animate');
+					$('.merchant-preview').removeClass('avatar-preview-animate');
 				}, 3000);
 
 
 		},complete: function(){
 			$('.loader_cu').css('display','none')
 		},error: function(reject){
-			$('.avatar-preview').addClass('avatar-preview-animate-danger');
+			$('.merchant-preview').addClass('avatar-preview-animate-danger');
+			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
+			$('#errors').val();	
+			function not7() {
+					notif({
+						msg: $('#errors').val(),
+						type: "error"
+					});
+			};
+			not7();
+
+		}
+
+	});
+
+
+
+});
+
+// cover uploader 
+
+$("#imageUpload1").change(function(e) {
+
+
+	e.preventDefault();
+	let formData = new FormData($('#coverUploadform	')[0]);
+	// $("#name").text('');
+	$.ajax({
+
+		beforeSend: function() {
+			$('.loader_cu').css('display','flex');
+		},
+		type: "post",
+		url: "{{route('CoverImage')}}",
+		data : formData,
+		processData:false,
+		contentType:false,
+		cache:false,
+		success: function (data) {
+			// nofication 
+			$('form').append('<input id="nofic" type="hidden" value="">');
+			$('#nofic').val(data.MSG);	
+			function not7() {
+					notif({
+						msg: $('#nofic').val(),
+						type: "success"
+					});
+				};
+				not7();
+			$('.loader_cu').css('display','none');
+
+			// image uploader animated
+				$('.cover-preview').removeClass('avatar-preview-animate-danger');
+				$('.cover-preview').addClass('avatar-preview-animate');
+				setTimeout(function() {
+					$('.cover-preview').removeClass('avatar-preview-animate');
+				}, 3000);
+
+
+		},complete: function(){
+			$('.loader_cu').css('display','none')
+		},error: function(reject){
+			$('.cover-preview').addClass('avatar-preview-animate-danger');
 			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
 			$('#errors').val();	
 			function not7() {

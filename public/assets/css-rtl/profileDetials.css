@@ -1,0 +1,52 @@
+.cover-upload .avatar-preview {
+    border-radius: 0px;
+    display: block;
+
+}
+.cover-upload .avatar-preview .imagePreview{
+    border-radius: 0px !important   ;
+    display: block;
+    background-position: center;
+    background-size: 100%;
+}
+
+.cover-preview{
+    width: 100% !important;
+
+}
+.cover-preview  >div{
+border-radius: 0px !important;
+}
+
+
+/* merchant image  */
+
+
+.merchant_image{
+    margin: auto auto;
+    top: -60px;
+    position: relative;
+}
+
+
+
+/* // merchant profile  */
+
+
+.avatar-preview-animate{
+	border: 3px solid  green !important	
+}
+.avatar-preview-animate-danger{
+	border: 3px solid  darkred !important	
+}
+
+
+/* // merchant cover  */
+
+
+.cover-preview-animate{
+	border: 3px solid  green !important	
+}
+.cover-preview-animate-danger{
+	border: 3px solid  darkred !important	
+}

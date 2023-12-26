@@ -24,7 +24,7 @@
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="mainCover col-12">
-						<img class="w-100 h-30" src="{{asset("test/Adidas-Facebook-Covers-1368.jpeg")}}" alt="MarkitProfile">
+							<img class="w-100 h-30" src="{{asset($marketData->coverImage)}}" alt="MarkitProfile">
 					</div>
 				</div>
 
@@ -35,14 +35,14 @@
 							<div class="card mainimageprofile card-success">
 								<div class="card-header pb-0">
 									<div class="img-circle">
-										<img src="{{asset("test/download.png")}}" alt="">
+										<img src="{{asset($marketData->ProfileImage)}}" alt="">
 									</div>
-									<h1 class="prandName mr-xl-5">Addidas</h1>
+									<h1 class="prandName mr-xl-5">{{$marketData->userDetails->name}}</h1>
 								</div>
 								<div class="card-body m-0  text-success">
 									<div class="row anlisis">
 										<div class="col-md-4 col text-center ">
-											<h5>666</h5>
+											<h5>{{$visetorCounter}}</h5>
 											<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
 										</div>
 										<div class="col-md-4 col text-center ">
@@ -50,7 +50,7 @@
 											<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
 										</div>
 										<div class="col-md-4 col text-center ">
-											<h5>583</h5>
+											<h5>{{$productsCounter}}</h5>
 											<h6 class="text-small text-muted mb-0">المنتجات</h6>
 										</div>
 									</div>

@@ -35,6 +35,9 @@
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('merchant/merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-house  fa-xl"></i> &nbsp; الرئيسيه</span><span class="badge badge-success side-badge">1</span></a>
 					</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ url('MarketProfile/'.Auth::User()->id) }}"><span class="side-menu__label"> <i class="fa-solid fa-pager fa-xl"></i> &nbsp; صفحه المتجر</span><span class="badge badge-success side-badge"></span></a>
+					</li>
 					<li class="side-item side-item-category">المنتجات</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('merchant/new-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه منتج</span><span class="badge badge-danger side-badge"></span></a>

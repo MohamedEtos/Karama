@@ -1,12 +1,20 @@
 .mainCover{
-  display: block;
   width: 100%;
+  overflow: hidden;
+  max-height: 400px;
+background-color: #fff;
+
 }
 .mainCover img{
   display: block;
   width: 100%;
-  max-height: 400px;
+  margin: auto ;
+
+  
+  /* max-height: 400px; */
+
 }
+
 .card-header{
   height: 150px;
 }
@@ -16,7 +24,17 @@
   position: relative;
   top: -60px;
   width: 100%;
+}
 
+@media (max-width: 520px) {
+  .mainimageprofile{
+    top: -30px;
+  }
+  .img-circle{
+
+    top: -70px;
+
+  }
 }
 
 .img-circle{
@@ -36,15 +54,17 @@
   overflow: hidden;
 }
 
-@media (max-width: 767px) {
+
+@media (max-width: 507px) {
   .img-circle {
-width: 140px;
-height: 140px;
+    width: 120px;
+    height: 120px;
+    top: -60px;
   }
   .img-circle img{
     border-radius: 100%;
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
   }
 }
 @media (max-width: 455px) {

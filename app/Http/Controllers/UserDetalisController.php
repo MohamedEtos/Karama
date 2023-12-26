@@ -43,8 +43,6 @@ class UserDetalisController extends Controller
      */
     public function ProfileImage(Request $request)
     {
-
-
        
         if($request->hasFile('ProfileImage')){
 
@@ -86,6 +84,45 @@ class UserDetalisController extends Controller
 
         
     }
+
+
+    public function CoverImage(Request $request)
+    {
+
+
+        
+
+        if($request->hasFile('coverImage')){
+
+            $ImageFile =  $request->file('coverImage');
+            $data = getimagesize($ImageFile);
+            $width = $data[0];
+            $height = $data[1];
+    
+            if($width > '1024'){
+                $width = '1024';
+            }elseif($width < '1024'){
+                $width;
+            };
+            if($height > '1024'){
+                $height = '1024';
+            }elseif($height < '1024'){
+                $height;
+            };
+
+            $image  = ImageManagerStatic::make($request->file('coverImage'))->encode('webp')->resize($width,$height);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/Profile/img/'. $imageName));
+            $coverImage = 'upload/Profile/img/'. $imageName;
+        }
+        userDetalis::where('userId',Auth::User()->id)->update([
+            'coverImage'=>$coverImage,
+        ]);
+
+        return response()->json(["MSG" => "تم تغير صوره الغلاف "]);
+    }
+
+
 
     public function updateSochial(Request $request)
     {
