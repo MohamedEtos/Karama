@@ -24,6 +24,7 @@
 				<!-- /breadcrumb -->
 @endsection
 @section('content')
+
 				<!-- row -->
 				<div class="row row-sm">
 
@@ -50,9 +51,9 @@
 										</ul>
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
-										<div class="merchant-logo-bg">
-											<img  class="merchant-logo " src="{{ asset($userDetails->ProfileImage) }}" alt="">
-										</div>
+											<a href="{{url('MarketProfile/'.$userDetails->userDetails->id)}}" class="merchant-logo-bg">
+												<img  class="merchant-logo " src="{{ asset($userDetails->ProfileImage) }}" alt="">
+											</a>
 										<h4 class="product-title mb-1">{{$previewProduct->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$previewProduct->category}}</p>
 										<div class="rating mb-1">

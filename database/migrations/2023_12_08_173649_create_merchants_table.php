@@ -22,9 +22,9 @@ return new class extends Migration
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');
             $table->string('productDescription',100);
             $table->string('productDetalis',200);
-            $table->decimal('price',9,3);
+            $table->decimal('price',9,2);
             $table->string('discount');
-            $table->decimal('ThePriceAfterDiscount',9,3);
+            $table->decimal('ThePriceAfterDiscount',9,2);
             $table->integer('append')->default('0');
             $table->bigInteger('imgId')->unsigned();
             $table->foreign('imgId')->references('id')->on('product_imgs')->onDelete('cascade');  

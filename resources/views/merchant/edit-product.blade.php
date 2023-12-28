@@ -1,6 +1,8 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
 <link rel="stylesheet" href="{{asset('assets/plugins/imageUploader/imageUploader.css')}}">
+<link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -17,6 +19,7 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+
 				<!-- row -->
 				<div class="row">
 
@@ -71,20 +74,43 @@
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر ₪:  </label>
-												<input class="form-control" name="price" id="price" placeholder="لا يمكنك ترك السعر فارغ" required="" onkeyup="result()" value="{{$product->price}}" type="text">
+												<input name="price" class="form-control"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+												minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number" value="{{$product->price}}"   id="price" placeholder="مثال : 99 ₪"  required>
+												<div class="valid-feedback">
+													ممتاز !
+												</div>
+												<div class="invalid-feedback" id="price_error">
+													يجب الا يقل سعر المنتج عن عن 1 ولا يزيد عن 5 ارقام
+												</div>
 											</div>
 										</div>
 									
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الخصم %: </label>
-												<input class="form-control" name="discount" id="discount" placeholder="لا يمكنك ترك السعر فارغ" required=""  onkeyup="result()"value="{{$product->discount}}" type="text">
+												<input class="form-control" name="discount" minlength="1" 
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+												type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
+											  <div class="valid-feedback">
+												ممتاز !
+											</div>
+											<div class="invalid-feedback" id="discount_error">
+												حدد نسبه خصم بين 1% % الي 100 %
+											</div>
 											</div>
 										</div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">السعر بعد الخصم ₪: </label>
-												<input class="form-control" name="ThePriceAfterDiscount" id="ThePriceAfterDiscount" placeholder="لا يمكنك ترك السعر فارغ" required="" value="{{$product->ThePriceAfterDiscount}}" type="text">
+												<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+												<div class="valid-feedback">
+													ممتاز !
+												</div>
+												<div class="invalid-feedback" id="ThePriceAfterDiscount_error">
+												</div>
 											</div>
 										</div>
 									</div>
@@ -138,6 +164,27 @@
 									</div>
 									<!-- row closed -->
 
+									@if ($errors->any())
+										<div class="alert alert-danger">
+											<ul>
+												@foreach ($errors->all() as $error)
+													<li>{{ $error }}</li>
+												@endforeach
+											</ul>
+										</div>
+									@endif
+
+									@if(Session::has('success'))
+									<input id="nofic" type="hidden" value="{{Session::get('success')}}">
+									<script>
+										window.onload = function not7() {
+										notif({
+											msg: $('#nofic').val(),
+											type: "success"
+										});
+									}
+									</script>
+									@endif
 
 								</form>
 							</div>
@@ -154,6 +201,7 @@
 @section('js')
 
 <script src="{{asset('assets/plugins/imageUploader/imageUploader.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <script>
 	// calculate discount 

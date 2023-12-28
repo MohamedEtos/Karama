@@ -77,70 +77,67 @@ class MerchantController extends Controller
     public function store(Request $request)
     {
 
+        // check max number in cateogry
+
+        $max = category::latest()->orderBy('id','DESC')->first()->id;
+        $min = 1;
+
         $request->validate([
             'name'=>'required|string',
-            // 'category'=>'required|string',
+            'categoryId' => 'required|integer|between:'.$min.','.$max,
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
-            'price'=>'required|integer',
+            'price'=>'required|numeric|between:0,99.99',
             'discount'=>'required|integer',
-            // 'ThePriceAfterDiscount'=>'required|integer',
-            // 'img'=>'required|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'ThePriceAfterDiscount'=>'required| integer',
+            'mainImage'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
+            'img2'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
+            'img3'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
 
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
             'name.string'=>'ادخل حروف صالحه',
-            // 'category.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
-            // 'category.string'=>'ادخل حروف صالحه',
+            'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
+            'categoryId.integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
             'productDetalis.required'=>'لا يمكن ترك التفاصيل فارغه',
             'price.required'=>'اكتب سعر اولاً',
             'discount.required'=>'لا يمكن ترك الخصم فارغ',
             // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
-        ]);
+            'mainImage.required'=>'ضع 3 صور للمنتج',
+            'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img2.required'=>'ضع 3 صور للمنتج',
+            'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img3.required'=>'ضع 3 صور للمنتج',
+            'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            ]);
 
 
 
 
         if($request->hasFile('mainImage')){
-
             $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
-  
-            // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
-
             $imageName = Str::random().'.webp';
-
             $image->save(public_path('upload/products/img/'. $imageName));
-    
             $mainImage = 'upload/products/img/'. $imageName;
-
         }
         if($request->hasFile('img2')){
-
             $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,350);
-  
             $imageName = Str::random().'.webp';
-      
             $image->save(public_path('upload/products/img/'. $imageName));
-    
             $img2 = 'upload/products/img/'. $imageName;
-
         }
         if($request->hasFile('img3')){
-
             $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,350);
-  
             $imageName = Str::random().'.webp';
-      
             $image->save(public_path('upload/products/img/'. $imageName));
-    
             $img3 = 'upload/products/img/'. $imageName;
-
-            $save_url = 'upload/products/img/'. $imageName;
-
         }
-
-
 
         productImg::create([
             'userId'=>Auth::User()->id, // this colum for show userid only (not relations)
@@ -148,8 +145,8 @@ class MerchantController extends Controller
             'img2'=>$img2,
             'img3'=>$img3,
         ]);
-        $getLastImageId = productImg::where('userId',Auth::User()->id)->latest()->first()->id;
 
+        $getLastImageId = productImg::where('userId',Auth::User()->id)->latest()->first()->id;
 
         merchant::create([
             'userId'=>Auth::User()->id,
@@ -163,8 +160,6 @@ class MerchantController extends Controller
             'imgId'=>$getLastImageId,
         ]);
 
-
-        // return $request->all();
         return response()->json(["MSG" => "تم الاضافه سيتم الموفقه علي المنتج من قبل الادارة في اقرب وقت "]);
     }
 
@@ -275,7 +270,45 @@ class MerchantController extends Controller
      
     public function update(Request $request, $id)
     {
+        // check max number in cateogry
 
+        $max = category::latest()->orderBy('id','DESC')->first()->id;
+        $min = 1;
+
+        $request->validate([
+            'name'=>'required|string',
+            'categoryId' => 'required|integer|between:'.$min.','.$max,
+            'productDescription'=>'required|string',
+            'productDetalis'=>'required|string',
+                'price'=>'required|numeric|between:0,9999.99',
+            'discount'=>'required| integer',
+            // 'ThePriceAfterDiscount'=>'required| integer',
+            'mainImage'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
+            'img2'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
+            'img3'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
+
+        ],[
+            'name.required'=>'لا يمكن ترك الاسم فارغ',
+            'name.string'=>'ادخل حروف صالحه',
+            'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
+            'categoryId. integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
+            'productDetalis.required'=>'لا يمكن ترك التفاصيل فارغه',
+            'price.required'=>'اكتب سعر اولاً',
+            'discount.required'=>'لا يمكن ترك الخصم فارغ',
+            // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
+            'mainImage.nullable'=>'ضع 3 صور للمنتج',
+            'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img2.nullable'=>'ضع 3 صور للمنتج',
+            'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img3.nullable'=>'ضع 3 صور للمنتج',
+            'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
+            'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            ]);
 
 
         // update product 
@@ -311,25 +344,18 @@ class MerchantController extends Controller
             ]);
         }
 
+
         merchant::where('id',$id)->update([
             'name'=>$request->name,
             'categoryId'=>$request->categoryId,
             'productDescription'=>$request->productDescription,
             'productDetalis'=>$request->productDetalis,
             'price'=>$request->price,
-            'ThePriceAfterDiscount'=>$request->ThePriceAfterDiscount,
+            'discount'=>$request->discount,
+            'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
         ]);
 
-                // get current product data 
-                $product = merchant::where('id',$id)->first();
-                $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
-        
-                return view('merchant.edit-product',compact(
-                    'product',
-                    'category',
-                ));
-
-
+        return redirect()->back()->with('success','تم تعديل المنتج سيتم المراجعه من قبل الادارة ');
 
 
     }

@@ -94,7 +94,9 @@
 									</div>
 									<div class="col-md-4 mt-4">
 										<label for="price" class="form-label">السعر الاساسي</label>
-										<input name="price" class="form-control" minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
+										<input name="price" class="form-control"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+										minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -104,7 +106,9 @@
 									  </div>
 									<div class="col-md-4 mt-4">
 									  <label for="discount" class="form-label">الخصم %</label>
-									  <input class="form-control" name="discount" minlength="1"   type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
+									  <input class="form-control" name="discount" minlength="1" 
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+									    type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
 									  <div class="valid-feedback">
 										ممتاز !
 									</div>
@@ -114,7 +118,9 @@
 									</div>
 									<div class="col-md-4 mt-4">
 										<label for="ThePriceAfterDiscount" class="form-label">الاجمالي</label>
-										<input name="ThePriceAfterDiscount" class="form-control" minlength="1" step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+										<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+										 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -124,18 +130,17 @@
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name="mainImage"  class="dropify" data-height="200" />
 									</div>
-									<small id="mainImage_error" class="mt-2 text-danger"></small>
 
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name="img2" class="dropify" data-height="200" />
 									</div>
-									<small id="img2_error" class="mt-2 text-danger"></small>
 
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name='img3' required class="dropify" data-height="200" />
 									</div>
-									<small id="img3_error" class="mt-2 text-danger"></small>
-
+									<h4 id="img3_error" class="mt-2 text-danger"></h4>
+									<h4 id="mainImage_error" class="mt-2 text-danger"></h4>
+									<h4 id="img2_error" class="mt-2 text-danger"></h4>
 									
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المنتج</button>
