@@ -74,7 +74,7 @@ class UserDetalisController extends Controller
 
         }
 
-        userDetalis::where('userId',Auth::User()->id)->update([
+        userDetalis::where('id',Auth::User()->id)->update([
             'ProfileImage'=>$ProfileImage,
         ]);
 
@@ -115,7 +115,7 @@ class UserDetalisController extends Controller
             $image->save(public_path('upload/Profile/img/'. $imageName));
             $coverImage = 'upload/Profile/img/'. $imageName;
         }
-        userDetalis::where('userId',Auth::User()->id)->update([
+        userDetalis::where('id',Auth::User()->id)->update([
             'coverImage'=>$coverImage,
         ]);
 
@@ -128,7 +128,7 @@ class UserDetalisController extends Controller
     {
         $hashedPassword = User::findOrFail(Auth::User()->id)->password;
         if (Hash::check($request->password,$hashedPassword) ) {
-            userDetalis::where('userId',Auth::User()->id)->update([
+            userDetalis::where('id',Auth::User()->id)->update([
                 'phone' => $request->phone,
                 'whatsapp' => $request->whatsapp,
                 'facebook' => $request->facebook,
@@ -148,7 +148,7 @@ class UserDetalisController extends Controller
             User::where('id',Auth::User()->id)->update([
                 'name' => $request->name,
             ]);
-            userDetalis::where('userId',Auth::User()->id)->update([
+            userDetalis::where('id',Auth::User()->id)->update([
                 'bio' => $request->bio,
                 'location' => $request->location,
             ]);

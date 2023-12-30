@@ -6,13 +6,34 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between m-2">
+				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto p-2 rounded-4  alert aler-danger">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> </span>
+							<h4 class="content-title mb-0 my-auto">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 						</div>
 					</div>
-
+					<div class="d-flex my-xl-auto right-content">
+						<div class="pr-1 mb-3 mb-xl-0">
+							<button type="button" class="btn btn-info btn-icon ml-2"><i class="mdi mdi-filter-variant"></i></button>
+						</div>
+						<div class="pr-1 mb-3 mb-xl-0">
+							<button type="button" class="btn btn-danger btn-icon ml-2"><i class="mdi mdi-star"></i></button>
+						</div>
+						<div class="pr-1 mb-3 mb-xl-0">
+							<button type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></button>
+						</div>
+						<div class="mb-3 mb-xl-0">
+							<div class="btn-group dropdown">
+								<button type="button" class="btn btn-primary">فلاتر البحث</button>
+								<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuDate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuDate" data-x-placement="bottom-end">
+									<a class="dropdown-item" href="#"></a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection
@@ -20,35 +41,36 @@
 				<!-- row -->
 				<div class="row row-sm ">
 
-					<div class="col-xl-10 col-lg-10 col-md-12">
-
-						<div class="card shadow-none">
+					<div class="col-12 ">
+						<div class="card shadow-none 		">
 							<div class="card-body p-2">
+								<form>
 								<div class="input-group">
-									<input type="text" class="form-control " placeholder="بحث ...">
-									<span class="input-group-append">
-										<button class="btn btn-primary" type="button">بحث</button>
-									</span>
-								</div>
+										<span class="input-group-append">
+											<button class="btn btn-primary" type="submit">بحث</button>
+										</span>
+										<input type="search" class="form-control" value="{{ request('search') }}" name="search" placeholder="ابحث عن ملابس , مطاعم , غسيل سيارات , الخ ...">
+									</div>
+								</form>
+								<form>
+									<div class="row row-sm m-2	">
+										@foreach ($category as $categorys)
+										<div class="tags">
+												<a type="button" href="{{'/?search='.$categorys->name}}" class="btn btn-sm btn-danger text-white">{{$categorys->name}}</a>
+										</div>
+										@endforeach
+									</div>
+								</form>
 							</div>
 						</div>
-@php
-// $products = App\Models\merchant::latest()->paginate(15);
-$products = App\Models\merchant::latest()->paginate(15);
-@endphp
-
-
+					</div>	
 
 					<div class="row row-sm">
+						
                         @foreach ($products as $product)
-							<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
-
+							<div class="col-md-4 col-lg-3 col-xl-3  col-sm-2">
 								<div class="card shadow-none">
-
 									<div class="card-body">
-
-
-
 										<div class="pro-img-box">
 											<div class="d-flex product-sale">
 												<div class="badge bg-success">عروض المتجر</div>
@@ -57,7 +79,7 @@ $products = App\Models\merchant::latest()->paginate(15);
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
-											<a href="#" class="adtocart overflow-hidden "> <img class="" src="{{URL::asset('assets/img/merchant/Adidas_logo.png')}}" alt="merchant-logo"></i>
+											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden "> <img class="" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
 										</div>
 										<div class="text-center pt-3">
@@ -77,13 +99,13 @@ $products = App\Models\merchant::latest()->paginate(15);
 							</div>
                             @endforeach
 
-
 					</div>
 					<div class="col-12 w-100 pagination ">
 						{{$products->links()}}
 					</div>
                 </div>
-					<div class="col-xl-2 col-lg-2 col-md-12 mb-3 mb-md-0">
+				{{-- fliters  --}}
+					{{-- <div class="col-xl-2 col-lg-2 col-md-12 mb-3 mb-md-0">
 						<div class="card 	">
 							<div class="card-header border-bottom pt-3 pb-3 mb-0 font-weight-bold text-uppercase">الفلاتر</div>
 							<div class="card-body pb-0">
@@ -171,7 +193,7 @@ $products = App\Models\merchant::latest()->paginate(15);
 								<button class="btn btn-primary-gradient mt-2 mb-2 pb-2" type="submit">Filter</button>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 				<!-- row closed -->
 			</div>

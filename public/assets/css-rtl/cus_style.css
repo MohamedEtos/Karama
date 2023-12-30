@@ -39,6 +39,14 @@ input[type=number] {
 
   .adtocart{
     background: #fff !important;
+    overflow: hidden;
+    height: 60px;
+    width: 60px;
+  }
+  .adtocart img{
+    border-radius: 100%;
+    width: 100%;
+    height: 100%  ;
   }
 
   .title-brand{

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('subtype');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('userDetalis')->unsigned();
+            $table->foreign('userDetalis')->references('id')->on('user_detalis')->onDelete('cascade');  
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
             $table->time('last_seen')->nullable();

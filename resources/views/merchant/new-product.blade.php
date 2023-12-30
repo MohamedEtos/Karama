@@ -96,7 +96,7 @@
 										<label for="price" class="form-label">السعر الاساسي</label>
 										<input name="price" class="form-control"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
+										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -108,7 +108,7 @@
 									  <label for="discount" class="form-label">الخصم %</label>
 									  <input class="form-control" name="discount" minlength="1" 
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-									    type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
+									    type="number" max="100" onkeydown="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
 									  <div class="valid-feedback">
 										ممتاز !
 									</div>
@@ -120,7 +120,7 @@
 										<label for="ThePriceAfterDiscount" class="form-label">الاجمالي</label>
 										<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+										 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeydown="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -129,18 +129,19 @@
 									</div>
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name="mainImage"  class="dropify" data-height="200" />
+										<h6 id="mainImage_error" class="mt-2 text-danger"></h6>
+
 									</div>
 
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name="img2" class="dropify" data-height="200" />
+										<h6 id="img2_error" class="mt-2 text-danger"></h6>
 									</div>
 
 									<div class="col-sm-12 col-md-4 mt-4">
 										<input type="file" name='img3' required class="dropify" data-height="200" />
+										<h6 id="img3_error" class="mt-2 text-danger"></h6>
 									</div>
-									<h4 id="img3_error" class="mt-2 text-danger"></h4>
-									<h4 id="mainImage_error" class="mt-2 text-danger"></h4>
-									<h4 id="img2_error" class="mt-2 text-danger"></h4>
 									
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المنتج</button>
@@ -194,39 +195,6 @@ function result (){
 
 
 
-// live validation js inputs
-(function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('keypress', function (event) {
-        if (!form.checkValidity()) {
-        //   event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-        //   event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-
-
-})()
 
 
 
@@ -301,6 +269,8 @@ function result (){
 						// setTimeout("location.href = '/merchant/new-product';", 4000)
 						// $('#product_data').trigger('reset');
 						$("#product_data")[0].reset();
+						// $('.invalid-feedback').css('display','none');
+						// $('input').removeClass('invalid');
                 },complete: function(){
 					$('.loader_cu').css('display','none')
 					$('.loading').css('display','none')
@@ -337,6 +307,34 @@ function result (){
 	});
 
 
+
+</script>
+
+<script>
+	// live validation js inputs
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('keydown', function (event) {
+        if (!form.checkValidity()) {
+        //   event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+	
+
+
+
+})()
 
 </script>
 

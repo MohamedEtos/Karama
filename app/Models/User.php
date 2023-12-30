@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class User extends Authenticatable
 {
@@ -25,6 +28,7 @@ class User extends Authenticatable
         'subtype',
         'password',
         'last_seen',
+        'userDetalis',
     ];
 
     /**
@@ -45,4 +49,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function userToDetalis(): BelongsTo
+    {
+        return $this->belongsTo(userDetalis::class,'userDetalis');
+    }
+
+    // public function userDetalis()
+    // {
+    //     return $this->hasOne(userDetalis::class);
+    // }
+
+    // public function userToDetalis(): HasOne
+    // {
+    //     return $this->hasOne(userDetalis::class);
+    // }
 }

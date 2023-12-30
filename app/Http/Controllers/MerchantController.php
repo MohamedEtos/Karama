@@ -45,7 +45,7 @@ class MerchantController extends Controller
 
 
         // $persent = round($persent,'1');
-
+        $test = User::where('id','1')->first();
 
         return view('merchant.merchant',compact(
             'products_data',
@@ -54,6 +54,7 @@ class MerchantController extends Controller
             'unappendPersent',
             'persent',
             'storeViews',
+            'test',
             // 'VisitorsCountController',
         ));
     }
@@ -107,13 +108,13 @@ class MerchantController extends Controller
             'price.numeric'=>'اكتب ارقام صالحه',
             'discount.required'=>'لا يمكن ترك الخصم فارغ',
             // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
-            'mainImage.required'=>'ضع 3 صور للمنتج',
+            'mainImage.required'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
-            'img2.required'=>'ضع 3 صور للمنتج',
+            'img2.required'=>'ضع صوره للمنتج',
             'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
-            'img3.required'=>'ضع 3 صور للمنتج',
+            'img3.required'=>'ضع صوره للمنتج',
             'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
             ]);
@@ -221,7 +222,7 @@ class MerchantController extends Controller
 
         $merchantId = merchant::where('id',$id)->first()->userId;
 
-        $merchantData = userDetalis::where('userId',$merchantId)->first();
+        $merchantData = User::where('id',$merchantId)->first();
 
 
         return view('product-details',compact(
@@ -240,7 +241,6 @@ class MerchantController extends Controller
      */
     public function edit(Request $request)
     {
-
         $products = merchant::where('userid',Auth::User()->id)->get(); //get product from image table relation
 
         return view('merchant.list-product',compact(
@@ -300,13 +300,13 @@ class MerchantController extends Controller
             'price.required'=>'اكتب سعر اولاً',
             'discount.required'=>'لا يمكن ترك الخصم فارغ',
             // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
-            'mainImage.nullable'=>'ضع 3 صور للمنتج',
+            'mainImage.nullable'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
-            'img2.nullable'=>'ضع 3 صور للمنتج',
+            'img2.nullable'=>'ضع صوره للمنتج',
             'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
-            'img3.nullable'=>'ضع 3 صور للمنتج',
+            'img3.nullable'=>'ضع صوره للمنتج',
             'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
             ]);
@@ -383,7 +383,7 @@ class MerchantController extends Controller
     {
         $previewProduct = merchant::findOrFail($id);
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
-        $userDetails = userDetalis::where('userId',Auth::user()->id)->first();
+        $userDetails = User::where('userDetalis',Auth::user()->id)->first();
         return view('merchant.preview-product',compact([
             'previewProduct',
             'productRevew',

@@ -9,9 +9,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MarketProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\ProductHomeController;
 use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\UserDetalisController;
 use App\Models\userDetalis;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +85,12 @@ Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name(
 // users
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('products');
-    });
+    Route::get('/', [ProductHomeController::class, 'index'])->name('/');
+    Route::get('searchBar', [ProductHomeController::class, 'searchBar']);
+
+    // Route::get('/', function () {
+    //     return view('products');
+    // });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -97,47 +102,52 @@ require __DIR__.'/auth.php';
 
 
 
+
 Route::get('addadmin',function(){
+
+
+
+
+    userDetalis::create([
+        'phone'=>'01033441143',
+        'whatsapp'=>'01033441143',
+        'facebook'=>'https://www.facebook.com/mohamed.etos/',
+        'website'=>'www.Karama-SC.com',
+        'location'=>'11 ش خالد بن الوليد المنيب الجيزه ',
+        'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
+        'ProfileImage'=>'test',
+        'nationalId'=>'12345678911',
+    ]);
 
     User::create([
         'name'=>'محمد محروس',
         'usercode'=>'11223344',
-        // 'phone_number'=>'01033441143',
         'email'=>'admin@admin.com',
         'subtype'=>'admin',
         'password'=>Hash::make('11223344'),
-    ]);
-    User::create([
-        'name'=>'yassen ',
-        'usercode'=>'1122334455',
-        // 'phone_number'=>'01017373391',
-        'email'=>'user@user.com',
-        'subtype'=>'user',
-        'password'=>Hash::make('11223344'),
+        'userDetalis'=>1,   
     ]);
 
     userDetalis::create([
-        'userId'=>'1',
-        'phone'=>'01033441143',
-        'whatsapp'=>'01033441143',
-        'facebook'=>'https://www.facebook.com/mohamed.etos/',
+        'phone'=>'011011011',
+        'whatsapp'=>'011011011',
+        'facebook'=>'https://www.facebook.com/addidas.etos/',
         'website'=>'www.Karama-SC.com',
         'location'=>'11 ش خالد بن الوليد المنيب الجيزه ',
         'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
         'ProfileImage'=>'test',
         'nationalId'=>'12345678911',
     ]);
-    userDetalis::create([
-        'userId'=>'2',
-        'phone'=>'01033441143',
-        'whatsapp'=>'01033441143',
-        'facebook'=>'https://www.facebook.com/mohamed.etos/',
-        'website'=>'www.Karama-SC.com',
-        'location'=>'11 ش خالد بن الوليد المنيب الجيزه ',
-        'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
-        'ProfileImage'=>'test',
-        'nationalId'=>'12345678911',
+
+    User::create([
+        'name'=>'addidas',
+        'usercode'=>'1122334455',
+        'email'=>'addidas@addidas.com',
+        'subtype'=>'admin',
+        'password'=>Hash::make('1122334455'),
+        'userDetalis'=>2,   
     ]);
+
 
 
     category::create([

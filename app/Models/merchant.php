@@ -36,6 +36,10 @@ class merchant extends Model
     {
         return $this->belongsTo(User::class,'userId');
     }
+    public function userDetailsToProduct(): BelongsTo
+    {
+        return $this->belongsTo(userDetalis::class);
+    }
 
     
 }

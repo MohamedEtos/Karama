@@ -24,7 +24,7 @@
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="mainCover col-12">
-							<img class="w-100 h-30" src="{{asset($marketData->coverImage)}}" alt="MarkitProfile">
+							<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
 					</div>
 				</div>
 
@@ -35,9 +35,9 @@
 							<div class="card mainimageprofile card-success">
 								<div class="card-header pb-0">
 									<div class="img-circle">
-										<img src="{{asset($marketData->ProfileImage)}}" alt="">
+										<img src="{{asset($marketData->userToDetalis->ProfileImage)}}" alt="">
 									</div>
-									<h1 class="prandName mr-xl-5">{{$marketData->userDetails->name}}</h1>
+									<h1 class="prandName mr-xl-5">{{$marketData->name}}</h1>
 								</div>
 								<div class="card-body m-0  text-success">
 									<div class="row anlisis">
@@ -58,13 +58,14 @@
 
 							</div>
 						</div>
+					</div>
 						<div class="col-1"></div>
 					</div>
 
 
 					<div class="row row-sm">
                         @foreach ($products as $product)
-							<div class="col-md-6 col-lg-6 col-xl-4  col-sm-6">
+							<div class="col-md-4 col-lg-4 col-xl-3  col-sm-6">
 
 								<div class="card shadow-none">
 
@@ -80,7 +81,7 @@
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
-											<a href="#" class="adtocart overflow-hidden "> <img class="" src="{{URL::asset('assets/img/merchant/Adidas_logo.png')}}" alt="merchant-logo"></i>
+											<a href="{{url('MarketProfile/'.$marketData->userId)}}" class="adtocart overflow-hidden "> <img class="" src="{{asset($marketData->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
 										</div>
 										<div class="text-center pt-3">

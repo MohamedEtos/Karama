@@ -119,3 +119,6 @@ top: -70px;
 
 
 
+.card{
+  box-shadow: none !important;
+}

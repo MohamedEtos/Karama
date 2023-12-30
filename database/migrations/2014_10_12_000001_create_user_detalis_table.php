@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('user_detalis', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('userId')->unsigned();
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');  
             $table->string('phone')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('facebook')->nullable();

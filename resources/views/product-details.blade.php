@@ -22,7 +22,7 @@
 
 				<div class="row  title-brand mb-3 mt-2">
 					<div class="col-12 p-3 text-white">
-						<h3><a href="{{url('MarketProfile/'.$merchantData->userDetails->id)}}" class="text-white">{{$merchantData->userDetails->name}}</a></h3>
+						<h3><a href="{{url('MarketProfile/'.$merchantData->id)}}" class="text-white">{{$merchantData->name}}</a></h3>
 					</div>
 				</div>
 				<!-- breadcrumb -->
@@ -55,8 +55,8 @@
 										</ul>
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
-											<a href="{{url('MarketProfile/'.$merchantData->userDetails->id)}}" class="merchant-logo-bg">
-												<img  class="merchant-logo " src="{{asset($merchantData->ProfileImage)}}" alt="">
+											<a href="{{url('MarketProfile/'.$merchantData->id)}}" class="merchant-logo-bg">
+												<img  class="merchant-logo " src="{{asset($merchantData->userToDetalis->ProfileImage)}}" alt="">
 											</a>
 										<h4 class="product-title mb-1">{{$item->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$item->category}}</p>
@@ -76,28 +76,28 @@
 
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
-												<a href="tel:{{$merchantData->phone}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
+												<a href="tel:{{$merchantData->userToDetalis->phone}}" class="btn btn-primary btn-with-icon btn-block "  id='swal-image'>اتصال<i class="la la-phone"></i></a>
 											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="https://wa.me/{{$merchantData->whatsapp}}"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
+												<a href="https://wa.me/{{$merchantData->userToDetalis->whatsapp}}"  target="_blank" class="btn btn-success btn-with-icon btn-block">  واتس اب  &nbsp;<i class="fa-brands fa-whatsapp fa-xl"> </i></i>
 												</a>
 											</div>
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="{{$merchantData->facebook}}"  target="_blank" class="btn btn-info btn-with-icon btn-block">   فيس بوك  &nbsp;<i class="fa-brands fa-facebook fa-xl"> </i></i>
+												<a href="{{$merchantData->userToDetalis->facebook}}"  target="_blank" class="btn btn-info btn-with-icon btn-block">   فيس بوك  &nbsp;<i class="fa-brands fa-facebook fa-xl"> </i></i>
 												</a>
 											</div>
 
 											<div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0">
-												<a href="{{$merchantData->website}}" target="_blank"  class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
+												<a href="{{$merchantData->userToDetalis->website}}" target="_blank"  class="btn btn-danger btn-with-icon btn-block">  الموقع   &nbsp;<i class="icon ion-md-link  fa-xl"> </i></i>
 												</a>
 											</div>
 										</div>
 
 										<h6 class="price mt-4 h5">نبذه عن المتحر</h6>
-										<p class="text-muted">{{$merchantData->bio}}</p>
+										<p class="text-muted">{{$merchantData->userToDetalis->bio}}</p>
 										<h6 class="price mt-3 h5">فروعنا</h6>
-										<p class="text-muted">{{$merchantData->location}}</p>
+										<p class="text-muted">{{$merchantData->userToDetalis->location}}</p>
 									</div>
 								</div>
 							</div>
