@@ -32,9 +32,9 @@
 
 
 @section('navbar')
-<div class="nav-item m-auto ">
+<div class="nav-item p-0 m-auto ">
 	<li class="nav-item dropdown ">
-        <a class="dropdownWithOutArrow nav-link p-lg-2 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdownWithOutArrow nav-link  p-lg-2 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			₪
 						{{-- <i class="  fa-solid fa-fire"></i>	 --}}
 			
@@ -50,7 +50,7 @@
         </div>
       </li>
 </div>
-<div class="nav-item m-auto ">
+<div class="nav-item p-0 m-auto ">
 	<li class="nav-item dropdown ">
         <a class="dropdownWithOutArrow nav-link p-lg-2 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="fa-solid fa-percent "></i>		
@@ -77,7 +77,7 @@
       </li>
 </div>
 
-<div class="nav-item m-auto">
+<div class="nav-item p-0 m-auto">
 	<li class="nav-item dropdown">
         <a class=" nav-link  p-lg-3 p-1  text-secondary  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="fa-solid fa-shop"></i>										
@@ -98,7 +98,7 @@
       </li>
 </div>
 
-<div class="nav-item m-auto ">
+<div class="nav-item p-0p-0 m-auto ">
 	<li class="nav-item dropdown">
         <a class=" nav-link p-lg-3 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="mdi mdi-filter-variant"></i>
@@ -118,7 +118,7 @@
       </li>
 </div>
 
-<div class="nav-link" id="bs-example-navbar-collapse-1">
+<div class="nav-link pr-0 pl-0" id="bs-example-navbar-collapse-1">
 	<form class="navbar-form" role="search">
 		<div class="input-group">
 			<input type="search" class="form-control" value="{{ request('search') }}" name="search" placeholder="ابحث عن ملابس , مطاعم , غسيل سيارات , الخ ...">
@@ -134,7 +134,7 @@
 	</form>
 </div>
 
-<div class="dropdown nav-item main-header-message ">
+<div class="dropdown p-0 nav-item main-header-message ">
 	<a class="new nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class=" pulse-danger"></span></a>
 	<div class="dropdown-menu">
 		<div class="menu-header-content bg-primary text-right">
@@ -213,7 +213,7 @@
 </div>
 
 
-<div class="dropdown nav-item main-header-notification">
+<div class="dropdown p-0 nav-item main-header-notification">
 	<a class="new nav-link" href="#">
 	<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class=" pulse"></span></a>
 	<div class="dropdown-menu">
@@ -383,7 +383,28 @@
                         @foreach ($products as $product)
 							<div class="col-md-4 col-lg-2 col-xl-2  col-sm-6">
 								<div class="card shadow-none">
-									<div class="card-body">
+									<div class="card-title mt-2 p-2 d-block d-sm-block d-md-none d-lg-none">
+										<div class="row">
+											<div class="demo-avatar-group col-3">
+												<div class="main-img-user avatar-md mr-3">
+													{{-- <img alt="avatar" class="rounded-circle" src="http://127.0.0.1:8080/assets/img/faces/4.jpg"> --}}
+													<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="">
+														<img alt="avatar" class="bd bd-2 bd-success rounded-circle"src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}">
+												   </a>
+												</div>
+											</div>
+											<div class="market-data col-9 m-auto">
+												<h3 class="h6 mb-2 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h3>
+												<span class="tx-15 ml-auto">
+													 الخصم % <b>{{$product->discount}}</b>
+													</span>											
+													<h4 class="h6 mb-0 mt-2   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
+											</div>
+										</div>
+
+
+									</div>
+									<div class="card-body pt-3  ">
 										<div class="pro-img-box">
 											<div class="d-flex product-sale">
 												<div class="badge bg-success">عروض المتجر</div>
@@ -392,17 +413,17 @@
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
-											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden "> <img class="" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
+											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
+												 <img class="" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
 										</div>
-										<div class="text-center pt-3">
+										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">
 											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$product->name}}</h3>
 											<span class="tx-15 ml-auto">
 												% الخصم <b>{{$product->discount}}</b>
-				
 
 											</span>
-											<h4 class="h5 mb-0 mt-2 text-center font-weight-bold text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
+											<h4 class="h5 mb-0 mt-2 text-center d-block font-weight-bold text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
 										</div>
 
 									</div>
@@ -531,5 +552,15 @@
 			to: 800,
 			prefix: '₪'
 		});
+</script>
+
+<script>
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
 </script>
 @endsection
