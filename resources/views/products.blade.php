@@ -121,12 +121,14 @@
 <div class="nav-link pr-0 pl-0" id="bs-example-navbar-collapse-1">
 	<form class="navbar-form" role="search">
 		<div class="input-group">
-			<input type="search" class="form-control" value="{{ request('search') }}" name="search" placeholder="ابحث عن ملابس , مطاعم , غسيل سيارات , الخ ...">
+			<form >
+				<input type="search" class="form-control" value="{{ request('search') }}" name="search" placeholder="ابحث عن ملابس , مطاعم , غسيل سيارات , الخ ...">
+			</form>
 			<span class="input-group-btn">
 				<button type="reset" class="btn btn-default">
 					<i class="fas fa-times"></i>
 				</button>
-				<button type="submit" class="btn btn-default nav-link resp-btn">
+				<button type="button" class="btn btn-default nav-link resp-btn">
 					<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 				</button>
 			</span>
@@ -330,7 +332,7 @@
 
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header mt-2 justify-content-between  rounded alert alert-light">
+				<div class="breadcrumb-header mt-2 justify-content-between mb-2 rounded alert alert-light">
 					<div class="my-auto">
 						<div class="d-flex">
 							<h4 class="content-title mb-0 my-auto">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
@@ -383,10 +385,10 @@
                         @foreach ($products as $product)
 							<div class="col-md-4 col-lg-2 col-xl-2  col-sm-6">
 								<div class="card shadow-none">
-									<div class="card-title mt-2 p-2 d-block d-sm-block d-md-none d-lg-none">
+									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
 										<div class="row">
 											<div class="demo-avatar-group col-3">
-												<div class="main-img-user avatar-md mr-3">
+												<div class="main-img-user  avatar-md  mr-3">
 													{{-- <img alt="avatar" class="rounded-circle" src="http://127.0.0.1:8080/assets/img/faces/4.jpg"> --}}
 													<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="">
 														<img alt="avatar" class="bd bd-2 bd-success rounded-circle"src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}">
@@ -394,17 +396,17 @@
 												</div>
 											</div>
 											<div class="market-data col-9 m-auto">
-												<h3 class="h6 mb-2 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h3>
-												<span class="tx-15 ml-auto">
-													 الخصم % <b>{{$product->discount}}</b>
+												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h6>
+												<span class=" tx-12 ml-auto">
+													 خصم % <b>{{$product->discount}}</b>
 													</span>											
-													<h4 class="h6 mb-0 mt-2   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
+													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
 											</div>
 										</div>
 
 
 									</div>
-									<div class="card-body pt-3  ">
+									<div class="card-body pt-1 pt-md-3  ">
 										<div class="pro-img-box">
 											<div class="d-flex product-sale">
 												<div class="badge bg-success">عروض المتجر</div>
@@ -414,8 +416,9 @@
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
 											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
-												 <img class="" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
+												 <img class="bd bd-2 bd-success rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
+
 										</div>
 										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">
 											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$product->name}}</h3>

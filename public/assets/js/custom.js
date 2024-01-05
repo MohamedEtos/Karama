@@ -98,7 +98,7 @@ $(function() {
 		$form.removeClass('active');
 	}
 	// Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
-	$(document).on('click', '.main-header form[role="search"]:not(.active) button[type="submit"]', function(event) {
+	$(document).on('click', '.main-header form[role="search"]:not(.active) button[type="button"]', function(event) {
 		event.preventDefault();
 		var $form = $(this).closest('form'),
 		$input = $form.find('input');
@@ -106,7 +106,7 @@ $(function() {
 		$input.focus();
 	});
 	// if your form is ajax remember to call `closeSearch()` to close the search container
-	$(document).on('click', '.main-header form[role="search"].active button[type="submit"]', function(event) {
+	$(document).on('click', '.main-header form[role="search"].active button[type="button"]', function(event) {
 		event.preventDefault();
 		var $form = $(this).closest('form'),
 		$input = $form.find('input');

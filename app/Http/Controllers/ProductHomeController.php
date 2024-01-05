@@ -16,6 +16,9 @@ class ProductHomeController extends Controller
         $serch = $request->search;
         $serchpersent = $request->persent;
         $priceRange = $request->priceRange;
+        
+
+
 
         if (request('search')) {
 
@@ -37,10 +40,9 @@ class ProductHomeController extends Controller
             ->latest()->paginate(16);   
 
         }elseif(request('priceRange')){
-            $products = merchant::where(function($query) use ($serchpersent){
-                $query->whereBetween('price', [$serchpersent, 100]);
-            })
-            ->latest()->paginate(16);   
+            $substringBefore = explode(';', $priceRange)[0];
+            $substringAfter = explode(';', $priceRange)[1];
+            $products = merchant::whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);   
         }else{
             $products = merchant::with('userToProduct.userToDetalis')->latest()->paginate(16);
         }

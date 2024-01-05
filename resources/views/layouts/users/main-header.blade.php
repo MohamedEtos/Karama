@@ -20,11 +20,11 @@
 				@yield('smallsearch')
 				@yield('navbar')
 				<div class="dropdown main-profile-menu p-0 nav nav-item nav-link">
-					<a class="profile-user m-0 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
+					<a class="profile-user bg-success rounded-circle p-1 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
 					<div class="dropdown-menu">
 						<div class="main-header-profile bg-primary p-3">
 							<div class="d-flex wd-100p">
-								<div class="main-img-user"><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}" class=""></div>
+								<div class="main-img-user "><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}" class=""></div>
 								<div class="mr-3 my-auto">
 									<h6>{{ Auth::user()->name }}</h6>
 								</div>
@@ -58,31 +58,3 @@
 </div>
 <!-- /main-header -->
 
-
-<script>
-	window.onscroll = function() {
-	   myFunction();
-	   myFunction_mobile();
-	}
-	
-	var navbar = document.getElementById("navbar");
-	var sticky = navbar.offsetTop;
-	
-	var navbar_mobile = document.getElementById("menuToggle");
-	var sticky_mobile = navbar_mobile.offsetTop;
-	
-	function myFunction() {
-	  if (window.pageYOffset >= sticky) {
-		navbar.classList.add("sticky");
-	  } else {
-		navbar.classList.remove("sticky");
-	  }
-	}
-	function myFunction_mobile() {
-	  if (window.pageYOffset >= sticky_mobile) {
-		navbar_mobile.classList.add("sticky_mobile");
-	  } else {
-		navbar_mobile.classList.remove("sticky_mobile");
-	  }
-	}
-	</script>

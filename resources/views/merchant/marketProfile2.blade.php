@@ -21,56 +21,61 @@
 				<!-- /breadcrumb --> --}}
 @endsection
 @section('contentWithOutContiner')
-	<!-- row -->
-	<div class="row row-sm">
-		<div class="mainCover col-12">
-			<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
-			<div class=" markit-image">
-				<div class="demo-avatar-group">
-					<img alt="Responsive image" class="img-thumbnail wd-30p wd-sm-200 " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="marketData ">
-		<div class="container-fluid">
-			<div class="row" >
-				<div class=" col-12  text-md-right text-sm-center mt-2">
-					<h1  class="tx-md-62 pb-0 mb-0">{{$marketData->name}}</h1>
-					<a href="{{$marketData->userToDetalis->website}}" class="text-info">{{$marketData->userToDetalis->website}}</a	>
-				</div>
-			</div>
-				<div class="row">
-					<div class="col-4  text-center ">
-						<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
-						<h5 class="text-info">{{$visetorCounter}}</h5>
-					</div>
-					<div class="col-4  text-center ">
-						<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
-						<h5 class="text-info">583</h5>
-					</div>
-					<div class="col-4  text-center ">
-						<h6 class="text-small text-muted mb-0">المنتجات</h6>
-						<h5 class="text-info">{{$productsCounter}}</h5>
+				<!-- row -->
+				<div class="row row-sm">
+					<div class="mainCover col-12">
+							<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
 					</div>
 				</div>
 
-			<div class="row pb-3">
-				<div class="btn-icon-list col-12 d-flex justify-content-md-end  justify-content-sm-center mt-2">
-					<a href="tel:{{$marketData->userToDetalis->phone}}" class="   btn btn-icon btn-primary   "  id='swal-image'><i class="la la-phone"></i></a>
-					<a href="https://wa.me/{{$marketData->userToDetalis->whatsapp}}"  target="_blank" class="   btn btn-icon btn-success  "><i class="fa-brands fa-whatsapp fa-xl"> </i></a>
-					<a href="{{$marketData->userToDetalis->facebook}}"  target="_blank" class="   btn btn-icon btn-info  ">    <i class="fa-brands fa-facebook fa-xl"> </i></a>
-					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-danger  ">   <i class="icon ion-md-link  fa-xl"> </i></a>
-					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-info  ">  <i class="fa-solid fa-location-dot"></i></a>
+				<div class="container-fluid">
+					<div class="row row-sm">
+						<div class="col-1"></div>
+						<div class="col-10 ">
+							<div class="card mainimageprofile card-success">
+								<div class="card-header pb-0">
+									<div class="img-circle">
+										<img src="{{asset($marketData->userToDetalis->ProfileImage)}}" alt="">
+									</div>
+									<h1 class="prandName mr-xl-5">{{$marketData->name}}</h1>
+								</div>
+								<div class="card-body m-0 p-1  text-success">
+									<div class="row anlisis">
+										<div class="col-md-4 col text-center ">
+											<h5>{{$visetorCounter}}</h5>
+											<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
+										</div>
+										<div class="col-md-4 col text-center ">
+											<h5>583</h5>
+											<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
+										</div>
+										<div class="col-md-4 col text-center ">
+											<h5>{{$productsCounter}}</h5>
+											<h6 class="text-small text-muted mb-0">المنتجات</h6>
+										</div>
+											{{-- <div class="btn-icon-list">
+												<button class="col btn btn-indigo btn-icon"><i class="typcn typcn-folder"></i></button>
+												<button class="col btn btn-primary btn-icon"><i class="typcn typcn-calendar-outline"></i></button>
+												<button class="col btn btn-success btn-icon"><i class="typcn typcn-document-add"></i></button>
+												<button class="col btn btn-info btn-icon"><i class="typcn typcn-arrow-back-outline"></i></button>
+											</div> --}}
+									</div>
+								</div>
+									<div class="btn-icon-list m-2 ">
+										<a href="tel:{{$marketData->userToDetalis->phone}}" class=" btn btn-icon btn-primary   "  id='swal-image'><i class="la la-phone"></i></a>
+										<a href="https://wa.me/{{$marketData->userToDetalis->whatsapp}}"  target="_blank" class=" btn btn-icon btn-success  "><i class="fa-brands fa-whatsapp fa-xl"> </i></a>
+										<a href="{{$marketData->userToDetalis->facebook}}"  target="_blank" class=" btn btn-icon btn-info  ">    <i class="fa-brands fa-facebook fa-xl"> </i></a>
+										<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class=" btn btn-icon btn-danger  ">   <i class="icon ion-md-link  fa-xl"> </i></a>
+										<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class=" btn btn-icon btn-info  ">  <i class="fa-solid fa-location-dot"></i></a>
+									</div>
+
+								</div>
+
+							</div>
+					</div>
+						<div class="col-1"></div>
+					</div>
 				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="container-fluid mt-3">
 
 
 					<div class="row row-sm">
@@ -81,6 +86,7 @@
 										<div class="row">
 											<div class="demo-avatar-group col-3">
 												<div class="main-img-user  avatar-md  mr-3">
+													{{-- <img alt="avatar" class="rounded-circle" src="http://127.0.0.1:8080/assets/img/faces/4.jpg"> --}}
 													<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="">
 														<img alt="avatar" class="bd bd-2 bd-success rounded-circle"src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}">
 												   </a>
@@ -101,6 +107,7 @@
 										<div class="pro-img-box">
 											<div class="d-flex product-sale">
 												<div class="badge bg-success">عروض المتجر</div>
+												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
 											</div>
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
@@ -128,10 +135,10 @@
 
 
 					</div>
-
 					<div class="col-12 w-100 pagination ">
 						{{$products->links()}}
 					</div>
+                </div>
 
 				</div>
 				<!-- row closed -->

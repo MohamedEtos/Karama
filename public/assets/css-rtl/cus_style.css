@@ -17,7 +17,7 @@ input[type=number] {
 }
 
 .karama-bg-img{
-    background-image: url("/assets/img/backgrounds/krama.jpg") ;
+    background-image: url("/assets/img/backgrounds/krama.webp") ;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -42,6 +42,9 @@ input[type=number] {
     overflow: hidden;
     height: 60px;
     width: 60px;
+    border-radius: 100%;
+
+    border: 2px solid green;
   }
   .adtocart img{
     border-radius: 100%;
