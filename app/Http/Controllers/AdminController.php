@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\View\View;
 class AdminController extends Controller
 {
 
@@ -94,5 +101,65 @@ class AdminController extends Controller
         $user->save();
 
         return response()->json(['success'=>'Status Changes Successfully']);
+     }
+
+
+
+    public function NewStore(request $request){
+        return view('admin.registerStore');
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
+            'usercode' => ['required','string', 'max:255', 'unique:'.User::class],
+            'phone_number' => ['string', 'max:255', 'unique:'.User::class],
+            'subtype' => ['string', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'usercode' => $request->usercode,
+            'phone_number' => $request->phone_number,
+            'subtype' => $request->subtype,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        // return redirect(RouteServiceProvider::HOME);
+
+     }
+
+    public function NewUser(request $request){
+        return view('admin.registerUser');
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
+            'usercode' => ['required','string', 'max:255', 'unique:'.User::class],
+            'phone_number' => ['string', 'max:255', 'unique:'.User::class],
+            'subtype' => ['string', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'usercode' => $request->usercode,
+            'phone_number' => $request->phone_number,
+            'subtype' => $request->subtype,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        // return redirect(RouteServiceProvider::HOME);
+
      }
 }

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->bigInteger('categoryId')->unsigned();
-            $table->foreign('categoryId')->references('id')->on('subcategories')->onDelete('cascade');              
+            $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');              
             $table->timestamps();
         });
     }

@@ -38,7 +38,7 @@ Route::controller(CategoryController::class)->group(function(){
 
 });
 
-Route::controller(AdminController::class)->group(function(){
+Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('/all/merchant', 'AllMerchant')->name('all.merchant');
     Route::get('/all/user', 'AllUser')->name('all.user');
     Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
@@ -46,6 +46,8 @@ Route::controller(AdminController::class)->group(function(){
     Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
     Route::post('/store/user', 'StoreUser')->name('store.user');
     Route::get('/changeStatus', 'changeStatus');
+    Route::get('/registerStore', 'NewStore')->name('registerStore');
+    Route::get('/registerUser', 'NewUser')->name('registerUser');
 
 
 });

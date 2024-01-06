@@ -18,4 +18,10 @@ class userDetalis extends Model
         return $this->hasOne(userDetalis::class);
     }
 
+
+    public function userToCategory(): BelongsTo
+    {
+        return $this->belongsTo(category::class,'id');
+    }
+
 }

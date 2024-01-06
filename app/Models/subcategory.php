@@ -11,9 +11,11 @@ class subcategory extends Model
     use HasFactory;
     protected $guarded= [];
 
-}
 
 public function subCategoryRelation(): BelongsTo
 {
-    return $this->belongsTo(category::class,'categoryId');
+return $this->belongsTo(category::class,'id');
 }
+}
+
+
