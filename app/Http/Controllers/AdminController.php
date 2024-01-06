@@ -105,34 +105,7 @@ class AdminController extends Controller
 
 
 
-    public function NewStore(request $request){
-        return view('admin.registerStore');
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
-            'usercode' => ['required','string', 'max:255', 'unique:'.User::class],
-            'phone_number' => ['string', 'max:255', 'unique:'.User::class],
-            'subtype' => ['string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'usercode' => $request->usercode,
-            'phone_number' => $request->phone_number,
-            'subtype' => $request->subtype,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        // return redirect(RouteServiceProvider::HOME);
-
-     }
 
     public function NewUser(request $request){
         return view('admin.registerUser');

@@ -199,7 +199,26 @@ input[type=number] {
   }
 }
 
+/* add new store  */
 
+.errspan {
+  float: left;
+  margin-left: 6px;
+  margin-top: -29px;
+  position: relative;
+  z-index: 33	;
+  color: red;
+cursor: pointer;
+}
+.errspanpass {
+  float: left;
+  margin-left: 6px;
+  margin-top: -29px;
+  position: relative;
+  z-index: 33	;
+  color: red;
+cursor: pointer;
+}
 
 
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProductHomeController;
 use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\UserDetalisController;
+use App\Http\Controllers\NewStoreController;
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,6 +48,14 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::post('/store/user', 'StoreUser')->name('store.user');
     Route::get('/changeStatus', 'changeStatus');
     Route::get('/registerStore', 'NewStore')->name('registerStore');
+    Route::get('/registerUser', 'NewUser')->name('registerUser');
+
+
+});
+
+Route::controller(NewStoreController::class)->prefix('admin')->group(function(){
+    Route::get('/registerStore', 'NewStoreView')->name('registerStore');
+    Route::post('/createStore', 'create')->name('createStore');
     Route::get('/registerUser', 'NewUser')->name('registerUser');
 
 
