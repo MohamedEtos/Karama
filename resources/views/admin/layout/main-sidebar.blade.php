@@ -77,7 +77,7 @@
 					<li class="side-item side-item-category">الاشتراكات</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('admin/registerStore') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp; اضافه متجر</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ url('admin/registerUser') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه مشترك</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ url('admin/registerUserView') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه مشترك</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
 					<li class="slide">

@@ -28,7 +28,7 @@
 					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="newStore" action="{{Route('createStore')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
+								<form id="newuser" action="{{Route('registerUser')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
 									@csrf
 									<div class="loader_cu">
 										<div class="loading">
@@ -120,9 +120,9 @@
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
 										<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
-												@foreach ($category as $categoryes)
-													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
-												@endforeach
+												{{-- @foreach ($category as $categoryes) --}}
+													{{-- <option value="{{$categoryes->id}}">{{$categoryes->name}}</option> --}}
+												{{-- @endforeach --}}
 										</select>
 										<div class="valid-feedback">
 											احسنت !
@@ -140,7 +140,7 @@
 
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" minlength="4" name="storeDescription" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
+										<input type="text" minlength="10" name="storeDescription" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -158,7 +158,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="10" maxlength="10" min="100000000"   type="number"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="1" maxlength="12"   type="number"   id="phone" placeholder=" هاتف المتجر"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -175,7 +175,8 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
-										minlength="10" maxlength="10"  min="100000000"  type="number"   id="whatsapp" placeholder=" هاتف المتجر"  >
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+										minlength="1" maxlength="11"   type="number"   id="whatsapp" placeholder=" هاتف المتجر"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>

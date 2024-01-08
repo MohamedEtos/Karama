@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('ProfileImage')->nullable();
             $table->string('coverImage')->nullable();
             $table->string('nationalId')->nullable();
+            $table->string('maps')->nullable();
             $table->bigInteger('categoryId')->unsigned()->nullable();
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');                
             $table->timestamps();

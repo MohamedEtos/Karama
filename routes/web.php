@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProductHomeController;
 use App\Http\Controllers\ProfileMerchantController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserDetalisController;
 use App\Http\Controllers\NewStoreController;
 use App\Models\userDetalis;
@@ -47,8 +48,6 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
     Route::post('/store/user', 'StoreUser')->name('store.user');
     Route::get('/changeStatus', 'changeStatus');
-    Route::get('/registerStore', 'NewStore')->name('registerStore');
-    Route::get('/registerUser', 'NewUser')->name('registerUser');
 
 
 });
@@ -56,9 +55,10 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
 Route::controller(NewStoreController::class)->prefix('admin')->group(function(){
     Route::get('/registerStore', 'NewStoreView')->name('registerStore');
     Route::post('/createStore', 'create')->name('createStore');
-    Route::get('/registerUser', 'NewUser')->name('registerUser');
-
-
+});
+Route::controller(RegisteredUserController::class)->prefix('admin')->group(function(){
+    Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
+    Route::get('/registerUser', 'store')->name('registerUser');
 });
 
 

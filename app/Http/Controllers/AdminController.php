@@ -69,70 +69,7 @@ class AdminController extends Controller
         return view('Admin.user.all_user',compact('users'));
     }
 
-    public function StoreUser(request $request){
-
-        $request->validate([
-            'name' => 'required',
-            'usercode' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
-         ]);
-
-         User::create([
-             'name' => $request->name,
-             'usercode' =>$request->usercode,
-             'phone_number' => $request->phone_number,
-             'email' => $request->email,
-             'password' => $request->password,
-             'subtype' => 'user',
-         ]);
-         return to_route('all.user');
-    }
-
-    public function DeleteUser($id){
-        User::findorfail($id)->delete();
-        return to_route('all.user');
-    }
-
-    public function changeStatus(request $request){
-        $user = User::findorfail($request->user_id);
-        $user->status = $request->status;
-        $user->save();
-
-        return response()->json(['success'=>'Status Changes Successfully']);
-     }
+ 
 
 
-
-
-
-    public function NewUser(request $request){
-        return view('admin.registerUser');
-
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
-            'usercode' => ['required','string', 'max:255', 'unique:'.User::class],
-            'phone_number' => ['string', 'max:255', 'unique:'.User::class],
-            'subtype' => ['string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'usercode' => $request->usercode,
-            'phone_number' => $request->phone_number,
-            'subtype' => $request->subtype,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        // return redirect(RouteServiceProvider::HOME);
-
-     }
 }
