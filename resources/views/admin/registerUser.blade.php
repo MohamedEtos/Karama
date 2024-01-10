@@ -49,7 +49,7 @@
 
 
 									  <div class="invalid-feedback" id="name_error">
-										يجب الا يقل اسم المتجرر عن 3 احرف
+										يجب الا يقل اسم المشترك عن 3 احرف
 									</div>
 									@error('name')
 									<div class="text-danger">
@@ -117,48 +117,11 @@
 										 @enderror
 									</div>
 
-									<div class="col-md-4 mt-4">
-										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
-												{{-- @foreach ($category as $categoryes) --}}
-													{{-- <option value="{{$categoryes->id}}">{{$categoryes->name}}</option> --}}
-												{{-- @endforeach --}}
-										</select>
-										<div class="valid-feedback">
-											احسنت !
-										</div>
-										<div class="invalid-feedback" id="categoryId_error">
-											قم باختيار قسم للمتجر
-										</div>
-										@error('categoryId')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									</div>
-
-
-									<div class="col-md-4 mt-4 ">
-										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" minlength="10" name="storeDescription" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
-										<div class="valid-feedback">
-										  ممتاز !
-										</div>
-										<div class="invalid-feedback" id="storeDescription_error">
-										</div>
-										@error('storeDescription')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-
-
 
 									  <div class="col-md-4 mt-4 ">
-										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
+										<label for="phone" class="form-label">هاتف المشترك (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="1" maxlength="12"   type="number"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="1" maxlength="12"   type="number"   id="phone" placeholder=" هاتف المشترك"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -176,7 +139,7 @@
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										minlength="1" maxlength="11"   type="number"   id="whatsapp" placeholder=" هاتف المتجر"  >
+										minlength="1" maxlength="11"   type="number"   id="whatsapp" placeholder=" واتس اب المشترك"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -189,100 +152,49 @@
 										</div>
 									   @enderror
 									  </div>
-
+									  
+									  
 									  <div class="col-md-4 mt-4 ">
-										<label for="facebook" class="form-label">فيس بوك (اخياري)</label>
-										<input name="facebook" class="form-control"
-										
-										   type="text"   id="facebook" placeholder="https//www.facebook.com "  >
+										<label for="startOfSubscription" class="form-label"> بدايه  الاشتراك </label>
+										<input name="startOfSubscription" pattern="\d{4}-\d{2}-\d{2}" onchange="setDate()" class="form-control"
+										 type="date"   id="startOfSubscription" placeholder="نهايه  تاريخ االاشتراك"  >
+
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
-										<div class="invalid-feedback" id="facebook_error">
-											ضع لينك صفحه الفيس بوك
+										<div class="invalid-feedback" id="startOfSubscription_error">
+											ضع تاريخ اشتراك صالح 
 										</div>
-										@error('facebook')
+										@error('startOfSubscription')
 										<div class="text-danger">
 											{{$message}}
 										</div>
 									   @enderror
 									  </div>
-
-
+									  
 									  <div class="col-md-4 mt-4 ">
-										<label for="website" class="form-label"> الموقع الالكتروني (اخياري)</label>
-										<input name="website" class="form-control"
-										
-										 type="text"   id="website" placeholder="https//www.Karama-SC.com"  >
+										<label for="endOfSubscription" class="form-label"> نهايه الاشتراك </label>
+										<input name="endOfSubscription" class="form-control"
+										 type="date"   id="endOfSubscription" placeholder="بدايه تاريخ االاشتراك"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
-										<div class="invalid-feedback" id="website_error">
-											ضع لينك المتجر
+										<div class="invalid-feedback" id="endOfSubscription_error">
+											ضع تاريخ اشتراك صالح 
 										</div>
-										@error('website')
+										@error('endOfSubscription')
 										<div class="text-danger">
 											{{$message}}
 										</div>
 									   @enderror
 									  </div>
-
-
-									  <div class="col-md-4 mt-4 ">
-										<label for="maps" class="form-label"> موقعك علي الخريطه (اخياري)</label>
-										<input name="maps" class="form-control"
-										 type="text"   id="maps" placeholder="https://www.google.com/maps/@30.0308657,31.1111907,14z?entry=ttu"  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="maps_error">
-											ضع لينك المتجر
-										</div>
-										@error('maps')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
+									  
 
 									  <div class="col-md-4 mt-4 ">
-										<label for="location" class="form-label">  العنوان (اخياري)</label>
-										<input name="location" class="form-control"
-										
-										 type="text"   id="location" placeholder="العنوان"  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="location_error">
-											ضع لينك صفحه الفيس بوك
-										</div>
-										@error('location')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-									  <div class="col-md-8 mt-4 ">
-										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
-										<textarea name="bio" class="form-control"
-										 type="text"   id="bio" placeholder="نبذة عن المتجر"  ></textarea>
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="bio_error">
-										</div>
-										@error('location')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-
-									  <div class="col-md-4 mt-4 ">
-										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
+										<label for="nationalId" class="form-label">  الرقم القومي </label>
 										<input name="nationalId" class="form-control"
 										
-										 type="text"   id="nationalId" placeholder="العنوان"  >
+										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -298,8 +210,12 @@
 
 									
 									<div class="col-12 mt-4">
-									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المتجر</button>
+									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المشترك</button>
 									</div>
+										{{-- @foreach ($errors->all() as $error)
+										{{ $error }}<br/>
+									@endforeach --}}
+								
 								  </form>
 
 							</div>
@@ -314,7 +230,7 @@
 		</div>
 		<!-- main-content closed -->
 
-
+	
 		@if(Session::has('success'))
 		<input id="nofic" type="hidden" value="{{Session::get('success')}}">
 		<script>
@@ -338,6 +254,26 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
+
+<script>
+	// date auto set date 
+	document.getElementById('startOfSubscription').valueAsDate = new Date();
+
+	let now = new Date();
+	let nextYear = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+	let dateString = nextYear.toISOString().slice(0, 10);
+	document.getElementById("endOfSubscription").value = dateString;
+
+	function setDate(){
+		let now = document.getElementById('startOfSubscription').valueAsDate ;
+ 
+	let nextYear = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+	let dateString = nextYear.toISOString().slice(0, 10);
+	document.getElementById("endOfSubscription").value = dateString;
+
+	}
+
+</script>
 
 
 <script>

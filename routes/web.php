@@ -58,7 +58,7 @@ Route::controller(NewStoreController::class)->prefix('admin')->group(function(){
 });
 Route::controller(RegisteredUserController::class)->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
-    Route::get('/registerUser', 'store')->name('registerUser');
+    Route::post('/registerUser', 'store')->name('registerUser');
 });
 
 

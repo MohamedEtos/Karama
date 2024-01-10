@@ -281,7 +281,7 @@
 										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
 										<input name="nationalId" class="form-control"
 										
-										 type="text"   id="nationalId" placeholder="العنوان"  >
+										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>

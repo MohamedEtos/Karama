@@ -41,6 +41,7 @@ class NewStoreController extends Controller
             'location' => [ 'string', 'max:255','nullable'],
             'bio' => [ 'string', 'max:255','nullable'],
             'storeDescription' => [ 'string', 'max:255','nullable'],
+            'nationalId' => ['numeric', 'max_digits:10', 'unique:'.userDetalis::class],
         ]);
 
         userDetalis::create([
