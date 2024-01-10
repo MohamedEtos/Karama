@@ -42,12 +42,10 @@
 
 									<div class="col-md-4 mt-4">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
-
-
 									  <div class="invalid-feedback" id="name_error">
 										يجب الا يقل اسم المتجرر عن 3 احرف
 									</div>
@@ -61,8 +59,9 @@
 									<div class="col-md-4 mt-4 ">
 										<label for="userCode" class="form-label">كود المشترك</label>
 										<input name="userCode" class="form-control randCode"
+										value="{{old('userCode')}}"
 										min="10000000"
-										minlength="8" maxlength="8"  type="number" id="userCode"  placeholder=" كود المشترك " required >
+										minlength="8" maxlength="8"  type="number" id="userCode" value="{{old('userCode')}}" placeholder=" كود المشترك " required >
 										<div class="errspan">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -83,7 +82,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">كلمه المرور</label>
-										<input type="text" minlength="8" name="password" maxlength="32" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
+										<input type="text" minlength="8" name="password" maxlength="32" value="{{old('password')}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
 										<div class="errspanpass">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -103,7 +102,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -119,7 +118,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
+										<select class="form-control" name="categoryId"  id="exampleFormControlSelect1">
 												@foreach ($category as $categoryes)
 													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
 												@endforeach
@@ -140,7 +139,7 @@
 
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" minlength="4" name="storeDescription" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
+										<input type="text" minlength="4" name="storeDescription" value="{{old('storeDescription')}}" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -158,7 +157,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="10" maxlength="10" min="100000000"   type="number"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="10" maxlength="10" min="100000000"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المتجر"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -175,7 +174,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
-										minlength="10" maxlength="10"  min="100000000"  type="number"   id="whatsapp" placeholder=" هاتف المتجر"  >
+										minlength="10" maxlength="10"  min="100000000"  type="number"  value="{{old('whatsapp')}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -192,7 +191,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="facebook" class="form-label">فيس بوك (اخياري)</label>
 										<input name="facebook" class="form-control"
-										
+										value="{{old('facebook')}}"
 										   type="text"   id="facebook" placeholder="https//www.facebook.com "  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -211,7 +210,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="website" class="form-label"> الموقع الالكتروني (اخياري)</label>
 										<input name="website" class="form-control"
-										
+										value="{{old('website')}}"
 										 type="text"   id="website" placeholder="https//www.Karama-SC.com"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -230,6 +229,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="maps" class="form-label"> موقعك علي الخريطه (اخياري)</label>
 										<input name="maps" class="form-control"
+										value="{{old('maps')}}"
 										 type="text"   id="maps" placeholder="https://www.google.com/maps/@30.0308657,31.1111907,14z?entry=ttu"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -247,7 +247,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="location" class="form-label">  العنوان (اخياري)</label>
 										<input name="location" class="form-control"
-										
+										value="{{old('location')}}"
 										 type="text"   id="location" placeholder="العنوان"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -264,7 +264,7 @@
 									  <div class="col-md-8 mt-4 ">
 										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
 										<textarea name="bio" class="form-control"
-										 type="text"   id="bio" placeholder="نبذة عن المتجر"  ></textarea>
+										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{old('bio')}}</textarea>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -280,7 +280,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
 										<input name="nationalId" class="form-control"
-										
+										value="{{old('nationalId')}}"
 										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !

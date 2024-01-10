@@ -27,7 +27,7 @@ class NewStoreController extends Controller
 
         // return $request->all();
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:3' , 'max:255'],
             'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
             'userCode' => ['required','string', 'max:8', 'unique:'.User::class],
             'subtype' => ['string', 'max:255'],
@@ -55,6 +55,8 @@ class NewStoreController extends Controller
             'bio'=>$request->bio,
             'maps'=>$request->maps,
             'nationalId'=>$request->nationalId,
+            'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
+            'coverImage'=>'assets/img/defultUserImg/cover.webp',
         ]);
 
         $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;

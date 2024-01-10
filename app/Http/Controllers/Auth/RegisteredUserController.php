@@ -57,12 +57,13 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'whatsapp'=>$request->whatsapp,
             'nationalId'=>$request->nationalId,
+            'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
         ]);
 
         $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
 
         User::create([
-            'name' => $request->name,
+            'namwwe' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
             'subtype' => 'user',

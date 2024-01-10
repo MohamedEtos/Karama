@@ -42,7 +42,7 @@
 
 									<div class="col-md-4 mt-4">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -62,7 +62,7 @@
 										<label for="userCode" class="form-label">كود المشترك</label>
 										<input name="userCode" class="form-control randCode"
 										min="10000000"
-										minlength="8" maxlength="8"  type="number" id="userCode"  placeholder=" كود المشترك " required >
+										minlength="8" maxlength="8"  type="number" id="userCode" value="{{old('userCode')}}"  placeholder=" كود المشترك " required >
 										<div class="errspan">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -83,7 +83,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">كلمه المرور</label>
-										<input type="text" minlength="8" name="password" maxlength="32" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
+										<input type="text" minlength="8" name="password" maxlength="32"  value="{{old('password')}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
 										<div class="errspanpass">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -103,7 +103,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -121,7 +121,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المشترك (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="1" maxlength="12"   type="number"   id="phone" placeholder=" هاتف المشترك"   >
+										minlength="1" maxlength="12"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المشترك"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -137,7 +137,7 @@
 
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
-										<input name="whatsapp" class="form-control"
+										<input name="whatsapp" class="form-control" value="{{old('whatsapp')}}"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 										minlength="1" maxlength="11"   type="number"   id="whatsapp" placeholder=" واتس اب المشترك"  >
 										<div class="valid-feedback">
@@ -157,6 +157,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="startOfSubscription" class="form-label"> بدايه  الاشتراك </label>
 										<input name="startOfSubscription" pattern="\d{4}-\d{2}-\d{2}" onchange="setDate()" class="form-control"
+										value="{{old('startOfSubscription')}}"
 										 type="date"   id="startOfSubscription" placeholder="نهايه  تاريخ االاشتراك"  >
 
 										<div class="valid-feedback">
@@ -174,7 +175,7 @@
 									  
 									  <div class="col-md-4 mt-4 ">
 										<label for="endOfSubscription" class="form-label"> نهايه الاشتراك </label>
-										<input name="endOfSubscription" class="form-control"
+										<input name="endOfSubscription" class="form-control" value="{{old('endOfSubscription')}}"
 										 type="date"   id="endOfSubscription" placeholder="بدايه تاريخ االاشتراك"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -193,7 +194,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي </label>
 										<input name="nationalId" class="form-control"
-										
+										value="{{old('nationalId')}}"
 										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -266,11 +267,9 @@
 
 	function setDate(){
 		let now = document.getElementById('startOfSubscription').valueAsDate ;
- 
-	let nextYear = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
-	let dateString = nextYear.toISOString().slice(0, 10);
-	document.getElementById("endOfSubscription").value = dateString;
-
+		let nextYear = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+		let dateString = nextYear.toISOString().slice(0, 10);
+		document.getElementById("endOfSubscription").value = dateString;
 	}
 
 </script>
@@ -306,6 +305,7 @@
 
 
 <script>
+	// magic codeuser fill
 (function () {
 	$('.errspan').click(function(){
 		$('.randCode').val(Math.floor((Math.random() * 100000000) + 3))	
