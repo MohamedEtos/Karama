@@ -213,7 +213,7 @@
 									" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 							</div>
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
-								<a class="profile-user bg-success rounded-circle p-1 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
+								<a class="profile-user  rounded-circle p-1 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
