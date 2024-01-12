@@ -17,7 +17,7 @@ class NewStoreController extends Controller
     public function NewStoreView()
     {
         $category = category::all('id','name');
-        return view('admin.registerStore',compact(
+        return view('admin.merchant.registerStore',compact(
             'category',
         ));
     }

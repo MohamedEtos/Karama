@@ -18,7 +18,7 @@ class RegisteredUserController extends Controller
 {
 
     public function registerUserView(){
-        return view('admin.registerUser');
+        return view('admin.user.registerUser');
     }
 
 
@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
         $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
 
         User::create([
-            'namwwe' => $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
             'subtype' => 'user',

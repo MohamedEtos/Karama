@@ -1,4 +1,4 @@
-@extends('layouts.master2')
+@extends('layouts.master')
 @section('css')
 <!--- Internal Fontawesome css-->
 <link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
@@ -10,6 +10,11 @@
 <link href="{{URL::asset('assets/plugins/feather/feather.css')}}" rel="stylesheet">
 <!---Internal Falg-icons css-->
 <link href="{{URL::asset('assets/plugins/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
+<script>
+	$(document).ready(function(){
+		$('body').removeClass('karama-bg-img2');
+	})
+</script>
 @endsection
 @section('content')
 		<!-- Main-error-wrapper -->

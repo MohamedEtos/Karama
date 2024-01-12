@@ -16,6 +16,8 @@ input[type=number] {
   z-index: 99999999;
 }
 
+
+
 .karama-bg-img{
     background-image: url("/assets/img/backgrounds/krama.webp") ;
     background-attachment: fixed;

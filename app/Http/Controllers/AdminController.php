@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\userDetalis;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -38,27 +39,6 @@ class AdminController extends Controller
         return view ('Admin.merchant.all_merchant',compact('merchants'));
     }
 
-    public function StoreMerchant(request $request){
-
-        $request->validate([
-           'name' => 'required',
-           'usercode' => 'required',
-           'phone_number' => 'required',
-           'email' => 'required|email',
-           'password' => 'required'
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'usercode' =>$request->usercode,
-            'phone_number' => $request->phone_number,
-            'email' => $request->email,
-            'password' => $request->password,
-            'subtype' => 'merchant',
-        ]);
-        return to_route('all.merchant');
-    }
-
     public function DeleteMerchant($id){
         User::findorfail($id)->delete();
         return to_route('all.merchant');
@@ -69,7 +49,39 @@ class AdminController extends Controller
         return view('Admin.user.all_user',compact('users'));
     }
 
- 
+    public function DeleteUser(Request $request){
+        userDetalis::where('id',$request->userId)->delete();
+        return redirect()->back()->with('success','تم حذف المستخدم');
+    }
+
+    public function editUser($id){
+        $user = User::where('id',$id)->first();
+        return view('admin.user.editUser',compact(
+            'user',
+        ));
+    }
+
+    public function updateUser(Request $request){
+        
+        userDetalis::where('id',$request->userId)->update([
+            'phone' => $request->phone,
+            'whatsapp'=>$request->whatsapp,
+            'nationalId'=>$request->nationalId,
+            'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'userCode' => $request->userCode,
+            'subtype' => 'user',
+            'startOfSubscription' => $request->startOfSubscription,
+            'endOfSubscription' => $request->endOfSubscription,
+            'password' => Hash::make($request->password),
+            'userDetalis'=>$lastid,
+        ]);
+
+    }
 
 
 }

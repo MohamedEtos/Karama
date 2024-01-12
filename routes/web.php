@@ -41,9 +41,13 @@ Route::controller(CategoryController::class)->group(function(){
 });
 
 Route::controller(AdminController::class)->prefix('admin')->group(function(){
-    Route::get('/all/merchant', 'AllMerchant')->name('all.merchant');
-    Route::get('/all/user', 'AllUser')->name('all.user');
-    Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
+    Route::get('merchant', 'AllMerchant')->name('all.merchant');
+
+    Route::get('user', 'AllUser')->name('all.user');
+    Route::post('DeleteUser', 'DeleteUser')->name('DeleteUser');
+    Route::get('editUser/{id}', 'editUser')->name('editUser');
+    Route::post('updateUser', 'updateUser')->name('updateUser');
+    
     Route::get('/delete/merchant/{id}', 'DeleteMerchant')->name('delete.merchant');
     Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
     Route::post('/store/user', 'StoreUser')->name('store.user');
