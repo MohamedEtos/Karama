@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 class AdminController extends Controller
 {
@@ -61,17 +62,19 @@ class AdminController extends Controller
         ));
     }
 
-    public function updateUser(Request $request){
+    public function updateUser(Request $request,User $user){
 
+        // return $request->all();
        
         $request->validate([
             'name' => ['required', 'string','min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'userCode' => ['required','numeric','min_digits:8', 'max_digits:8', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($request->userId)],
+
+            'usercode' => ['required','numeric','min_digits:8', 'max_digits:8', Rule::unique('users')->ignore($request->userDetailsId)],
             'subtype' => ['string', 'max:255'],
-            'password' => ['required',  Rules\Password::defaults()],
-            'phone' => ['numeric' ,'min_digits:10' , 'max_digits:10', 'unique:'.userDetalis::class],
-            'whatsapp' => ['numeric' ,'min_digits:10' , 'max_digits:10', 'unique:'.userDetalis::class],
+            // 'password' => ['required',  Rules\Password::defaults()],
+            'phone' => ['numeric' ,'min_digits:10' , 'max_digits:10', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
+            'whatsapp' => ['numeric' ,'min_digits:10' , 'max_digits:10', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
             'startOfSubscription'=>['required','date'],
             'endOfSubscription'=>['required','date'],
         ]);
@@ -85,7 +88,7 @@ class AdminController extends Controller
         User::where('id',$request->userId)->update([
             'name' => $request->name,
             'email' => $request->email,
-            'userCode' => $request->userCode,
+            'usercode' => $request->usercode,
             'startOfSubscription' => $request->startOfSubscription,
             'endOfSubscription' => $request->endOfSubscription,
             // 'password' => Hash::make($request->password),

@@ -62,20 +62,20 @@
 									</div>
 
 									<div class="col-md-4 mt-4 ">
-										<label for="userCode" class="form-label">كود المشترك</label>
-										<input name="userCode" class="form-control randCode"
+										<label for="usercode" class="form-label">كود المشترك</label>
+										<input name="usercode" class="form-control randCode"
 										min="10000000"
-										minlength="8" maxlength="8"  type="number" id="userCode" value="{{$user->usercode}}"  placeholder=" كود المشترك " required >
+										minlength="8" maxlength="8"  type="number" id="usercode" value="{{$user->usercode}}"  placeholder=" كود المشترك " required >
 										<div class="errspan">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
-										<div class="invalid-feedback" id="userCode_error">
+										<div class="invalid-feedback" id="usercode_error">
 											اكتب رقم مشترك مكون من 8 ارقام
 										</div>
-										@error('userCode')
+										@error('usercode')
 										<div class="text-danger">
 											{{$message}}
 										</div>
@@ -214,9 +214,9 @@
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">تعديل بيانات المشترك</button>
 									</div>
-										{{-- @foreach ($errors->all() as $error)
+										@foreach ($errors->all() as $error)
 										{{ $error }}<br/>
-									@endforeach --}}
+									@endforeach
 								
 								  </form>
 
