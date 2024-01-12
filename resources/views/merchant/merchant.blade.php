@@ -34,7 +34,7 @@
 									<h4 class="card-title mb-3">المنتجات المعروضه	</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
-								<div class="d-flex mb-0">
+								<div class="d-flex mb-0 shadow-none">
 									<div class="">
 										<h4 class="mb-1 font-weight-bold">{{$appendPersent}}<span class="text-success tx-13 ml-2"> </span></h4>
 										<p class="mb-2 tx-12 text-muted"> منتجلت تحت المراجعه ({{$unappendPersent}})</p>

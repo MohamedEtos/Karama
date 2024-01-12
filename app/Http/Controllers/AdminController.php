@@ -62,24 +62,35 @@ class AdminController extends Controller
     }
 
     public function updateUser(Request $request){
+
+       
+        $request->validate([
+            'name' => ['required', 'string','min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'userCode' => ['required','numeric','min_digits:8', 'max_digits:8', 'unique:'.User::class],
+            'subtype' => ['string', 'max:255'],
+            'password' => ['required',  Rules\Password::defaults()],
+            'phone' => ['numeric' ,'min_digits:10' , 'max_digits:10', 'unique:'.userDetalis::class],
+            'whatsapp' => ['numeric' ,'min_digits:10' , 'max_digits:10', 'unique:'.userDetalis::class],
+            'startOfSubscription'=>['required','date'],
+            'endOfSubscription'=>['required','date'],
+        ]);
         
-        userDetalis::where('id',$request->userId)->update([
+        userDetalis::where('id',$request->userDetailsId)->update([
             'phone' => $request->phone,
             'whatsapp'=>$request->whatsapp,
             'nationalId'=>$request->nationalId,
-            'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
         ]);
 
-        User::create([
+        User::where('id',$request->userId)->update([
             'name' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
-            'subtype' => 'user',
             'startOfSubscription' => $request->startOfSubscription,
             'endOfSubscription' => $request->endOfSubscription,
-            'password' => Hash::make($request->password),
-            'userDetalis'=>$lastid,
+            // 'password' => Hash::make($request->password),
         ]);
+        return redirect()->back()->with('success','تم تحديث البيانات');
 
     }
 

@@ -81,4 +81,7 @@ class RegisteredUserController extends Controller
 
         return redirect()->back()->with("success",'تم اضافه المشترك');
     }
+
+
+    
 }

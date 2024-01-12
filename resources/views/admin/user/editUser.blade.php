@@ -9,10 +9,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert alert-light rounded justify-content-between">
+				<div class="breadcrumb-header  rounded justify-content-between">
 					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">المتاجر</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل بيانات المشترك</span>
+						<div class="d-flex text-light">
+							<h4 class="content-title  mb-0 my-auto">المتاجر</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل بيانات المشترك</span>
 						</div>
 					</div>
 
@@ -30,6 +30,9 @@
 							<div class="card-body">
 								<form id="newuser" action="{{Route('updateUser')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
 									@csrf
+
+									<input type="hidden" name="userDetailsId" value="{{$user->userToDetalis->id}}">
+									<input type="hidden" name="userId" value="{{$user->id}}">
 									<div class="loader_cu">
 										<div class="loading">
 											<div class="loading-bar"></div>
@@ -83,10 +86,8 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">كلمه المرور</label>
-										<input type="text" minlength="8" name="password" maxlength="32"  value="{{$user->password}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
-										<div class="errspanpass">
-											<i class="fa-solid fa-wand-sparkles text-info "></i>
-										</div>
+										<input type="text" minlength="8" name="password" disabled maxlength="32"  value="{{$user->password}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
+										
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>

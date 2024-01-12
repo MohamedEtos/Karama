@@ -114,12 +114,12 @@
 												<td>
                                                 <form action="{{Route('DeleteUser')}}" method="post">
 													@csrf
-													<a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemo3" data-toggle="modal" href="">
+													<a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemo{{$user->id}}" data-toggle="modal" href="">
 														<i class="las la-search"></i>
 													</a>
 															
 													<!-- Large Modal -->
-													<div class="modal" id="modaldemo3">
+													<div class="modal" id="modaldemo{{$user->id}}">
 														<div class="modal-dialog modal-lg" role="document">
 															<div class="modal-content modal-content-demo">
 																<div class="modal-header">
