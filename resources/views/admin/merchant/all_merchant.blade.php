@@ -15,44 +15,18 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
+				<div class="breadcrumb-header justify-content-between mt-2 mb-2">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+							<h4 class="content-title mb-0 my-auto text-light">التجار</h4>
 						</div>
 					</div>
-					<div class="d-flex my-xl-auto right-content">
-						<div class="pr-1 mb-3 mb-xl-0">
 
-						</div>
-						<div class="pr-1 mb-3 mb-xl-0">
-							<button type="button" class="btn btn-danger btn-icon ml-2"><i class="mdi mdi-star"></i></button>
-						</div>
-						<div class="pr-1 mb-3 mb-xl-0">
-							<button type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></button>
-						</div>
-						<div class="mb-3 mb-xl-0">
-							<div class="btn-group dropdown">
-								<button type="button" class="btn btn-primary">14 Aug 2019</button>
-								<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuDate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuDate" data-x-placement="bottom-end">
-									<a class="dropdown-item" href="#">2015</a>
-									<a class="dropdown-item" href="#">2016</a>
-									<a class="dropdown-item" href="#">2017</a>
-									<a class="dropdown-item" href="#">2018</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection
 @section('content')
 
-<a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">اضافة تاجر</a>
-<br><br>
 
 {{-- row --}}
 <div class="col-xl-12">
@@ -65,49 +39,152 @@
             {{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table text-md-nowrap" id="example1">
+            <div class="table-responsive border-top userlist-table">
+                <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="example1">
                     <thead>
-                        <tr class="text-center">
-                            <th class="wd-15p border-bottom-0 ">Sl</th>
-                            <th class="wd-15p border-bottom-0 ">الاسم</th>
-                            <th class="wd-20p border-bottom-0 "> الرقم الكودى</th>
-                            <th class="wd-15p border-bottom-0 ">رقم الهاتف</th>
-                            <th class="wd-10p border-bottom-0 "> البريد الاكترونى</th>
-                            <th class="wd-25p border-bottom-0 ">الحاله</th>
-                            <th class="wd-25p border-bottom-0 ">تحكم</th>
-                            <th class="wd-25p border-bottom-0 ">حذف</th>
+                        <tr  class="text-right">
+                            <th class="wd-lg-20p"><span></span></th>
+                            <th class="wd-lg-8p text-center"><span>الاسم</span></th>
+                            <th class="wd-lg-20p"><span>كود المشترك</span></th>
+                            <th class="wd-lg-20p"><span>الهاتف</span></th>
+                            <th class="wd-lg-20p"><span>نهايه الاشتراك</span></th>
+                            <th class="wd-lg-20p"><span>الحاله</span></th>
+                            <th class="wd-lg-20p"><span>اخر ظهور</span></th>
+                            <th class="wd-lg-20p">تحكم</th>
                         </tr>
-
-
                     </thead>
-                    <tbody class="text-center">
-                        @foreach($merchants as $key=> $merchant)
-                        <tr role="row" class="odd">
-                             <td>{{$key+1}}</td>
-                                <td class="sorting_1">{{$merchant->name}}</td>
-                                <td>{{$merchant->usercode}}</td>
-                                <td>{{$merchant->phone_number}}</td>
-                                <td>{{$merchant->email}}</td>
-                                <td>
-                                    @if($merchant->status == 'active')
-                                <span class="badge rounded-pill bg-success">مفعل</span>
+                    <tbody>
+                        @foreach ($merchants as $merchants )
+                        <tr class="text-right">
+                            <td>
+                                <img alt="avatar" class="rounded-circle avatar-md mr-2" src="{{URL::asset($merchants->userToDetalis->ProfileImage)}}">
+                            </td>
+                            <td>{{$merchants->name}}</td>
+                            <td>
+                                {{$merchants->usercode}}
+                            </td>
+                            <td>
+                                {{$merchants->userToDetalis->phone}}
+                            </td>
+                            <td>
+                                {{$merchants->endOfSubscription}}
+                            </td>
+                            <td class="text-center">
+                                <span class="label text-muted d-flex"><div class="dot-label bg-gray-300
+                                    @php
+                                        if ($merchants->status == 'active'){
+                                            echo 'bg-success';
+                                        }else {
+                                            echo 'bg-gray-300';
+                                        }
+                                        
+                                    @endphp    
+                                ml-1">
+                            </div>
+                            @php
+                                if($merchants->status == 'active'){
+                                    echo 'متصل';
+                                }else {
+                                    echo 'غير متصل';
+                                }
+                            @endphp
+                            </span>
+                            </td>
+                            <td>
+                                @if (!$merchants->userToDetalis->last_seen == NULL)
+                                    {{$merchants->userToDetalis->last_seen}}
                                 @else
-                                <span class="badge rounded-pill bg-danger">غير مفعل</span>
-                                  @endif
-                                </td>
-                                <td>
-                                    <input data-id="{{ $merchant->id }}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger"  data-toggle="toggle" data-on="active" data-off="inactive" {{ $merchant->status ? 'checked' : ' ' }} >
+                                {{'لم يتصل بعد'}}
+                                @endif
+                            </td>
+                            <td>
+                            <form action="{{Route('DeleteUser')}}" method="post">
+                                @csrf
+                                <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemo{{$merchants->id}}" data-toggle="modal" href="">
+                                    <i class="las la-search"></i>
+                                </a>
+                                        
+                                <!-- Large Modal -->
+                                <div class="modal" id="modaldemo{{$merchants->id}}">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content modal-content-demo">
+                                            <div class="modal-header">
+                                                <h6 class="modal-title">بيانات العضو</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>البيانات الاساسيه </h6>
+                                                <p class="h5 mt-1">كود المشرتك : {{$merchants->usercode}} </p>
+                                                <p class="h5 mt-1">الاسم : {{$merchants->name}} </p>
+                                                <p class="h5 mt-1">تاريخ الاشتراك : {{$merchants->startOfSubscription}} </p>
+                                                <p class="h5 mt-1">نهايه الاشتراك : {{$merchants->endOfSubscription}} </p>
+                                                <p class="h5 mt-1"> رقم الهاتف : {{$merchants->userToDetalis->phone}} </p>
+                                                <p class="h5 mt-1"> رقم الهويه : {{$merchants->userToDetalis->nationalId}} </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                {{-- <button class="btn ripple btn-danger btn-block " type="button">تم</button> --}}
+                                                <button class="btn ripple btn-danger btn-block" data-dismiss="modal" type="button">تم</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Large Modal -->
 
-                                     </td>
-                                <td><a class="remove-from-cart m-3 swal-ajax" id="delete" data-toggle="tooltip" title="" href="{{route('delete.merchant',$merchant->id)}}" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
-                                </a></td>
-                            </tr>
-                            @endforeach
+                                <a href="{{url('admin/editUser/'.$merchants->userToDetalis->id)}}" class="btn btn-sm btn-info">
+                                    <i class="las la-pen"></i>
+                                </a>
+                                
+                                <a class="btn btn-sm btn-danger modal-effect" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">
+                                    <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}">
+                                    <i class="las la-trash"></i>
+                                </a>
+                                
+
+                            
+                            <!-- delete  Modal effects-->
+                            <div class="modal" id="modaldemo9">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content modal-content-demo">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">هل انت متاكد من عمليه الحذف</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>سيتم حذف المستخدم وكل بيامانته</h6>
+                                            <p class="text-center"><i class="fa-solid fa-triangle-exclamation tx-50 mb-2 text-warning fa-xl"></i></p>
+                                            <input type="hidden"   name="userid" value="{{$merchants->userToDetalis->id}}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn ripple btn-danger" type="submit">تاكيد</button>
+                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal effects-->
+
+                    </form>
+
+                            </td>
+                        </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
-                {{$merchants->links()}}
             </div>
+            {{-- <ul class="pagination mt-4 mb-0 float-left">
+                <li class="page-item page-prev disabled">
+                    <a class="page-link" href="#" tabindex="-1">Prev</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item page-next">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul> --}}
+            {{-- {{$merchants->links()}} --}}
+
         </div>
     </div>
 </div>
