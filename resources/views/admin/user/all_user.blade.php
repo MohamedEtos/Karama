@@ -48,13 +48,14 @@
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
 									<h4 class="card-title mg-b-0">الاعضاء</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
+									{{-- <i class="mdi mdi-dots-horizontal text-gray"></i> --}}
+									<a class="h5" href="{{Route('registerUserView')}}"> اضافه اعضاء جدد </a>
 								</div>
 								<p class="tx-12 tx-gray-500 mb-2">بيانات كل الاعضاء </p>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive border-top userlist-table">
-									<table class="table card-table table-striped table-vcenter text-nowrap mb-0">
+									<table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="example1">
 										<thead>
 											<tr  class="text-right">
 												<th class="wd-lg-8p text-center"><span>الاسم</span></th>
