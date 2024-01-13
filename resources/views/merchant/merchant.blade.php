@@ -10,11 +10,11 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert m-1 alert-light  rounded opacity-50 justify-content-between ">
+				<div class="breadcrumb-header alert m-1   rounded opacity-50 justify-content-between ">
 					<div class="left-content">
-						<div>
-						  <h2 class="main-content-title  tx-24 mg-b-1 mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
-						  <p class="mg-b-0">انت الان في لوحه التحكم </p>
+						<div class="">
+						  <h2 class=" text-light main-content-title  tx-24 mg-b-1 mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+						  <p class="mg-b-0 text-light">انت الان في لوحه التحكم </p>
 						</div>
 					</div>
 					<div class="main-dashboard-header-right">

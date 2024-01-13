@@ -39,44 +39,17 @@
 
 						</ul>
 					</li>
-                    <li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  المستخدمين</span><i class="angle fe fe-chevron-down"></i></a>
-						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('all.merchant') }}"> التجار</a></li>
-							<li><a class="slide-item" href="{{ route('all.user') }}"> الاعضاء</a></li>
 
-						</ul>
-					</li>
-					<li class="side-item side-item-category">المنتجات</li>
+					<li class="side-item side-item-category">المتاجر</li>
 					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/new-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه منتج</span><span class="badge badge-danger side-badge"></span></a>
-					</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/list-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><span class="badge badge-danger side-badge"></span></a>
-					</li>
-					<li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><i class="angle fe fe-chevron-down"></i></a>
-						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-morris') }}">Morris Charts</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-flot') }}">Flot Charts</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-chartjs') }}">ChartJS</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-echart') }}">Echart</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-sparkline') }}">Sparkline</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='chart-peity') }}">Chart-peity</a></li>
-						</ul>
-					</li>
-					<li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3"/><path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="side-menu__label">Ecommerce</span><i class="angle fe fe-chevron-down"></i></a>
-						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">Products</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">Product-Details</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='product-cart') }}">Cart</a></li>
-						</ul>
+						<a class="side-menu__item" href="{{ url('admin/registerStore') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp; اضافه متجر</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ route('all.merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-store "></i> &nbsp; عرض المتاجر</span><span class="badge badge-danger side-badge"></span></a>
+
 					</li>
 					<li class="side-item side-item-category">الاشتراكات</li>
 					<li class="slide">
-						<a class="side-menu__item" href="{{ url('admin/registerStore') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp; اضافه متجر</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ url('admin/registerUserView') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه مشترك</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ url('admin/registerUserView') }}"><span class="side-menu__label"> <i class="fa-solid fa-user fa-xl"></i> &nbsp; اضافه عضو</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ route('all.user') }}"><span class="side-menu__label"> <i class="fa-solid fa-user "></i> &nbsp; الاعضاء</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
 					<li class="slide">
@@ -104,7 +77,34 @@
 							<li><a class="slide-item" href="{{ url('/' . $page='tabs') }}">Tabs</a></li>
 						</ul>
 					</li>
+
+					<li class="side-item side-item-category">المنتجات</li>
 					<li class="slide">
+						<a class="side-menu__item" href="{{ url('merchant/new-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-user"></i> &nbsp; اضافه منتج</span><span class="badge badge-danger side-badge"></span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ url('merchant/list-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><span class="badge badge-danger side-badge"></span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-morris') }}">Morris Charts</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-flot') }}">Flot Charts</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-chartjs') }}">ChartJS</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-echart') }}">Echart</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-sparkline') }}">Sparkline</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='chart-peity') }}">Chart-peity</a></li>
+						</ul>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3"/><path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="side-menu__label">Ecommerce</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">Products</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">Product-Details</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='product-cart') }}">Cart</a></li>
+						</ul>
+					</li>
+										<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5 0-.16-.08-.28-.14-.35-.41-.46-.63-1.05-.63-1.65 0-1.38 1.12-2.5 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 10 6.5 10s1.5.67 1.5 1.5S7.33 13 6.5 13zm3-4C8.67 9 8 8.33 8 7.5S8.67 6 9.5 6s1.5.67 1.5 1.5S10.33 9 9.5 9zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 6 14.5 6s1.5.67 1.5 1.5S15.33 9 14.5 9zm4.5 2.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5z" opacity=".3"/><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c1.38 0 2.5-1.12 2.5-2.5 0-.61-.23-1.21-.64-1.67-.08-.09-.13-.21-.13-.33 0-.28.22-.5.5-.5H16c3.31 0 6-2.69 6-6 0-4.96-4.49-9-10-9zm4 13h-1.77c-1.38 0-2.5 1.12-2.5 2.5 0 .61.22 1.19.63 1.65.06.07.14.19.14.35 0 .28-.22.5-.5.5-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.14 8 7c0 2.21-1.79 4-4 4z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg><span class="side-menu__label">Advanced UI</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ url('/' . $page='accordion') }}">Accordion</a></li>
