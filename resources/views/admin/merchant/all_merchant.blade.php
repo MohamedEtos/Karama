@@ -98,14 +98,14 @@
                                 @endif
                             </td>
                             <td>
-                            <form action="{{Route('DeleteUser')}}" method="post">
+                            <form action="{{Route('deleteMerchant')}}" method="post">
                                 @csrf
-                                <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemo{{$merchants->id}}" data-toggle="modal" href="">
+                                <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$merchants->id}}" data-toggle="modal" href="">
                                     <i class="las la-search"></i>
                                 </a>
                                         
                                 <!-- Large Modal -->
-                                <div class="modal" id="modaldemo{{$merchants->id}}">
+                                <div class="modal" id="modaldemos{{$merchants->id}}">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content modal-content-demo">
                                             <div class="modal-header">
@@ -129,28 +129,28 @@
                                 </div>
                                 <!--End Large Modal -->
 
-                                <a href="{{url('admin/editUser/'.$merchants->userToDetalis->id)}}" class="btn btn-sm btn-info">
+                                <a href="{{url('admin/editStoreView/'.Crypt::encrypt($merchants->id))}}" class="btn btn-sm btn-info">
                                     <i class="las la-pen"></i>
                                 </a>
                                 
-                                <a class="btn btn-sm btn-danger modal-effect" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">
-                                    <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}">
+                                <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$merchants->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$merchants->id}}">
+                                    {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
                                     <i class="las la-trash"></i>
                                 </a>
                                 
 
                             
                             <!-- delete  Modal effects-->
-                            <div class="modal" id="modaldemo9">
+                            <div class="modal" id="modaldemo{{$merchants->id}}">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content modal-content-demo">
                                         <div class="modal-header">
                                             <h6 class="modal-title">هل انت متاكد من عمليه الحذف</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <h6>سيتم حذف المستخدم وكل بيامانته</h6>
+                                            <h6>سيتم حذف المستخدم رقم ({{$merchants->usercode}}) وكل بيامانته</h6>
                                             <p class="text-center"><i class="fa-solid fa-triangle-exclamation tx-50 mb-2 text-warning fa-xl"></i></p>
-                                            <input type="hidden"   name="userid" value="{{$merchants->userToDetalis->id}}">
+                                            <input type="hidden"   name="merchantId" value="{{Crypt::encrypt($merchants->userToDetalis->id)}}">
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn ripple btn-danger" type="submit">تاكيد</button>
@@ -199,59 +199,7 @@
         <h6 class="modal-title">Basic Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
     </div>
     <div class="modal-body">
-        <form method="post" action="{{route('store.merchant')}}" id="storeUser">
-            @csrf
-        <div class="mb-3">
-            <label for="name"> الاسم</label>
-            <input name="name" id="name"  type="text" autofocus class="form-control @error('name') is-invalid @enderror">
-            @error('name')
-            <div class="text-danger">
-                {{$message}}
-            </div>
-           @enderror
-        </div>
-        <div class="mb-3">
-            <label for="name"> رقم الكود</label>
-            <input name="usercode" id="usercode" type="number" autofocus class="form-control @error('name') is-invalid @enderror">
-            @error('descrption')
-            <div class="text-danger">
-                {{$message}}
-            </div>
-           @enderror
-        </div>
-        <div class="mb-3">
-            <label for="name"> رقم الهاتف</label>
-            <input name="phone_number" id="descrption" type="tel" autofocus class="form-control @error('name') is-invalid @enderror">
-            @error('descrption')
-            <div class="text-danger">
-                {{$message}}
-            </div>
-           @enderror
-        </div>
-        <div class="mb-3">
-            <label for="name">  البريد الالكترونى</label>
-            <input name="email" id="descrption" type="email" autofocus class="form-control @error('name') is-invalid @enderror">
-            @error('descrption')
-            <div class="text-danger">
-                {{$message}}
-            </div>
-           @enderror
-        </div>
-        <div class="mb-3">
-            <label for="name"> الرقم السرى</label>
-            <input name="password" id="descrption" type="text" autofocus class="form-control @error('name') is-invalid @enderror">
-            @error('descrption')
-            <div class="text-danger">
-                {{$message}}
-            </div>
-           @enderror
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn ripple btn-primary" type="submit" form="storeUser" >Save changes</button>
-        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
-    </div>
-    </form>
+
 </div>
 </div>
 </div>

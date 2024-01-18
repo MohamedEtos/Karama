@@ -8,7 +8,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title text-light mb-0 my-auto">لوحه تكم المدير</h4>
+							<h4 class="content-title text-light mb-0 my-auto">لوحه تحكم المدير</h4>
 						</div>
 					</div>
 				</div>

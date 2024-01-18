@@ -20,11 +20,11 @@ class CategoryController extends Controller
 
     public function StoreCategory(request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|max:200',
-        //     'descrption' => 'required|max:200'
+        $request->validate([
+            'name' => 'required|max:200',
+            'descrption' => 'required|max:200'
 
-        // ]);
+        ]);
 
         category::create([
             'name' =>$request->name,

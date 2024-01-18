@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Crypt;
+
 class AdminController extends Controller
 {
 
@@ -40,10 +42,6 @@ class AdminController extends Controller
         return view ('Admin.merchant.all_merchant',compact('merchants'));
     }
 
-    public function DeleteMerchant($id){
-        User::findorfail($id)->delete();
-        return to_route('all.merchant');
-    }
 
     public function AllUser(){
         $users = User::where('subtype','user')->latest()->paginate(10);

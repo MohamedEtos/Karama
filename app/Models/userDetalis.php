@@ -13,10 +13,10 @@ class userDetalis extends Model
     protected $guarded= [];
 
 
-    public function userDetalis(): HasOne
-    {
-        return $this->hasOne(userDetalis::class);
-    }
+    // public function userDetalis(): HasOne
+    // {
+    //     return $this->hasOne(userDetalis::class);
+    // }
 
 
     public function userToCategory(): BelongsTo

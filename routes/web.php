@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Models\category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MarketProfileController;
 use App\Http\Controllers\ProfileController;
@@ -13,7 +13,8 @@ use App\Http\Controllers\ProductHomeController;
 use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserDetalisController;
-use App\Http\Controllers\NewStoreController;
+use App\Http\Controllers\Admin\NewStoreController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,9 +49,9 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('editUser/{id}', 'editUser')->name('editUser');
     Route::post('updateUser', 'updateUser')->name('updateUser');
     
-    Route::get('/delete/merchant/{id}', 'DeleteMerchant')->name('delete.merchant');
-    Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
-    Route::post('/store/user', 'StoreUser')->name('store.user');
+    // Route::get('/delete/merchant/{id}', 'DeleteMerchant')->name('delete.merchant');
+    // Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
+    // Route::post('/store/user', 'StoreUser')->name('store.user');
     Route::get('/changeStatus', 'changeStatus');
 
 
@@ -59,10 +60,23 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
 Route::controller(NewStoreController::class)->prefix('admin')->group(function(){
     Route::get('/registerStore', 'NewStoreView')->name('registerStore');
     Route::post('/createStore', 'create')->name('createStore');
+    Route::get('/editStoreView/{id}', 'editStoreView')->name('editStoreView');
+    Route::post('/updateStore', 'updateStore')->name('updateStore');
+    Route::post('/deleteMerchant', 'deleteMerchant')->name('deleteMerchant');
 });
 Route::controller(RegisteredUserController::class)->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
     Route::post('/registerUser', 'store')->name('registerUser');
+});
+Route::controller(ProductsController::class)->prefix('admin')->group(function(){
+    Route::get('/allProducts', 'allProducts')->name('allProducts');
+    Route::get('/editProudcts/{id}', 'editProudcts')->name('editProudcts');
+    Route::get('/reviewProudcts/{id}', 'reviewProudcts')->name('reviewProudcts');
+    Route::get('/reviewAllProudcts', 'reviewAllProudcts')->name('reviewAllProudcts');
+    Route::post('/appendProduct', 'appendProduct')->name('appendProduct');
+    Route::post('/unappendProduct', 'unappendProduct')->name('unappendProduct');
+    Route::get('/acceptedProudcts', 'acceptedProudcts')->name('acceptedProudcts');
+    Route::get('/rejectedProudcts', 'rejectedProudcts')->name('rejectedProudcts');
 });
 
 
@@ -183,7 +197,7 @@ Route::get('addadmin',function(){
 });
 
 // theme
-Route::get('/{page}', [AdminController::class, 'index']);
+// Route::get('/{page}', [AdminController::class, 'index']);
 
 
 
