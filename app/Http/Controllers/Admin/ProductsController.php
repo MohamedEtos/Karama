@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Models\merchant;
+use App\Models\rejectProductmess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -33,11 +34,13 @@ class ProductsController extends Controller
     {
         $id =  Crypt::decrypt($id);
 
-        $product = merchant::where('id',$id)->first();
+        $product = merchant::where('id',$id)->orderBy('id','DESC')->first();
         $category  = category::get();
+        // $rejectmess  = rejectProductmess::where('productId','=',$id)->orderBy('productId','DESC')->first();
         return view('admin.products.reviewProudcts',compact(
             'product',  
             'category',  
+            // 'rejectmess',  
         ));
     }
 
@@ -55,6 +58,11 @@ class ProductsController extends Controller
     {
         merchant::where('id',$request->productsId)->update([
             'append'=>'2'
+        ]);
+        rejectProductmess::create([
+            'rejectMessage'=>$request->redjectmass,
+            'productId'=>$request->productsId,
+            'merchantId'=>$request->merchantId,
         ]);
         return redirect('admin/allProducts');  
     }
@@ -81,10 +89,11 @@ class ProductsController extends Controller
 
     public function rejectedProudcts(Request $request)
     {
-        $products = merchant::where('append','1')->paginate(10);
+        // $products = merchant::where('append','2')->paginate(10);
+        $products = merchant::where('append','2')->paginate(10);
         return view('admin.products.rejectedProudcts',compact(
             'products',  
-        ));    
+        ));   
     }
 
 

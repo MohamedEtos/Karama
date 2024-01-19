@@ -30,9 +30,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //Admin Routes
-Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
 
-Route::controller(CategoryController::class)->group(function(){
+Route::controller(CategoryController::class)->middleware('auth')->group(function(){
     Route::get('/all/category', 'AllCategory')->name('all.category');
     Route::post('/store/category', 'StoreCategory')->name('store.category');
     Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
@@ -41,7 +41,7 @@ Route::controller(CategoryController::class)->group(function(){
 
 });
 
-Route::controller(AdminController::class)->prefix('admin')->group(function(){
+Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('merchant', 'AllMerchant')->name('all.merchant');
 
     Route::get('user', 'AllUser')->name('all.user');
@@ -57,18 +57,18 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
 
 });
 
-Route::controller(NewStoreController::class)->prefix('admin')->group(function(){
+Route::controller(NewStoreController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/registerStore', 'NewStoreView')->name('registerStore');
     Route::post('/createStore', 'create')->name('createStore');
     Route::get('/editStoreView/{id}', 'editStoreView')->name('editStoreView');
     Route::post('/updateStore', 'updateStore')->name('updateStore');
     Route::post('/deleteMerchant', 'deleteMerchant')->name('deleteMerchant');
 });
-Route::controller(RegisteredUserController::class)->prefix('admin')->group(function(){
+Route::controller(RegisteredUserController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
     Route::post('/registerUser', 'store')->name('registerUser');
 });
-Route::controller(ProductsController::class)->prefix('admin')->group(function(){
+Route::controller(ProductsController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/allProducts', 'allProducts')->name('allProducts');
     Route::get('/editProudcts/{id}', 'editProudcts')->name('editProudcts');
     Route::get('/reviewProudcts/{id}', 'reviewProudcts')->name('reviewProudcts');

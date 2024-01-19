@@ -19,6 +19,7 @@ class merchant extends Model
         'discount',
         'ThePriceAfterDiscount',
         'append',
+        'rejectId',
         'productViews',
     ];
 
@@ -40,7 +41,15 @@ class merchant extends Model
     {
         return $this->belongsTo(userDetalis::class);
     }
+    // public function rejectMess(): BelongsTo
+    // {
+    //     return $this->belongsTo(rejectProductmess::class,'rejectId');
+    // }
 
+    public function rejectMess()
+    {
+        return $this->hasOne(rejectProductmess::class,'productId');
+    }
     
 }
 

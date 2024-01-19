@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subcategories', function (Blueprint $table) {
+        Schema::create('reject_productmesses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->bigInteger('categoryId')->unsigned();
-            $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');              
+            $table->text('rejectMessage')->nullable();
+            $table->bigInteger('productId')->unsigned()->nullable();
+            $table->integer('merchantId')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategories');
+        Schema::dropIfExists('reject_productmesses');
     }
 };

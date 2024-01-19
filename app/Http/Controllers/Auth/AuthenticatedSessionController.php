@@ -29,7 +29,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(Auth::User()->subtype == 'admin'){
+            return redirect('admin/dashboard');
+        }elseif(Auth::User()->subtype == 'merchant'){
+            return redirect('merchant/merchant');
+        }else{
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
     }
 
     /**
