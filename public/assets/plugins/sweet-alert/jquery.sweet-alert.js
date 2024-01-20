@@ -71,8 +71,7 @@ $(function(e) {
 			title: 'Lovely!',
 			text: 'your image is uploaded.',
 			imageUrl: 'assets/img/brand/logo.png',
-			animation: false,
-			
+			animation: false
 		})
 	});
 	

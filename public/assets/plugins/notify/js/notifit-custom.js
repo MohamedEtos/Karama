@@ -44,7 +44,7 @@ function not51() {
 function not6() {
 	notif({
 		type: "primary",
-		msg: "Welcome to Karama SC ",
+		msg: "Welcome to VALEX",
 		position: "right",
 		bottom:'10'
 	});

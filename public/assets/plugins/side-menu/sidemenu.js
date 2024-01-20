@@ -53,7 +53,6 @@
 	  var pageUrl = window.location.href.split(/[?#]/)[0];
 		if (this.href == pageUrl) { 
 			$(this).addClass("active");
-			$(this).children().children().addClass("fa-bounce");
 			$(this).parent().addClass("active"); // add active to li of the current link
 			$(this).parent().parent().prev().addClass("active"); // add active class to an anchor
 			$(this).parent().parent().parent().parent().parent().addClass("active"); 

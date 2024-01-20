@@ -1,7 +1,7 @@
 <!-- Title -->
 <title> Karama SC </title>
 <!-- Favicon -->
-{{-- <link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/> --}}
+<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 <!-- Icons css -->
 {{-- <link href="{{URL::asset('assets/css-rtl/icons.css')}}" rel="stylesheet"> --}}
 <!--  Custom Scroll bar-->
@@ -21,7 +21,7 @@
 <link href="{{URL::asset('assets/css-rtl/cus_style.css')}}" rel="stylesheet">
 {{-- fontaswome  --}}
 {{-- <link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.css')}}"  rel="stylesheet"> --}}
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- arabic font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
