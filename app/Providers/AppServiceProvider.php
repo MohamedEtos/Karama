@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Schema::defaultStringLength(191); 
 
+        
         View::composer('*', function ($view) {
             $onlineUsersCount = User::where('last_seen', '>=', now()->subMinutes(5))->count();
             $view->with('onlineUsersCount', $onlineUsersCount);
