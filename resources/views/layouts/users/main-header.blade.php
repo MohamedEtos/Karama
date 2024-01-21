@@ -30,7 +30,7 @@
 								</div>
 							</div>
 						</div>
-						<a class="dropdown-item" href="{{route('profile.edit')}}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+						<a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-user"></i>الملف الشخصي</a>
 						<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
 						<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 						<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
@@ -41,7 +41,7 @@
 							<x-dropdown-link class="dropdown-item" :href="route('logout')"
 									onclick="event.preventDefault();
 												this.closest('form').submit();">
-												<i class="bx bx-log-out"></i>
+												<i class="fa-solid fa-right-from-bracket"></i>
 								{{ __('تسجيل خروج') }}
 							</x-dropdown-link>
 						</form>

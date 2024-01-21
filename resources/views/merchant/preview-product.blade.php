@@ -10,10 +10,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert alert-light rounded justify-content-between ">
+				<div class="breadcrumb-header  rounded justify-content-between pt-5">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+						  <h2 class="main-content-title tx-24 mg-b-1 text-light mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
 						  <p class="mg-b-0">انت الان تري المنتج كما يراه الاخرون</p>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 @section('content')
 
 				<!-- row -->
-				<div class="row row-sm">
+				<div class="row row-sm ">
 
 					
 
@@ -51,8 +51,14 @@
 										</ul>
 									</div>
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
-											<a href="{{url('MarketProfile/'.$userDetails->id)}}" class="merchant-logo-bg">
+											{{-- <a href="{{url('MarketProfile/'.$userDetails->id)}}" class="merchant-logo-bg">
 												<img  class="merchant-logo " src="{{ asset($userDetails->userToDetalis->ProfileImage) }}" alt="">
+											</a> --}}
+
+											<a class="main-img-user merchant-logo-bg avatar-xxl ">
+												{{-- <img alt="avatar" class="rounded-circle" src="{{URL::asset('assets/img/faces/8.jpg')}}"> --}}
+												<img  class="rounded-circle " src="{{ asset($userDetails->userToDetalis->ProfileImage) }}" alt="">
+
 											</a>
 										<h4 class="product-title mb-1">{{$previewProduct->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$previewProduct->category}}</p>

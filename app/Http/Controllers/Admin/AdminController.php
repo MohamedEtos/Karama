@@ -39,13 +39,13 @@ class AdminController extends Controller
 
     public function AllMerchant(){
         $merchants = User::where('subtype','merchant')->latest()->paginate(10);
-        return view ('Admin.merchant.all_merchant',compact('merchants'));
+        return view ('admin.merchant.all_merchant',compact('merchants'));
     }
 
 
     public function AllUser(){
         $users = User::where('subtype','user')->latest()->paginate(10);
-        return view('Admin.user.all_user',compact('users'));
+        return view('admin.user.all_user',compact('users'));
     }
 
     public function DeleteUser(Request $request){

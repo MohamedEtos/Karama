@@ -1,5 +1,3 @@
-
-
 .main-loader{
   width: 100%;
   height: 100vh;
@@ -37,7 +35,7 @@
     width: 15px; /* 4 */
     height: 30px;
     border-radius: 0px; /* 4 */
-    animation: loading 1s ease-in-out infinite;
+    animation: loading 0.7s ease-in-out infinite;
     margin: 1px;
     transform: skew(-12deg, 0deg);
   }
@@ -47,19 +45,19 @@
   }
   .loading-bar:nth-child(2) {
     /*background-color: #797878;*/
-    animation-delay: 0.09s;
+    animation-delay: 0.05s;
   }
   .loading-bar:nth-child(3) {
     background-color: #213B74;
-    animation-delay: .18s;
+    animation-delay: .10s;
   }
   .loading-bar:nth-child(4) {
     /*background-color: #797878;*/
-    animation-delay: .27s;
+    animation-delay: .15s;
   }
   .loading-bar:nth-child(5) {
     background-color: #213B74;
-    animation-delay: .35s;
+    animation-delay: .20s;
   }
   
   @keyframes loading {

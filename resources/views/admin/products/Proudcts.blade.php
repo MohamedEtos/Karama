@@ -8,9 +8,7 @@
  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  {{-- Toggle Button  --}}
  <!-- Internal Data table css -->
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+
 <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -18,7 +16,7 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between mt-2 mb-2">
+				<div class="breadcrumb-header justify-content-between ">
 					<div class="my-auto">
 						<div class="d-flex">
 							<h4 class="content-title mb-0 my-auto text-light">المنتجات</h4>
@@ -32,7 +30,7 @@
 
 
 {{-- row --}}
-<div class="col-xl-12">
+<div class="col-xl-12 ">
     <div class="card">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
@@ -106,8 +104,7 @@
                             </td>
                             <td class="text-center">
                                     <a href="{{url('admin/editProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-info">
-                                        <i class="las la-pen"></i>
-                                    </a>
+                                        <i class="fa-solid fa-pen"></i>                                    </a>
 
                                     <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-primary">
                                         <i class="fa-solid fa-receipt"></i> مراجعه
@@ -192,7 +189,6 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-{{-- <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>    --}}
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 

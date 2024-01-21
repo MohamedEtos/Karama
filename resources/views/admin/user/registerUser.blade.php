@@ -9,10 +9,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert alert-light rounded justify-content-between">
+				<div class="breadcrumb-header  rounded justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الاشتراكات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافه مشترك جديد</span>
+							<h4 class="content-title mb-0 my-auto text-light">الاشتراكات</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ اضافه مشترك جديد</span>
 						</div>
 					</div>
 

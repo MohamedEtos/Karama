@@ -17,4 +17,12 @@ background-color: #fff;
 }
 
 
-
+@media (max-width: 768px) {
+  .mainCover{
+    width: 100%;
+    overflow: hidden;
+    max-height: 150px;
+  background-color: #fff;
+  
+  }
+}

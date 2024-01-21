@@ -7,31 +7,26 @@
 {{-- imageuploader --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/imageUploaderProfile/imageUploader.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css-rtl/profileDetials.css')}}">
-
-<style>
-
-
-
-</style>
-
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header  rounded alert alert-light justify-content-between m-2">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto text-secondary">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 
+					<div class="breadcrumb-header  rounded  justify-content-between  ">
+						<div class="my-auto">
+							<div class="d-flex">
+								<h4 class="content-title mb-0 my-auto text-light">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+								
+							</div>
 						</div>
+						
 					</div>
-
-
-				</div>
-				<!-- breadcrumb -->
+					<!-- breadcrumb --> 
 @endsection
 @section('content')
+
+
 				<!-- row -->
-				<div class="row row-sm">
+				<div class="row row-sm ">
 					<div class="col-lg-4">
 						<div class="card mg-b-20">
 							<div class="card-body">

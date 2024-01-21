@@ -127,5 +127,7 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<script>
 
+</script>
 @endsection

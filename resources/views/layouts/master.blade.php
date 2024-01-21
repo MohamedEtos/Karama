@@ -9,6 +9,10 @@
 		<link rel="stylesheet" href="{{asset('assets/css-rtl/football-loader.css')}}">
 		<!-- <meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4"/> -->
 		@include('layouts.head')
+		<script>
+
+
+		</script>
 	</head>
 
 	<body class="main-body app sidebar-mini karama-bg-img2">
@@ -17,7 +21,7 @@
 			{{-- <img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader"> --}}
 		{{-- </div> --}}
 
-		<div class="main-loader">
+		<div class="main-loader" id="lolo">
 			<div class="loading-cus">
 				<div class="loading-bar"></div>
 				<div class="loading-bar"></div>
@@ -25,7 +29,7 @@
 				<div class="loading-bar"></div>
 				<div class="loading-bar"></div>
 			</div>
-		</div>
+		</div> 
 
 		<!-- /Loader -->
 		@include('layouts.main-sidebar')		

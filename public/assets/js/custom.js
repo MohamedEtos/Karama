@@ -2,8 +2,8 @@ $(function() {
 	'use strict'
 	
 	// ______________LOADER
-	$("#global-loader").fadeOut("slow");
-	$('.main-loader').fadeOut("slow");
+	$("#global-loader").fadeOut("fast");
+	$('.main-loader').fadeOut("fast");
 	
 	// This template is mobile first so active menu in navbar
 	// has submenu displayed by default but not in desktop

@@ -66,15 +66,15 @@ input[type=number] {
 
   .merchant-logo-bg {
     background-color: #fff;
-    border-radius: 50%;
-    border: 3px solid #213b74;
+    /* border-radius: 50%; */
+    /* border: 3px solid #213b74; */
     width: 100px;
     height: 100px;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: absolute;
-    top: -67px;
+    /* top: -67px; */
     left: 23px;
-    padding: 5px;
+    /* padding: 5px; */
     text-align: center;
     display: flex;
     justify-content: center;
@@ -104,7 +104,7 @@ input[type=number] {
       width: 100px;
       height: 100px;
       border: 3px solid #ffffff;
-      overflow: hidden;
+      /* overflow: hidden; */
       position: relative;
       top:  0px;
       right: 45%;

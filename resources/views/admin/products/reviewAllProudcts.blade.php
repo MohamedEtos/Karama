@@ -12,7 +12,7 @@
 
 				<!-- row -->
                 @if (count($products) < 1)
-                    <h1 class=" mt-5 d-flex justify-content-center alert alert-light">لا يوجد منتجات تحت المراجعه</h1>
+                    <h2 class=" mt-5 d-flex justify-content-center text-center text-light">لا يوجد منتجات تحت المراجعه</h2>
                 @endif
                 @foreach ($products as $product )
                     				<!-- breadcrumb -->
@@ -25,40 +25,44 @@
 
 					</div>
 				<!-- breadcrumb -->
-				<div class="row m-3">
-                    <div class="col-lg-6 col-md-6">
-						<div class="card custom-card">
-							<div class="card-body ht-100p">
-								<div>
-									<h6 class="card-title mb-1">صور المنتج</h6>
-									<p class="text-muted card-sub-title">قم بمراجعه الصور اولاً</p>
-								</div>
-								<div>
-									<div class="carousel slide" data-ride="carousel" id="carouselExample3">
-										<ol class="carousel-indicators">
-											<li class="active" data-slide-to="0" data-target="#carouselExample3"></li>
-											<li data-slide-to="1" data-target="#carouselExample3"></li>
-											<li data-slide-to="2" data-target="#carouselExample3"></li>
-										</ol>
-										<div class="carousel-inner">
-											<div class="carousel-item active">
-												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}">
-											</div>
-											<div class="carousel-item">
-												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img2)}}">
-											</div>
-											<div class="carousel-item">
-												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img3)}}">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                    
-                    <div class="card col-md-6">
-                        <div class=" card-body">
+				<div class="row m-3 ">
+
+                    <div class="card mb-0 col-md-6 ">
+                        <div class=" card-body ht-100p h-100">
+
+                            <div class="col-12 d-block d-sm-block d-md-none">
+                                <div class=" custom-card  ">
+                                    <div class=" ht-100p ">
+                                        <div>
+                                            <h6 class="card-title mb-1">صور المنتج</h6>
+                                            <p class="text-muted card-sub-title">قم بمراجعه الصور اولاً</p>
+                                        </div>
+                                        <div>
+                                            <div class="carousel slide" data-ride="carousel" id="carouselExample3">
+                                                <ol class="carousel-indicators">
+                                                    <li class="active" data-slide-to="0" data-target="#carouselExample3"></li>
+                                                    <li data-slide-to="1" data-target="#carouselExample3"></li>
+                                                    <li data-slide-to="2" data-target="#carouselExample3"></li>
+                                                </ol>
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img2)}}">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img3)}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <div class="col-12 h5 ">الاسم :  <span class="bold"> {{$product->name}}</span></div>
                             <div class="col-12 h5 ">المتجر :  <span class="bold"> {{$product->userToProduct->name}}</span></div>
                             <div class="col-12 h5 ">القسم :  <span class="bold"> {{$product->productionToCategoryRealtions->name}}</span></div>
@@ -91,31 +95,65 @@
                             
 
                         
-                        <!-- delete  Modal effects-->
-                        <form action="{{Route('unappendProduct')}}" method="post">
-                            <div class="modal" id="modaldemo{{$product->id}}">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content modal-content-demo">
-                                        <div class="modal-header">
-                                            <h6 class="modal-title">اكتب رساله الرفض الخاصه بالمنتج</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h6></h6>
-                                            <textarea rows="5"  class="form-control" name="redjectmass"   type="text">أهلا بك يا {{$product->userToProduct->name}} &#13;&#10; ناسف علي رفض منتجك  بسبب &#13;&#10;   </textarea>
-                                            {{-- <input type="hidden"   name="merchantId" value="{{Crypt::encrypt()}}"> --}}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn ripple btn-danger" type="submit">ارسال</button>
-                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                            <!-- delete  Modal effects-->
+                            <form action="{{Route('unappendProduct')}}" method="post">
+                                @csrf
+                                <div class="modal" id="modaldemo{{$product->id}}">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content modal-content-demo">
+                                            <div class="modal-header">
+                                                <h6 class="modal-title">اكتب رساله الرفض الخاصه بالمنتج</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6></h6>
+                                                <textarea rows="5"  class="form-control" name="redjectmass"   type="text">أهلا بك يا {{$product->userToProduct->name}} &#13;&#10; ناسف علي رفض منتجك  بسبب &#13;&#10;   </textarea>
+                                                {{-- <input type="hidden"   name="merchantId" value="{{Crypt::encrypt()}}"> --}}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn ripple btn-danger" type="submit">ارسال</button>
+                                                <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                        <!-- End Modal effects-->
+                            </form>
+                            <!-- End Modal effects-->
 
-                        </div>
+                        </div>  
                     </div>
+
+                    <div class="col-lg-6 col-md-6 d-none d-md-block ">
+						<div class="card mb-0 custom-card h-100 p-0">
+							<div class="card-body  ht-100p ">
+								<div>
+									<h6 class="card-title mb-1">صور المنتج</h6>
+									<p class="text-muted card-sub-title">قم بمراجعه الصور اولاً</p>
+								</div>
+								<div>
+									<div class="carousel slide" data-ride="carousel" id="carouselExample3">
+										<ol class="carousel-indicators">
+											<li class="active" data-slide-to="0" data-target="#carouselExample3"></li>
+											<li data-slide-to="1" data-target="#carouselExample3"></li>
+											<li data-slide-to="2" data-target="#carouselExample3"></li>
+										</ol>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}">
+											</div>
+											<div class="carousel-item">
+												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img2)}}">
+											</div>
+											<div class="carousel-item">
+												<img alt="img" class="d-block w-100" src="{{asset($product->productionToImgRealtions->img3)}}">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    
+
 
 
 				</div>

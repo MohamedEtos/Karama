@@ -14,7 +14,7 @@
 
 
 
-	<body class="main-body app sidebar-mini karama-bg-img2">
+	<body class="main-body app sidebar-mini karama-bg-img2" >
 		<!-- Loader -->
 		{{-- <div id="global-loader"> --}}
 			{{-- <img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader"> --}}

@@ -15,7 +15,7 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between mt-2 mb-2">
+				<div class="breadcrumb-header justify-content-between ">
 					<div class="my-auto">
 						<div class="d-flex">
 							<h4 class="content-title mb-0 my-auto text-light">التجار</h4>
@@ -29,7 +29,7 @@
 
 
 {{-- row --}}
-<div class="col-xl-12">
+<div class="col-xl-12 ">
     <div class="card">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
@@ -38,8 +38,8 @@
             </div>
             {{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
         </div>
-        <div class="card-body">
-            <div class="table-responsive border-top userlist-table">
+        <div class="card-body ">
+            <div class="table-responsive userlist-table ">
                 <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="example1">
                     <thead>
                         <tr  class="text-right">
@@ -101,7 +101,7 @@
                             <form action="{{Route('deleteMerchant')}}" method="post">
                                 @csrf
                                 <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$merchants->id}}" data-toggle="modal" href="">
-                                    <i class="las la-search"></i>
+                                    <i class="fa-brands fa-searchengin"></i>
                                 </a>
                                         
                                 <!-- Large Modal -->
@@ -130,13 +130,13 @@
                                 <!--End Large Modal -->
 
                                 <a href="{{url('admin/editStoreView/'.Crypt::encrypt($merchants->id))}}" class="btn btn-sm btn-info">
-                                    <i class="las la-pen"></i>
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                                 
                                 <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$merchants->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$merchants->id}}">
                                     {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
-                                    <i class="las la-trash"></i>
-                                </a>
+                                    <i class="fa-solid fa-trash"></i>
+                                                                </a>
                                 
 
                             

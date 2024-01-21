@@ -9,7 +9,8 @@
 							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="dark-logo-2" alt="logo"></a>
 						</div>
 						<div class="app-sidebar__toggle" data-toggle="sidebar">
-							<a class="open-toggle" href="#"><i class="header-icon fe fe-align-left x" ></i></a>
+							<a class="open-toggle" href="#"><i class="tx-20 mt-2 text-secondary fa-solid fa-bars fa-2xs" ></i></a>
+							{{-- <i class="fa-solid fa-bars fa-2xs"></i> --}}
 							<a class="close-toggle" href="#"><i class="header-icons fe fe-x "></i></a>
 						</div>
 						{{-- <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
@@ -224,7 +225,9 @@
 											</div>
 										</div>
 									</div>
-									<a class="dropdown-item" href="{{route('profile.edit')}}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
+									<a class="dropdown-item" href="{{route('profile.edit')}}"> <i class="fa-solid fa-user "> &nbsp;  
+										</i> الملف الشخصي 
+									</a>
 									<a class="dropdown-item" href="{{route('merchant')}}"><i class="bx bxs-inbox"></i>الرئيسية</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>الرسائل</a>
 									<form method="POST" action="{{ route('logout') }}">
@@ -232,7 +235,7 @@
 										<x-dropdown-link class="dropdown-item" :href="route('logout')"
 												onclick="event.preventDefault();
 															this.closest('form').submit();">
-															<i class="bx bx-log-out"></i>
+															<i class="fa-solid fa-right-from-bracket"></i>
 											{{ __('تسجيل خروج') }}
 										</x-dropdown-link>
 									</form>

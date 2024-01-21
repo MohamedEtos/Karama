@@ -59,10 +59,10 @@
 
 			<div class="row pb-3">
 				<div class="btn-icon-list col-12 d-flex justify-content-md-end  justify-content-sm-center mt-2">
-					<a href="tel:{{$marketData->userToDetalis->phone}}" class="   btn btn-icon btn-primary   "  id='swal-image'><i class="la la-phone"></i></a>
+					<a href="tel:{{$marketData->userToDetalis->phone}}" class="   btn btn-icon btn-primary   "  id='swal-image'><i class="fa-solid fa-phone"></i></a>
 					<a href="https://wa.me/{{$marketData->userToDetalis->whatsapp}}"  target="_blank" class="   btn btn-icon btn-success  "><i class="fa-brands fa-whatsapp fa-xl"> </i></a>
 					<a href="{{$marketData->userToDetalis->facebook}}"  target="_blank" class="   btn btn-icon btn-info  ">    <i class="fa-brands fa-facebook fa-xl"> </i></a>
-					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-danger  ">   <i class="icon ion-md-link  fa-xl"> </i></a>
+					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-danger  ">   <i class="fa-solid fa-link"></i></a>
 					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-info  ">  <i class="fa-solid fa-location-dot"></i></a>
 				</div>
 			</div>

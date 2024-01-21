@@ -10,7 +10,7 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert m-1   rounded opacity-50 justify-content-between ">
+				<div class="breadcrumb-header    rounded opacity-50 justify-content-between ">
 					<div class="left-content">
 						<div class="">
 						  <h2 class=" text-light main-content-title  tx-24 mg-b-1 mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
@@ -66,7 +66,7 @@
 										<p class="mb-2 tx-12 text-muted">تاجر مميز</p>
 									</div>
 									<div class="card-chart bg-pink-transparent brround mr-auto mt-0">
-										<i class="typcn typcn-chart-line-outline text-pink tx-24"></i>
+										<i class="typcn typcn-chart-line-outline text-pink tx-24 fa-solid fa-users"></i>
 										
 									</div>
 								</div>
@@ -91,7 +91,7 @@
 										{{-- <p class="mb-2 tx-12 text-muted">Overview of Last month</p> --}}
 									</div>
 									<div class="card-chart bg-teal-transparent brround mr-auto mt-0">
-										<i class="typcn typcn-chart-bar-outline text-teal tx-20"></i>
+										<i class="typcn typcn-chart-bar-outline text-teal tx-20 fa-solid fa-signal"></i>
 									</div>
 								</div>
 
