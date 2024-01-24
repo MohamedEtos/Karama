@@ -172,7 +172,7 @@ Route::get('addadmin',function(){
         'name'=>'addidas',
         'usercode'=>'1122334455',
         'email'=>'addidas@addidas.com',
-        'subtype'=>'admin',
+        'subtype'=>'user',
         'password'=>Hash::make('1122334455'),
         'userDetalis'=>2,   
     ]);

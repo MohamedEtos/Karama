@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\userDetalis;
+use App\Models\visitorsCount;
+use App\Models\merchant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -34,7 +36,23 @@ class AdminController extends Controller
 
 
     public function AdminDashboard(){
-        return view('admin.dashboard');
+        $usersCount = User::where('subtype','user')->count();
+        $visetorsUnique = visitorsCount::distinct()->count('ip_address');
+        $merchantCount = User::where('subtype','merchant')->count();
+        $userdata = User::where('subtype','user')->limit(5)->orderBy('id','DESC')->get();
+        $merchantdata = User::with('userToDetalis')->where('subtype','merchant')->limit(5)->orderBy('id','DESC')->get();
+        $reviewproduct = merchant::where('append','0')->orderBy('id','DESC')->limit(5)->get();
+        $lastOrders = merchant::where('append','1')->orderBy('id','DESC')->limit(5)->get();
+
+        return view('admin.dashboard',compact(
+            'usersCount',
+            'merchantCount',
+            'visetorsUnique',
+            'userdata',
+            'merchantdata',
+            'lastOrders',
+            'reviewproduct',
+        ));
     }
 
     public function AllMerchant(){
