@@ -228,3 +228,8 @@ cursor: pointer;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	}
+
+
+  .clicker:hover{
+    cursor: pointer;
+  }

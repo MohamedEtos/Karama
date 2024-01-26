@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use App\Models\userDetalis;
 use App\Models\visitorsCount;
 use App\Models\merchant;
+
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +19,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Carbon;
 class AdminController extends Controller
 {
 
@@ -43,6 +45,9 @@ class AdminController extends Controller
         $merchantdata = User::with('userToDetalis')->where('subtype','merchant')->limit(5)->orderBy('id','DESC')->get();
         $reviewproduct = merchant::where('append','0')->orderBy('id','DESC')->limit(5)->get();
         $lastOrders = merchant::where('append','1')->orderBy('id','DESC')->limit(5)->get();
+        $todayOrdersPrice = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('ThePriceAfterDiscount');
+        $todayOrders = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('append',1)->count();
+        $category = category::orderBy('id','DESC')->limit(5)->get();
 
         return view('admin.dashboard',compact(
             'usersCount',
@@ -52,6 +57,9 @@ class AdminController extends Controller
             'merchantdata',
             'lastOrders',
             'reviewproduct',
+            'todayOrders',
+            'todayOrdersPrice',
+            'category',
         ));
     }
 
