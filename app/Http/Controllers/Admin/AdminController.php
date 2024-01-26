@@ -55,30 +55,30 @@ class AdminController extends Controller
         $category = category::orderBy('id','DESC')->limit(5)->get();
 
 
-        // count category in every monthes 
-        $category = merchant::select('id', 'created_at')
-        ->where('subtype','merchant')
-        ->get()
-        ->groupBy(function($date) {
-            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
-            return Carbon::parse($date->created_at)->format('m'); // grouping by months
-        });
+        // // count category in every monthes 
+        // $category = merchant::select('id', 'created_at')
+        // ->where('subtype','merchant')
+        // ->get()
+        // ->groupBy(function($date) {
+        //     // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+        //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        // });
         
-        $catcc = [];
-        $userArr = [];
+        // $catcc = [];
+        // $userArr = [];
         
-        foreach ($category as $key => $value) {
-            $catcc[(int)$key] = count($value);
-        }
+        // foreach ($category as $key => $value) {
+        //     $catcc[(int)$key] = count($value);
+        // }
         
-        for($i = 1; $i <= 12; $i++){
-            if(!empty($catcc[$i])){
-                $userArr[$i] = $catcc[$i];    
-            }else{
-                $userArr[$i] = 0;    
-            }
-        }
-        //  end count category in every monthes 
+        // for($i = 1; $i <= 12; $i++){
+        //     if(!empty($catcc[$i])){
+        //         $userArr[$i] = $catcc[$i];    
+        //     }else{
+        //         $userArr[$i] = 0;    
+        //     }
+        // }
+        // //  end count category in every monthes 
 
 
         // count merchant in every monthes 
@@ -175,11 +175,10 @@ class AdminController extends Controller
             'todayOrdersPrice',
             'category',
             //charts
-            'chart1',
             'usermcount',
             'MCC',
             'mercahntCC',
-            'catcc',
+            // 'catcc',
 
         ));
     }
