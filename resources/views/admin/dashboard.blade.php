@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="{{URL::asset('assets/css-rtl/football-loader.css')}}">
 <link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
 
 
 @endsection
@@ -60,7 +63,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span> --}}
+							<span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -82,7 +85,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span id="compositeline2" class="pt-1">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span> --}}
+							<span id="compositeline2" class="pt-1">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -104,7 +107,7 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span> --}}
+							<span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -126,11 +129,12 @@
 									</div>
 								</div>
 							</div>
-							{{-- <span id="compositeline4" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span> --}}
+							<span id="compositeline4" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
 						</div>
 					</div>
 				</div>
 				<!-- row closed -->
+
 
 
 
@@ -155,8 +159,9 @@
 																<h5 class="mb-1 tx-15">{{$users->name}}</h5>
 																<p class="mb-0 tx-13 text-muted"> <span class="text-success ml-2">متصل</span> رقم الاشتراك: #{{$users->usercode}} </p>
 															</div>
+	
 															<span class="mr-auto wd-45p fs-16 mt-2">
-																<div id="spark1" class="wd-100p"></div>
+																{{-- <div id="spark1" class="wd-100p"></div> --}}
 															</span>
 														</div>
 													</div>
@@ -241,7 +246,172 @@
 
 				</div>
 				<!-- row close -->
+				{{-- row  --}}
 
+				<div class="row">
+					<div class="col-md-12 col-lg-4 col-xl-4">
+						<div class="card card-table-two">
+							<div class="d-flex justify-content-between">
+								<h4 class="card-title mb-1">الاقسام</h4>
+								<i class="mdi mdi-dots-horizontal text-gray"></i>
+							</div>
+							<span class="tx-12 tx-muted mb-3 ">المنتجات داخل الاقسام</span>
+							<div class="table-responsive country-table">
+								<div>
+									<canvas id="myChart5"></canvas>
+								  </div>
+								  
+								  
+								  <script>
+									var MCC = {!! json_encode($MCC) !!};
+									const ctx4 = document.getElementById('myChart5');
+									new Chart(ctx4, {
+									  type: 'bar',
+									  data: {
+										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+										datasets: [{
+										  label: 'منتج',
+										  data: [MCC[1],MCC[2],MCC[3],MCC[4],MCC[5],MCC[6],MCC[7],MCC[8],MCC[9],MCC[10],MCC[11],MCC[12]],
+										  borderWidth: 1,
+										  borderColor: '#36A2EB',
+										  backgroundColor: '#36A2EB	',
+
+										}]
+									  },
+									  options: {
+										scales: {
+										  y: {
+											beginAtZero: true
+										  }
+										}
+									  }
+									});
+								  </script>
+								</div>
+						</div>
+					</div>
+
+
+
+
+
+					<div class="col-md-12 col-lg-4 col-xl-4">
+						<div class="card card-table-two">
+							<div class="d-flex justify-content-between">
+								<h4 class="card-title mb-1"></h4>
+								<i class="mdi mdi-dots-horizontal text-gray"></i>
+							</div>
+							<span class="tx-12 tx-muted mb-3 ">المنتجات</span>
+							<div class="table-responsive country-table">
+								<div>
+									<canvas id="myChart4"></canvas>
+								  </div>
+								  
+								  
+								  <script>
+									var MCC = {!! json_encode($MCC) !!};
+									const ctx = document.getElementById('myChart4');
+									new Chart(ctx, {
+									  type: 'bar',
+									  data: {
+										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+										datasets: [{
+										  label: 'منتج',
+										  data: [MCC[1],MCC[2],MCC[3],MCC[4],MCC[5],MCC[6],MCC[7],MCC[8],MCC[9],MCC[10],MCC[11],MCC[12]],
+										  borderWidth: 1,
+										  borderColor: '#36A2EB',
+										  backgroundColor: '#36A2EB	',
+
+										}]
+									  },
+									  options: {
+										scales: {
+										  y: {
+											beginAtZero: true
+										  }
+										}
+									  }
+									});
+								  </script>
+								</div>
+							</div>
+					</div> 
+
+					<div class="col-md-12 col-lg-4 col-xl-4">
+						<div class="card card-table-two">
+							<div class="d-flex justify-content-between">
+								<h4 class="card-title mb-1"></h4>
+								<i class="mdi mdi-dots-horizontal text-gray"></i>
+							</div>
+							<span class="tx-12 tx-muted mb-3 ">تسجيل الاعضاء</span>
+							<div class="table-responsive country-table">
+								<div>
+									<canvas id="myChart3"></canvas>
+								  </div>
+								  
+								  <script>
+									
+									var usermcount = {!! json_encode($usermcount) !!};
+
+									let arr = [usermcount[1],usermcount[2],usermcount[3],usermcount[4],usermcount[5],usermcount[6],usermcount[7],usermcount[8],usermcount[9],usermcount[10],usermcount[11],usermcount[12]];
+
+										for (let i = 0; i < arr.length; i++) {
+										if (typeof arr[i] == 'undefined') {
+											arr[i] = 0;
+										}
+										}
+
+									var mercahntCC = {!! json_encode($mercahntCC) !!};
+
+									let marr = [mercahntCC[1],mercahntCC[2],mercahntCC[3],mercahntCC[4],mercahntCC[5],mercahntCC[6],mercahntCC[7],mercahntCC[8],mercahntCC[9],mercahntCC[10],mercahntCC[11],mercahntCC[12]];
+
+										for (let i = 0; i < marr.length; i++) {
+										if (typeof marr[i] == 'undefined') {
+											marr[i] = 0;
+										}
+										}
+
+
+									const ctx2 = document.getElementById('myChart3');
+									new Chart(ctx2, {
+									  type: 'line',
+									  data: {
+										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+										datasets: [
+											{
+										  label: 'عضو',
+										  data: [arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8],arr[9],arr[10],arr[11],arr[11]],
+										  borderWidth: 1
+										},
+										{
+											
+											label: 'متجر',
+											data: [marr[0],marr[1],marr[2],marr[3],marr[4],marr[5],marr[6],marr[7],marr[8],marr[9],marr[10],marr[11],marr[11]],
+											borderWidth: 1
+
+										}
+									]
+									  },
+									  options: {
+										scales: {
+										  y: {
+											beginAtZero: true
+										  }
+										}
+									  }
+									});
+								  </script>
+								</div>
+						</div>
+					</div> 
+
+
+
+
+
+				</div>
+
+				{{-- row closed  --}}
 				<!-- row opened -->
 				<div class="row row-sm row-deck">
 					<div class="col-md-12 col-lg-4 col-xl-4">
@@ -281,7 +451,7 @@
 											<tr>
 
 													<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
-														{{Carbon\Carbon::parse($reviewproducts->created_at)->format('l')}} 
+														{{Carbon\Carbon::parse($reviewproducts->created_at)->translatedFormat('l')}} 
 														<span class="text-muted tx-10">
 															{{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}}
 														</span>
@@ -337,12 +507,17 @@
 										@foreach ( $reviewproduct as $reviewproducts )
 											<tr>
 
-													<td>{{$reviewproducts->created_at}}</td>
+												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
+													{{Carbon\Carbon::parse($reviewproducts->created_at)->translatedFormat('l')}} 
+													<span class="text-muted tx-10">
+														{{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}}
+													</span>
+												</td>
 													<td class="tx-right tx-medium tx-inverse">{{$reviewproducts->userToProduct->name}}</td>
 													<td class="tx-right tx-medium tx-inverse">{{$reviewproducts->name}}</td>
-													<td class="tx-right tx-medium tx-danger">{{$reviewproducts->ThePriceAfterDiscount}} ₪</td>
-													<td class="tx-right tx-medium tx-danger">{{$reviewproducts->ThePriceAfterDiscount}} ₪</td>
-												</tr>
+													<td class="tx-right tx-medium tx-primary">{{$reviewproducts->ThePriceAfterDiscount}} </td>
+													<td class="tx-right tx-medium tx-success">{{$reviewproducts->ThePriceAfterDiscount}} ₪</td>
+												</tr>inverse
 										@endforeach
 									</tbody>
 								</table>
@@ -351,6 +526,8 @@
 					</div>
 				</div>
 				<!-- /row -->
+
+
 			</div>
 		</div>
 		<!-- Container closed -->
@@ -375,7 +552,9 @@
 <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
 <!--Internal  index js -->
 <script src="{{URL::asset('assets/js/index.js')}}"></script>
-<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	    
+<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	   
+	{!! $chart1->renderChartJsLibrary() !!}
+{!! $chart1->renderJs() !!}
 
 
 @endsection

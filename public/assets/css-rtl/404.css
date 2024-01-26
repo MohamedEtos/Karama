@@ -45,10 +45,28 @@
         border-bottom: 15px solid transparent;
     }
 
+    .karamaLogo{
+      margin-top: 7%;
+
+    }
+
+    @media(max-width: 767px){
+        .karamaLogo{
+            margin-top: 35%;
+      
+          }
+          .error .container-error-404
+          {
+            margin-top: 12%;
+
+          }
+    }
+
+
 
     .error .container-error-404
     {
-      margin-top: 10%;
+      margin-top: 3%;
         position: relative;
         height: 250px;
         padding-top: 40px;

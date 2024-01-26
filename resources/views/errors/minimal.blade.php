@@ -17,13 +17,16 @@
             <div class="error">
                 <div class="container-floud">
                     <div class="col-xs-12 ground-color text-center">
+                        <a href="/">
+                            <img src="{{asset('assets/img/brand/logo.png')}}" class="karamaLogo" alt="">
+                        </a>
                         <div class="container-error-404">
                             <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
                             <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
                             <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
                             <div class="msg">OH!<span class="triangle"></span></div>
                         </div>
-                        <h2 class="h1">@yield('message')</h2>   
+                        <h2 class="h1">@yield('message')</h2>       
                             <button onclick="history.back()" class="btn btn-block btn-danger">Back To Home</button>
                     </div>
                 </div>

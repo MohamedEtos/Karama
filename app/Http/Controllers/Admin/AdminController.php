@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+
 class AdminController extends Controller
 {
 
@@ -38,6 +41,8 @@ class AdminController extends Controller
 
 
     public function AdminDashboard(){
+
+
         $usersCount = User::where('subtype','user')->count();
         $visetorsUnique = visitorsCount::distinct()->count('ip_address');
         $merchantCount = User::where('subtype','merchant')->count();
@@ -48,6 +53,115 @@ class AdminController extends Controller
         $todayOrdersPrice = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('ThePriceAfterDiscount');
         $todayOrders = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('append',1)->count();
         $category = category::orderBy('id','DESC')->limit(5)->get();
+
+
+        // count category in every monthes 
+        $category = merchant::select('id', 'created_at')
+        ->where('subtype','merchant')
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+        
+        $catcc = [];
+        $userArr = [];
+        
+        foreach ($category as $key => $value) {
+            $catcc[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($catcc[$i])){
+                $userArr[$i] = $catcc[$i];    
+            }else{
+                $userArr[$i] = 0;    
+            }
+        }
+        //  end count category in every monthes 
+
+
+        // count merchant in every monthes 
+        $mercahnt = User::select('id', 'created_at')
+        ->where('subtype','merchant')
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+        
+        $mercahntCC = [];
+        $userArr = [];
+        
+        foreach ($mercahnt as $key => $value) {
+            $mercahntCC[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($mercahntCC[$i])){
+                $userArr[$i] = $mercahntCC[$i];    
+            }else{
+                $userArr[$i] = 0;    
+            }
+        }
+        //  end count merchant in every monthes 
+
+
+
+        // count users in every monthes 
+        $users = User::select('id', 'created_at')
+        ->where('subtype','user')
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+        
+        $usermcount = [];
+        $userArr = [];
+        
+        foreach ($users as $key => $value) {
+            $usermcount[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($usermcount[$i])){
+                $userArr[$i] = $usermcount[$i];    
+            }else{
+                $userArr[$i] = 0;    
+            }
+        }
+        //  end count users in every monthes 
+
+
+        // count merchant in every monthes 
+        $store = merchant::select('id', 'created_at')
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+        
+        $MCC = [];
+        $userArr = [];
+        
+        foreach ($store as $key => $value) {
+            $MCC[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($MCC[$i])){
+                $userArr[$i] = $MCC[$i];    
+            }else{
+                $userArr[$i] = 0;    
+            }
+        }
+        //  end count merchant in every monthes 
+
+
+
+        Carbon::setLocale('ar');
+
 
         return view('admin.dashboard',compact(
             'usersCount',
@@ -60,6 +174,13 @@ class AdminController extends Controller
             'todayOrders',
             'todayOrdersPrice',
             'category',
+            //charts
+            'chart1',
+            'usermcount',
+            'MCC',
+            'mercahntCC',
+            'catcc',
+
         ));
     }
 
