@@ -248,13 +248,13 @@
 
                                                 
                                             <input type="text" class="form-control"  placeholder="Designation" value="
-@if (Auth::user()->subtype == 'admin')
-مشرف
-@elseif (Auth::user()->subtype == 'merchant')
-تاجر
-@elseif (Auth::user()->subtype == 'user')
-مستخدم
-@endif
+	@if (Auth::user()->subtype == 'admin')
+	مشرف
+	@elseif (Auth::user()->subtype == 'merchant')
+	تاجر
+	@elseif (Auth::user()->subtype == 'user')
+	مستخدم
+	@endif
                                             " disabled>
 											</div>
 										</div>
