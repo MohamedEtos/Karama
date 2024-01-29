@@ -47,6 +47,8 @@ class User extends Authenticatable
         return $this->belongsTo(userDetalis::class,'userDetalis');
     }
 
+    
+
     // public function userDetalis()
     // {
     //     return $this->hasOne(userDetalis::class);

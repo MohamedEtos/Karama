@@ -7,6 +7,9 @@
 <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -51,6 +54,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-body iconfont text-right">
@@ -184,6 +188,96 @@
 					</div>
 				</div>
 				{{-- /row --}}
+
+				<div class="row row-sm row-deck">
+					<div class="col-md-12 col-lg-4 col-xl-4">
+						<div class="card card-table-two">
+							<div class="d-flex justify-content-between">
+								<h4 class="card-title mb-1"></h4>
+								<i class="mdi mdi-dots-horizontal text-gray"></i>
+							</div>
+							<span class="tx-12 tx-muted mb-3 ">عمليات البيع</span>
+							<div class="table-responsive country-table">
+								<div>
+									<canvas id="myChart3"></canvas>
+								  </div>
+								  
+								  <script>
+									
+									var pointsCount = {!! json_encode($pointsCount) !!};
+
+									let arr = [pointsCount[1],pointsCount[2],pointsCount[3],pointsCount[4],pointsCount[5],pointsCount[6],pointsCount[7],pointsCount[8],pointsCount[9],pointsCount[10],pointsCount[11],pointsCount[12]];
+
+										for (let i = 0; i < arr.length; i++) {
+											if (typeof arr[i] == 'undefined') {
+												arr[i] = 0;
+											}
+										}
+
+
+									const ctx2 = document.getElementById('myChart3');
+									new Chart(ctx2, {
+									  type: 'line',
+									  data: {
+										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+										datasets: [
+											{
+										  label: 'عمليات شراء',
+										  data: [arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8],arr[9],arr[10],arr[11],arr[11]],
+										  borderWidth: 1
+										},
+										
+									]
+									  },
+									  options: {
+										scales: {
+										  y: {
+											beginAtZero: true
+										  }
+										}
+									  }
+									});
+								  </script>
+								</div>
+						</div>
+					</div> 
+					<div class="col-md-12 col-lg-8 col-xl-8">
+						<div class="card card-table-two">
+
+
+							<span class="tx-12 tx-muted mb-3 ">نقاط الخاصه بالعملاء</span>
+							<div class="table-responsive country-table">
+								<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
+									<thead>
+										<tr>
+											<th class="wd-lg-25p">التاريخ</th>
+											<th class="wd-lg-25p tx-right"> اسم المستخدم</th>
+											<th class="wd-lg-25p tx-right">قمه الشراء</th>
+											<th class="wd-lg-25p tx-right">النقاط</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($userPoint as $userPoints)
+											
+											<tr>
+												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
+													{{Carbon\Carbon::parse($userPoints->created_at)->translatedFormat('l')}} 
+													<span class="text-muted tx-10">
+														{{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}}
+													</span>
+												</td>
+												<td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->pointToUser->name}}</td>
+												<td class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->price}} ₪</td>
+												<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+											</tr>
+										@endforeach
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- Container closed -->

@@ -6,6 +6,7 @@ use App\Models\points;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\ViewErrorBag;
+use Illuminate\Support\Facades\Auth;
 
 class PointsController extends Controller
 {
@@ -22,11 +23,16 @@ class PointsController extends Controller
     public function checkUserCode($usercode)
     {
 
-        $userdata = User::where('usercode',$usercode)->first();
-        if(! $userdata){
+        $userdata = User::select('name','id')->where('usercode',$usercode)->first();
+        $oldPoints = points::select('points')->where('userId',$userdata->id)->where('merchantId',Auth::User()->id)->first();
+
+        if(! $oldPoints ){
+            $oldPoints = 'nodata';
+        }
+        if(! $userdata ){
             $userdata = 'nodata';
         }
-        return response()->json(array("MSG"=>$userdata));
+        return response()->json(array("MSG"=>$userdata,'oldPoints'=>$oldPoints));
 
     }
 

@@ -84,6 +84,7 @@ class AdminController extends Controller
         // count merchant in every monthes 
         $mercahnt = User::select('id', 'created_at')
         ->where('subtype','merchant')
+        ->whereYear('created_at', '=', Carbon::now()->year)
         ->get()
         ->groupBy(function($date) {
             // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
@@ -111,6 +112,7 @@ class AdminController extends Controller
         // count users in every monthes 
         $users = User::select('id', 'created_at')
         ->where('subtype','user')
+        ->whereYear('created_at', '=', Carbon::now()->year)
         ->get()
         ->groupBy(function($date) {
             // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
@@ -136,7 +138,9 @@ class AdminController extends Controller
 
         // count merchant in every monthes 
         $store = merchant::select('id', 'created_at')
+        ->whereYear('created_at', '=', Carbon::now()->year)
         ->get()
+
         ->groupBy(function($date) {
             // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
             return Carbon::parse($date->created_at)->format('m'); // grouping by months

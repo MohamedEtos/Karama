@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\visitorsCount;
 use App\Models\merchant;
 use App\Models\category;
+use App\Models\points;
 use App\Models\productImg;
 use App\Models\User;
 use App\Models\userDetalis;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 class MerchantController extends Controller
 {
@@ -43,9 +45,40 @@ class MerchantController extends Controller
             $persent = ($unappendPersent/$appendPersent*100);
         }
 
+        Carbon::setLocale('ar'); // to type date arabic 
+        
+        $userPoint = points::where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
 
         // $persent = round($persent,'1');
-        $test = User::where('id','1')->first();
+
+
+        // count users in every monthes 
+        $points = points::select('id', 'created_at')
+        ->where('merchantId',Auth::User()->id)
+        ->whereYear('created_at', '=', Carbon::now()->year)
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+    
+        });
+        
+        $pointsCount = [];
+        $userArr = [];
+        
+        foreach ($points as $key => $value) {
+            $pointsCount[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($usermcount[$i])){
+                $userArr[$i] = $usermcount[$i];    
+            }else{
+                $userArr[$i] = 0;    
+            }
+        }
+        //  end count users in every monthes 
+
 
         return view('merchant.merchant',compact(
             'products_data',
@@ -54,7 +87,8 @@ class MerchantController extends Controller
             'unappendPersent',
             'persent',
             'storeViews',
-            'test',
+            'userPoint',
+            'pointsCount',
             // 'VisitorsCountController',
         ));
     }

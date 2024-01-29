@@ -57,9 +57,19 @@
                                         </div>
 									</div>
 
-									<div class="col-12 mt-4">
+									<div class="col-7 mt-4">
 										<label for="validationCustom01" class="form-label">اسم العميل</label>
-										<input type="text" disabled  name="productDescription" maxlength="100" class="form-control"  placeholder="" id="Rname" required>
+										<input type="text" disabled  name="Rname" maxlength="100" class="form-control"  placeholder="" id="Rname" required>
+										<div class="valid-feedback">
+										  ممتاز !
+										</div>
+										<div class="invalid-feedback" id="productDescription_error">
+                                            تاكد من رقم العميل
+										</div>
+									  </div>
+									<div class="col-5 mt-4">
+										<label for="validationCustom01" class="form-label"> نقاط سابقه</label>
+										<input type="text" disabled  name="oldpoint" maxlength="100" class="form-control"  placeholder="" id="oldpoint" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -69,9 +79,9 @@
 									  </div>
 
 									<div class="col-12 mt-4">
-										<label for="price" class="form-label">المدفوع</label>
+										<label for="price" class="form-label">قيمه مشتريات العميل</label>
 										<input name="price" class="form-control"
-										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+										step="any"
 										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
@@ -147,6 +157,7 @@
         var value = document.getElementById('usercode').value;
         var userId = document.getElementById('userId');
         var finish = document.getElementById('finish');
+        var oldpoint = document.getElementById('oldpoint');
 
 
             if (value.length == 8 ) { //check if value == 8 
@@ -166,10 +177,12 @@
                                finish.classList.remove('disabled');
                                Rname.value = data.MSG.name ;
                                userId.value = data.MSG.id;
+                               oldpoint.value = data.oldPoints.points;
                                
 
-                               if(data.MSG == 'nodata'){
+                               if(data.MSG == 'nodata'  ){
                                     Rname.value = 'لا يوجد بيانات  ' ;
+
                                     usercode.classList.remove("border","border-warning");
                                     usercode.classList.remove("border", "border-success");
                                     usercode.classList.add("border","border-danger");
@@ -177,7 +190,10 @@
                                     $('.loader_cu').css('display','none');
                                     finish.classList.add('disabled');
 
-                                }
+                                }else if (data.oldPoints == 'nodata'){
+									oldpoint.value = '0';
+								}
+
                                 $('.loading').css('display','none');
                                 $('.loader_cu').css('display','none');
 						    },complete: function(){
