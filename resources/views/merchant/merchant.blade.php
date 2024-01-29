@@ -106,23 +106,25 @@
 						<div class="card">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">الوصول السريع</h4>
+									<h4 class="card-title mb-3">عمليه شراء</h4>
 									<i class="mdi mdi-dots-vertical"></i>
+									
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-3 mt-3 font-weight-bold">اضافه منتج<span class="text-success tx-13 ml-2"></span></h4>
+										<h4 class="mb-3 mt-3 font-weight-bold">تجيل نقاط<span class="text-success tx-13 ml-2"></span></h4>
 									</div>
 									<div class="card-chart bg-purple-transparent brround mr-auto mt-1">
-										<a href="{{ url('merchant/new-product') }}">
-											<i class="fa-solid fa-plus  tx-24"></i>
-										</a>
+										<a href="{{ url('merchant/UserPoints') }}">
+											<i class="fa-solid fa-cart-shopping"></i>										</a>
 									</div>
 								</div>
 
-								<div class="progress progress-sm mt-2 mb-3">
+								<div class="progress progress-sm mt-2 ">
 									<div aria-valuemax="100" aria-val	uemin="0" aria-valuenow="100" class="progress-bar bg-purple wd-100p" role="progressbar"></div>
 								</div>
+								<small class="mb-0  text-muted">قم بتسجيل قميه مشتريات العميل<span class="float-left text-muted"></span></small>
+
 							</div>
 						</div>
 					</div>
