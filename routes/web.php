@@ -95,9 +95,11 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('edit-product/{id}',[MerchantController::class,'show_update'])->name('edit-product');
     Route::get('preview-product/{id}',[MerchantController::class,'previewProduct'])->name('preview-product');
     Route::get('editProfile',[MerchantController::class,'previewProduct'])->name('preview-product');
+    // points 
     Route::get('UserPoints',[PointsController::class,'UserPoints'])->name('UserPoints');
     Route::get('checkUserCode/{usercode}',[PointsController::class,'checkUserCode'])->name('checkUserCode');
     Route::post('addUserPoints',[PointsController::class,'addUserPoints'])->name('addUserPoints');
+    Route::get('exchangePointsView',[PointsController::class,'exchangePointsView'])->name('exchangePointsViewView');
 
 
     // profile 

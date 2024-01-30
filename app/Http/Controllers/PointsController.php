@@ -39,28 +39,42 @@ class PointsController extends Controller
     public function addUserPoints(Request $request)
     {
 
-        
+        $prevPoints = points::select('price','points')
+        ->where('userId',$request->userId)
+        ->where('merchantId',$request->merchantId)
+        ->first();
 
-      points::create([
-            'userId'=> $request->userId,
-            'usercode'=> $request->usercode,
-            'price'=> $request->price,
+        if(!$prevPoints){
+            $oldPrice = '0';
+            $oldPoints = '0';
+        }else{
+            $oldPrice = $prevPoints->price;
+            $oldPoints = $prevPoints->points;
+        }
+
+        $pointstest =points::updateOrCreate([
+            //Add unique field combo to match here
+            //For example, perhaps you only want one entry per user:
+            'userId'   => $request->userId,
             'merchantId'=> $request->merchantId,
-            'points'=> $request->price/10,
+
+        ],[
+            'userId'=> $request->userId,
+            'merchantId'=> $request->merchantId,
+            'usercode'=> $request->usercode,
+            'price'=> $request->price +  $oldPrice,
+            'points'=> ($request->price /10) + $oldPoints ,
         ]);
+
 
         return redirect()->back()->with('success','تم اضافه النقاط ');
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function exchangePointsView()
     {
-        //
+        return view('merchant/exchangeUserPointsView');
+
     }
 
     /**

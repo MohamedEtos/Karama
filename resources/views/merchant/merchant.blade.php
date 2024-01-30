@@ -1,6 +1,5 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
-<!-- Internal Data table css -->
 <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
@@ -9,7 +8,7 @@
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdnjs.com/libraries/Chart.js"></script>
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -54,7 +53,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-body iconfont text-right">
@@ -71,7 +70,7 @@
 									</div>
 									<div class="card-chart bg-pink-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-chart-line-outline text-pink tx-24 fa-solid fa-users"></i>
-										
+
 									</div>
 								</div>
 
@@ -84,18 +83,20 @@
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 						<div class="card">
+							<a href="">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
 									<h4 class="card-title mb-3">حاله الحساب</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
-									<div class="">
-										<h4 class="mb-1   font-weight-bold text-success">يعمل جيدا<span class="text-success tx-13 ml-2"></span></h4>
+									<div class="{{url('merchant/exchangePointsView')}}">
+										<h4 class="mb-1   font-weight-bold text-success">استبدال نقاط<span class="text-success tx-13 ml-2"></span></h4>
 										{{-- <p class="mb-2 tx-12 text-muted">Overview of Last month</p> --}}
 									</div>
 									<div class="card-chart bg-teal-transparent brround mr-auto mt-0">
-										<i class="typcn typcn-chart-bar-outline text-teal tx-20 fa-solid fa-signal"></i>
+										{{-- <i class="typcn typcn-chart-bar-outline text-teal tx-20 fa-solid fa-signal"></i> --}}
+										<i class="fa-solid fa-arrow-right-arrow-left"></i>
 									</div>
 								</div>
 
@@ -104,32 +105,33 @@
 								</div>
 								<small class="mb-0  text-muted">ممتازه <span class="float-left text-muted">100%</span></small>
 							</div>
+						</a>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 						<div class="card">
+							<a href="{{ url('merchant/UserPoints') }}">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
 									<h4 class="card-title mb-3">عمليه شراء</h4>
 									<i class="mdi mdi-dots-vertical"></i>
-									
+
 								</div>
 								<div class="d-flex mb-0">
 									<div class="">
-										<h4 class="mb-3 mt-3 font-weight-bold">تجيل نقاط<span class="text-success tx-13 ml-2"></span></h4>
+										<h4 class="mb-3 mt-3 font-weight-bold">تسجيل نقاط<span class="text-success tx-13 ml-2"></span></h4>
 									</div>
 									<div class="card-chart bg-purple-transparent brround mr-auto mt-1">
-										<a href="{{ url('merchant/UserPoints') }}">
-											<i class="fa-solid fa-cart-shopping"></i>										</a>
+											<i class="fa-solid fa-cart-shopping"></i>										
 									</div>
 								</div>
 
 								<div class="progress progress-sm mt-2 ">
-									<div aria-valuemax="100" aria-val	uemin="0" aria-valuenow="100" class="progress-bar bg-purple wd-100p" role="progressbar"></div>
+									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar bg-purple wd-100p" role="progressbar"></div>
 								</div>
 								<small class="mb-0  text-muted">قم بتسجيل قميه مشتريات العميل<span class="float-left text-muted"></span></small>
-
 							</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -201,10 +203,10 @@
 								<div>
 									<canvas id="myChart3"></canvas>
 								  </div>
-								  
+
 								  <script>
-									
-									var pointsCount = {!! json_encode($pointsCount) !!};
+
+									let pointsCount = {!! json_encode($pointsCount) !!};
 
 									let arr = [pointsCount[1],pointsCount[2],pointsCount[3],pointsCount[4],pointsCount[5],pointsCount[6],pointsCount[7],pointsCount[8],pointsCount[9],pointsCount[10],pointsCount[11],pointsCount[12]];
 
@@ -226,7 +228,7 @@
 										  data: [arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8],arr[9],arr[10],arr[11],arr[11]],
 										  borderWidth: 1
 										},
-										
+
 									]
 									  },
 									  options: {
@@ -240,7 +242,7 @@
 								  </script>
 								</div>
 						</div>
-					</div> 
+					</div>
 					<div class="col-md-12 col-lg-8 col-xl-8">
 						<div class="card card-table-two">
 
@@ -258,10 +260,10 @@
 									</thead>
 									<tbody>
 										@foreach ($userPoint as $userPoints)
-											
+
 											<tr>
 												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
-													{{Carbon\Carbon::parse($userPoints->created_at)->translatedFormat('l')}} 
+													{{Carbon\Carbon::parse($userPoints->created_at)->translatedFormat('l')}}
 													<span class="text-muted tx-10">
 														{{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}}
 													</span>

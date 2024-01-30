@@ -189,6 +189,7 @@
                                     $('.loading').css('display','none');
                                     $('.loader_cu').css('display','none');
                                     finish.classList.add('disabled');
+									oldpoint.value = '0';
 
                                 }else if (data.oldPoints == 'nodata'){
 									oldpoint.value = '0';
@@ -202,6 +203,8 @@
 
                             },error: function(reject){
                                 Rname.value = 'لا يوجد بيانات  ' ;
+								oldpoint.value = '0';
+
                                 usercode.classList.remove("border","border-warning");
                                 usercode.classList.remove("border", "border-success");
                                 usercode.classList.add("border","border-danger");
