@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\points;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Support\Facades\Auth;
 
 class PointsController extends Controller
@@ -73,7 +72,7 @@ class PointsController extends Controller
 
     public function exchangePointsView()
     {
-        return view('merchant/exchangeUserPointsView');
+        return view('merchant/exchangepoints');
 
     }
 

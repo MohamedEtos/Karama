@@ -1,0 +1,12 @@
+.userName{
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid #000 !important;
+    background-color: transparent !important;
+    border-radius: 0px !important;
+}
+
+.userNameArrow{
+    margin-top: 80px !important;
+    text-justify: auto;
+}

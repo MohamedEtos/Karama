@@ -83,14 +83,14 @@
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 						<div class="card">
-							<a href="">
+							<a href="{{url('merchant/exchangePointsView')}}">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
 									<h4 class="card-title mb-3">حاله الحساب</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
-									<div class="{{url('merchant/exchangePointsView')}}">
+									<div class="">
 										<h4 class="mb-1   font-weight-bold text-success">استبدال نقاط<span class="text-success tx-13 ml-2"></span></h4>
 										{{-- <p class="mb-2 tx-12 text-muted">Overview of Last month</p> --}}
 									</div>
