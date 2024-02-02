@@ -6,6 +6,7 @@ use App\Models\visitorsCount;
 use App\Models\merchant;
 use App\Models\category;
 use App\Models\points;
+use App\Models\pointsDetails;
 use App\Models\productImg;
 use App\Models\User;
 use App\Models\userDetalis;
@@ -38,21 +39,22 @@ class MerchantController extends Controller
         // calculate append product present
         $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
         $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
-        
-        if($unappendPersent>=0 or $appendPersent>=0){ 
-         $persent = 0;   
+
+        if($unappendPersent>=0 or $appendPersent>=0){
+         $persent = 0;
         } else{
             $persent = ($unappendPersent/$appendPersent*100);
         }
 
-        Carbon::setLocale('ar'); // to type date arabic 
-        
+        Carbon::setLocale('ar'); // to type date arabic
+
         $userPoint = points::where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
+        $userPointDetails = pointsDetails::with('pointsToDetails')->where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
 
         // $persent = round($persent,'1');
 
 
-        // count users in every monthes 
+        // count users in every monthes
         $points = points::select('id', 'created_at')
         ->where('merchantId',Auth::User()->id)
         ->whereYear('created_at', '=', Carbon::now()->year)
@@ -60,24 +62,80 @@ class MerchantController extends Controller
         ->groupBy(function($date) {
             // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
             return Carbon::parse($date->created_at)->format('m'); // grouping by months
-    
+
         });
-        
+
         $pointsCount = [];
         $userArr = [];
-        
+
         foreach ($points as $key => $value) {
             $pointsCount[(int)$key] = count($value);
         }
-        
+
         for($i = 1; $i <= 12; $i++){
             if(!empty($usermcount[$i])){
-                $userArr[$i] = $usermcount[$i];    
+                $userArr[$i] = $usermcount[$i];
             }else{
-                $userArr[$i] = 0;    
+                $userArr[$i] = 0;
             }
         }
-        //  end count users in every monthes 
+        //  end count users in every monthes
+
+        // count add points in every monthes
+        $pointsadd = pointsDetails::select('id', 'created_at')
+        ->where('merchantId',Auth::User()->id)
+        ->where('type','add')
+        ->whereYear('created_at', '=', Carbon::now()->year)
+        ->get()
+        ->groupBy(function($date) {
+            // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+
+        });
+
+        $pointsAddCount = [];
+        $userArr = [];
+
+        foreach ($pointsadd as $key => $value) {
+            $pointsAddCount[(int)$key] = count($value);
+        }
+
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($usermcount[$i])){
+                $userArr[$i] = $usermcount[$i];
+            }else{
+                $userArr[$i] = 0;
+            }
+        }
+        //  end add points in every monthes
+
+        // count exchange points every monthes
+        $pointsSub = pointsDetails::select('id', 'created_at')
+            ->where('merchantId',Auth::User()->id)
+            ->where('type','Subtract')
+            ->whereYear('created_at', '=', Carbon::now()->year)
+            ->get()
+            ->groupBy(function($date) {
+                // return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+                return Carbon::parse($date->created_at)->format('m'); // grouping by months
+
+            });
+
+        $pointsSubCount = [];
+        $userArr = [];
+
+        foreach ($pointsSub as $key => $value) {
+            $pointsSubCount[(int)$key] = count($value);
+        }
+
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($usermcount[$i])){
+                $userArr[$i] = $usermcount[$i];
+            }else{
+                $userArr[$i] = 0;
+            }
+        }
+        // end count exchange points every monthes
 
 
         return view('merchant.merchant',compact(
@@ -89,6 +147,9 @@ class MerchantController extends Controller
             'storeViews',
             'userPoint',
             'pointsCount',
+            'userPointDetails',
+            'pointsAddCount',
+            'pointsSubCount',
             // 'VisitorsCountController',
         ));
     }
@@ -220,7 +281,7 @@ class MerchantController extends Controller
         // get id user
 
         $userId = merchant::where('id',$id)->first();
-        
+
 
         // count visetors
         $ip = $request->ip();
@@ -241,7 +302,7 @@ class MerchantController extends Controller
 
         // return $test;
 
-        // get merchant id 
+        // get merchant id
 
 
         $product_details = merchant::where('id',$id)->get();
@@ -288,7 +349,7 @@ class MerchantController extends Controller
     {
 
 
-        // get current product data 
+        // get current product data
         $product = merchant::where('id',$id)->first();
         $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
 
@@ -302,7 +363,7 @@ class MerchantController extends Controller
 
 
 
-     
+
     public function update(Request $request, $id)
     {
         // check max number in cateogry
@@ -346,7 +407,7 @@ class MerchantController extends Controller
             ]);
 
 
-        // update product 
+        // update product
         if($request->hasFile('mainImage')){
             $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
             // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);

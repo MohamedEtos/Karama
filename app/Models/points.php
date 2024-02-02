@@ -10,6 +10,7 @@ class points extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'pointsDetailsId',
         'userId',
         'usercode',
         'merchantId',
@@ -21,5 +22,13 @@ class points extends Model
     {
         return $this->belongsTo(User::class,'userId');
     }
+
+    public function pointTomerchant(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'merchantId');
+    }
+
+
+
 
 }

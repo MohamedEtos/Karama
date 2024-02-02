@@ -122,7 +122,7 @@
 										<h4 class="mb-3 mt-3 font-weight-bold">تسجيل نقاط<span class="text-success tx-13 ml-2"></span></h4>
 									</div>
 									<div class="card-chart bg-purple-transparent brround mr-auto mt-1">
-											<i class="fa-solid fa-cart-shopping"></i>										
+											<i class="fa-solid fa-cart-shopping"></i>
 									</div>
 								</div>
 
@@ -198,7 +198,8 @@
 								<h4 class="card-title mb-1"></h4>
 								<i class="mdi mdi-dots-horizontal text-gray"></i>
 							</div>
-							<span class="tx-12 tx-muted mb-3 ">عمليات البيع</span>
+							<span class="tx-14 tx-muted  ">عمليات البيع</span>
+							<span class="tx-12 tx-muted  ">الخاصه بكل عميل</span>
 							<div class="table-responsive country-table">
 								<div>
 									<canvas id="myChart3"></canvas>
@@ -247,12 +248,12 @@
 						<div class="card card-table-two">
 
 
-							<span class="tx-12 tx-muted mb-3 ">نقاط الخاصه بالعملاء</span>
+							<span class="tx-14 tx-muted mb-3 ">نقاط الخاصه بالعملاء</span>
 							<div class="table-responsive country-table">
 								<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
 									<thead>
 										<tr>
-											<th class="wd-lg-25p">التاريخ</th>
+											<th class="wd-lg-25p">تاريخ اخر عمليه</th>
 											<th class="wd-lg-25p tx-right"> اسم المستخدم</th>
 											<th class="wd-lg-25p tx-right">قمه الشراء</th>
 											<th class="wd-lg-25p tx-right">النقاط</th>
@@ -263,9 +264,9 @@
 
 											<tr>
 												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
-													{{Carbon\Carbon::parse($userPoints->created_at)->translatedFormat('l')}}
-													<span class="text-muted tx-10">
-														{{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}}
+													{{$userPoints->created_at->diffForHumans()}}
+													<span class="text-muted tx-10 float-left">
+														({{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}})
 													</span>
 												</td>
 												<td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->pointToUser->name}}</td>
@@ -276,6 +277,130 @@
 
 									</tbody>
 								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+                    <div class="col-md-12 col-lg-4 col-xl-4">
+                        <div class="card card-table-two">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mb-1"></h4>
+                                <i class="mdi mdi-dots-horizontal text-gray"></i>
+                            </div>
+                            <span class="tx-12 tx-muted ">عمليات النقاط</span>
+							<span class="tx-12 tx-muted  ">عمليات تحويل النقاط </span>
+
+                            <div class="table-responsive country-table">
+                                <div>
+                                    <canvas id="myChart4"></canvas>
+                                </div>
+
+                                <script>
+
+                                    let pointsadd = {!! json_encode($pointsAddCount) !!};
+
+                                    let arradd = [pointsadd[1],pointsadd[2],pointsadd[3],pointsadd[4],pointsadd[5],pointsadd[6],pointsadd[7],pointsadd[8],pointsadd[9],pointsadd[10],pointsadd[11],pointsadd[12]];
+
+                                    for (let i = 0; i < arradd.length; i++) {
+                                        if (typeof arradd[i] == 'undefined') {
+                                            arradd[i] = 0;
+                                        }
+                                    }
+
+
+                                    let pointsSub = {!! json_encode($pointsSubCount) !!};
+
+                                    let arrSub = [pointsSub[1],pointsSub[2],pointsSub[3],pointsSub[4],pointsSub[5],pointsSub[6],pointsSub[7],pointsSub[8],pointsSub[9],pointsSub[10],pointsSub[11],pointsSub[12]];
+
+                                    for (let i = 0; i < arrSub.length; i++) {
+                                        if (typeof arrSub[i] == 'undefined') {
+                                            arrSub[i] = 0;
+                                        }
+                                    }
+
+
+                                    const ctx3 = document.getElementById('myChart4');
+                                    new Chart(ctx3, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+                                            datasets: [
+                                                {
+                                                    label: 'اضافه نقاط',
+                                                    data: [arradd[0],arradd[1],arradd[2],arradd[3],arradd[4],arradd[5],arradd[6],arradd[7],arradd[8],arradd[9],arradd[10],arradd[11],arradd[11]],
+                                                    borderWidth: 1
+                                                },{
+                                                    type: 'bar',
+                                                    label: 'استبدال نقاط',
+                                                    data: [arrSub[0],arrSub[1],arrSub[2],arrSub[3],arrSub[4],arrSub[5],arrSub[6],arrSub[7],arrSub[8],arrSub[9],arrSub[10],arrSub[11],arrSub[11]],
+                                                    borderWidth: 1
+
+                                                }
+
+                                            ]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-8 col-xl-8">
+						<div class="card card-table-two">
+
+
+							<span class="tx-12 tx-muted mb-3 ">سجل النقاط</span>
+							<div class="table-responsive country-table">
+								<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
+									<thead>
+										<tr>
+											<th class="wd-lg-25p">التاريخ</th>
+											{{-- <th class="wd-lg-25p tx-right"> اسم المستخدم</th> --}}
+											<th class="wd-lg-25p tx-right">قمه الشراء</th>
+											<th class="wd-lg-25p tx-right">النقاط</th>
+											<th class="wd-lg-25p tx-right">الحاله</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($userPointDetails as $userPoints)
+
+											<tr>
+												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
+													{{$userPoints->created_at->diffForHumans()}}
+													<span class="text-muted tx-10 float-left">
+														({{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}})
+													</span>
+												</td>
+												{{-- <td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->pointsToDetails->pointToUser->name}}</td> --}}
+												<td class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->price}} ₪</td>
+												@if ($userPoints->type == 'add')
+												<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+
+													<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">
+														اضافه +
+													</tr>
+												@else
+												<td class="tx-right tx-medium tx-danger clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+
+												<td class="tx-right tx-medium tx-danger clicker" onclick="window.location=''">
+													خصم -
+												</tr>
+												@endif
+											</td>
+										@endforeach
+
+									</tbody>
+								</table>
+
 							</div>
 						</div>
 					</div>

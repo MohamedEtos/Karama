@@ -451,9 +451,9 @@
 											<tr>
 
 													<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
-														{{Carbon\Carbon::parse($reviewproducts->created_at)->translatedFormat('l')}} 
-														<span class="text-muted tx-10">
-															{{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}}
+														{{	$reviewproducts->created_at->diffForHumans()}} 
+														<span class="text-muted tx-10 float-left">
+														({{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}})
 														</span>
 													</td>
 													<td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">{{$reviewproducts->userToProduct->name}}</td>
@@ -508,9 +508,9 @@
 											<tr>
 
 												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
-													{{Carbon\Carbon::parse($reviewproducts->created_at)->translatedFormat('l')}} 
-													<span class="text-muted tx-10">
-														{{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}}
+													{{$reviewproducts->created_at->diffForHumans()}} 
+													<span class="text-muted tx-10 float-left">
+														({{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}})
 													</span>
 												</td>
 													<td class="tx-right tx-medium tx-inverse">{{$reviewproducts->userToProduct->name}}</td>

@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('points', function (Blueprint $table) {
+        Schema::create('points_details', function (Blueprint $table) {
             $table->id();
-            // $table->integer('userId')->nullable();
-            $table->bigInteger('userId')->unsigned()->nullable();
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('pointsDetailsId')->unsigned()->nullable();
+            $table->foreign('pointsDetailsId')->references('id')->on('points')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('userId')->nullable();
             $table->integer('usercode')->nullable();
-            // $table->integer('merchantId')->nullable();
-            $table->bigInteger('merchantId')->unsigned()->nullable();
-            $table->foreign('merchantId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('merchantId')->nullable();
             $table->decimal('price',9,2);
             $table->decimal('points',9,2);
+            $table->enum('type',['add','Subtract']);
 
             $table->timestamps();
         });
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('points');
+        Schema::dropIfExists('points_details');
     }
 };

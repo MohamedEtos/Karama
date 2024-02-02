@@ -16,6 +16,8 @@ use App\Http\Controllers\UserDetalisController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ChatController;
+
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,6 +80,11 @@ Route::controller(ProductsController::class)->middleware('auth')->prefix('admin'
     Route::post('/unappendProduct', 'unappendProduct')->name('unappendProduct');
     Route::get('/acceptedProudcts', 'acceptedProudcts')->name('acceptedProudcts');
     Route::get('/rejectedProudcts', 'rejectedProudcts')->name('rejectedProudcts');
+});
+
+Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('chatview', 'chatview')->name('chatview');
+
 });
 
 
