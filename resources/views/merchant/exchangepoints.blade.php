@@ -36,7 +36,7 @@
 					<div class="col-md-6 col-xl-4 col-xs-12 col-sm-12 m-auto">
 						<div class="card">
 							<div class="card-body">
-								<form  action="{{url('merchant/addUserPoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
+								<form  action="{{url('merchant/exchangePoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
 									@csrf
 									<div class="loader_cu">
 										<div class="loading">
@@ -57,6 +57,9 @@
 												<i class="fa-solid fa-arrow-right-arrow-left fa-2xl float-left ml-4   text-danger"></i>
 											</span>
 										</div>
+									<div class="col-12">
+										لا يمكن استبدال اقل من <span class="text-success">100</span> نقطه
+									</div>
 									<div class="col-12 mt-3">
 									  <label for="validationCustom01" class="form-label">رقم العميل</label>
 									  <input type="text" minlength="8" name="usercode"    class="form-control usercode" placeholder=" رقم العميل المكتوب علي الكارت" id="usercode" required>
@@ -83,7 +86,7 @@
 									  </div>
 									<div class="col-5 mt-4">
 										{{-- <label for="validationCustom01" class="form-label"> نقاط سابقه</label> --}}
-										<input type="text" disabled  name="oldpoint" maxlength="100" class="form-control userName"  placeholder="" id="oldpoint" required>
+										<input type="text" disabled  name="oldpoint" maxlength="100" class="form-control userName text-success"  placeholder="" id="oldpoint" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -96,7 +99,7 @@
 										{{-- <label for="price" class="form-label">قيمه مشتريات العميل</label> --}}
 										<input name="points" class="form-control userName" 
 										step="any"
-										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"  id="points" placeholder=" نقاط"   required>
+										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pointsfun()"  id="points" placeholder=" نقاط"   required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -111,7 +114,7 @@
 									<div class="col-5 mt-4">
 										<input name="price" class="form-control userName" 
 										step="any"
-										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"  id="price"  placeholder="   ₪"  required>	
+										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pricefun()"  id="price"  placeholder="   ₪"  required>	
 									</div>
 
 
@@ -166,25 +169,16 @@
 
 <script>
 
-
-// function validateInput(inputElement) {
-//   if (inputElement.value.length === 5) {
-//     alert("Input value length is 5.");
-//   }
-// }
-
-
-
         $('#usercode').on('keyup paste', function() {
             
-        var Rname = document.getElementById('Rname');
-        var usercode = document.getElementById('usercode');
-        var value = document.getElementById('usercode').value;
-        var userId = document.getElementById('userId');
-        var finish = document.getElementById('finish');
-        var oldpoint = document.getElementById('oldpoint');
-		var price = document.getElementById('price').value;
-		var points = document.getElementById('points').value;
+        let Rname = document.getElementById('Rname');
+        let usercode = document.getElementById('usercode');
+        let value = document.getElementById('usercode').value;
+        let userId = document.getElementById('userId');
+        let finish = document.getElementById('finish');
+        let oldpoint = document.getElementById('oldpoint');
+		let price = document.getElementById('price')	;
+		let points = document.getElementById('points');
 
             if (value.length == 8 ) { //check if value == 8 
  
@@ -203,7 +197,8 @@
                                Rname.value = data.MSG.name ;
                                userId.value = data.MSG.id;
                                oldpoint.value = data.oldPoints.points;
-
+							   points.value = 0;
+							   price.value = 0;
 
 								//exchange point to mony
 								$('#price').on('keyup paste', function() {
@@ -215,7 +210,6 @@
 									
 								})
 
-	
 								
 
                                if(data.MSG == 'nodata'  ){
@@ -249,6 +243,7 @@
                                 $('.loading').css('display','none');
                                 $('.loader_cu').css('display','none');
                                 finish.classList.add('disabled');
+								finish.disabled = false;
 
 						    },
 
@@ -258,6 +253,7 @@
                 usercode.classList.add("border","border-warning");
                 document.getElementById('Rname').value = '' ;
                 finish.classList.add('disabled');
+				finish.disabled = false;
 
             }
 
@@ -271,27 +267,36 @@
 
 
 <script>
-		//exchange point to mony
-		$('#points').on('keypress', function() {
-			if( Math.points > Math.oldpoint){
-				finish.classList.remove('disabled');
-			}else{
-				finish.classList.add('disabled');
-			}
-		})
+	let oldpoint = document.getElementById('oldpoint')	;
+	let price = document.getElementById('price')	;
+	let points = document.getElementById('points');
+	let finish = document.getElementById('finish');
 
+	//exchange point to mony
+	finish.disabled = true;
 
-		//exchange point to mony
-		// $('#points').on('keyup paste', function() {
-		// 	if(points.value >= oldpoint.value){
-		// 	finish.classList.remove('disabled');
-		// 	}else{
-		// 		finish.classList.add('disabled');
-		// 	}
-			
-		// })
+	function pointsfun(){
+		if(  parseInt(Number(points.value))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(points.value)) >= 100 ){
+			finish.classList.remove('disabled');
+			finish.disabled = false;
+		}else{
+			finish.classList.add('disabled');
+			finish.disabled = true;
 
+		}
+	};
 
+	function pricefun(){
+
+		if(  parseInt(Number(price.value*10))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(price.value)) >= 10){
+			finish.classList.remove('disabled');
+			finish.disabled = false;
+		}else{
+			finish.classList.add('disabled');
+			finish.disabled = true;
+
+		}
+	};
 </script>
 
 

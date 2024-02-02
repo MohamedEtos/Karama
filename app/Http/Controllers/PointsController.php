@@ -76,6 +76,26 @@ class PointsController extends Controller
 
     }
 
+    public function exchangePoints(Request $request)
+    {
+        
+
+        $prevPoints = points::select('price','points')
+        ->where('userId',$request->userId)
+        ->where('merchantId',$request->merchantId)
+        ->first();
+
+        $points = points::where('userId',$request->userId)
+        ->where('merchantId',$request->merchantId)
+        ->update([
+            'points'=>  $prevPoints->points - $request->points ,
+            'price'=>  $prevPoints->price - $request->points*10 ,
+        ]);
+
+        return redirect()->back()->with('success','تم استبدال النقاط ');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
