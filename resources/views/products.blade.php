@@ -172,7 +172,7 @@
 				</div>
 			</a>
 			<a href="#" class="p-3 d-flex border-bottom">
-				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}">
+				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}">
 					<span class="avatar-status bg-teal"></span>
 				</div>
 				<div class="wd-90p">

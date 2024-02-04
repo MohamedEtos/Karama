@@ -58,7 +58,7 @@
 								<div class="pl-0">
 									<div class="main-profile-overview">
 										<div class="main-img-user profile-user">
-											<img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+											<img alt="" src=""><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
 										</div>
 										<div class="d-flex justify-content-between mg-b-20">
 											<div>

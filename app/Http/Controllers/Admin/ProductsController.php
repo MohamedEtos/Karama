@@ -64,7 +64,9 @@ class ProductsController extends Controller
             'productId'=>$request->productsId,
             'merchantId'=>$request->merchantId,
         ]);
-        return redirect('admin/allProducts');  
+        // return $request->all();
+        // return redirect('admin/allProducts');  
+        return redirect()->back();
     }
 
 

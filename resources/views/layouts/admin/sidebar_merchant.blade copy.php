@@ -214,7 +214,7 @@
 								</div>
 								<div class="list-group-item d-flex  align-items-center">
 									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/6.jpg')}}"><span class="avatar-status bg-success"></span></span>
+										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"><span class="avatar-status bg-success"></span></span>
 									</div>
 									<div>
 										<strong>Olivia</strong> New Schedule Realease......
@@ -225,7 +225,7 @@
 								</div>
 								<div class="list-group-item d-flex  align-items-center">
 									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}"><span class="avatar-status bg-success"></span></span>
+										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"><span class="avatar-status bg-success"></span></span>
 									</div>
 									<div>
 										<strong>Olivia</strong> Hey! there I' am available....
@@ -240,7 +240,7 @@
 							<div class="list-group list-group-flush ">
 								<div class="list-group-item d-flex  align-items-center">
 									<div class="ml-2">
-										<span class="avatar avatar-md brround cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}"><span class="avatar-status bg-success"></span></span>
+										<span class="avatar avatar-md brround cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"><span class="avatar-status bg-success"></span></span>
 									</div>
 									<div class="">
 										<div class="font-weight-semibold" data-toggle="modal" data-target="#chatmodel">Mozelle Belt</div>
@@ -361,7 +361,7 @@
 								</div>
 								<div class="list-group-item d-flex  align-items-center">
 									<div class="ml-2">
-										<span class="avatar avatar-md brround cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}"></span>
+										<span class="avatar avatar-md brround cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></span>
 									</div>
 									<div class="">
 										<div class="font-weight-semibold" data-toggle="modal" data-target="#chatmodel">Alina Bernier</div>

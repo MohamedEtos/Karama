@@ -102,7 +102,8 @@
                                             <div class="modal-body">
                                                 <h6></h6>
                                                 <textarea rows="5"  class="form-control" name="redjectmass"   type="text">أهلا بك يا {{$product->userToProduct->name}} &#13;&#10; ناسف علي رفض منتجك  بسبب &#13;&#10;   </textarea>
-                                                {{-- <input type="hidden"   name="merchantId" value="{{Crypt::encrypt()}}"> --}}
+                                                {{-- <input type="hidden"   name="merchantId" value="{{$product->id}}"> --}}
+                                                <input type="hidden"   name="productsId" value="{{$product->id}}">
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn ripple btn-danger" type="submit">ارسال</button>

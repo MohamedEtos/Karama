@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\category;
 use App\Models\merchant;
+use App\Models\pointRules;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\userDetalis;
@@ -73,8 +74,10 @@ class NewStoreController extends Controller
             'subtype' => 'merchant',
             'userDetalis' => $lastid ,
             'password' => Hash::make($request->password ),
+        ]);
 
-
+        pointRules::create([
+            'merchantId'=>$lastid,
         ]);
 
 
@@ -102,7 +105,7 @@ class NewStoreController extends Controller
 
     public function updateStore(request $request){
 
-        //uncrypt id and user id 
+        //uncrypt id and user id
         $userId =  Crypt::decrypt($request->userId);
         $userDetailsId =  Crypt::decrypt($request->userDetailsId);
 

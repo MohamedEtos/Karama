@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pointRules;
 use App\Models\points;
 use App\Models\pointsDetails;
 use App\Models\User;
@@ -52,6 +53,10 @@ class PointsController extends Controller
             $oldPoints = $prevPoints->points;
         }
 
+        $pointRules = pointRules::where('merchantId',$request->merchantId)->first();
+
+        return $pointRules->transferPoints;
+
          points::updateOrCreate([
             //Add unique field combo to match here
             //For example, perhaps you only want one entry per user:
@@ -63,7 +68,7 @@ class PointsController extends Controller
             'merchantId' => $request->merchantId,
             'usercode' => $request->usercode,
             'price' => $request->price + $oldPrice,
-            'points' => ($request->price / 10) + $oldPoints,
+            'points' => ($request->price / $pointRules->transferPoints) + $oldPoints,
         ]);
 
         $lastRowUpdated = points::orderBy('updated_at','DESC')->first()->id;
@@ -74,7 +79,7 @@ class PointsController extends Controller
             'merchantId' => $request->merchantId,
             'usercode' => $request->usercode,
             'price' => $request->price ,
-            'points' => ($request->price / 10),
+            'points' => ($request->price / $pointRules),
             'type'=>'add'
         ]);
 

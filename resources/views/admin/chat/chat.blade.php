@@ -42,7 +42,7 @@
 											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/14.jpg')}}"></div><small>Junrisk</small>
 										</div>
 										<div>
-											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div><small>George</small>
+											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></div><small>George</small>
 										</div>
 										<div>
 											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/15.jpg')}}"></div><small>Maryjane</small>
@@ -94,7 +94,7 @@
 							<a class="main-header-arrow" href="" id="ChatBodyHide"><i class="icon ion-md-arrow-back"></i></a>
 							<div class="main-content-body main-content-body-chat">
 								<div class="main-chat-header">
-									<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+									<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></div>
 									<div class="main-chat-msg-name">
 										<h6>Reynante Labares</h6><small>Last seen: 2 minutes ago</small>
 									</div>
@@ -108,7 +108,7 @@
 										<label class="main-chat-time"><span>3 days ago</span></label>
 
 										<div class="media">
-											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
+											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></div>
 											<div class="media-body">
 												<div class="main-msg-wrapper left">
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
@@ -119,7 +119,7 @@
 											</div>
 										</div>
 										<div class="media flex-row-reverse">
-											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></div>
 											<div class="media-body">
 												<div class="main-msg-wrapper right">
 													Nullam dictum felis eu pede mollis pretium
@@ -130,7 +130,7 @@
 											</div>
 
 										{{-- <div class="media flex-row-reverse">
-											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+											<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}"></div>
 											<div class="media-body">
 												<div class="main-msg-wrapper right">
 													Maecenas tempus, tellus eget condimentum rhoncus
