@@ -24,7 +24,10 @@ class PointsController extends Controller
     public function checkUserCode($usercode)
     {
 
-        $userdata = User::select('name', 'id')->where('usercode', $usercode)->first();
+        $userdata = User::select('name', 'id')
+        ->where('usercode', $usercode)
+        ->where('subtype', 'user')
+        ->first();
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
 
         if (!$oldPoints) {
@@ -53,9 +56,8 @@ class PointsController extends Controller
             $oldPoints = $prevPoints->points;
         }
 
-        $pointRules = pointRules::where('merchantId',$request->merchantId)->first();
+        $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
-        return $pointRules->transferPoints;
 
          points::updateOrCreate([
             //Add unique field combo to match here
@@ -68,7 +70,7 @@ class PointsController extends Controller
             'merchantId' => $request->merchantId,
             'usercode' => $request->usercode,
             'price' => $request->price + $oldPrice,
-            'points' => ($request->price / $pointRules->transferPoints) + $oldPoints,
+            'points' => ( $pointRules * $request->price / 100) + $oldPoints,
         ]);
 
         $lastRowUpdated = points::orderBy('updated_at','DESC')->first()->id;
@@ -79,7 +81,7 @@ class PointsController extends Controller
             'merchantId' => $request->merchantId,
             'usercode' => $request->usercode,
             'price' => $request->price ,
-            'points' => ($request->price / $pointRules),
+            'points' => ($pointRules * $request->price / 100),
             'type'=>'add'
         ]);
 
@@ -90,13 +92,21 @@ class PointsController extends Controller
 
     public function exchangePointsView()
     {
-        return view('merchant/exchangepoints');
+        $exchangeLimit = pointRules::where('merchantId',Auth::User()->id)->first();
+        return view('merchant/exchangepoints',compact(
+            'exchangeLimit'
+        ));
 
     }
 
     public function exchangePoints(Request $request)
     {
 
+        if($request->price != $request->points){
+            return redirect()->back();
+        }
+
+        $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
         $prevPoints = points::select('price', 'points')
             ->where('userId', $request->userId)
@@ -107,7 +117,7 @@ class PointsController extends Controller
             ->where('merchantId', $request->merchantId)
             ->update([
                 'points' => $prevPoints->points - $request->points,
-                'price' => $prevPoints->price - $request->points * 10,
+                'price' => $prevPoints->price - $request->points * $pointRules,
             ]);
 
         $lastRowUpdated = points::orderBy('updated_at','DESC')->first()->id;
@@ -118,7 +128,7 @@ class PointsController extends Controller
             'merchantId' => $request->merchantId,
             'usercode' => $request->usercode,
             'price' => $request->price ,
-            'points' => ($request->points),
+            'points' => $request->points,
             'type'=>'Subtract'
         ]);
 

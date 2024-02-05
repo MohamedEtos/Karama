@@ -566,6 +566,7 @@ $("#imageUpload1").change(function(e) {
 
 		beforeSend: function() {
 			$('.loader_cu').css('display','flex');
+			$('.loading').css('display','flex');
 		},
 		type: "post",
 		url: "{{route('CoverImage')}}",
@@ -585,6 +586,7 @@ $("#imageUpload1").change(function(e) {
 				};
 				not7();
 			$('.loader_cu').css('display','none');
+			$('.loading').css('display','none');
 
 			// image uploader animated
 				$('.cover-preview').removeClass('avatar-preview-animate-danger');
@@ -596,6 +598,7 @@ $("#imageUpload1").change(function(e) {
 
 		},complete: function(){
 			$('.loader_cu').css('display','none')
+			$('.loading').css('display','none')
 		},error: function(reject){
 			$('.cover-preview').addClass('avatar-preview-animate-danger');
 			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');

@@ -33,7 +33,7 @@
 				<!-- row -->
 				<div class="row">
 
-					<div class="col-md-6 col-xl-4 col-xs-12 col-sm-12 m-auto">
+					<div class="col-md-8 col-xl-6 col-xs-12 col-sm-12 m-auto">
 						<div class="card">
 							<div class="card-body">
 								<form  action="{{url('merchant/exchangePoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
@@ -58,8 +58,10 @@
 											</span>
 										</div>
 									<div class="col-12">
-										لا يمكن استبدال اقل من <span class="text-success">100</span> نقطه
+										لا يمكن استبدال اقل من <span class="text-success exchangeLimit" >{{$exchangeLimit->exchangeLimit}}</span> نقطه
 									</div>
+									<input type="hidden" id="transferPoints" value="{{$exchangeLimit->transferPoints}}">
+									<input type="hidden" id="exchangeLimit" value="{{$exchangeLimit->exchangeLimit}}">
 									<div class="col-12 mt-3">
 									  <label for="validationCustom01" class="form-label">رقم العميل</label>
 									  <input type="text" minlength="8" name="usercode"    class="form-control usercode" placeholder=" رقم العميل المكتوب علي الكارت" id="usercode" required>
@@ -170,7 +172,8 @@
 <script>
 
         $('#usercode').on('keyup paste', function() {
-            
+		let exchangeLimit = document.getElementById('exchangeLimit');
+		let transferPoints = document.getElementById('transferPoints');
         let Rname = document.getElementById('Rname');
         let usercode = document.getElementById('usercode');
         let value = document.getElementById('usercode').value;
@@ -202,11 +205,11 @@
 
 								//exchange point to mony
 								$('#price').on('keyup paste', function() {
-									points.value = (price.value * 10)
+									points.value = (price.value )
 								})
 								//exchange point to mony
 								$('#points').on('keyup paste', function() {
-									price.value = (points.value / 10)
+									price.value = ( points.value )
 									
 								})
 
@@ -272,11 +275,12 @@
 	let points = document.getElementById('points');
 	let finish = document.getElementById('finish');
 
+
 	//exchange point to mony
 	finish.disabled = true;
 
 	function pointsfun(){
-		if(  parseInt(Number(points.value))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(points.value)) >= 100 ){
+		if(  parseInt(Number(points.value))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(points.value)) >= parseInt(Number(exchangeLimit.value)) ){
 			finish.classList.remove('disabled');
 			finish.disabled = false;
 		}else{
@@ -285,10 +289,8 @@
 
 		}
 	};
-
 	function pricefun(){
-
-		if(  parseInt(Number(price.value*10))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(price.value)) >= 10){
+		if(  parseInt(Number(price.value))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(price.value)) >= parseInt(Number(exchangeLimit.value)) ){
 			finish.classList.remove('disabled');
 			finish.disabled = false;
 		}else{
@@ -297,6 +299,18 @@
 
 		}
 	};
+
+	// function pricefun(){
+
+	// 	if(  parseInt(Number(price.value*transferPoints.value))  <=   parseInt(Number(oldpoint.value)) && parseInt(Number(price.value)) >= parseInt(Number(transferPoints.value))){
+	// 		finish.classList.remove('disabled');
+	// 		finish.disabled = false;
+	// 	}else{
+	// 		finish.classList.add('disabled');
+	// 		finish.disabled = true;
+
+	// 	}
+	// };
 </script>
 
 

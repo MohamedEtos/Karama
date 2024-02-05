@@ -42,6 +42,16 @@
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('merchant/list-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><span class="badge badge-danger side-badge"></span></a>
 					</li>
+					<li class="side-item side-item-category">النقاط</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ url('merchant/UserPoints') }}"><span class="side-menu__label"> <i class="fa fa-cart-shopping  fa-xl"></i> &nbsp; عمليه شراء</span><span class="badge badge-danger side-badge"></span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ url('merchant/exchangePointsView') }}"><span class="side-menu__label"> <i class="fa fa-arrow-right-arrow-left  fa-xl"></i> &nbsp; استبدال نقاط </span><span class="badge badge-danger side-badge"></span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ url('merchant/exchangePointsView') }}"><span class="side-menu__label"> <i class="fa-solid fa-gears fa-xl	"></i> &nbsp;  اعدادات النقاط </span><span class="badge badge-danger side-badge"></span></a>
+					</li>
 					<li class="side-item side-item-category">الملف الشخصي</li>
 
 					<li class="slide">

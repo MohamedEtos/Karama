@@ -142,7 +142,9 @@
 						</a>
 
 						@endforeach
-					</div> --}}
+						--}}
+					</div> 
+
 				<!-- row closed -->
 
 			<!-- Container closed -->

@@ -86,7 +86,7 @@
 							<a href="{{url('merchant/exchangePointsView')}}">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">حاله الحساب</h4>
+									<h4 class="card-title mb-3"> 	عمليات استبدال</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
@@ -138,53 +138,55 @@
 				<!-- /row -->
 
 				{{-- row --}}
-				<div class="col-xl-12">
-					<div class="card">
-						<div class="card-header pb-0">
-							<div class="d-flex justify-content-between">
-								<h3 class="card-title mg-b-0">جدول المنتجات</h3>
-								<i class="mdi mdi-dots-horizontal text-gray"></i>
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header pb-0">
+								<div class="d-flex justify-content-between">
+									<h3 class="card-title mg-b-0">جدول المنتجات</h3>
+									<i class="mdi mdi-dots-horizontal text-gray"></i>
+								</div>
+								{{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
 							</div>
-							{{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table text-md-nowrap" id="example1">
-									<thead>
-										<tr class="text-center">
-											<th class="wd-15p border-bottom-0 ">اسم المنتج</th>
-											<th class="wd-15p border-bottom-0 ">القسم</th>
-											<th class="wd-20p border-bottom-0 ">السعر</th>
-											<th class="wd-15p border-bottom-0 ">الخصم</th>
-											<th class="wd-10p border-bottom-0 ">السعر بعد الخصم</th>
-											<th class="wd-25p border-bottom-0 ">الحاله</th>
-											<th class="wd-25p border-bottom-0 ">تحكم</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($products_data as $data )
-
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table text-md-nowrap" id="example1">
+										<thead>
 											<tr class="text-center">
-												<td>{{$data->name}}</td>
-												<td>{{$data->productionToCategoryRealtions->name}}</td>
-												<td>{{$data->price}}</td>
-												<td>{{$data->discount}}</td>
-												<td>{{$data->ThePriceAfterDiscount}}</td>
-													@if ($data->append == 1)
-													<td class="text-success">تمت الموافقه <i class="far fa-check-circle"></i></td>
-													@elseif ($data->append == 0)
-													<td class="text-info">قيد المراجعة <i class="far fa-file-alt"></i></td>
-													@elseif ($data->append == 2)
-													<td class="text-danger">تم الرفض <i class="fas fa-ban"></i></td>
-													@endif
-												<td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-primary">عرض</a></td>
+												<th class="wd-15p border-bottom-0 ">اسم المنتج</th>
+												<th class="wd-15p border-bottom-0 ">القسم</th>
+												<th class="wd-20p border-bottom-0 ">السعر</th>
+												<th class="wd-15p border-bottom-0 ">الخصم</th>
+												<th class="wd-10p border-bottom-0 ">السعر بعد الخصم</th>
+												<th class="wd-25p border-bottom-0 ">الحاله</th>
+												<th class="wd-25p border-bottom-0 ">تحكم</th>
 											</tr>
-
-
-										@endforeach
-
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											@foreach ($products_data as $data )
+	
+												<tr class="text-center">
+													<td>{{$data->name}}</td>
+													<td>{{$data->productionToCategoryRealtions->name}}</td>
+													<td>{{$data->price}}</td>
+													<td>{{$data->discount}}</td>
+													<td>{{$data->ThePriceAfterDiscount}}</td>
+														@if ($data->append == 1)
+														<td class="text-success">تمت الموافقه <i class="far fa-check-circle"></i></td>
+														@elseif ($data->append == 0)
+														<td class="text-info">قيد المراجعة <i class="far fa-file-alt"></i></td>
+														@elseif ($data->append == 2)
+														<td class="text-danger">تم الرفض <i class="fas fa-ban"></i></td>
+														@endif
+													<td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-primary">عرض</a></td>
+												</tr>
+	
+	
+											@endforeach
+	
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -247,7 +249,6 @@
 					<div class="col-md-12 col-lg-8 col-xl-8">
 						<div class="card card-table-two">
 
-
 							<span class="tx-14 tx-muted mb-3 ">نقاط الخاصه بالعملاء</span>
 							<div class="table-responsive country-table">
 								<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
@@ -263,15 +264,15 @@
 										@foreach ($userPoint as $userPoints)
 
 											<tr>
-												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
+												<td class="tx-right tx-medium tx-inverse "  >
 													{{$userPoints->created_at->diffForHumans()}}
 													<span class="text-muted tx-10 float-left">
 														({{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}})
 													</span>
 												</td>
-												<td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->pointToUser->name}}</td>
-												<td class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->price}} ₪</td>
-												<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+												<td role="button" class="tx-right tx-medium tx-inverse " >{{$userPoints->pointToUser->name}}</td>
+												<td class="tx-right tx-medium tx-inverse " >{{$userPoints->price}} ₪</td>
+												<td class="tx-right tx-medium tx-success " >{{$userPoints->points}}</td>
 											</tr>
 										@endforeach
 
@@ -374,24 +375,24 @@
 										@foreach ($userPointDetails as $userPoints)
 
 											<tr>
-												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location=''">
+												<td class="tx-right tx-medium tx-inverse "  >
 													{{$userPoints->created_at->diffForHumans()}}
 													<span class="text-muted tx-10 float-left">
 														({{Carbon\Carbon::parse($userPoints->created_at)->toDateString()}})
 													</span>
 												</td>
-												{{-- <td role="button" class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->pointsToDetails->pointToUser->name}}</td> --}}
-												<td class="tx-right tx-medium tx-inverse clicker" onclick="window.location=''">{{$userPoints->price}} ₪</td>
+												{{-- <td role="button" class="tx-right tx-medium tx-inverse " >{{$userPoints->pointsToDetails->pointToUser->name}}</td> --}}
+												<td class="tx-right tx-medium tx-inverse " >{{$userPoints->price}} ₪</td>
 												@if ($userPoints->type == 'add')
-												<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+												<td class="tx-right tx-medium tx-success " >{{$userPoints->points}}</td>
 
-													<td class="tx-right tx-medium tx-success clicker" onclick="window.location=''">
+													<td class="tx-right tx-medium tx-success " >
 														اضافه +
 													</tr>
 												@else
-												<td class="tx-right tx-medium tx-danger clicker" onclick="window.location=''">{{$userPoints->points}}</td>
+												<td class="tx-right tx-medium tx-danger " >{{$userPoints->points}}</td>
 
-												<td class="tx-right tx-medium tx-danger clicker" onclick="window.location=''">
+												<td class="tx-right tx-medium tx-danger " >
 													خصم -
 												</tr>
 												@endif

@@ -39,25 +39,36 @@
 			<div class="row" >
 				<div class=" col-12  text-md-right text-sm-center mt-2">
 					<h1  class="tx-md-62 pb-0 mb-0">{{$marketData->name}}</h1>
+
+
+
 					<a href="{{$marketData->userToDetalis->website}}" class="text-info">{{$marketData->userToDetalis->website}}</a	>
 				</div>
 			</div>
-				<div class="row">
-					<div class="col-4  text-center ">
+				<div class="row mt-3">
+					<div class="col-3  text-center ">
+						<h6 class="text-small text-muted mb-0">كل 100 ₪ تساوي </h6>
+						<h5 class="text-info">{{$pointlimit->transferPoints}} نقطه</h5>
+					</div>
+					<div class="col-3  text-center ">
+						<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
+						<h5 class="text-info">{{$usersPoints}}</h5>
+					</div>
+					<div class="col-3  text-center ">
 						<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
 						<h5 class="text-info">{{$visetorCounter}}</h5>
 					</div>
-					<div class="col-4  text-center ">
-						<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
-						<h5 class="text-info">583</h5>
-					</div>
-					<div class="col-4  text-center ">
+
+					<div class="col-3  text-center ">
 						<h6 class="text-small text-muted mb-0">المنتجات</h6>
 						<h5 class="text-info">{{$productsCounter}}</h5>
 					</div>
-				</div>
 
-			<div class="row pb-3">
+				</div>
+	
+
+			<div class="row pb-3">	
+
 				<div class="btn-icon-list col-12 d-flex justify-content-md-end  justify-content-sm-center mt-2">
 					<a href="tel:{{$marketData->userToDetalis->phone}}" class="   btn btn-icon btn-primary   "  id='swal-image'><i class="fa-solid fa-phone"></i></a>
 					<a href="https://wa.me/{{$marketData->userToDetalis->whatsapp}}"  target="_blank" class="   btn btn-icon btn-success  "><i class="fa-brands fa-whatsapp fa-xl"> </i></a>
@@ -66,7 +77,9 @@
 					<a href="{{$marketData->userToDetalis->website}}" target="_blank"  class="   btn btn-icon btn-info  ">  <i class="fa-solid fa-location-dot"></i></a>
 				</div>
 			</div>
-
+			<div class="text-center text-muted pb-2">
+				الحد الادني لستبدال النقاط <b>{{$pointlimit->exchangeLimit}}</b>
+			</div>
 		</div>
 	</div>
 
@@ -75,7 +88,7 @@
 
 					<div class="row row-sm">
                         @foreach ($products as $product)
-							<div class="col-md-4 col-lg-2 col-xl-2  col-sm-6">
+							<div class="col-md-6 col-lg-3 col-xl-3  col-sm-12">
 								<div class="card shadow-none">
 									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
 										<div class="row">

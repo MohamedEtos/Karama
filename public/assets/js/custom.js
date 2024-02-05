@@ -60,7 +60,7 @@ $(function() {
 			targetFormElementSelector: '.rating-value'
 		}
 	};
-	$(".rating-stars").ratingStars(ratingOptions);
+	// $(".rating-stars").ratingStars(ratingOptions);
 	
 	
 	// ______________Cover Image
@@ -251,7 +251,7 @@ $(function() {
 	});
 	
 	// Enable Eva-icons with SVG markup
-	eva.replace();
+	// eva.replace();
 	
 	
 	// ______________Horizontal-menu Active Class

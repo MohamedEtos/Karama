@@ -75,7 +75,7 @@
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$1,230.17</h4>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">₪{{$weekpoints}}</h4>
 											<p class="mb-0 tx-12 text-white op-7">النقاط العملاء  من شراء المنتجات</p>
 										</div>
 										<span class="float-right my-auto mr-auto">
@@ -92,12 +92,12 @@
 						<div class="card overflow-hidden sales-card bg-success-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">عمليات تحويل النقاط</h6>
+									<h6 class="mb-3 tx-12 text-white">عمليات استبدال نقاط هذه الاسبوع</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">₪{{$weekTransPoints}}</h4>
 											<p class="mb-0 tx-12 text-white op-7">تم تحويل نقاط بقيمه</p>
 										</div>
 										<span class="float-right my-auto mr-auto">
@@ -114,13 +114,13 @@
 						<div class="card overflow-hidden sales-card bg-warning-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">PRODUCT SOLD</h6>
+									<h6 class="mb-3 tx-12 text-white"> منتجات تحت المراجعه</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$4,820.50</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">₪{{$unappendproduct}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">  منتجات بقيمه ₪{{$unappendproduct}} لم يتم مراجعتها بعد </p>
 										</div>
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
@@ -159,7 +159,7 @@
 																<h5 class="mb-1 tx-15">{{$users->name}}</h5>
 																<p class="mb-0 tx-13 text-muted"> <span class="text-success ml-2">متصل</span> رقم الاشتراك: #{{$users->usercode}} </p>
 															</div>
-	
+
 															<span class="mr-auto wd-45p fs-16 mt-2">
 																{{-- <div id="spark1" class="wd-100p"></div> --}}
 															</span>
@@ -167,7 +167,7 @@
 													</div>
 												</div>
 											</div>
-										</a>	
+										</a>
 									@endforeach
 
 								</div>
@@ -201,7 +201,7 @@
 													</div>
 												</div>
 											</div>
-										</a>	
+										</a>
 									@endforeach
 
 								</div>
@@ -234,7 +234,7 @@
 													</div>
 												</div>
 											</div>
-										</a>	
+										</a>
 									@endforeach
 
 								</div>
@@ -242,54 +242,83 @@
 						</div>
 					</div>
 
-					
+
 
 				</div>
 				<!-- row close -->
 				{{-- row  --}}
 
 				<div class="row">
-					<div class="col-md-12 col-lg-4 col-xl-4">
-						<div class="card card-table-two">
-							<div class="d-flex justify-content-between">
-								<h4 class="card-title mb-1">الاقسام</h4>
-								<i class="mdi mdi-dots-horizontal text-gray"></i>
-							</div>
-							<span class="tx-12 tx-muted mb-3 ">المنتجات داخل الاقسام</span>
-							<div class="table-responsive country-table">
-								<div>
-									<canvas id="myChart5"></canvas>
-								  </div>
-								  
-								  
-								  <script>
-									var MCC = {!! json_encode($MCC) !!};
-									const ctx4 = document.getElementById('myChart5');
-									new Chart(ctx4, {
-									  type: 'bar',
-									  data: {
-										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
-										datasets: [{
-										  label: 'منتج',
-										  data: [MCC[1],MCC[2],MCC[3],MCC[4],MCC[5],MCC[6],MCC[7],MCC[8],MCC[9],MCC[10],MCC[11],MCC[12]],
-										  borderWidth: 1,
-										  borderColor: '#36A2EB',
-										  backgroundColor: '#36A2EB	',
+                    <div class="col-md-12 col-lg-4 col-xl-4">
+                        <div class="card card-table-two">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mb-1"></h4>
+                                <i class="mdi mdi-dots-horizontal text-gray"></i>
+                            </div>
+                            <span class="tx-12 tx-muted ">عمليات النقاط</span>
+                            <span class="tx-12 tx-muted  ">عمليات تحويل النقاط </span>
 
-										}]
-									  },
-									  options: {
-										scales: {
-										  y: {
-											beginAtZero: true
-										  }
-										}
-									  }
-									});
-								  </script>
-								</div>
-						</div>
-					</div>
+                            <div class="table-responsive country-table">
+                                <div>
+                                    <canvas id="myChart7"></canvas>
+                                </div>
+
+                                <script>
+
+                                    let pointsadd = {!! json_encode($pointsAddCount) !!};
+
+                                    let arradd = [pointsadd[1],pointsadd[2],pointsadd[3],pointsadd[4],pointsadd[5],pointsadd[6],pointsadd[7],pointsadd[8],pointsadd[9],pointsadd[10],pointsadd[11],pointsadd[12]];
+
+                                    for (let i = 0; i < arradd.length; i++) {
+                                        if (typeof arradd[i] == 'undefined') {
+                                            arradd[i] = 0;
+                                        }
+                                    }
+
+
+                                    let pointsSub = {!! json_encode($pointsSubCount) !!};
+
+                                    let arrSub = [pointsSub[1],pointsSub[2],pointsSub[3],pointsSub[4],pointsSub[5],pointsSub[6],pointsSub[7],pointsSub[8],pointsSub[9],pointsSub[10],pointsSub[11],pointsSub[12]];
+
+                                    for (let i = 0; i < arrSub.length; i++) {
+                                        if (typeof arrSub[i] == 'undefined') {
+                                            arrSub[i] = 0;
+                                        }
+                                    }
+
+
+                                    const ctx3 = document.getElementById('myChart7');
+                                    new Chart(ctx3, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+                                            datasets: [
+                                                {
+                                                    label: 'عمليه بيع',
+                                                    data: [arradd[0],arradd[1],arradd[2],arradd[3],arradd[4],arradd[5],arradd[6],arradd[7],arradd[8],arradd[9],arradd[10],arradd[11],arradd[11]],
+                                                    borderWidth: 1
+                                                },{
+                                                    type: 'bar',
+                                                    label: 'استبدال نقاط',
+                                                    data: [arrSub[0],arrSub[1],arrSub[2],arrSub[3],arrSub[4],arrSub[5],arrSub[6],arrSub[7],arrSub[8],arrSub[9],arrSub[10],arrSub[11],arrSub[11]],
+                                                    borderWidth: 1
+
+                                                }
+
+                                            ]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -306,8 +335,8 @@
 								<div>
 									<canvas id="myChart4"></canvas>
 								  </div>
-								  
-								  
+
+
 								  <script>
 									var MCC = {!! json_encode($MCC) !!};
 									const ctx = document.getElementById('myChart4');
@@ -335,7 +364,7 @@
 								  </script>
 								</div>
 							</div>
-					</div> 
+					</div>
 
 					<div class="col-md-12 col-lg-4 col-xl-4">
 						<div class="card card-table-two">
@@ -348,9 +377,9 @@
 								<div>
 									<canvas id="myChart3"></canvas>
 								  </div>
-								  
+
 								  <script>
-									
+
 									var usermcount = {!! json_encode($usermcount) !!};
 
 									let arr = [usermcount[1],usermcount[2],usermcount[3],usermcount[4],usermcount[5],usermcount[6],usermcount[7],usermcount[8],usermcount[9],usermcount[10],usermcount[11],usermcount[12]];
@@ -384,7 +413,7 @@
 										  borderWidth: 1
 										},
 										{
-											
+
 											label: 'متجر',
 											data: [marr[0],marr[1],marr[2],marr[3],marr[4],marr[5],marr[6],marr[7],marr[8],marr[9],marr[10],marr[11],marr[11]],
 											borderWidth: 1
@@ -403,7 +432,7 @@
 								  </script>
 								</div>
 						</div>
-					</div> 
+					</div>
 
 
 
@@ -451,7 +480,7 @@
 											<tr>
 
 													<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
-														{{	$reviewproducts->created_at->diffForHumans()}} 
+														{{	$reviewproducts->created_at->diffForHumans()}}
 														<span class="text-muted tx-10 float-left">
 														({{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}})
 														</span>
@@ -474,10 +503,10 @@
 						<div class="card card-dashboard-eight pb-2">
 							<h6 class="card-title">نقاط العملاء</h6><span class="d-block mg-b-10 text-muted tx-12">نقاط لم يتم تحويلها بعد</span>
 							<div class="list-group">
-								@foreach ( $lastOrders as $lastOrder )
+								@foreach ( $totalpoints as $totalpoint )
 								<div class="list-group-item border-top-0    ">
 									<i class="flag-icon flag-icon-us flag-icon-squared"></i>
-									<p>{{$lastOrder->name}}</p><span>{{$lastOrder->ThePriceAfterDiscount}}</span>
+									<p>{{$totalpoint->pointToUser->name}}</p><span>{{$totalpoint->points}}</span>
 								</div>
 							@endforeach
 
@@ -504,19 +533,19 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach ( $reviewproduct as $reviewproducts )
+										@foreach ( $exchangPointTable as $exchangPoints )
 											<tr>
 
-												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($reviewproducts->id))}}'">
-													{{$reviewproducts->created_at->diffForHumans()}} 
+												<td class="tx-right tx-medium tx-inverse clicker"  onclick="window.location='{{url('admin/reviewProudcts/'.Crypt::encrypt($exchangPoints->id))}}'">
+													{{$exchangPoints->created_at->diffForHumans()}}
 													<span class="text-muted tx-10 float-left">
-														({{Carbon\Carbon::parse($reviewproducts->created_at)->toDateString()}})
+														({{Carbon\Carbon::parse($exchangPoints->created_at)->toDateString()}})
 													</span>
 												</td>
-													<td class="tx-right tx-medium tx-inverse">{{$reviewproducts->userToProduct->name}}</td>
-													<td class="tx-right tx-medium tx-inverse">{{$reviewproducts->name}}</td>
-													<td class="tx-right tx-medium tx-primary">{{$reviewproducts->ThePriceAfterDiscount}} </td>
-													<td class="tx-right tx-medium tx-success">{{$reviewproducts->ThePriceAfterDiscount}} ₪</td>
+													<td class="tx-right tx-medium tx-inverse">test</td>
+													<td class="tx-right tx-medium tx-inverse">test</td>
+													<td class="tx-right tx-medium tx-success">{{$exchangPoints->points	}} </td>
+													<td class="tx-right tx-medium tx-danger">{{$exchangPoints->price}} ₪</td>
 												</tr>inverse
 										@endforeach
 									</tbody>
@@ -552,7 +581,7 @@
 <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
 <!--Internal  index js -->
 <script src="{{URL::asset('assets/js/index.js')}}"></script>
-<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	   
+<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
 
 
 @endsection
