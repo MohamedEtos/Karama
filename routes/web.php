@@ -17,6 +17,7 @@ use App\Http\Controllers\PointsController;
 use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\PointsAdminController;
 
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,9 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
 
 //Admin Routes
 Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
@@ -51,12 +55,11 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->
     Route::post('DeleteUser', 'DeleteUser')->name('DeleteUser');
     Route::get('editUser/{id}', 'editUser')->name('editUser');
     Route::post('updateUser', 'updateUser')->name('updateUser');
-    
+
     // Route::get('/delete/merchant/{id}', 'DeleteMerchant')->name('delete.merchant');
     // Route::post('/store/merchant', 'StoreMerchant')->name('store.merchant');
     // Route::post('/store/user', 'StoreUser')->name('store.user');
     Route::get('/changeStatus', 'changeStatus');
-
 
 });
 
@@ -84,7 +87,11 @@ Route::controller(ProductsController::class)->middleware('auth')->prefix('admin'
 
 Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('chatview', 'chatview')->name('chatview');
+});
 
+Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('pointsOperations', 'pointsOperations')->name('pointsOperations');
+    Route::get('addPoints', 'addPoints')->name('addPoints');
 });
 
 
@@ -102,15 +109,16 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('edit-product/{id}',[MerchantController::class,'show_update'])->name('edit-product');
     Route::get('preview-product/{id}',[MerchantController::class,'previewProduct'])->name('preview-product');
     Route::get('editProfile',[MerchantController::class,'previewProduct'])->name('preview-product');
-    // points 
+    // points
     Route::get('UserPoints',[PointsController::class,'UserPoints'])->name('UserPoints');
     Route::get('checkUserCode/{usercode}',[PointsController::class,'checkUserCode'])->name('checkUserCode');
     Route::post('addUserPoints',[PointsController::class,'addUserPoints'])->name('addUserPoints');
     Route::get('exchangePointsView',[PointsController::class,'exchangePointsView'])->name('exchangePointsView');
     Route::post('exchangePoints',[PointsController::class,'exchangePoints'])->name('exchangePoints');
+    Route::get('settingPoints',[PointsController::class,'settingPoints'])->name('settingPoints');
 
 
-    // profile 
+    // profile
     Route::get('editProfile', [ProfileMerchantController::class, 'edit'])->name('editProfile');
     Route::get('profileDetials', [UserDetalisController::class, 'profileDetials'])->name('profileDetials');
     Route::post('ProfileImage', [UserDetalisController::class, 'ProfileImage'])->name('ProfileImage');
@@ -118,7 +126,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::post('updateSochial', [UserDetalisController::class, 'updateSochial'])->name('updateSochial');
     Route::post('updateBasicProfile', [UserDetalisController::class, 'updateBasicProfile'])->name('updateBasicProfile');
 
-    
+
 });
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
 Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name('MarketProfile');
@@ -168,7 +176,7 @@ Route::get('addadmin',function(){
         'email'=>'admin@admin.com',
         'subtype'=>'admin',
         'password'=>Hash::make('11223344'),
-        'userDetalis'=>1,   
+        'userDetalis'=>1,
     ]);
 
     userDetalis::create([
@@ -188,7 +196,7 @@ Route::get('addadmin',function(){
         'email'=>'addidas@addidas.com',
         'subtype'=>'user',
         'password'=>Hash::make('1122334455'),
-        'userDetalis'=>2,   
+        'userDetalis'=>2,
     ]);
 
 

@@ -27,9 +27,9 @@ return new class extends Migration
             $table->decimal('ThePriceAfterDiscount',9,2);
             $table->integer('append')->default('0');
             $table->bigInteger('rejectId')->unsigned()->nullable();
-            $table->foreign('rejectId')->references('id')->on('reject_productmesses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rejectId')->references('id')->on('reject_productmesses')->onUpdate('cascade');
             $table->bigInteger('imgId')->unsigned();
-            $table->foreign('imgId')->references('id')->on('product_imgs')->onDelete('cascade');  
+            $table->foreign('imgId')->references('id')->on('product_imgs')->onDelete('cascade');
             // $table->integer('productViews')->default('1');
             $table->timestamps();
         });

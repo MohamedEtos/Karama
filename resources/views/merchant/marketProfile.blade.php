@@ -65,9 +65,9 @@
 					</div>
 
 				</div>
-	
 
-			<div class="row pb-3">	
+
+			<div class="row pb-3">
 
 				<div class="btn-icon-list col-12 d-flex justify-content-md-end  justify-content-sm-center mt-2">
 					<a href="tel:{{$marketData->userToDetalis->phone}}" class="   btn btn-icon btn-primary   "  id='swal-image'><i class="fa-solid fa-phone"></i></a>
@@ -103,7 +103,7 @@
 												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h6>
 												<span class=" tx-12 ml-auto">
 													 خصم % <b>{{$product->discount}}</b>
-													</span>											
+													</span>
 													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
 											</div>
 										</div>

@@ -14,6 +14,6 @@ class pointsDetails extends Model
 
     public function pointsToDetails(): BelongsTo
     {
-        return $this->belongsTo(pointsDetails::class,'pointsDetailsId');
+        return $this->belongsTo(points::class,'pointsDetailsId');
     }
 }

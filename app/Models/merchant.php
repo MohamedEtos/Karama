@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 class merchant extends Model
 {
     use HasFactory;
@@ -41,15 +42,11 @@ class merchant extends Model
     {
         return $this->belongsTo(userDetalis::class);
     }
-    // public function rejectMess(): BelongsTo
-    // {
-    //     return $this->belongsTo(rejectProductmess::class,'rejectId');
-    // }
 
-    public function rejectMess()
+    public function rejectMess(): BelongsTo
     {
-        return $this->hasOne(rejectProductmess::class,'productId');
+        return $this->belongsTo(rejectProductmess::class,'rejectId');
     }
-    
+
 }
 

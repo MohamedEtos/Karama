@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\points;
 use App\Models\pointsDetails;
 use App\Models\productImg;
+use App\Models\rejectProductmess;
 use App\Models\User;
 use App\Models\userDetalis;
 use Illuminate\Http\Request;
@@ -440,6 +441,7 @@ class MerchantController extends Controller
             ]);
         }
 
+        $rejectId = merchant::where('id',$id)->first()->rejectId;
 
         merchant::where('id',$id)->update([
             'name'=>$request->name,
@@ -449,7 +451,12 @@ class MerchantController extends Controller
             'price'=>$request->price,
             'discount'=>$request->discount,
             'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
+            'append'=>'0',
+            'rejectId'=>null
         ]);
+
+        rejectProductmess::where('id',$rejectId)->delete();
+
 
         return redirect()->back()->with('success','تم تعديل المنتج سيتم المراجعه من قبل الادارة ');
 

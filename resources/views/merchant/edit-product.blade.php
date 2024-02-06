@@ -6,10 +6,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header alert alert-light rounded justify-content-between mb-2 mt-2">
+				<div class="breadcrumb-header text-light rounded justify-content-between mb-2 mt-2">
 					<div class="my-auto  ">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto ">تعديل المنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ المنتج رقم {{$product->id}}</span>
+							<h4 class="content-title mb-0 my-auto text">تعديل المنتجات</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ المنتج رقم {{$product->id}}</span>
 						</div>
 					</div>
 
@@ -21,7 +21,6 @@
 @section('content')
 
 				<!-- row -->
-				<div class="row">
 
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
@@ -85,11 +84,11 @@
 												</div>
 											</div>
 										</div>
-									
+
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الخصم %: </label>
-												<input class="form-control" name="discount" minlength="1" 
+												<input class="form-control" name="discount" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 												type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
 											  <div class="valid-feedback">
@@ -102,7 +101,7 @@
 										</div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
-												<label class="form-label">السعر بعد الخصم ₪: </label>
+												<label class="form-label"> بعد الخصم ₪: </label>
 												<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
@@ -117,8 +116,8 @@
 									<!-- row -->
 									<div class="row mt-4">
 
-										<div class="col-md-4">
-											<div class="avatar-upload">
+										<div class="col-md-6 col-xl-4 col-sm-12 col-xs-12">
+											<div class="mx-auto  avatar-upload">
 												<div class="avatar-edit">
 													<input type='file' id="imageUpload1" name="mainImage" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
@@ -129,21 +128,21 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="avatar-upload">
+										<div class="col-md-6 col-xl-4 col-sm-12 col-xs-12">
+											<div class=" mx-auto avatar-upload">
 												<div class="avatar-edit">
 													<input type='file' name="img2" id="imageUpload2" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload2"></label>
 												</div>
 												<div class="avatar-preview">
 													<div id="imagePreview2" style="background-image: url({{asset($product->productionToImgRealtions->img2)}});">
-														
+
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="avatar-upload">
+										<div class="col-md-6 col-xl-4 col-sm-12 col-xs-12">
+											<div class=" mx-auto avatar-upload">
 												<div class="avatar-edit">
 													<input type='file' name="img3" id="imageUpload3" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload3"></label>
@@ -189,7 +188,6 @@
 								</form>
 							</div>
 						</div>
-					</div>
 
 				</div>
 				<!-- row closed -->
@@ -204,7 +202,7 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <script>
-	// calculate discount 
+	// calculate discount
 function result (){
 	var price =     document.getElementById("price").value;
 	var discount = document.getElementById("discount").value;

@@ -25,11 +25,41 @@
 @endsection
 @section('content')
 
+                @if ($previewProduct->append == 2)
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title ">
+                                {{-- {{$previewProduct->rejectId}} --}}
+								<div class="text-center tx-28">
+									<i class="fa-solid fa-triangle-exclamation  mt-2 fa-xl  text-danger"></i>
+								</div>
+								<div class="title text-center text-danger">
+									<span>للاسف تم رفض المنتج ! </span>
+								</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="h5">
+                                    {{$previewProduct->rejectMess->rejectMessage}}
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div>
+                                    <a class=" btn btn-danger " href="{{url('merchant/edit-product/'.$previewProduct ->id)}}">تعديل المنتج</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @endif
+
+
 				<!-- row -->
 				<div class="row row-sm ">
-
-					
-
 					<div class="col-xl-12">
 						<div class="card ">
 							<div class="card-body h-100 ">
@@ -109,7 +139,7 @@
 				<!-- /row -->
 
 				<!-- row -->
-{{-- 
+{{--
 				<div class="row">
                     @foreach ($related_products as $item)
 						<a href="{{url('product-details/'.$itempreviewProduct->id)}}">
@@ -143,7 +173,7 @@
 
 						@endforeach
 						--}}
-					</div> 
+					</div>
 
 				<!-- row closed -->
 

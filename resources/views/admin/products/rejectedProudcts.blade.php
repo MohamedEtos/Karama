@@ -33,8 +33,10 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">المنتجات التي تم القبول بها</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
+									<h3 class="card-title mg-b-0 ">منتجات مرفوضه </h3>
+                                    <div class="text-center tx-32">
+                                        <i class=" fa fa-circle-xmark text-danger"></i>
+                                    </div>
 								</div>
 								{{-- <p class="tx-12 tx-gray-500 mb-2">Example of Valex Hoverable Rows Table.. <a href="">Learn more</a></p> --}}
 							</div>
@@ -47,27 +49,36 @@
 												<th>التاجر</th>
 												<th>اسم المنتج  </th>
 												<th>القسم</th>
-												<th>سبب الرفض</th>
-												<th>الحاله</th>
+												<th>رساله الرفض</th>
+												<th>قبول !</th>
 											</tr>
 										</thead>
 										<tbody>
                                             @foreach ($products as $product )
-                                                
-                                            
+
+
 											<tr>
 												<th scope="row">{{$product->id}}</th>
 												<td>{{$product->userToProduct->name}}</td>
 												<td>{{$product->name}}</td>
 												<td>{{$product->productionToCategoryRealtions->name}}</td>
 												<td class="text-danger">{{$product->rejectMess->rejectMessage}}</td>
-												<td class="text-success"><i class="fa-regular fa-circle-xmark text-danger"></i></td>
+												<td class="text-success">
+                                                    @if ($product->append == 2)
+                                                    <form action="{{route('appendProduct')}}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-success btn-block ">موافقه</button>
+                                                        <input type="hidden" name="status" value="true">
+                                                        <input type="hidden" name="id" value="{{$product->id}}">
+                                                    </form>
+                                                    @endif
+                                                </td>
 											</tr>
                                             @endforeach
 										</tbody>
 
 									</table>
-						                
+
 
 								</div>
 							</div>

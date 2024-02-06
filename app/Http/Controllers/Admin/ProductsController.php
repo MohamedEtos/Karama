@@ -25,8 +25,8 @@ class ProductsController extends Controller
         $product = merchant::where('id',$id)->first();
         $category  = category::get();
         return view('admin.products.editProudcts',compact(
-            'product',  
-            'product',  
+            'product',
+            'product',
         ));
     }
 
@@ -38,13 +38,13 @@ class ProductsController extends Controller
         $category  = category::get();
         // $rejectmess  = rejectProductmess::where('productId','=',$id)->orderBy('productId','DESC')->first();
         return view('admin.products.reviewProudcts',compact(
-            'product',  
-            'category',  
-            // 'rejectmess',  
+            'product',
+            'category',
+            // 'rejectmess',
         ));
     }
 
-    
+
     public function appendProduct(Request $request)
     {
 
@@ -56,16 +56,16 @@ class ProductsController extends Controller
 
     public function unappendProduct(Request $request)
     {
-        merchant::where('id',$request->productsId)->update([
-            'append'=>'2'
-        ]);
         rejectProductmess::create([
             'rejectMessage'=>$request->redjectmass,
-            'productId'=>$request->productsId,
-            'merchantId'=>$request->merchantId,
         ]);
-        // return $request->all();
-        // return redirect('admin/allProducts');  
+        $lastId = rejectProductmess::latest()->first()->id;
+
+        // $lastId = rejectProductmess::orderBy('id','DESC')->first()->rejectId;
+        merchant::where('id',$request->productsId)->update([
+            'rejectId' =>  $lastId,
+            'append'=>'2',
+        ]);
         return redirect()->back();
     }
 
@@ -75,8 +75,8 @@ class ProductsController extends Controller
         $products = merchant::where('append','0')->paginate(5);
         $category  = category::get();
         return view('admin.products.reviewAllProudcts',compact(
-            'products',  
-        ));    
+            'products',
+        ));
     }
 
 
@@ -84,8 +84,8 @@ class ProductsController extends Controller
     {
         $products = merchant::where('append','1')->paginate(10);
         return view('admin.products.acceptedProudcts',compact(
-            'products',  
-        ));    
+            'products',
+        ));
     }
 
 
@@ -94,8 +94,8 @@ class ProductsController extends Controller
         // $products = merchant::where('append','2')->paginate(10);
         $products = merchant::where('append','2')->paginate(10);
         return view('admin.products.rejectedProudcts',compact(
-            'products',  
-        ));   
+            'products',
+        ));
     }
 
 

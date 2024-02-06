@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('reject_productmesses', function (Blueprint $table) {
             $table->id();
             $table->text('rejectMessage')->nullable();
-            $table->bigInteger('productId')->unsigned()->nullable();
-            $table->integer('merchantId')->nullable();
             $table->timestamps();
         });
     }

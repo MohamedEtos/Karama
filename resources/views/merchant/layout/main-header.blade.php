@@ -10,7 +10,7 @@
 						</div>
 						<div class="app-sidebar__toggle" data-toggle="sidebar">
 							<a class="open-toggle" href="#"><a class="open-toggle" href="#"><i class="tx-20 mt-2 text-secondary fa-solid fa-bars fa-2xs" ></i>
-						</a> 
+						</a>
 							<a class="close-toggle" href="#"><i class="header-icons fe fe-x "></i></a>
 						</div>
 						{{-- <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
@@ -21,7 +21,7 @@
 						<ul class="nav">
 							<li class="">
 								<div class="dropdown  nav-itemd-none d-md-flex">
-	
+
 
 								</div>
 							</li>
@@ -210,7 +210,7 @@
 								</div>
 							</div>
 							<div class="nav-item full-screen fullscreen-button">
-								<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs 
+								<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs
 									" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 							</div>
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
@@ -225,7 +225,7 @@
 										</div>
 									</div>
 									<a class="dropdown-item" href="{{route('profileDetials')}}"><i class="fa-solid fa-user"></i>الملف الشخصي</a>
-									<a class="dropdown-item" href="{{route('merchant')}}"><i class="bx bxs-inbox"></i>الرئيسية</a>
+									<a class="dropdown-item" href="{{route('merchant')}}"><i class="fa fa-house"></i>الرئيسية</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>الرسائل</a>
 									<form method="POST" action="{{ route('logout') }}">
 										@csrf

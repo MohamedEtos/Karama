@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\pointNofication;
 use App\Models\pointRules;
 use App\Models\points;
 use App\Models\pointsDetails;
@@ -18,7 +19,7 @@ class PointsController extends Controller
      */
     public function UserPoints()
     {
-        return view('merchant.addUserPoints');
+        return view('merchant.points.addUserPoints');
     }
 
     public function checkUserCode($usercode)
@@ -85,6 +86,18 @@ class PointsController extends Controller
             'type'=>'add'
         ]);
 
+        $data = [
+            'userId' => $request->userId,
+            'merchantId' => $request->merchantId,
+            'usercode' => $request->usercode,
+            'price' => $request->price ,
+            'points' => ($pointRules * $request->price / 100),
+            'type'=>'add'
+        ];
+
+
+        event(new pointNofication($data));
+
 
         return redirect()->back()->with('success', 'تم اضافه النقاط ');
 
@@ -93,7 +106,7 @@ class PointsController extends Controller
     public function exchangePointsView()
     {
         $exchangeLimit = pointRules::where('merchantId',Auth::User()->id)->first();
-        return view('merchant/exchangepoints',compact(
+        return view('merchant.points.exchangepoints ',compact(
             'exchangeLimit'
         ));
 
@@ -121,7 +134,7 @@ class PointsController extends Controller
             ]);
 
         $lastRowUpdated = points::orderBy('updated_at','DESC')->first()->id;
-        
+
         pointsDetails::create([
             'pointsDetailsId' => $lastRowUpdated,
             'userId' => $request->userId,
@@ -135,5 +148,16 @@ class PointsController extends Controller
         return redirect()->back()->with('success', 'تم استبدال النقاط ');
 
     }
+
+
+    public function settingPoints()
+    {
+        return view('merchant.points.settingPoints');
+    }
+
+
+
+
+
 
 }

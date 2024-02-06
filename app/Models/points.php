@@ -10,7 +10,6 @@ class points extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'pointsDetailsId',
         'userId',
         'usercode',
         'merchantId',

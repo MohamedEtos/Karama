@@ -155,16 +155,16 @@
 											<tr class="text-center">
 												<th class="wd-15p border-bottom-0 ">اسم المنتج</th>
 												<th class="wd-15p border-bottom-0 ">القسم</th>
-												<th class="wd-20p border-bottom-0 ">السعر</th>
+												<th class="wd-15p border-bottom-0 ">السعر</th>
 												<th class="wd-15p border-bottom-0 ">الخصم</th>
-												<th class="wd-10p border-bottom-0 ">السعر بعد الخصم</th>
-												<th class="wd-25p border-bottom-0 ">الحاله</th>
-												<th class="wd-25p border-bottom-0 ">تحكم</th>
+												<th class="wd-15p border-bottom-0 ">السعر بعد الخصم</th>
+												<th class="wd-15p border-bottom-0 ">الحاله</th>
+												<th class="wd-15p border-bottom-0 ">تحكم</th>
 											</tr>
 										</thead>
 										<tbody>
 											@foreach ($products_data as $data )
-	
+
 												<tr class="text-center">
 													<td>{{$data->name}}</td>
 													<td>{{$data->productionToCategoryRealtions->name}}</td>
@@ -178,12 +178,20 @@
 														@elseif ($data->append == 2)
 														<td class="text-danger">تم الرفض <i class="fas fa-ban"></i></td>
 														@endif
-													<td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-primary">عرض</a></td>
+
+                                                        @if ($data->append == 2)
+                                                            <td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-danger">عرض</a>
+                                                        @elseif ($data->append == 1)
+                                                            <td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-success">عرض</a>
+                                                        @else
+                                                            <td><a href="{{url('merchant/preview-product/'.$data->id)}}" class="btn btn-sm btn-outline-info">عرض</a>
+                                                        @endif
+                                                </td>
 												</tr>
-	
-	
+
+
 											@endforeach
-	
+
 										</tbody>
 									</table>
 								</div>

@@ -82,7 +82,7 @@
 										<label for="price" class="form-label">قيمه مشتريات العميل</label>
 										<input name="price" class="form-control"
 										step="any"
-										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
+										minlength="1" maxlength="5" max="9999" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -93,7 +93,7 @@
 
                                       <input type="hidden" id="userId" name="userId">
                                       <input type="hidden" id="merchantId" name="merchantId" value="{{Auth::User()->id}}">
-									
+
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger disabled"   id="finish" type="submit">تاكيد</button>
 									</div>
@@ -127,6 +127,10 @@
 @section('js')
 
 
+
+
+
+
 <!--Internal  Select2 js -->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <!-- Internal Jquery.steps js -->
@@ -151,7 +155,7 @@
 
 
         $('#usercode').on('keyup paste', function() {
-            
+
         var Rname = document.getElementById('Rname');
         var usercode = document.getElementById('usercode');
         var value = document.getElementById('usercode').value;
@@ -160,9 +164,9 @@
         var oldpoint = document.getElementById('oldpoint');
 
 
-            if (value.length == 8 ) { //check if value == 8 
- 
-					   $.ajax({  
+            if (value.length == 8 ) { //check if value == 8
+
+					   $.ajax({
 						   type: "GET",
 						   url: 'checkUserCode/'+value,
 						   dataType: 'json',
@@ -178,7 +182,7 @@
                                Rname.value = data.MSG.name ;
                                userId.value = data.MSG.id;
                                oldpoint.value = data.oldPoints.points;
-                               
+
 
                                if(data.MSG == 'nodata'  ){
                                     Rname.value = 'لا يوجد بيانات  ' ;
@@ -199,7 +203,7 @@
                                 $('.loader_cu').css('display','none');
 						    },complete: function(){
                                 $('.loading').css('display','none');
-                                $('.loader_cu').css('display','none');   
+                                $('.loader_cu').css('display','none');
 
                             },error: function(reject){
                                 Rname.value = 'لا يوجد بيانات  ' ;

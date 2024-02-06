@@ -1,5 +1,6 @@
+
 <!-- Back-to-top -->
-<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+<a href="#top" id="back-to-top"><i class="fa-solid fa-angle-up pt-3 fa-xl"></i></a>
 <!-- JQuery min js -->
 {{-- <script src="{{URL::asset('assets/plugins/jquery/jquery.min.js')}}"></script> --}}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -54,21 +55,24 @@
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> --}}
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
 
-<script>
-    Pusher.logToConsole = true;
 
-    var pusher = new Pusher('bd1e4bf2bb0bebd08131', {
-    cluster: 'mt1'
-    });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
-</script>
+
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <script>
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('bd1e4bf2bb0bebd08131', {
+        cluster: 'mt1'
+        });
+
+
+    </script>
+
+<script src="{{URL::asset('assets/js/pointsnotify.js')}}"></script>
 
 
 

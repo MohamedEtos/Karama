@@ -71,7 +71,7 @@
                             <div class="col-12 h5 ">السعر :  <span class="bold"> {{$product->price}}</span></div>
                             <div class="col-12 h5 ">الخصم :  <span class="bold"> {{$product->discount}}</span></div>
                             <div class="col-12 h5 ">السعر بعد الخصم :  <span class="bold"> {{$product->ThePriceAfterDiscount}}</span></div>
-                            <div class="col-12 h5 ">القبول ! :  <span class="bold text-success  "> 
+                            <div class="col-12 h5 ">القبول ! :  <span class="bold text-success  ">
                                 @if ($product->append == 1)
                                 تمت الموافقه
                                 @endif
@@ -92,9 +92,9 @@
                                 {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
                                 رفض
                             </a>
-                            
 
-                        
+
+
                             <!-- delete  Modal effects-->
                             <form action="{{Route('unappendProduct')}}" method="post">
                                 @csrf
@@ -106,7 +106,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <h6></h6>
-                                                <textarea rows="5"  class="form-control" name="redjectmass"   type="text">أهلا بك يا {{$product->userToProduct->name}} &#13;&#10; ناسف علي رفض منتجك  بسبب &#13;&#10;   </textarea>
+                                                <textarea rows="5"  class="form-control" name="redjectmass"   type="text">أهلا بك يا {{$product->userToProduct->name}}  &#13;&#10; ناسف علي رفض منتجك  بسبب :&#13;&#10;   </textarea>
                                                 {{-- <input type="hidden"   name="merchantId" value="{{Crypt::encrypt()}}"> --}}
                                                 <input type="hidden"   name="productsId" value="{{$product->id}}">
 
@@ -121,7 +121,7 @@
                             </form>
                             <!-- End Modal effects-->
 
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="col-lg-6 col-md-6 d-none d-md-block ">
@@ -154,7 +154,7 @@
 							</div>
 						</div>
 					</div>
-                    
+
 
 
 

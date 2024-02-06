@@ -50,7 +50,7 @@
 						<a class="side-menu__item" href="{{ url('merchant/exchangePointsView') }}"><span class="side-menu__label"> <i class="fa fa-arrow-right-arrow-left  fa-xl"></i> &nbsp; استبدال نقاط </span><span class="badge badge-danger side-badge"></span></a>
 					</li>
 					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/exchangePointsView') }}"><span class="side-menu__label"> <i class="fa-solid fa-gears fa-xl	"></i> &nbsp;  اعدادات النقاط </span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ url('merchant/settingPoints') }}"><span class="side-menu__label"> <i class="fa-solid fa-gears fa-xl	"></i> &nbsp;  اعدادات النقاط </span><span class="badge badge-danger side-badge"></span></a>
 					</li>
 					<li class="side-item side-item-category">الملف الشخصي</li>
 

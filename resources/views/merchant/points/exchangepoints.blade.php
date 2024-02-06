@@ -9,7 +9,6 @@
 <!--Internal Sumoselect css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css')}}">
 <!---Internal Fileupload css-->
-<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{URL::asset('assets/css-rtl/exchangepoints.css')}}" rel="stylesheet" type="text/css"/>
 
 <style>
@@ -33,9 +32,9 @@
 				<!-- row -->
 				<div class="row">
 
-					<div class="col-md-8 col-xl-6 col-xs-12 col-sm-12 m-auto">
-						<div class="card">
-							<div class="card-body">
+					<div class="col-md-8 col-xl-6 col-xs-12 col-sm-12 m-auto" >
+						<div class="card " >
+							<div class="card-body " id="card">
 								<form  action="{{url('merchant/exchangePoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
 									@csrf
 									<div class="loader_cu">
@@ -99,7 +98,7 @@
 
 									<div class="col-6 mt-4">
 										{{-- <label for="price" class="form-label">قيمه مشتريات العميل</label> --}}
-										<input name="points" class="form-control userName" 
+										<input name="points" class="form-control userName"
 										step="any"
 										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pointsfun()"  id="points" placeholder=" نقاط"   required>
 										<div class="valid-feedback">
@@ -114,15 +113,15 @@
 										<i class="fa-solid fa-arrow-right-arrow-left text-danger"></i>
 									</div>
 									<div class="col-5 mt-4">
-										<input name="price" class="form-control userName" 
+										<input name="price" class="form-control userName"
 										step="any"
-										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pricefun()"  id="price"  placeholder="   ₪"  required>	
+										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pricefun()"  id="price"  placeholder="   ₪"  required>
 									</div>
 
 
                                       <input type="hidden" id="userId" name="userId">
                                       <input type="hidden" id="merchantId" name="merchantId" value="{{Auth::User()->id}}">
-									
+
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger disabled"   id="finish" type="submit">تاكيد</button>
 									</div>
@@ -160,8 +159,8 @@
 <!--Internal  Select2 js -->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <!-- Internal Jquery.steps js -->
-<script src="{{URL::asset('assets/plugins/jquery-steps/jquery.steps.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/jquery-steps/jquery.steps.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script> --}}
 <!--Internal  Form-wizard js -->
 
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
@@ -183,9 +182,9 @@
 		let price = document.getElementById('price')	;
 		let points = document.getElementById('points');
 
-            if (value.length == 8 ) { //check if value == 8 
- 
-					   $.ajax({  
+            if (value.length == 8 ) { //check if value == 8
+
+					   $.ajax({
 						   type: "GET",
 						   url: 'checkUserCode/'+value,
 						   dataType: 'json',
@@ -210,14 +209,13 @@
 								//exchange point to mony
 								$('#points').on('keyup paste', function() {
 									price.value = ( points.value )
-									
+
 								})
 
-								
+
 
                                if(data.MSG == 'nodata'  ){
                                     Rname.value = 'لا يوجد بيانات  ' ;
-
                                     usercode.classList.remove("border","border-warning");
                                     usercode.classList.remove("border", "border-success");
                                     usercode.classList.add("border","border-danger");
@@ -234,7 +232,7 @@
                                 $('.loader_cu').css('display','none');
 						    },complete: function(){
                                 $('.loading').css('display','none');
-                                $('.loader_cu').css('display','none');   
+                                $('.loader_cu').css('display','none');
 
                             },error: function(reject){
                                 Rname.value = 'لا يوجد بيانات  ' ;

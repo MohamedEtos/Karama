@@ -37,7 +37,7 @@
         <a class="dropdownWithOutArrow nav-link  p-lg-2 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			₪
 						{{-- <i class="  fa-solid fa-fire"></i>	 --}}
-			
+
 			<span class="d-none d-sm-none d-md-none d-lg-inline">السعر</span>
 			{{-- <span class=" pulse-danger"></span> --}}
         </a>
@@ -53,16 +53,16 @@
 <div class="nav-item p-0 m-auto ">
 	<li class="nav-item dropdown ">
         <a class="dropdownWithOutArrow nav-link p-lg-2 p-1 text-secondary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa-solid fa-percent "></i>		
+			<i class="fa-solid fa-percent "></i>
 			{{-- <i class="  fa-solid fa-fire"></i>	 --}}
-			
+
 			<span class="d-none d-sm-none d-md-none d-lg-inline">خصومات</span>
 			{{-- <span class=" pulse-danger"></span> --}}
         </a>
         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
 			<form class="">
-				
-				
+
+
 				<a  href="{{'/?persent='}}" class="text-cyan dropdown-item">جميع الخصومات</a>
 				<div class="dropdown-divider"></div>
 				<a  href="{{'/?persent=10'}}" class="text-cyan dropdown-item">اكثر من 10 %</a>
@@ -80,7 +80,7 @@
 <div class="nav-item p-0 m-auto">
 	<li class="nav-item dropdown">
         <a class=" nav-link  p-lg-3 p-1  text-secondary  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa-solid fa-shop"></i>										
+			<i class="fa-solid fa-shop"></i>
 			<span class="d-none d-sm-none d-md-none d-lg-inline">علامات تجاريه</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -90,9 +90,9 @@
 
 				@foreach ($merchants as $merchant )
 				<a type="button" href="{{'/?search='.$merchant->name}}" class="dropdown-item">{{$merchant->name}}</a>
-				
+
 				@endforeach
-				
+
 			</form>
         </div>
       </li>
@@ -110,9 +110,9 @@
 				<div class="dropdown-divider"></div>
 				@foreach ($category as $categorys )
 				<a type="button" href="{{'/?search='.$categorys->name}}" class="dropdown-item">{{$categorys->name}}</a>
-				
+
 				@endforeach
-				
+
 			</form>
         </div>
       </li>
@@ -137,16 +137,17 @@
 </div>
 
 <div class="dropdown p-0 nav-item main-header-message ">
-	<a class="new nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class=" pulse-danger"></span></a>
+	<a class="new nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span id="messNotify" class=" "></span></a>
 	<div class="dropdown-menu">
 		<div class="menu-header-content bg-primary text-right">
 			<div class="d-flex">
-				<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Messages</h6>
-				<span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span>
+				<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الرسائل</h6>
+				{{-- <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All Read</span> --}}
 			</div>
 			<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have 4 unread messages</p>
 		</div>
 		<div class="main-message-list chat-scroll">
+
 			<a href="#" class="p-3 d-flex border-bottom">
 				<div class="  drop-img  cover-image  " data-image-src="{{URL::asset('assets/img/faces/3.jpg')}}">
 					<span class="avatar-status bg-teal"></span>
@@ -159,54 +160,7 @@
 					<p class="time mb-0 text-left float-right mr-2 mt-2">Mar 15 3:55 PM</p>
 				</div>
 			</a>
-			<a href="#" class="p-3 d-flex border-bottom">
-				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/faces/2.jpg')}}">
-					<span class="avatar-status bg-teal"></span>
-				</div>
-				<div class="wd-90p">
-					<div class="d-flex">
-						<h5 class="mb-1 name">Jimmy Changa</h5>
-					</div>
-					<p class="mb-0 desc">All set ! Now, time to get to you now......</p>
-					<p class="time mb-0 text-left float-right mr-2 mt-2">Mar 06 01:12 AM</p>
-				</div>
-			</a>
-			<a href="#" class="p-3 d-flex border-bottom">
-				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/defultUserImg/defultUserImg.webp')}}">
-					<span class="avatar-status bg-teal"></span>
-				</div>
-				<div class="wd-90p">
-					<div class="d-flex">
-						<h5 class="mb-1 name">Graham Cracker</h5>
-					</div>
-					<p class="mb-0 desc">Are you ready to pickup your Delivery...</p>
-					<p class="time mb-0 text-left float-right mr-2 mt-2">Feb 25 10:35 AM</p>
-				</div>
-			</a>
-			<a href="#" class="p-3 d-flex border-bottom">
-				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/faces/12.jpg')}}">
-					<span class="avatar-status bg-teal"></span>
-				</div>
-				<div class="wd-90p">
-					<div class="d-flex">
-						<h5 class="mb-1 name">Donatella Nobatti</h5>
-					</div>
-					<p class="mb-0 desc">Here are some products ...</p>
-					<p class="time mb-0 text-left float-right mr-2 mt-2">Feb 12 05:12 PM</p>
-				</div>
-			</a>
-			<a href="#" class="p-3 d-flex border-bottom">
-				<div class="drop-img cover-image" data-image-src="{{URL::asset('assets/img/faces/5.jpg')}}">
-					<span class="avatar-status bg-teal"></span>
-				</div>
-				<div class="wd-90p">
-					<div class="d-flex">
-						<h5 class="mb-1 name">Anne Fibbiyon</h5>
-					</div>
-					<p class="mb-0 desc">I'm sorry but i'm not sure how...</p>
-					<p class="time mb-0 text-left float-right mr-2 mt-2">Jan 29 03:16 PM</p>
-				</div>
-			</a>
+
 		</div>
 		<div class="text-center dropdown-footer">
 			<a href="text-center">VIEW ALL</a>
@@ -381,7 +335,7 @@
                 </div>
 
 					<div class="row ">
-						
+
                         @foreach ($products as $product)
 							<div class="col-md-4 col-lg-2 col-xl-2  col-sm-6">
 								<div class="card shadow-none">
@@ -399,7 +353,7 @@
 												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h6>
 												<span class=" tx-12 ml-auto">
 													 خصم % <b>{{$product->discount}}</b>
-													</span>											
+													</span>
 													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
 											</div>
 										</div>
@@ -545,7 +499,7 @@
 <script src="{{URL::asset('assets/js/nestDropdown.js')}}"></script>
 
 <script>
-	// price range 
+	// price range
 		$('.rangeslider3').ionRangeSlider({
 			type: 'double',
 			grid: true,
