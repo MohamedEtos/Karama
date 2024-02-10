@@ -54,10 +54,7 @@ input[type=number] {
     height: 100%  ;
   }
 
-  .title-brand{
-  background-color: #000000ad !important;
-
- }
+  
 
  .input-none-outline{
   outline: none;

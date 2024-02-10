@@ -4,7 +4,7 @@
 Project        :   Karama SC  - HTML5 Bootstrap Admin Template
 Version        :   V.1
 Create Date    :   09/05/20
-Copyright      :   MohamedMahrous Technologies Private Limited 
+Copyright      :   MohamedMahrous Technologies Private Limited
 Author         :   MohamedMahrousSoft
 Author URL     :   https://themeforest.net/user/MohamedMahroussoft
 Support	       :   support@fb.com/mohamed.etos
@@ -465,8 +465,8 @@ pre {
     max-width: 720px; }
   .responsive-logo {
     display: block;
-  
-  } 
+
+  }
 
 
   .responsive-logo .logo-1{
@@ -478,7 +478,7 @@ pre {
   }
 
   }
-  
+
 
 
 
@@ -16920,6 +16920,9 @@ pre {
   height: 19px;
   color: #5b6e88; }
 
+.header-icon-svgs-none-width {
+  color: #5b6e88; }
+
 .fullscreen-button .full-screen-link {
   line-height: 38px !important; }
 
@@ -20231,13 +20234,13 @@ object, embed, video {
 
 .main-content .container, .main-content .container-fluid {
   padding-left: 20px;
-  padding-right: 20px; 
+  padding-right: 20px;
 }
 
 @media(max-width :768){
   .main-content .container, .main-content .container-fluid {
     padding-left: 10px;
-    padding-right: 10px; 
+    padding-right: 10px;
   }
 }
 @media (min-width: 992px) {

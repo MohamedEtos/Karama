@@ -16,7 +16,7 @@
 		<div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
-		
+
 		<!-- /Loader -->
 		{{-- @include('layouts.users.sidebar_users') --}}
 		<!-- main-content -->
@@ -26,6 +26,7 @@
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
+				@yield('contentWithOutContiner')
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')

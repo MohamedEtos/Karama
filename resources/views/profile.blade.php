@@ -38,6 +38,8 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+<input type="hidden" id="UID" value="{{Auth::User()->id}}">
+
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="col-lg-4">

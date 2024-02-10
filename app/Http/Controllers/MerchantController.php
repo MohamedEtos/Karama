@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use App\Models\notify;
+use App\Traits;
+
+// use App\Http\Controllers\ProductHomeController;
+
 
 class MerchantController extends Controller
 {
+    use Traits\navbarUser;
+
+
     /**
      * Display a listing of the resource.
      *
@@ -279,6 +287,7 @@ class MerchantController extends Controller
 
     public function ProductDetails(Request $request ,$id){
 
+
         // get id user
 
         $userId = merchant::where('id',$id)->first();
@@ -319,13 +328,23 @@ class MerchantController extends Controller
         $merchantId = merchant::where('id',$id)->first()->userId;
 
         $merchantData = User::where('id',$merchantId)->first();
-
+//        traits
+        $merchants = $this->merchant();
+        $category = $this->category();
+        $notifyCount = $this->notifyCount();
+        $notify = $this->notify();
+        $notifyId = $this->notifyId();
 
         return view('product-details',compact(
             'product_details',
             'related_products',
             'productRevew',
             'merchantData',
+            'merchants',
+            'category',
+            'notifyCount',
+            'notifyId',
+            'notify',
         ));
     }
 

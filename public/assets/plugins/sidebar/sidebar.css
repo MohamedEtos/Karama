@@ -1,7 +1,7 @@
 /* All the default sidebar styles */
 /* toggle button settings */
-/* Note: this disables the navbar-toggle class's hide function. set visibility with the boostrap visible/hidden classes */
-/* Note: this also disables the navbar-header class positioning settings in small screens. */
+/* Note: this disables the navbarUser-toggle class's hide function. set visibility with the boostrap visible/hidden classes */
+/* Note: this also disables the navbarUser-header class positioning settings in small screens. */
 .navbar.navbar-static .navbar-header {
     float: left;
 }
@@ -27,7 +27,7 @@
     top: 0px;
 	width:300px;
     bottom: 0;
-    z-index: 9999; 
+    z-index: 9999;
 }
 .sidebar-left {
     left: 0;

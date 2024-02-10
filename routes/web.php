@@ -18,7 +18,8 @@ use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\PointsAdminController;
-
+use App\Http\Controllers\NotifyController;
+use App\Models\notify;
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\Auth;
 
@@ -138,13 +139,12 @@ Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name(
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProductHomeController::class, 'index'])->name('/');
     Route::get('searchBar', [ProductHomeController::class, 'searchBar']);
+    Route::get('/markAllReaded/{markedId}', [NotifyController::class, 'markAllReaded'])->name('markAllReaded');
 
-    // Route::get('/', function () {
-    //     return view('products');
-    // });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
@@ -192,10 +192,10 @@ Route::get('addadmin',function(){
 
     User::create([
         'name'=>'addidas',
-        'usercode'=>'1122334455',
+        'usercode'=>'11223355',
         'email'=>'addidas@addidas.com',
         'subtype'=>'user',
-        'password'=>Hash::make('1122334455'),
+        'password'=>Hash::make('11223355'),
         'userDetalis'=>2,
     ]);
 

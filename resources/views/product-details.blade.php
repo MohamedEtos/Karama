@@ -1,4 +1,4 @@
-@extends('layouts.users.master')
+@extends( (Auth::User()->subtype == 'merchant') ? 'merchant.layout.merchant_master' : 'layouts.users.master')
 @section('css')
 <!--Internal  Nice-select css  -->
 <link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
@@ -21,7 +21,7 @@
 				</div> --}}
 
 				<div class="row  title-brand mb-3 mt-2">
-					<div class="col-12 p-3 text-white">
+					<div class="col-12 p-2 text-white">
 						<h3><a href="{{url('MarketProfile/'.$merchantData->id)}}" class="text-white">{{$merchantData->name}}</a></h3>
 					</div>
 				</div>
@@ -30,8 +30,9 @@
 @section('content')
 				<!-- row -->
 				<div class="row row-sm">
+                    <input type="hidden" id="UID" value="{{Auth::User()->id}}">
 
-					
+
 @foreach ($product_details as $item)
 
 					<div class="col-xl-12">
@@ -117,7 +118,7 @@
 								<div class="card item-card">
 
 									<div class="card-body pb-0 h-100">
-										<div class="text-center"> 
+										<div class="text-center">
 											<img src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="img" class="img-fluid">
 										</div>
 										<div class="card-body cardbody relative">
@@ -142,6 +143,7 @@
 
 				<!-- row closed -->
                 @endforeach
+			</div>
 			</div>
 
 			<!-- Container closed -->

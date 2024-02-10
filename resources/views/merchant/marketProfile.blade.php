@@ -1,9 +1,16 @@
-@extends('merchant.layout.merchant_master')
+
+@extends( (Auth::User()->subtype == 'merchant') ? 'merchant.layout.merchant_master' : 'layouts.users.master')
+
+
+
 @section('css')
 <!-- Internal Select2 css -->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/css-rtl/MarketProfile.css')}}" rel="stylesheet">
-
+<link rel="stylesheet" href="{{URL::asset('assets/css-rtl/nestDropdown.css')}}">
+<!-- Internal Ion.rangeSlider css -->
+<link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
 				{{-- <!-- breadcrumb -->
@@ -22,6 +29,8 @@
 @endsection
 @section('contentWithOutContiner')
 	<!-- row -->
+    <input type="hidden" id="UID" value="{{Auth::User()->id}}">
+
 	<div class="row row-sm">
 		<div class="mainCover col-12">
 			<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
@@ -162,5 +171,28 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 
+<script>
+	// price range
+		$('.rangeslider3').ionRangeSlider({
+			type: 'double',
+			grid: true,
+			min: 0,
+			max: 1000,
+			from: 200,
+			to: 800,
+			prefix: '₪'
+		});
+</script>
+
+<script>
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
+</script>
 @endsection

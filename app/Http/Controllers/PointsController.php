@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\pointNofication;
+use App\Models\notify;
 use App\Models\pointRules;
 use App\Models\points;
 use App\Models\pointsDetails;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class PointsController extends Controller
 {
@@ -86,13 +88,27 @@ class PointsController extends Controller
             'type'=>'add'
         ]);
 
-        $data = [
+
+        notify::create([
             'userId' => $request->userId,
             'merchantId' => $request->merchantId,
-            'usercode' => $request->usercode,
+            'messages'=>' لقد تم اضافه نقاط بقميه  '  . ($pointRules * $request->price / 100) . ' من التاجر  ' ,
+        ]);
+
+        $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
+
+        Carbon::setLocale('ar'); // to type date arabic
+
+        $data = [
+            'userId' => $NotifyData->userId,
+            'merchantName' => $NotifyData->notifyMerchant->name,
+            'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+            'merchantId' => $request->merchantId,
+            'messages' => $NotifyData->messages,
             'price' => $request->price ,
             'points' => ($pointRules * $request->price / 100),
-            'type'=>'add'
+            'type'=>'add',
+            'time'=>$NotifyData->created_at->diffForHumans(),
         ];
 
 

@@ -1,21 +1,36 @@
-// var notificationsWrapper = $('.dropdown-notifications');
-// var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-// var notificationsCountElem = notificationsToggle.find('span[data-count]');
-// var notificationsCount = parseInt(notificationsCountElem.data('count'));
-// var notifications = notificationsWrapper.find('li.scrollable-container');
 var messNotify = document.getElementById('messNotify');
+var notifayTitle = document.getElementById('notifayTitle');
+var countNotify = document.getElementById('countNotify');
+var UID = document.getElementById('UID').value;
 // Subscribe to the channel we specified in our Laravel Event
-var channel = pusher.subscribe('PointsNotify');
+var channel = pusher.subscribe('PointsNotify'+UID);
 // Bind a function to a Event (the full Laravel class)
 channel.bind('UserNotify', function (data) {
+
+
+    var html = ' <a href="" class="p-3 d-flex border-bottom ">' +
+           '<div class="  drop-img  cover-image ml-2   " data-image-src="">' +
+            '<img src="' +  window.location.href + data.merchantImg  +'" alt="">'+
+               ' <span class="avatar-status bg-teal"></span>' +
+               '</div>' +
+               '<div class="wd-90p">' +
+               ' <div class="d-flex">' +
+               ' <h5 class="mb-1 name " id="notifayTitle">'+data.merchantName +'</h5>' +
+               ' </div>' +
+               '<p class="mb-0 desc">'+ data.messages + data.merchantName + '</p>' +
+               '<p class="time mb-0 text-left float-right mr-2 mt-2">'+ data.time +'</p>' +
+               '</div>' +
+           '</a>';
+
+
+
+    // get notfy count and add 1
+    newvalue = parseInt(countNotify.textContent) +1
+    countNotify.textContent = newvalue;
+    // end get notfy count and add 1
+
     messNotify.classList.add('pulse-danger');
-    // alert(data);
-    // console.log(data);
-    // var existingNotifications = notifications.html();
-    // var newNotificationHtml = `<a href="`+data.type+`"><div class="media-body"><h6 class="media-heading text-right">` + data.user_name + `</h6> <p class="notification-text font-small-3 text-muted text-right">` + data.comment + `</p><small style="direction: ltr;"><p class="media-meta text-muted text-right" style="direction: ltr;">` + data.date + data.time + `</p> </small></div></div></a>`;
-    // notifications.html(newNotificationHtml + existingNotifications);
-    // notificationsCount += 1;
-    // notificationsCountElem.attr('data-count', notificationsCount);
-    // notificationsWrapper.find('.notif-count').text(notificationsCount);
-    // notificationsWrapper.show();
+    $('.lastrecord').prepend(html);
+
+
 });

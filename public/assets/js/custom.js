@@ -1,15 +1,15 @@
 $(function() {
 	'use strict'
-	
+
 	// ______________LOADER
 	$("#global-loader").fadeOut("fast");
 	$('.main-loader').fadeOut("fast");
-	
-	// This template is mobile first so active menu in navbar
+
+	// This template is mobile first so active menu in navbarUser
 	// has submenu displayed by default but not in desktop
 	// so the code below will hide the active menu if it's in desktop
 	if (window.matchMedia('(min-width: 992px)').matches) {
-		$('.main-navbar .active').removeClass('show');
+		$('.main-navbarUser .active').removeClass('show');
 		$('.main-header-menu .active').removeClass('show');
 	}
 	// Shows header dropdown while hiding others
@@ -22,8 +22,8 @@ $(function() {
 	$('.country-flag1').on('click', function(e){
 		$('.main-header .dropdown > a').parent().siblings().removeClass('show');
 	});
-	
-	
+
+
 	// ______________Full screen
 	$(document).on("click", ".fullscreen-button", function toggleFullScreen() {
 		if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
@@ -61,8 +61,8 @@ $(function() {
 		}
 	};
 	// $(".rating-stars").ratingStars(ratingOptions);
-	
-	
+
+
 	// ______________Cover Image
 	$(".cover-image").each(function() {
 		var attr = $(this).attr('data-image-src');
@@ -70,11 +70,11 @@ $(function() {
 			$(this).css('background', 'url(' + attr + ') center center');
 		}
 	});
-	
-	
+
+
 	// ______________Toast
-	$(".toast").toast();	
-	
+	$(".toast").toast();
+
 	/* Headerfixed */
 	$(window).on("scroll", function(e){
 		if ($(window).scrollTop() >= 66) {
@@ -84,7 +84,7 @@ $(function() {
 			$('.main-header').removeClass('fixed-header');
 		}
     });
-	
+
 	// ______________Search
 	$('body, .main-header form[role="search"] button[type="reset"]').on('click keyup', function(event) {
 		if (event.which == 27 && $('.main-header form[role="search"]').hasClass('active') ||
@@ -113,13 +113,13 @@ $(function() {
 		$('#showSearchTerm').text($input.val());
 		closeSearch()
 	});
-	
-	
-	
+
+
+
 	/* ----------------------------------- */
-	
-	// Showing submenu in navbar while hiding previous open submenu
-	$('.main-navbar .with-sub').on('click', function(e) {
+
+	// Showing submenu in navbarUser while hiding previous open submenu
+	$('.main-navbarUser .with-sub').on('click', function(e) {
 		e.preventDefault();
 		$(this).parent().toggleClass('show');
 		$(this).parent().siblings().removeClass('show');
@@ -129,7 +129,7 @@ $(function() {
 		e.preventDefault();
 		$(this).closest('.dropdown').removeClass('show');
 	});
-	// this will show navbar in left for mobile only
+	// this will show navbarUser in left for mobile only
 	$('#mainNavShow, #azNavbarShow').on('click', function(e) {
 		e.preventDefault();
 		$('body').addClass('main-navbar-show');
@@ -150,9 +150,9 @@ $(function() {
 		e.preventDefault();
 		$('body').removeClass('main-content-body-show');
 	})
-	// navbar backdrop for mobile only
-	$('body').append('<div class="main-navbar-backdrop"></div>');
-	$('.main-navbar-backdrop').on('click touchstart', function() {
+	// navbarUser backdrop for mobile only
+	$('body').append('<div class="main-navbarUser-backdrop"></div>');
+	$('.main-navbarUser-backdrop').on('click touchstart', function() {
 		$('body').removeClass('main-navbar-show');
 	});
 	// Close dropdown menu of header menu
@@ -166,9 +166,9 @@ $(function() {
 		// closing nav sub menu of header when clicking outside of it
 		if (window.matchMedia('(min-width: 992px)').matches) {
 			// Navbar
-			var navTarg = $(e.target).closest('.main-navbar .nav-item').length;
+			var navTarg = $(e.target).closest('.main-navbarUser .nav-item').length;
 			if (!navTarg) {
-				$('.main-navbar .show').removeClass('show');
+				$('.main-navbarUser .show').removeClass('show');
 			}
 			// Header Menu
 			var menuTarg = $(e.target).closest('.main-header-menu .nav-item').length;
@@ -201,7 +201,7 @@ $(function() {
 		e.preventDefault();
 		$('body').removeClass('main-header-menu-show');
 	})
-	
+
 	$(".card-header-right .card-option .fe fe-chevron-left").on("click", function() {
 		var a = $(this);
 		if (a.hasClass("icofont-simple-right")) {
@@ -215,8 +215,8 @@ $(function() {
 		}
 		$(this).toggleClass("fe fe-chevron-right").fadeIn("slow")
 	});
-	
-	 // ___________TOOLTIP	
+
+	 // ___________TOOLTIP
 	$('[data-toggle="tooltip"]').tooltip();
 	// colored tooltip
 	$('[data-toggle="tooltip-primary"]').tooltip({
@@ -225,7 +225,7 @@ $(function() {
 	$('[data-toggle="tooltip-secondary"]').tooltip({
 		template: '<div class="tooltip tooltip-secondary" role="tooltip"><div class="arrow"><\/div><div class="tooltip-inner"><\/div><\/div>'
 	});
-	
+
 	// __________POPOVER
 	$('[data-toggle="popover"]').popover();
 	$('[data-popover-color="head-primary"]').popover({
@@ -249,11 +249,11 @@ $(function() {
 			}
 		});
 	});
-	
+
 	// Enable Eva-icons with SVG markup
 	// eva.replace();
-	
-	
+
+
 	// ______________Horizontal-menu Active Class
 	$(document).ready(function() {
 		$(".horizontalMenu-list li a").each(function() {
@@ -266,8 +266,8 @@ $(function() {
 			}
 		});
 	});
-	
-	
+
+
 	// ______________Active Class
 	$(document).ready(function() {
 		$(".horizontalMenu-list li a").each(function() {
@@ -298,8 +298,8 @@ $(function() {
 			}
 		});
 	});
-	
-	
+
+
 	// ______________ Back to Top
 	$(window).on("scroll", function(e) {
 		if ($(this).scrollTop() > 0) {
@@ -314,11 +314,11 @@ $(function() {
 		}, 600);
 		return false;
 	});
-	
-	
-	
-	// ______________Skins 
-		
+
+
+
+	// ______________Skins
+
 	////////////////////////////////////////////////////
 	/*  ############# Horizontal version ########*/
 	//////////////////////////////////////////////////
@@ -339,8 +339,8 @@ $(function() {
 	/* ###########  Horizontal gradient  ###########*/
 
 	// $('body').addClass(' horizontal-gradient'); //
-		
-		
+
+
 	////////////////////////////////////////////////////
 	/*  ############# Leftmenu version ########*/
 	//////////////////////////////////////////////////
@@ -365,8 +365,8 @@ $(function() {
 	////////////////////////////////////////////////////
 	/*  ############# Leftmenu Light Image ########*/
 	//////////////////////////////////////////////////
-		
-		
+
+
 	/* ###########  backgroundimage-1  ###########*/
 
 	// $('body').addClass(' leftbgimage1'); //
@@ -393,7 +393,6 @@ $(function() {
 	//////////////////////////////////////////////////
 
 	// $('body').addClass(' body-style1'); //
-	
-	
+
+
 });
-	
