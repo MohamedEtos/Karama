@@ -202,7 +202,6 @@ class AdminController extends Controller
 
 
 
-        Carbon::setLocale('ar');
 
 
         return view('admin.dashboard',compact(

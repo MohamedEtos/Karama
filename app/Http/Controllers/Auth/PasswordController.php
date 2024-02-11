@@ -10,6 +10,9 @@ use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller
 {
+
+
+
     /**
      * Update the user's password.
      */
@@ -34,5 +37,5 @@ class PasswordController extends Controller
         return back()->with('status', 'تم التعديل ');
     }
 
-    
+
 }

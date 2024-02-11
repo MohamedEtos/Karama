@@ -88,16 +88,21 @@ class PointsController extends Controller
             'type'=>'add'
         ]);
 
+        $totalPointCurrentStore = points::select('price', 'points')
+        ->where('userId', $request->userId)
+        ->where('merchantId', $request->merchantId)
+        ->sum('points');
+
 
         notify::create([
             'userId' => $request->userId,
             'merchantId' => $request->merchantId,
-            'messages'=>' لقد تم اضافه نقاط بقميه  '  . ($pointRules * $request->price / 100) . ' من التاجر  ' ,
+            'messages'=>' لقد تم اضافه نقاط بقميه  '  . ($pointRules * $request->price / 100) . '₪ واصبح رصيد نقاتك في متجرنا ' . $totalPointCurrentStore . ' نقطه ' . 'شكرا علي زيارتك لنا ',
         ]);
 
         $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
 
-        Carbon::setLocale('ar'); // to type date arabic
+
 
         $data = [
             'userId' => $NotifyData->userId,
@@ -170,6 +175,8 @@ class PointsController extends Controller
     {
         return view('merchant.points.settingPoints');
     }
+
+
 
 
 

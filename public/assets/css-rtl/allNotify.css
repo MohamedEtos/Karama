@@ -1,0 +1,14 @@
+.main-img-user {
+
+    width: 50px !important;
+    height: 50px !important;
+
+ }
+
+
+ .notify-scroll{
+    max-height: 600px ;
+    overflow-y: auto ;
+ }
+
+

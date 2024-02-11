@@ -55,7 +55,6 @@ class MerchantController extends Controller
             $persent = ($unappendPersent/$appendPersent*100);
         }
 
-        Carbon::setLocale('ar'); // to type date arabic
 
         $userPoint = points::where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
         $userPointDetails = pointsDetails::with('pointsToDetails')->where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();

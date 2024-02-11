@@ -298,7 +298,6 @@
                     </div>
                 </div>
 
-
                 <div class="dropdown p-0 nav-item main-header-notification">
                     <a class="new nav-link" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span id="messNotify" class="@if(isset($notifyId) and $notifyId->readed == 0) pulse-danger  @else '' @endif"></span></a>
@@ -317,31 +316,35 @@
                         <div class="main-notification-list Notification-scroll lastrecord">
 
                             @if ($notify->isEmpty())
-                            <a href="#" class="p-3 d-flex border-bottom  text-center">
 
-                                    <h6 class="text-center">لا يوجد اشعارات</h6>
-                            </a>
                             @endif
 
-                            @foreach ($notify as $NewData )
-                                <a href="#" class="p-3 d-flex border-bottom ">
-                                    <div class="  drop-img  cover-image ml-2   " data-image-src="">
-                                        <img src="{{URL::asset($NewData->notifyMerchant->userToDetalis->ProfileImage)}}" alt="">
-                                        <span class="avatar-status bg-teal"></span>
+                            @forelse ($notify as $NewData )
+                            <a href="{{Route('allNotify')}}" class="p-3 d-flex border-bottom ">
+                                <div class="  drop-img  cover-image ml-2   " data-image-src="">
+                                    <img src="{{URL::asset($NewData->notifyMerchant->userToDetalis->ProfileImage)}}" alt="">
+                                    <span class="avatar-status bg-teal"></span>
+                                </div>
+                                <div class="wd-90p">
+                                    <div class="d-flex">
+                                        <h5 class="mb-1 name " id="notifayTitle">{{$NewData->notifyMerchant->name}}</h5>
                                     </div>
-                                    <div class="wd-90p">
-                                        <div class="d-flex">
-                                            <h5 class="mb-1 name " id="notifayTitle">{{$NewData->notifyMerchant->name}}</h5>
-                                        </div>
-                                        <p class="mb-0 desc">{{$NewData->messages}}</p>
-                                        <p class="time mb-0 text-left float-right mr-2 mt-2">{{$NewData->created_at->diffForHumans()}}</p>
-                                    </div>
-                                </a>
-                            @endforeach
+                                    <p class="mb-0 desc">{{$NewData->messages}}</p>
+                                    <p class="time mb-0 text-left float-right mr-2 mt-2">{{$NewData->created_at->diffForHumans()}}</p>
+                                </div>
+                            </a>
+                            @empty
+                            <a href="#" class="p-3 d-flex border-bottom  text-center">
+
+                                <h6 class="text-center m-auto">لا يوجد اشعارات</h6>
+                             </a>
+                            @endforelse
+
+
 
                         </div>
                         <div class="dropdown-footer">
-                            <a href="">كل الاشعارات</a>
+                            <a href="{{Route('allNotify')}}">كل الاشعارات</a>
                         </div>
                     </div>
                 </div>
@@ -362,10 +365,10 @@
 								</div>
 							</div>
 						</div>
-						<a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-user"></i>الملف الشخصي</a>
-						<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-						<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-						<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
+						<a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-user pl-2"></i>الملف الشخصي</a>
+						<a class="dropdown-item" href="{{Route('allNotify')}}"><i class="fa-regular fa-bell pl-2"></i>  الاشعارات  </a>
+						<a class="dropdown-item" href=""><i class="fa-regular fa-envelope pl-2"></i> البريد</a>
+						<a class="dropdown-item border-bottom" href="{{Route('myPoints')}}"><i class="fa-solid fa-star pl-2"></i> نقاطي</a>
 
 
 						<form method="POST" action="{{ route('logout') }}">
@@ -373,7 +376,7 @@
 							<x-dropdown-link class="dropdown-item" :href="route('logout')"
 									onclick="event.preventDefault();
 												this.closest('form').submit();">
-												<i class="fa-solid fa-right-from-bracket"></i>
+												<i class="fa-solid fa-right-from-bracket pl-2"></i>
 								{{ __('تسجيل خروج') }}
 							</x-dropdown-link>
 						</form>

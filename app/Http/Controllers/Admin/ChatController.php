@@ -33,7 +33,6 @@ class ChatController extends Controller
                         'users.name',
                         ]);
 
-        Carbon::setLocale('ar');
 
 
         return view('admin/chat/chat',compact(

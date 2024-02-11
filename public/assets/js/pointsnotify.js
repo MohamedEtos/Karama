@@ -17,7 +17,7 @@ channel.bind('UserNotify', function (data) {
                ' <div class="d-flex">' +
                ' <h5 class="mb-1 name " id="notifayTitle">'+data.merchantName +'</h5>' +
                ' </div>' +
-               '<p class="mb-0 desc">'+ data.messages + data.merchantName + '</p>' +
+               '<p class="mb-0 desc">'+ data.messages + '</p>' +
                '<p class="time mb-0 text-left float-right mr-2 mt-2">'+ data.time +'</p>' +
                '</div>' +
            '</a>';

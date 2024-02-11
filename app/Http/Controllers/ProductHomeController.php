@@ -17,9 +17,8 @@ class ProductHomeController extends Controller
 
 
         // get notifactions
-        Carbon::setLocale('ar'); // to type date arabic
 
-        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->get();
+        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->limit(10)->get();
         $notifyId = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->first();
 
         $notifyCount = notify::where('userid',Auth::User()->id)

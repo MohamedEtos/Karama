@@ -129,8 +129,12 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
 
 
 });
+
+
+    // X Routes
 Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
 Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name('MarketProfile');
+Route::get('/allNotify', [NotifyController::class,'allNotify'])->name('allNotify');
 
 
 
@@ -140,6 +144,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ProductHomeController::class, 'index'])->name('/');
     Route::get('searchBar', [ProductHomeController::class, 'searchBar']);
     Route::get('/markAllReaded/{markedId}', [NotifyController::class, 'markAllReaded'])->name('markAllReaded');
+    Route::get('/myPoints', [PointsController::class, 'myPoints'])->name('myPoints');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
