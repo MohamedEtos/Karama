@@ -49,6 +49,12 @@ class NotifyController extends Controller
     }
 
 
+    public function notifyList(){
+        $notify = notify::orderBy('id','DESC')->get();
+        return view('admin.notify.notifyList',compact([
+            'notify',
+        ]));
+    }
 
 
 }

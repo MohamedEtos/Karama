@@ -32,7 +32,7 @@
 					<div class="col-md-6 col-xl-6 col-xs-12 col-sm-12 m-auto">
 						<div class="card">
 							<div class="card-body">
-								<form  action="{{url('merchant/addUserPoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
+								<form  action="{{url('admin/addUserPoints')}}" method="POST" id="pointsForm" class="row g-3 "   >
 									@csrf
 									<div class="loader_cu">
 										<div class="loading">
@@ -54,14 +54,16 @@
                                         </div>
 									</div>
                                     <div class="col-1 text-center tx-18 pt-2     mt-4 ">
-										<i class="fa-solid fa-arrow-left m-auto text-danger "></i>
+										<i class="fa-solid fa-arrow-right m-auto text-danger "></i>
 									</div>
 									<div class="col-md-6">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-                                        <select name="merchantid" class="form-control" id="">
-                                            @foreach($merchants as $data)
+                                        <select name="merchantId"  id="merchantId" class="form-control" >
+                                            @forelse ($merchants as $data)
                                                 <option value="{{$data->id}}">{{$data->name}}</option>
-                                            @endforeach
+                                            @empty
+                                                <option value="">لا يوجد تجار</option>
+                                            @endforelse
                                         </select>
 									</div>
 
@@ -87,7 +89,7 @@
 									  </div>
 
 									<div class="col-12 mt-4">
-										<label for="price" class="form-label">قيمه مشتريات العميل</label>
+										<label for="price" class="form-label">النقاط المضافه من المتجر</label>
 										<input name="price" class="form-control"
 										step="any"
 										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
@@ -100,7 +102,6 @@
 									  </div>
 
                                       <input type="hidden" id="userId" name="userId">
-                                      <input type="hidden" id="merchantId" name="merchantId" value="{{Auth::User()->id}}">
 
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger disabled"   id="finish" type="submit">تاكيد</button>
@@ -150,15 +151,8 @@
 <script>
 
 
-// function validateInput(inputElement) {
-//   if (inputElement.value.length === 5) {
-//     alert("Input value length is 5.");
-//   }
-// }
 
-
-
-        $('#usercode').on('keyup paste', function() {
+        $('#usercode,#merchantId').on('keyup paste change', function () {
 
         var Rname = document.getElementById('Rname');
         var usercode = document.getElementById('usercode');
@@ -166,13 +160,17 @@
         var userId = document.getElementById('userId');
         var finish = document.getElementById('finish');
         var oldpoint = document.getElementById('oldpoint');
+        var e = document.getElementById("merchantId");
+        var merchantId = e.options[e.selectedIndex].value;
+
+
 
 
             if (value.length == 8 ) { //check if value == 8
 
 					   $.ajax({
 						   type: "GET",
-						   url: 'checkUserCode/'+value,
+						   url: 'checkUserCode/'+value+'/'+merchantId,
 						   dataType: 'json',
 						   beforeSend: function() {
                             $('.loading').css('display','flex');

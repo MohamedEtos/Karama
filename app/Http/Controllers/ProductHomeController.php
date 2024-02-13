@@ -18,12 +18,13 @@ class ProductHomeController extends Controller
 
         // get notifactions
 
-        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->limit(10)->get();
+        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->get();
         $notifyId = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->first();
 
         $notifyCount = notify::where('userid',Auth::User()->id)
         ->where('readed','0')
         ->count();
+
 
         $serch = $request->search;
         $serchpersent = $request->persent;

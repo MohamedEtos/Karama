@@ -93,7 +93,17 @@ Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->g
 Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('pointsOperations', 'pointsOperations')->name('pointsOperations');
     Route::get('addPoints', 'addPoints')->name('addPoints');
+    Route::get('checkUserCode/{usercode}/{merchantId}', 'checkUserCode')->name('checkUserCode');
+    Route::post('addUserPoints', 'addUserPoints')->name('addUserPoints');
+
 });
+
+Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('notifyList', 'notifyList')->name('notifyList');
+
+
+});
+
 
 
 

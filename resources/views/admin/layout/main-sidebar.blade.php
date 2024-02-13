@@ -64,7 +64,12 @@
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('pointsOperations') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp;سجل النقاط</span><span class="badge badge-danger side-badge"></span></a>
 						<a class="side-menu__item" href="{{Route('addPoints')}}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp; اضافه نقاط</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ route('rejectedProudcts') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp; نقاط العملاء</span><span class="badge badge-danger side-badge"></span></a>
+
+					</li>
+					<li class="side-item side-item-category">الاشعارات</li>
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; عرض الاشعارات</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href=""><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp;  ارسال اشعار</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
 

@@ -2,8 +2,9 @@ $(function() {
 	'use strict'
 
 	// ______________LOADER
-	$("#global-loader").fadeOut("fast");
-	$('.main-loader').fadeOut("fast");
+	$("#global-loader").fadeOut("");
+	$('.main-loader').fadeOut("");
+	$('html,body').css("overflow",'visible');
 
 	// This template is mobile first so active menu in navbarUser
 	// has submenu displayed by default but not in desktop
