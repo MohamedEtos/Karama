@@ -43,7 +43,7 @@
 					<li class="side-item side-item-category">المتاجر</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('admin/registerStore') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp; اضافه متجر</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ route('all.merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-store "></i> &nbsp; عرض المتاجر</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ url('admin/merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-store "></i> &nbsp; عرض المتاجر</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
 					<li class="side-item side-item-category">الاشتراكات</li>
@@ -69,7 +69,7 @@
 					<li class="side-item side-item-category">الاشعارات</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; عرض الاشعارات</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href=""><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp;  ارسال اشعار</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{route('sendNotify')}}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp;  ارسال اشعار</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
 

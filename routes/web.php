@@ -88,6 +88,9 @@ Route::controller(ProductsController::class)->middleware('auth')->prefix('admin'
 
 Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('chatview', 'chatview')->name('chatview');
+    Route::get('sendMail', 'sendMail')->name('sendMail');
+    Route::get('checkUserCodeMail/{usercode}', 'checkUserCodeMail')->name('checkUserCodeMail');
+    Route::post('sendMessage', 'sendMessage')->name('sendMessage');
 });
 
 Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
@@ -100,7 +103,7 @@ Route::controller(PointsAdminController::class)->middleware('auth')->prefix('adm
 
 Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('notifyList', 'notifyList')->name('notifyList');
-
+    Route::get('sendNotify', 'sendNotify')->name('sendNotify');
 
 });
 

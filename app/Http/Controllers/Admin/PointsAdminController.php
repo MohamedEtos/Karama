@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\pointsDetails;
 use Illuminate\Support\Carbon;
 use App\Events\pointNofication;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,6 +63,7 @@ class PointsAdminController extends Controller
 
     public function addUserPoints(Request $request)
     {
+        DB::transaction(function() use($request) {
 
         $prevPoints = points::select('price', 'points')
             ->where('userId', $request->userId)
@@ -77,7 +79,8 @@ class PointsAdminController extends Controller
         }
 
 
-        $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
+        
+            $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
 
          points::updateOrCreate([
@@ -136,10 +139,9 @@ class PointsAdminController extends Controller
             'time'=>$NotifyData->created_at->diffForHumans(),
         ];
 
-
-
         event(new pointNofication($data));
 
+    }); // end transactions
 
         return redirect()->back()->with('success', 'تم اضافه النقاط ');
 

@@ -271,20 +271,22 @@ class AdminController extends Controller
             'endOfSubscription'=>['required','date'],
         ]);
 
-        userDetalis::where('id',$request->userDetailsId)->update([
-            'phone' => $request->phone,
-            'whatsapp'=>$request->whatsapp,
-            'nationalId'=>$request->nationalId,
-        ]);
+        DB::transaction(function () use ($request){
+            userDetalis::where('id',$request->userDetailsId)->update([
+                'phone' => $request->phone,
+                'whatsapp'=>$request->whatsapp,
+                'nationalId'=>$request->nationalId,
+            ]);
+            User::where('id',$request->userId)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'usercode' => $request->usercode,
+                'startOfSubscription' => $request->startOfSubscription,
+                'endOfSubscription' => $request->endOfSubscription,
+                // 'password' => Hash::make($request->password),
+            ]);
+        });
 
-        User::where('id',$request->userId)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'usercode' => $request->usercode,
-            'startOfSubscription' => $request->startOfSubscription,
-            'endOfSubscription' => $request->endOfSubscription,
-            // 'password' => Hash::make($request->password),
-        ]);
         return redirect()->back()->with('success','تم تحديث البيانات');
 
     }

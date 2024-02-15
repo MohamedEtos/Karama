@@ -56,5 +56,8 @@ class NotifyController extends Controller
         ]));
     }
 
+    public function sendNotify(){
+        return view('admin.notify.sendNotify');
+    }
 
 }

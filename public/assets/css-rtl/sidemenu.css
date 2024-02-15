@@ -186,11 +186,11 @@
   .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
     text-decoration: none; }
 
-/*@media (max-width: 360px) {
+@media (max-width: 360px) {
 	.app-sidebar__toggle {
 		line-height: 2;
 	}
-}*/
+}
 @media (max-width: 767px) {
   .app-sidebar__toggle {
     -webkit-box-ordinal-group: 0;

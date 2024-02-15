@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\category;
 use App\Models\merchant;
 use App\Models\pointRules;
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\userDetalis;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Validation\Rules;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 
 
 class NewStoreController extends Controller
@@ -50,7 +51,11 @@ class NewStoreController extends Controller
             'nationalId' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
         ]);
 
-        userDetalis::create([
+
+        DB::transaction(function() use($request) {
+
+
+        $userDetalis = userDetalis::create([
             'categoryId'=>$request->categoryId,
             'phone' => $request->phone,
             'whatsapp'=>$request->whatsapp,
@@ -65,9 +70,11 @@ class NewStoreController extends Controller
             'coverImage'=>'assets/img/defultUserImg/cover.webp',
         ]);
 
-        $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
+        // $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
 
-        $user = User::create([
+        $lastid = $userDetalis->id;
+        
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
@@ -80,6 +87,7 @@ class NewStoreController extends Controller
             'merchantId'=>$lastid,
         ]);
 
+    });
 
 
         // event(new Registered($user));
@@ -105,6 +113,7 @@ class NewStoreController extends Controller
 
     public function updateStore(request $request){
 
+    DB::transaction(function() use($request) {
         //uncrypt id and user id
         $userId =  Crypt::decrypt($request->userId);
         $userDetailsId =  Crypt::decrypt($request->userDetailsId);
@@ -128,9 +137,6 @@ class NewStoreController extends Controller
             'nationalId' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
         ]);
 
-
-
-
         userDetalis::where('id',$userDetailsId)->update([
             'categoryId'=>$request->categoryId,
             'phone' => $request->phone,
@@ -152,7 +158,7 @@ class NewStoreController extends Controller
             'subtype' => 'merchant',
         ]);
 
-
+    });
 
         // event(new Registered($user));
 

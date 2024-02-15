@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\chat;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\points;
 use App\Models\userDetalis;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -39,6 +41,47 @@ class ChatController extends Controller
 
             'RecentChat',
         ));
+    }
+
+
+    public function sendMail(){
+        return view('admin.chat.mail-compose');
+    }
+
+    public function checkUserCodeMail($usercode)
+    {
+
+        $userdata = User::select('name', 'id')
+        ->where('usercode', $usercode)
+        ->where('subtype', 'user')
+        ->first();
+
+        if (!$userdata) {
+            $userdata = 'nodata';
+        }
+
+
+        return response()->json(array("MSG" => $userdata));
+
+    }
+    
+    public function sendMessage(Request $request){
+
+        $request->validate([
+            'Recever' => ['required', 'integer','min:1', 'max:3','exists:App\Models\User,id'],
+            'usercode' => ['required','string','exists:App\Models\User,usercode'],
+            'title' => ['required', 'string',  'max:255'],
+            'body' => ['required','string','max:255'],
+        ]);
+
+
+        chat::create([
+            'sender'=>Auth::User()->id,
+            'recever'=>$request->Recever,
+            'title'=>$request->title,
+            'body'=>$request->body,
+        ]);
+        return redirect()->back();
     }
 
     /**
