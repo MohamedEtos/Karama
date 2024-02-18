@@ -125,6 +125,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     Route::get('editProfile',[MerchantController::class,'previewProduct'])->name('preview-product');
     // points
     Route::get('UserPoints',[PointsController::class,'UserPoints'])->name('UserPoints');
+    Route::get('checkUserCodeAddPoints/{usercode}',[PointsController::class,'checkUserCodeAddPoints'])->name('checkUserCodeAddPoints');
     Route::get('checkUserCode/{usercode}',[PointsController::class,'checkUserCode'])->name('checkUserCode');
     Route::post('addUserPoints',[PointsController::class,'addUserPoints'])->name('addUserPoints');
     Route::get('exchangePointsView',[PointsController::class,'exchangePointsView'])->name('exchangePointsView');
@@ -156,12 +157,13 @@ Route::get('/allNotify', [NotifyController::class,'allNotify'])->name('allNotify
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProductHomeController::class, 'index'])->name('/');
     Route::get('searchBar', [ProductHomeController::class, 'searchBar']);
-    Route::get('/markAllReaded/{markedId}', [NotifyController::class, 'markAllReaded'])->name('markAllReaded');
+    Route::POST('markAllReadedAjax', [NotifyController::class, 'markAllReadedAjax'])->name('markAllReadedAjax');
     Route::get('/myPoints', [PointsController::class, 'myPoints'])->name('myPoints');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('empty', [AdminController::class, 'empty'])->name('empty');
 
 });
 

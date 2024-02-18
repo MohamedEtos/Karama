@@ -29,6 +29,7 @@ class pointNofication implements ShouldBroadcast
     public $points;
     public $type;
     public $time;
+    // public $OTP;
 
     public function __construct($data)
     {
@@ -41,6 +42,7 @@ class pointNofication implements ShouldBroadcast
         $this->points = $data['points'];
         $this->type = $data['type'];
         $this->time = $data['time'];
+        // $this->OTP = $data['OTP'];
     }
 
     /**

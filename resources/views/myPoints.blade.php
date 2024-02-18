@@ -1,14 +1,6 @@
 @extends( (Auth::User()->subtype == 'merchant') ? 'merchant.layout.merchant_master' : 'layouts.users.master')
 @section('css')
-<!--Internal  Nice-select css  -->
-<link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
-<!-- Internal Select2 css -->
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 
-<!--- Internal Sweet-Alert css-->
-<link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/css-rtl/allNotify.css')}}" rel="stylesheet">
 
 @endsection
 @section('page-header')
@@ -33,44 +25,32 @@
 <input type="hidden" id="UID" value="{{Auth::User()->id}}">
 
 <div class="row mt-5">
-    <div class="col-md-8 col-xl-7 mx-auto">
+    @forelse ($mypoints as $mypoint )
+    <div class="col-sm-6 col-lg-6 col-xl-3">
         <div class="card">
-            <div class="card-title border-bottom">
-                <div class="row p-5">
-                    <div class="col-6 h4">كل الاشعارات</div>
-                    <div class="col-6 tx-22 ">
-                        <i class="fa-regular fa-bell fa-xl  float-left "></i>
-                    </div>
-                </div>
-            </div>
-            <div class=" card-body">
-                <div class="main-chat-body" id="ChatBody">
-                    <div class="content-inner  notify-scroll">
-
-                        @forelse ($allNotify as $notifcation)
-                            <div class="media border-bottom">
-                                <div class="main-img-user online"><img alt="" src="{{URL::asset($notifcation->notifyMerchant->userToDetalis->ProfileImage)}}"></div>
-                                <div class="media-body">
-                                    <div class="main-msg-wrapper left tx-16">
-                                       {{$notifcation->messages }}
-
-                                    </div>
-                                    <div>
-                                        <span>{{$notifcation->created_at->diffForHumans()}}</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-
-                        @endforelse
-
-
-
-                    </div>
+            <div class="card-body text-center pricing ">
+                <div class="card-category">{{$mypoint->pointTomerchant->name}}</div>
+                <div class="display-4 my-4 w-25 m-auto">            <div class="widget-user-image">
+                    <img src="{{URL::asset($mypoint->pointTomerchant->userToDetalis->ProfileImage)}}" class="brround" alt="User Avatar">
+                </div></div>
+                <ul class="list-unstyled leading-loose">
+                    <li> نقاطي <strong>{{$mypoint->points}} </strong></li>
+                    <li> السعر <strong>{{$mypoint->price}}</strong></li>
+                    <li>  اخر عمليه شراء <strong>{{$mypoint->updated_at->diffForHumans()}}</strong></li>
+                    {{-- <li> الحد الادني لستبدال النقاط <strong>{{$mypoint->pointTomerchant->pointRules->transferPoints}}</strong></li> --}}
+                </ul>
+                <div class="text-center mt-4">
+                    <a href="{{URL('MarketProfile/'.$mypoint->pointTomerchant->id)}}" class="btn btn-pink btn-block">زياره المتجر</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- COL-END -->
+
+    @empty
+
+    @endforelse
+
+
 </div>
 
 
@@ -78,7 +58,10 @@
 </div>
 @endsection
 @section('js')
-
+<!-- Moment js -->
+<script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+<!-- Internal Piety js -->
+<script src="{{URL::asset('assets/plugins/peity/jquery.peity.min.js')}}"></script>
 
 
 

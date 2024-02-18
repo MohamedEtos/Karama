@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Models\merchant;
-use App\Models\rejectProductmess;
 use Illuminate\Http\Request;
+use App\Models\rejectProductmess;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 
 class ProductsController extends Controller
@@ -56,6 +57,7 @@ class ProductsController extends Controller
 
     public function unappendProduct(Request $request)
     {
+        DB::transaction(function () use ($request){
         rejectProductmess::create([
             'rejectMessage'=>$request->redjectmass,
         ]);
@@ -66,6 +68,8 @@ class ProductsController extends Controller
             'rejectId' =>  $lastId,
             'append'=>'2',
         ]);
+    });
+
         return redirect()->back();
     }
 

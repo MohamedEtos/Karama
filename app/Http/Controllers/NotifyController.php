@@ -10,13 +10,13 @@ class NotifyController extends Controller
 {
     use Traits\navbarUser;
 
-    public function markAllReaded($markedId)
+    public function markAllReadedAjax(Request $request)
     {
-        $NotifyData= notify::where('userId',$markedId)->update([
+        $NotifyData= notify::where('userId',$request->uId)->update([
             'readed'=>'1'
         ]);
+        return response()->json(["MSG" => 'done']);
 
-        return redirect()->back();
     }
 
 

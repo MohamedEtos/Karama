@@ -63,7 +63,18 @@
 									<input type="hidden" id="exchangeLimit" value="{{$exchangeLimit->exchangeLimit}}">
 									<div class="col-12 mt-3">
 									  <label for="validationCustom01" class="form-label">رقم العميل</label>
-									  <input type="text" minlength="8" name="usercode"    class="form-control usercode" placeholder=" رقم العميل المكتوب علي الكارت" id="usercode" required>
+									  <input type="text" minlength="8" maxlength="8" name="usercode"    class="form-control usercode" pattern="[0-9]{8}" placeholder=" رقم العميل المكتوب علي الكارت" id="usercode" required>
+									  <div class="valid-feedback">
+										ممتاز !
+									  </div>
+                                        <div class="invalid-feedback" id="name_error">
+                                            اكتب رقم المستخدم المكون من 8 ارقام
+                                        </div>
+									</div>
+									<div class="col-12 mt-3 d-none " id="otp">
+									  <label for="validationCustom01" class="form-label">رمز OTP </label>
+									  <input type="text" minlength="6" name="otp" maxlength="6"   class="form-control otp" pattern="[0-9]{6}" placeholder=" الرقم السري الذي وصل الي العميل" id="otp" required>
+                                      <span class="text-muted">لقد تم ارسال اشعار الي العميل برقم (OTP)   </span>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -100,7 +111,7 @@
 										{{-- <label for="price" class="form-label">قيمه مشتريات العميل</label> --}}
 										<input name="points" class="form-control userName"
 										step="any"
-										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pointsfun()"  id="points" placeholder=" نقاط"   required>
+										minlength="1" maxlength="5" max="9999" min="1"  type="number" onkeyup="pointsfun()"  id="points" placeholder=" نقاط"   required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -115,7 +126,7 @@
 									<div class="col-5 mt-4">
 										<input name="price" class="form-control userName"
 										step="any"
-										minlength="1" maxlength="5" max="9999"  type="number" onkeyup="pricefun()"  id="price"  placeholder="   ₪"  required>
+										minlength="1" maxlength="5" max="9999" min="1"   type="number" onkeyup="pricefun()"  id="price"  placeholder="   ₪"  required>
 									</div>
 
 
@@ -123,7 +134,7 @@
                                       <input type="hidden" id="merchantId" name="merchantId" value="{{Auth::User()->id}}">
 
 									<div class="col-12 mt-4">
-									  <button class="btn btn-block btn-lg btn-danger disabled"   id="finish" type="submit">تاكيد</button>
+									  <button class="btn btn-block btn-lg btn-danger " disabled   id="finish" type="submit">تاكيد</button>
 									</div>
 								</div>
 
@@ -131,6 +142,18 @@
 
 						</div>
 					</div>
+
+                    @if(Session::has('error'))
+                    <input id="nofic" type="hidden" value="{{Session::get('error')}}">
+                    <script>
+                        window.onload = function not7() {
+                        notif({
+                            msg: $('#nofic').val(),
+                            type: "error"
+                        });
+                    }
+                    </script>
+                    @endif
 
                     @if(Session::has('success'))
                     <input id="nofic" type="hidden" value="{{Session::get('success')}}">
@@ -145,12 +168,14 @@
                     @endif
 
 				</div>
+
+
+
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
 
 		</div>
-
 
 @endsection
 @section('js')
@@ -168,9 +193,12 @@
 
 
 
+
+
 <script>
 
-        $('#usercode').on('keyup paste', function() {
+
+        $('#usercode').on('input paste', function() {
 		let exchangeLimit = document.getElementById('exchangeLimit');
 		let transferPoints = document.getElementById('transferPoints');
         let Rname = document.getElementById('Rname');
@@ -181,8 +209,12 @@
         let oldpoint = document.getElementById('oldpoint');
 		let price = document.getElementById('price')	;
 		let points = document.getElementById('points');
+		let otp = document.getElementById('otp');
 
             if (value.length == 8 ) { //check if value == 8
+
+
+
 
 					   $.ajax({
 						   type: "GET",
@@ -196,15 +228,19 @@
                                usercode.classList.remove("border","border-warning");
                                usercode.classList.remove("border","border-danger");
                                usercode.classList.add("border", "border-success");
+                               usercode.classList.add('disabled');
                                Rname.value = data.MSG.name ;
                                userId.value = data.MSG.id;
                                oldpoint.value = data.oldPoints.points;
 							   points.value = 0;
 							   price.value = 0;
+                               otp.classList.remove('d-none');
+
 
 								//exchange point to mony
 								$('#price').on('keyup paste', function() {
 									points.value = (price.value )
+
 								})
 								//exchange point to mony
 								$('#points').on('keyup paste', function() {
@@ -212,21 +248,27 @@
 
 								})
 
-
-
                                if(data.MSG == 'nodata'  ){
                                     Rname.value = 'لا يوجد بيانات  ' ;
                                     usercode.classList.remove("border","border-warning");
                                     usercode.classList.remove("border", "border-success");
                                     usercode.classList.add("border","border-danger");
+                                    finish.disabled = true;
+									oldpoint.value = '0';
+                                    otp.classList.add('d-none');
                                     $('.loading').css('display','none');
                                     $('.loader_cu').css('display','none');
-                                    finish.classList.add('disabled');
-									oldpoint.value = '0';
 
                                 }else if (data.oldPoints == 'nodata'){
-									oldpoint.value = '0';
-								}
+									oldpoint.textContent = '0';
+                                    otp.classList.add('d-none');
+                                    finish.disabled = true;
+
+								}else{
+                                    finish.disabled = false;
+                                    usercode.disabled = true;
+                                    usercode.classList.add("disabled");
+                                };
 
                                 $('.loading').css('display','none');
                                 $('.loader_cu').css('display','none');
@@ -237,15 +279,14 @@
                             },error: function(reject){
                                 Rname.value = 'لا يوجد بيانات  ' ;
 								oldpoint.value = '0';
-
+                                otp.classList.add('d-none');
                                 usercode.classList.remove("border","border-warning");
                                 usercode.classList.remove("border", "border-success");
                                 usercode.classList.add("border","border-danger");
+								finish.disabled = true;
+                                otp.classList.add('d-none');
                                 $('.loading').css('display','none');
                                 $('.loader_cu').css('display','none');
-                                finish.classList.add('disabled');
-								finish.disabled = false;
-
 						    },
 
 					     });
@@ -253,8 +294,11 @@
                 usercode.classList.remove("border","border-success");
                 usercode.classList.add("border","border-warning");
                 document.getElementById('Rname').value = '' ;
-                finish.classList.add('disabled');
-				finish.disabled = false;
+				finish.disabled = true;
+                oldpoint.value = '0';
+
+                otp.classList.add('d-none');
+
 
             }
 

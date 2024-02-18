@@ -76,4 +76,45 @@
 <script src="{{URL::asset('assets/js/pointsnotify.js')}}"></script>
 
 
+<script>
+
+$(function() {
+
+$('#form').on('submit', function(e) {
+//remove all old errors
+
+    e.preventDefault();
+    let formData = new FormData($('#form')[0]);
+
+    // $("#name").text('');
+    $.ajax({
+        type: "post",
+        url: "{{Route('markAllReadedAjax')}}",
+        data : formData,
+        processData:false,
+        contentType:false,
+        cache:false,
+        success: function (data) {
+            $('#countNotify').text('0');
+            $('#messNotify').removeClass('pulse-danger');
+        },complete: function(){
+
+
+        },error: function(reject){
+
+        }
+    });
+
+});
+
+
+
+});
+
+
+
+
+</script>
+
+
 

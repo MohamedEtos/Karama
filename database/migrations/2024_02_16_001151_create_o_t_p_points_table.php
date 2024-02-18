@@ -13,18 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('points', function (Blueprint $table) {
+        Schema::create('o_t_p_points', function (Blueprint $table) {
             $table->id();
-            // $table->integer('userId')->nullable();
             $table->bigInteger('userId')->unsigned();
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('usercode');
-            // $table->integer('merchantId');
             $table->bigInteger('merchantId')->unsigned();
             $table->foreign('merchantId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->decimal('price',9,2);
-            $table->decimal('points',9,2);
-
+            $table->integer('OTP');
+            $table->string('succeed')->default(0);
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('points');
+        Schema::dropIfExists('o_t_p_points');
     }
 };

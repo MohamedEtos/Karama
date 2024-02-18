@@ -40,6 +40,10 @@ class AdminController extends Controller
     //  //   return view($id);
     // }
 
+    public function empty(){
+        return view('empty');
+    }
+
 
     public function AdminDashboard(){
 

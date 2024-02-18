@@ -6,6 +6,7 @@ use App\Models\notify;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\merchant;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 
 
@@ -33,7 +34,7 @@ trait navbarUser{
 
     function notify()
     {
-        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->get();
+        $notify = notify::where('userid',Auth::User()->id)->limit(10)->orderBy('id','DESC')->get();
         return $notify;
     }
 

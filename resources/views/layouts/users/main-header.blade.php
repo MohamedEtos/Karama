@@ -305,11 +305,13 @@
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
-
-                                @isset($notifyId)
-                                    <a href="{{url('markAllReaded/' .$notifyId->userId )}}" class="badge badge-pill badge-warning mr-auto my-auto float-left">ضع علامة  تم القراءة</a>
-                                @endisset
-
+                                <form   id="form">
+                                    @csrf
+                                    @isset($notifyId)
+                                    <input type="hidden" name="uId" value="{{$notifyId->userId}}">
+                                    <button id="submit" type="submit"  class="badge badge-pill badge-warning mr-auto my-auto float-left">ضع علامة  تم القراءة</button>
+                                    @endisset
+                                </form>
                             </div>
                             <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">لديك <b id="countNotify">{{$notifyCount}}</b> اشعار غير مقروءة</p>
                         </div>
@@ -392,4 +394,5 @@
 	</div>
 </div>
 <!-- /main-header -->
+
 

@@ -18,7 +18,7 @@ class ProductHomeController extends Controller
 
         // get notifactions
 
-        $notify = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->get();
+        $notify = notify::where('userid',Auth::User()->id)->limit(10)->orderBy('id','DESC')->get();
         $notifyId = notify::where('userid',Auth::User()->id)->orderBy('id','DESC')->first();
 
         $notifyCount = notify::where('userid',Auth::User()->id)
@@ -31,7 +31,7 @@ class ProductHomeController extends Controller
         $priceRange = $request->priceRange;
 
         if (request('search')) {
-            $products = merchant::where(function($query) use ($serch){
+            $products = merchant::inRandomOrder()->where(function($query) use ($serch){
                 $query->where('name', 'like', '%' . $serch . '%')
                 ->orWhere('productDescription', 'like', '%' . $serch . '%');
             })->orWhereHas('productionToCategoryRealtions',function($query) use ($serch){
@@ -43,7 +43,7 @@ class ProductHomeController extends Controller
 
         } elseif (request('persent')) {
 
-            $products = merchant::where(function($query) use ($serchpersent){
+            $products = merchant::inRandomOrder()->where(function($query) use ($serchpersent){
                 $query->whereBetween('discount', [$serchpersent, 100]);
             })
             ->latest()->paginate(16);
@@ -51,9 +51,9 @@ class ProductHomeController extends Controller
         }elseif(request('priceRange')){
             $substringBefore = explode(';', $priceRange)[0];
             $substringAfter = explode(';', $priceRange)[1];
-            $products = merchant::whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);
+            $products = merchant::inRandomOrder()->whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);
         }else{
-            $products = merchant::with('userToProduct.userToDetalis')->latest()->paginate(16);
+            $products = merchant::with('userToProduct.userToDetalis')->inRandomOrder()->latest()->paginate(16);
         }
 
         $merchants = User::where('subtype','merchant')->get('name');

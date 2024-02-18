@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Models\User;
 
-use Illuminate\pagination\Paginator;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+use App\Models\OTPPoints;
 use Illuminate\Support\Carbon;
+use Illuminate\pagination\Paginator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,8 +30,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         Carbon::setLocale('ar'); // to type date arabic
+
+
+        //this line for delete all otp after 5 mints
+        $minutes  = Carbon::now()->subMinutes( 10 );
+        OTPPoints::where('created_at', '<=', $minutes)->delete();
+
 
         Paginator::useBootstrap();
         Schema::defaultStringLength(191);

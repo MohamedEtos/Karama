@@ -93,9 +93,17 @@
 
                                       <input type="hidden" id="userId" name="userId">
                                       <input type="hidden" id="merchantId" name="merchantId" value="{{Auth::User()->id}}">
-
+                                      @if ($errors->any())
+                                      <div class="text-danger mt-1">
+                                          <ul>
+                                              @foreach ($errors->all() as $error)
+                                                  <li>{{ $error }}</li>
+                                              @endforeach
+                                          </ul>
+                                      </div>
+                                  @endif
 									<div class="col-12 mt-4">
-									  <button class="btn btn-block btn-lg btn-danger disabled"   id="finish" type="submit">تاكيد</button>
+									  <button class="btn btn-block btn-lg btn-danger disabled" disabled   id="finish" type="submit">تاكيد</button>
 									</div>
 								  </form>
 
@@ -152,7 +160,7 @@
 
 
 
-        $('#usercode').on('keyup paste', function() {
+        $('#usercode').on('input paste', function() {
 
         var Rname = document.getElementById('Rname');
         var usercode = document.getElementById('usercode');
@@ -166,7 +174,7 @@
 
 					   $.ajax({
 						   type: "GET",
-						   url: 'checkUserCode/'+value,
+						   url: 'checkUserCodeAddPoints/'+value,
 						   dataType: 'json',
 						   beforeSend: function() {
                             $('.loading').css('display','flex');
@@ -177,6 +185,7 @@
                                usercode.classList.remove("border","border-danger");
                                usercode.classList.add("border", "border-success");
                                finish.classList.remove('disabled');
+                               finish.disabled = false;
                                Rname.value = data.MSG.name ;
                                userId.value = data.MSG.id;
                                oldpoint.value = data.oldPoints.points;
@@ -190,11 +199,15 @@
                                     usercode.classList.add("border","border-danger");
                                     $('.loading').css('display','none');
                                     $('.loader_cu').css('display','none');
-                                    finish.classList.add('disabled');
+                                    // finish.classList.add('disabled');
+                                    finish.disabled = true;
+
 									oldpoint.value = '0';
 
                                 }else if (data.oldPoints == 'nodata'){
 									oldpoint.value = '0';
+                                    finish.disabled = true;
+
 								}
 
                                 $('.loading').css('display','none');
@@ -212,7 +225,7 @@
                                 usercode.classList.add("border","border-danger");
                                 $('.loading').css('display','none');
                                 $('.loader_cu').css('display','none');
-                                finish.classList.add('disabled');
+                                finish.disabled = true;
 
 						    },
 
@@ -221,7 +234,7 @@
                 usercode.classList.remove("border","border-success");
                 usercode.classList.add("border","border-warning");
                 document.getElementById('Rname').value = '' ;
-                finish.classList.add('disabled');
+                finish.disabled = true;
 
             }
 

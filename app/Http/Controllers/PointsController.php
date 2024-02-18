@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\pointNofication;
-use App\Models\notify;
-use App\Models\pointRules;
-use App\Models\points;
-use App\Models\pointsDetails;
 use App\Models\User;
+use App\Models\notify;
+use App\Models\points;
+use App\Models\OTPPoints;
+use App\Models\pointRules;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\pointsDetails;
 use Illuminate\Support\Carbon;
+use App\Events\pointNofication;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CheckUserCode;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Traits;
 
 class PointsController extends Controller
 {
+
+    use Traits\navbarUser;
+
     /**
      * Display a listing of the resource.
      *
@@ -24,27 +32,103 @@ class PointsController extends Controller
         return view('merchant.points.addUserPoints');
     }
 
-    public function checkUserCode($usercode)
+    public function checkUserCodeAddPoints(Request $request)
+
     {
 
+        // 'param' => 'integer','min:8','max:8','exists:App\Models\User,usercode', // Validation rule for the 'param' parameter
+
         $userdata = User::select('name', 'id')
-        ->where('usercode', $usercode)
+        ->where('usercode', $request->usercode)
         ->where('subtype', 'user')
         ->first();
+
+
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
 
-        if (!$oldPoints) {
+        if (!$oldPoints && !$userdata) {
             $oldPoints = 'nodata';
-        }
-        if (!$userdata) {
             $userdata = 'nodata';
+            return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
         }
+
+
+
+        return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
+
+    }
+    public function checkUserCode(Request $request)
+
+    {
+
+        // 'param' => 'integer','min:8','max:8','exists:App\Models\User,usercode', // Validation rule for the 'param' parameter
+
+        $userdata = User::select('name', 'id')
+        ->where('usercode', $request->usercode)
+        ->where('subtype', 'user')
+        ->first();
+
+
+        $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
+
+        if (!$oldPoints && !$userdata) {
+            $oldPoints = 'nodata';
+            $userdata = 'nodata';
+            return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
+        }
+
+
+        $OTP = OTPPoints::create([
+            'merchantId'=>Auth::User()->id,
+            'userId'=>$userdata->id,
+            'OTP'=>rand(100000,999999),
+        ]);
+
+        $LastOTP = OTPPoints::where('merchantId',Auth::User()->id)
+        ->where('userId',$userdata->id)
+        ->where('succeed',0)
+        ->orderBy('id','desc')
+        ->first();
+
+        notify::create([
+            'userId' => $userdata->id,
+            'merchantId' => Auth::User()->id,
+            'messages'=>'لقد قام المتجر بارسال طلب استبدال نقاط من حسابك رمز OTP هو ' . '('. $LastOTP->OTP .')' . ' لمده 10 دقايق',
+        ]);
+
+        $NotifyData= notify::where('userId',$userdata->id)->where('merchantId', Auth::User()->id)->orderBy('id','DESC')->first();
+
+        $data = [
+            'userId' => $NotifyData->userId,
+            'merchantName' => $NotifyData->notifyMerchant->name,
+            'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+            'merchantId' => Auth::User()->id,
+            'messages' => $NotifyData->messages,
+            'price' => '' ,
+            'points' => '',
+            'type'=>'',
+            // 'OTP'=>$LastOTP->OTP,
+            'time'=>$NotifyData->created_at->diffForHumans(),
+        ];
+
+        event(new pointNofication($data));
+
+
         return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
 
     }
 
     public function addUserPoints(Request $request)
     {
+
+        // return $request->all();
+
+        $request->validate([
+            'usercode' => ['required', 'numeric','lt:99999999','exists:App\Models\User,usercode'],
+            'price' => ['required','numeric','gt:1'],
+            'userId' => ['required', 'numeric',  'exists:App\Models\User,id'],
+            'merchantId' => ['required', 'numeric',  'exists:App\Models\User,id'],
+        ]);
 
         $prevPoints = points::select('price', 'points')
             ->where('userId', $request->userId)
@@ -136,9 +220,34 @@ class PointsController extends Controller
     public function exchangePoints(Request $request)
     {
 
-        if($request->price != $request->points){
+        // return $request->all();
+
+        $request->validate([
+            // 'otp' => ['required', 'numeric','lt:999999','exists:App\Models\OTPPoints,OTP'],
+            'merchantId' => ['required', 'numeric',  'exists:App\Models\User,id'],
+            'userId' => ['required', 'numeric',  'exists:App\Models\User,id'],
+            'price' => ['required','numeric','gt:1'],
+            'points' => ['required','numeric','gt:1'],
+        ]);
+
+
+        $OTP = OTPPoints::where('merchantId',$request->merchantId)
+        ->where('userId',$request->userId)
+        ->orderBy('id','desc')
+        ->first();
+
+
+        if($request->otp != $OTP->OTP){
+            return redirect()->back()->with('error', 'رمز OTP غير صحيح');
+        }
+
+
+        if($request->price != $request->points ){
             return redirect()->back();
         }
+
+        DB::transaction(function () use ($request){
+
 
         $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
@@ -166,6 +275,41 @@ class PointsController extends Controller
             'type'=>'Subtract'
         ]);
 
+        $totalPointCurrentStore = points::select('price', 'points')
+        ->where('userId', $request->userId)
+        ->where('merchantId', $request->merchantId)
+        ->sum('points');
+
+        notify::create([
+            'userId' => $request->userId,
+            'merchantId' => $request->merchantId,
+            'messages'=>' لقد تم استبدال نقاط بقميه  '  . ($request->price ) . '₪ واصبح رصيد نقاتك في متجرنا ' . $totalPointCurrentStore . ' نقطه ' . 'شكرا علي زيارتك لنا ',
+        ]);
+
+        $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
+
+        // update otp success to 1
+        $OTPUpdate = OTPPoints::where('OTP',$request->otp)->update([
+            'succeed'=>1
+        ]);
+
+    $data = [
+        'userId' => $NotifyData->userId,
+        'merchantName' => $NotifyData->notifyMerchant->name,
+        'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+        'merchantId' => $request->merchantId,
+        'messages' => $NotifyData->messages,
+        'price' => $request->price ,
+        'points' => ($pointRules * $request->price / 100),
+        'type'=>'add',
+        'time'=>$NotifyData->created_at->diffForHumans(),
+    ];
+
+
+    event(new pointNofication($data));
+});
+
+
         return redirect()->back()->with('success', 'تم استبدال النقاط ');
 
     }
@@ -174,6 +318,29 @@ class PointsController extends Controller
     public function settingPoints()
     {
         return view('merchant.points.settingPoints');
+    }
+
+
+
+    public function myPoints(Request $request)
+    {
+        $mypoints = points::where('userId',Auth::User()->id)->inRandomOrder()->get();
+
+        //        traits
+        $search = $this->search($request);
+        $merchants = $this->merchant();
+        $category = $this->category();
+        $notifyCount = $this->notifyCount();
+        $notify = $this->notify();
+        $notifyId = $this->notifyId();
+        return view('myPoints',compact([
+            'merchants',
+            'category',
+            'notifyCount',
+            'notifyId',
+            'notify',
+            'mypoints',
+        ]));
     }
 
 

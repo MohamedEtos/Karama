@@ -1,0 +1,39 @@
+
+
+  .container, .columns {
+    height: 100%;
+  }
+
+  .zandgar__wizard {
+    display: block;
+    height: 100%;
+    position: relative;
+  }
+
+  .zandgar__wizard .zandgar__step {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+    overflow: hidden;
+    transform: translateY(20px);
+  }
+  .zandgar__wizard .zandgar__step.zandgar__step__active {
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0);
+    transition:
+      opacity .5s ease-out,
+      transform .5s ease-out;
+  }
+
+  .form-input-hint {
+    display: none;
+  }
+
+  .form-input-hint.is-visible {
+    display: block;
+  }

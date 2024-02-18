@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('points_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('pointsDetailsId')->unsigned()->nullable();
+            $table->bigInteger('pointsDetailsId')->unsigned();
             $table->foreign('pointsDetailsId')->references('id')->on('points')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('userId')->nullable();
-            $table->integer('usercode')->nullable();
-            $table->integer('merchantId')->nullable();
+            $table->integer('userId');
+            $table->integer('usercode');
+            $table->integer('merchantId');
             $table->decimal('price',9,2);
             $table->decimal('points',9,2);
             $table->enum('type',['add','Subtract']);
