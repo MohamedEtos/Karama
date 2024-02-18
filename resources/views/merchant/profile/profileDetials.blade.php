@@ -7,6 +7,13 @@
 {{-- imageuploader --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/imageUploaderProfile/imageUploader.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css-rtl/profileDetials.css')}}">
+<link rel="stylesheet" href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css')}}">
+
+
+
+
+  <meta name="token" content="{{ csrf_token() }}">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -15,14 +22,15 @@
 						<div class="my-auto">
 							<div class="d-flex">
 								<h4 class="content-title mb-0 my-auto text-light">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
-								
+
 							</div>
 						</div>
-						
+
 					</div>
-					<!-- breadcrumb --> 
+					<!-- breadcrumb -->
 @endsection
 @section('content')
+
 
 
 				<!-- row -->
@@ -34,18 +42,9 @@
 									<div class="main-profile-overview">
 
 										<div class="col-12 ">
-											
+
 											<div class="row ">
 
-												<div class="loader_cu">
-													<div class="loading">
-														<div class="loading-bar"></div>
-														<div class="loading-bar"></div>
-														<div class="loading-bar"></div>
-														<div class="loading-bar"></div>
-														<div class="loading-bar"></div>
-													</div>
-												</div>
 
 												{{-- merchant cover  --}}
 
@@ -53,34 +52,118 @@
 													<form id="coverUploadform" class="text-center" enctype="multipart/form-data">
 														@csrf
 
-	
-													<div class="avatar-edit">
-														<input type='file' id="imageUpload1" name="coverImage" accept=".png, .jpg, .jpeg" />
-														<label for="imageUpload1"></label>
-													</div>
-													<div class="avatar-preview cover-preview">
-														<div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون الصورره  1600*400 بكسل" style="background-image: url('{{asset($userDetalis->coverImage)}}'); ">
-														</div>
-													</div>
-												</form>	
-												</div>	
+
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload1" name="coverImage" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload1" data-target="#modaldemo4" data-toggle="modal"></label>
+
+                                                        </div>
+                                                        <div class="avatar-preview cover-preview">
+                                                            <div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون الصورره  1600*400 بكسل" style="background-image: url('{{asset($userDetalis->coverImage)}}'); ">
+                                                            </div>
+                                                        </div>
+
+                                                        <!--start Large Modal cover image -->
+                                                        <div class="modal" id="modaldemo4">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content modal-content-demo">
+
+                                                                    <div class="loader_cu">
+                                                                        <div class="loading">
+                                                                            <div class="loading-bar"></div>
+                                                                            <div class="loading-bar"></div>
+                                                                            <div class="loading-bar"></div>
+                                                                            <div class="loading-bar"></div>
+                                                                            <div class="loading-bar"></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-header">
+                                                                        <h6 class="modal-title">تغير صوره الغلاف </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 text-center">
+                                                                                <div id="upload-demoCover"></div>
+                                                                            </div>
+                                                                            <div class="col-md-12 pt-3" >
+                                                                                <label for="imagesCover" class="btn btn-danger btn-block">اختر صوره</label>
+                                                                                <input class="d-none" type="file" id="imagesCover" name="imagesCover">
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn ripple btn-danger image-uploadCover" type="button">حفظ الصوره</button>
+                                                                        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--End Large Modal -->
+
+
+
+
+												    </form>
+												</div>
 
 
 												{{-- /mechant image  --}}
-	
+
 												<form id="imageUploadform" class="merchant_image" enctype="multipart/form-data">
-												<div class="avatar-upload  col-12">
-														@csrf
-													<div class="avatar-edit">
-														<input type='file' id="imageUpload2" name="ProfileImage" accept=".png, .jpg, .jpeg" />
-														<label for="imageUpload2"></label>
-													</div>
-													<div class="avatar-preview merchant-preview ">
-														<div id="imagePreview2" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
-														</div>
-													</div>
-												</div>	
-											</form>	
+                                                    <div class="avatar-upload  col-12">
+                                                            @csrf
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload2"  name="ProfileImage" accept=".png, .jpg, .jpeg" />
+                                                            <label for="images" data-target="#modaldemo3" data-toggle="modal"></label>
+                                                        </div>
+                                                        <div class="avatar-preview merchant-preview ">
+                                                            <div id="imagePreview2" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                            <!--start Large Modal profile image -->
+                                                            <div class="modal" id="modaldemo3">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content modal-content-demo">
+
+                                                                        <div class="loader_cu">
+                                                                            <div class="loading">
+                                                                                <div class="loading-bar"></div>
+                                                                                <div class="loading-bar"></div>
+                                                                                <div class="loading-bar"></div>
+                                                                                <div class="loading-bar"></div>
+                                                                                <div class="loading-bar"></div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="modal-header">
+                                                                            <h6 class="modal-title">تغير صوره الملف الشخصي</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12 text-center">
+                                                                                    <div id="upload-demo"></div>
+                                                                                </div>
+                                                                                <div class="col-md-12 pt-3" >
+                                                                                    <label for="images" class="btn btn-danger btn-block">اختر صوره</label>
+                                                                                    <input class="d-none" type="file" id="images" name="image">
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn ripple btn-danger image-upload" type="button">حفظ الصوره</button>
+                                                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--End Large Modal -->
+											    </form>
 											</div>
 
 										</div>
@@ -89,7 +172,7 @@
 												<h5 class="main-profile-name">{{Auth::user()->name}}</h5>
 												<p class="main-profile-name-text">
 													@if ($MainUserTable->subtype == 'admin')
-														مدير 
+														مدير
 													@elseif($MainUserTable->subtype == 'merchant')
 														تاجر
 													@elseif($MainUserTable->subtype == 'user')
@@ -121,7 +204,7 @@
 										<div class="main-profile-social-list">
 											<div class="media">
 												<div class="media-icon bg-primary-transparent text-primary">
-													<i class="fa-solid fa-phone"></i>									
+													<i class="fa-solid fa-phone"></i>
 												</div>
 												<div class="media-body">
 													<span>رقم الهاتف</span> <a href="tel:{{$userDetalis->phone}}">{{$userDetalis->phone}}</a>
@@ -129,7 +212,7 @@
 											</div>
 											<div class="media">
 												<div class="media-icon bg-success-transparent text-success">
-													
+
 													<i class="fa-brands fa-whatsapp "></i>
 												</div>
 												<div class="media-body">
@@ -223,10 +306,10 @@
 										</li>
 										<li class="">
 											<a href="#social" data-toggle="tab" class="" aria-expanded="false"> <span class="visible-xs"><i class="fa-solid fa-hashtag "></i></span> <span class="hidden-xs">التواصل الاجتماعي</span> </a>
-										</li>	
+										</li>
 										<li class="">
 											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">البيانات الاساسيه</span> </a>
-										</li>	
+										</li>
 									</ul>
 								</div>
 								<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
@@ -255,8 +338,8 @@
 													تاجر
 													@elseif (Auth::user()->subtype == 'user')
 													مستخدم
-													@endif	
-												
+													@endif
+
 												</b></p>
 											</div>
 										</div>
@@ -291,7 +374,7 @@
 											</div>
 											<div class="form-group">
 												<label for="FullName">رقم الهاتف</label>
-												<i class="fa-solid fa-phone text-primary"></i>								
+												<i class="fa-solid fa-phone text-primary"></i>
 
 												<input name="phone" value="{{$userDetalis->phone}}" class="form-control" min="9" minlength="9" maxlength="9" max="999999999"  type="text"   id="phone" placeholder="0927X XXXX"  required>
 											</div>
@@ -376,7 +459,7 @@
 													</div>
 												</div>
 												<!-- End Modal effects-->
-	
+
 												{{-- <input id="submitBTN" data-target="#select2modal" data-effect="effect-rotate-left" data-toggle="modal" class="btn btn-danger btn-block waves-effect waves-light w-md" value="تحديث" type="button" type=""> --}}
 											<a class="modal-effect btn btn-danger btn-block" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">تاكيد</a>
 
@@ -387,6 +470,55 @@
 						</div>
 					</div>
 				</div>
+
+
+                <a class="btn ripple btn-info"  href="">View Demo</a>
+
+
+
+
+        <!--start Large Modal profile image -->
+        <div class="modal" id="modaldemo3">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content modal-content-demo">
+
+                    <div class="loader_cu">
+                        <div class="loading">
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                            <div class="loading-bar"></div>
+                        </div>
+                    </div>
+
+					<div class="modal-header">
+						<h6 class="modal-title">تغير صوره الملف الشخصي</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div id="upload-demo"></div>
+                            </div>
+                            <div class="col-md-12 pt-3" >
+                                <label for="images" class="btn btn-danger btn-block">اختر صوره</label>
+                                <input class="d-none" type="file" id="images" name="image">
+                            </div>
+
+                        </div>
+
+					</div>
+					<div class="modal-footer">
+						<button class="btn ripple btn-danger image-upload" type="button">حفظ الصوره</button>
+						<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--End Large Modal -->
+
+
+
 				<!-- row closed -->
 
 
@@ -428,7 +560,7 @@
 
 
 
-		
+
 @endsection
 @section('js')
 <!--Internal  Chart.bundle js -->
@@ -481,14 +613,14 @@
 
 
 
-	
-	
-	
-	
-})()	
 
 
-// image uploader 
+
+
+})()
+
+
+// image uploader
 
 $("#imageUpload2").change(function(e) {
 
@@ -512,9 +644,9 @@ $("#imageUpload2").change(function(e) {
 		success: function (data) {
 
 
-			// nofication 
+			// nofication
 			$('form').append('<input id="nofic" type="hidden" value="">');
-			$('#nofic').val(data.MSG);	
+			$('#nofic').val(data.MSG);
 			function not7() {
 					notif({
 						msg: $('#nofic').val(),
@@ -537,7 +669,7 @@ $("#imageUpload2").change(function(e) {
 		},error: function(reject){
 			$('.merchant-preview').addClass('avatar-preview-animate-danger');
 			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
-			$('#errors').val();	
+			$('#errors').val();
 			function not7() {
 					notif({
 						msg: $('#errors').val(),
@@ -554,30 +686,69 @@ $("#imageUpload2").change(function(e) {
 
 });
 
-// cover uploader 
-
-$("#imageUpload1").change(function(e) {
+// cover uploader
 
 
-	e.preventDefault();
-	let formData = new FormData($('#coverUploadform	')[0]);
-	// $("#name").text('');
-	$.ajax({
+</script>
 
-		beforeSend: function() {
-			$('.loader_cu').css('display','flex');
-			$('.loading').css('display','flex');
-		},
-		type: "post",
-		url: "{{route('CoverImage')}}",
-		data : formData,
-		processData:false,
-		contentType:false,
-		cache:false,
-		success: function (data) {
-			// nofication 
+
+
+
+
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js')}}"></script>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      }
+    });
+
+    var resize = $('#upload-demoCover').croppie({
+        enableExif: true,
+        enableOrientation: true,
+        viewport: {
+            width: 300,
+            height: 300,
+            type: 'circle'
+        },
+
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    $('#imagesCover').on('change', function () {
+      var reader2 = new FileReader();
+        reader2.onload = function (e) {
+          resize.croppie('bind',{
+            url: e.target.result
+          }).then(function(){
+            console.log('success bind image');
+          });
+
+        }
+        reader2.readAsDataURL(this.files[0]);
+    });
+
+    $('.image-uploadCover').on('click', function (ev) {
+      resize.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+
+      }).then(function (img2) {
+        $.ajax({
+          url: '{{ route('CoverImage') }}',
+          type: "POST",
+          data: {"image":img2},
+          success: function (data) {
+            html = '<img src="' + img2 + '" />';
+            $("#imagePreview2").html(html);
+
+			// nofication
 			$('form').append('<input id="nofic" type="hidden" value="">');
-			$('#nofic').val(data.MSG);	
+			$('#nofic').val(data.MSG);
 			function not7() {
 					notif({
 						msg: $('#nofic').val(),
@@ -586,23 +757,19 @@ $("#imageUpload1").change(function(e) {
 				};
 				not7();
 			$('.loader_cu').css('display','none');
-			$('.loading').css('display','none');
 
 			// image uploader animated
-				$('.cover-preview').removeClass('avatar-preview-animate-danger');
-				$('.cover-preview').addClass('avatar-preview-animate');
+				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
+				$('.merchant-preview').addClass('avatar-preview-animate');
+                $('.modal-content-demo').addClass('avatar-preview-animate');
 				setTimeout(function() {
-					$('.cover-preview').removeClass('avatar-preview-animate');
+					$('.merchant-preview').removeClass('avatar-preview-animate');
 				}, 3000);
 
-
-		},complete: function(){
-			$('.loader_cu').css('display','none')
-			$('.loading').css('display','none')
-		},error: function(reject){
-			$('.cover-preview').addClass('avatar-preview-animate-danger');
+          },error: function(reject){
+			$('.merchant-preview').addClass('avatar-preview-animate-danger');
 			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
-			$('#errors').val();	
+			$('#errors').val();
 			function not7() {
 					notif({
 						msg: $('#errors').val(),
@@ -611,69 +778,108 @@ $("#imageUpload1").change(function(e) {
 			};
 			not7();
 
+		},beforeSend: function() {
+			$('.loader_cu').css('display','flex');
+			$('.loading').css('display','flex');
+			// $('.avatar-preview').css('border-color','red').delay(500);
+
 		}
-
-	});
-
-
-
-});
-
-</script>
+        });
+      });
+    });
+ </script>
 
 
-{{-- <script>
 
-	// sochial update
+<script type="text/javascript">
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      }
+    });
 
-$('#submitBTN').on('click', function(e) {
+    var resize = $('#upload-demo').croppie({
+        enableExif: true,
+        enableOrientation: true,
+        viewport: {
+            width: 300,
+            height: 300,
+            type: 'circle'
+        },
 
-	e.preventDefault();
-	let formData = new FormData($('#formSochial')[0]);
-$.ajax({
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
 
-	beforeSend: function() {
-		$('.loader_cu').css('display','flex');
-	},
-	type: "post",
-	url: "{{route('updateProfile')}}",
-	data : formData,
-	processData:false,
-	contentType:false,
-	cache:false,
-	success: function (data) {
+    $('#images').on('change', function () {
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          resize.croppie('bind',{
+            url: e.target.result
+          }).then(function(){
+            console.log('success bind image');
+          });
 
-		// nofication 
-		$('form').append('<input id="nofic" type="hidden" value="">');
-		$('#nofic').val(data.MSG);	
-		function not7() {
-				notif({
-					msg: $('#nofic').val(),
-					type: "success"
-				});
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('.image-upload').on('click', function (ev) {
+      resize.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+
+      }).then(function (img) {
+        $.ajax({
+          url: '{{ route('ProfileImage') }}',
+          type: "POST",
+          data: {"image":img},
+          success: function (data) {
+            html = '<img src="' + img + '" />';
+            $("#imagePreview2").html(html);
+
+			// nofication
+			$('form').append('<input id="nofic" type="hidden" value="">');
+			$('#nofic').val(data.MSG);
+			function not7() {
+					notif({
+						msg: $('#nofic').val(),
+						type: "success"
+					});
+				};
+				not7();
+			$('.loader_cu').css('display','none');
+
+			// image uploader animated
+				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
+				$('.merchant-preview').addClass('avatar-preview-animate');
+                $('.modal-content-demo').addClass('avatar-preview-animate');
+				setTimeout(function() {
+					$('.merchant-preview').removeClass('avatar-preview-animate');
+				}, 3000);
+
+          },error: function(reject){
+			$('.merchant-preview').addClass('avatar-preview-animate-danger');
+			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
+			$('#errors').val();
+			function not7() {
+					notif({
+						msg: $('#errors').val(),
+						type: "error"
+					});
 			};
 			not7();
-		$('.loader_cu').css('display','none');
 
-	},complete: function(){
-		$('.loader_cu').css('display','none')
-	},error: function(reject){
-		$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
-		$('#errors').val();	
-		function not7() {
-				notif({
-					msg: $('#errors').val(),
-					type: "error"
-				});
-		};
-		not7();
+		},beforeSend: function() {
+			$('.loader_cu').css('display','flex');
+			$('.loading').css('display','flex');
+			// $('.avatar-preview').css('border-color','red').delay(500);
 
-	}
-
-});
-
-
-
-});
-</script> --}}
+		}
+        });
+      });
+    });
+ </script>
 @endsection

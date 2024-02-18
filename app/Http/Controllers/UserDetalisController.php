@@ -43,46 +43,27 @@ class UserDetalisController extends Controller
      */
     public function ProfileImage(Request $request)
     {
-       
-        if($request->hasFile('ProfileImage')){
 
 
-            $ImageFile =  $request->file('ProfileImage');
-            $data = getimagesize($ImageFile);
-            $width = $data[0];
-            $height = $data[1];
-    
-            if($width > '1024'){
-                $width = '1024';
-            }elseif($width < '1024'){
-                $width;
-            };
-            if($height > '1024'){
-                $height = '1024';
-            }elseif($height < '1024'){
-                $height;
-            };
 
+        $image = $request->image;
 
-            $image  = ImageManagerStatic::make($request->file('ProfileImage'))->encode('webp')->resize($width,$height);
-  
-            $imageName = Str::random().'.webp';
+        list($type, $image) = explode(';', $image);
+        list(, $image)      = explode(',', $image);
 
-            $image->save(public_path('upload/Profile/img/'. $imageName));
-    
-            $ProfileImage = 'upload/Profile/img/'. $imageName;
+        $image = base64_decode($image);
+        $image_name= time().'.webp';
+        $path = public_path('upload/Profile/img/'.$image_name);
 
-        }
+        file_put_contents($path, $image);
 
         userDetalis::where('id',Auth::User()->id)->update([
-            'ProfileImage'=>$ProfileImage,
+            'ProfileImage'=>'upload/Profile/img/'.$image_name,
         ]);
-
-
 
         return response()->json(["MSG" => "تم تغير الصوره "]);
 
-        
+
     }
 
 
@@ -90,7 +71,7 @@ class UserDetalisController extends Controller
     {
 
 
-        
+
 
         if($request->hasFile('coverImage')){
 
@@ -98,7 +79,7 @@ class UserDetalisController extends Controller
             $data = getimagesize($ImageFile);
             $width = $data[0];
             $height = $data[1];
-    
+
             if($width > '1024'){
                 $width = '1024';
             }elseif($width < '1024'){
