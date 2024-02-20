@@ -26,7 +26,7 @@
 
 				{{-- row --}}
 				<div class="row">
-					<div class="col-12">
+					<div class="col-lg-8 col-xl-9 col-md-12 col-sm-12">
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
@@ -72,10 +72,16 @@
 
 										</tbody>
 									</table>
+                                    {{-- {{ $notify->links() }} --}}
 								</div>
 							</div>
 						</div>
 					</div>
+
+                    @include('admin.notify.list');
+
+
+
 				</div>
 				{{-- /row --}}
 

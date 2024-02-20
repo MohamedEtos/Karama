@@ -97,7 +97,7 @@
 
 					<div class="row row-sm">
                         @foreach ($products as $product)
-							<div class="col-md-6 col-lg-3 col-xl-3  col-sm-12">
+							<div class="col-md-6 col-lg-4 col-xl-4  col-sm-12">
 								<div class="card shadow-none">
 									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
 										<div class="row">

@@ -79,7 +79,7 @@ class PointsAdminController extends Controller
         }
 
 
-        
+
             $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
 

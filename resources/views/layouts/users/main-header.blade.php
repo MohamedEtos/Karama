@@ -303,23 +303,21 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span id="messNotify" class="@if(isset($notifyId) and $notifyId->readed == 0) pulse-danger  @else '' @endif"></span></a>
                     <div class="dropdown-menu">
                         <div class="menu-header-content bg-primary text-right">
-                            <div class="d-flex">
+                            <form class="d-flex" id="form">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
-                                <form   id="form">
                                     @csrf
                                     @isset($notifyId)
                                     <input type="hidden" name="uId" value="{{$notifyId->userId}}">
-                                    <button id="submit" type="submit"  class="badge badge-pill badge-warning mr-auto my-auto float-left">ضع علامة  تم القراءة</button>
+                                    <button id="submit" type="submit"  class="badge badge-pill badge-warning mr-auto my-auto">ضع علامة  تم القراءة</button>
                                     @endisset
-                                </form>
-                            </div>
+                            </form>
                             <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">لديك <b id="countNotify">{{$notifyCount}}</b> اشعار غير مقروءة</p>
                         </div>
                         <div class="main-notification-list Notification-scroll lastrecord">
 
-                            @if ($notify->isEmpty())
+                            {{-- @if ($notify->isEmpty())
 
-                            @endif
+                            @endif --}}
 
                             @forelse ($notify as $NewData )
                             <a href="{{Route('allNotify')}}" class="p-3 d-flex border-bottom ">

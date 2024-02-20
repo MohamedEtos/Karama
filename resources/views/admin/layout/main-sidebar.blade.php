@@ -66,7 +66,7 @@
 						<a class="side-menu__item" href="{{Route('addPoints')}}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp; اضافه نقاط</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
-					<li class="side-item side-item-category">الاشعارات</li>
+					<li class="side-item side-item-category">الاشعارات والرسائل</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; عرض الاشعارات</span><span class="badge badge-danger side-badge"></span></a>
 						<a class="side-menu__item" href="{{route('sendNotify')}}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp;  ارسال اشعار</span><span class="badge badge-danger side-badge"></span></a>

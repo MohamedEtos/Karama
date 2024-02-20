@@ -542,8 +542,8 @@
 														({{Carbon\Carbon::parse($exchangPoints->created_at)->toDateString()}})
 													</span>
 												</td>
-													<td class="tx-right tx-medium tx-inverse">test</td>
-													<td class="tx-right tx-medium tx-inverse">test</td>
+                                                <td class="tx-right tx-medium tx-inverse">{{$exchangPoints->pointsToDetails->pointTomerchant->name}}</td>
+                                                <td class="tx-right tx-medium tx-inverse">{{$exchangPoints->pointsToDetails->pointToUser->name}}</td>
 													<td class="tx-right tx-medium tx-success">{{$exchangPoints->points	}} </td>
 													<td class="tx-right tx-medium tx-danger">{{$exchangPoints->price}} ₪</td>
 												</tr>inverse

@@ -103,7 +103,9 @@ Route::controller(PointsAdminController::class)->middleware('auth')->prefix('adm
 
 Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('notifyList', 'notifyList')->name('notifyList');
+    Route::post('sendNotifyAjax', 'sendNotifyAjax')->name('sendNotifyAjax');
     Route::get('sendNotify', 'sendNotify')->name('sendNotify');
+    Route::get('sendMail', 'sendMail')->name('sendMail');
 
 });
 
