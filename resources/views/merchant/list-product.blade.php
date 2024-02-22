@@ -88,7 +88,7 @@
 														</div>
 													</td>
 													<td class="text-center text-lg text-medium">{{$data->price}} <b>₪</b></td>
-	
+
 													<td class="text-center text-lg text-medium">{{$data->discount}} <b>%</b></td>
 													<td class="text-center text-lg text-medium">{{$data->ThePriceAfterDiscount}} <b>₪</b></td>
 
@@ -101,7 +101,7 @@
 														<form>
 															<input type="hidden" name="proId" value="{{$data->id}}" >
 														</form>
-														
+
 													</td>
 												</tr>
 											@endforeach
@@ -122,7 +122,7 @@
 			<!-- Container closed -->
 		</div>
 		<!-- main-content closed -->
-	
+
 @endsection
 @section('js')
 <!-- Internal Select2.min js -->
@@ -172,8 +172,8 @@ $( document ).ready(function() {
 					}, 500);
 
 				},complete : function(data){
-					console.log(data.test);
-					 
+					// console.log(data.test);
+
 
 				},errors:function(){
 					setTimeout(function () {
@@ -188,7 +188,7 @@ $( document ).ready(function() {
 
 
 });
-	
+
 
 </script>
 

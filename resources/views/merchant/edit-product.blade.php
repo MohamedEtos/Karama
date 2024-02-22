@@ -38,19 +38,21 @@
 												<input class="form-control" name="name" placeholder="لا يمكنك ترك الاسم فارغ" required="" value="{{$product->name}}" type="text">
 											</div>
 										</div>
-										<div class="col-4">
-											<div class="form-group mg-b-0">
-												<label class="form-label">القسم: </label>
-												{{-- <input class="form-control" name="category" placeholder="لا يمكنك ترك القسم فارغ" required="" value="{{$product->category}}" type="text"> --}}
-												<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
-													{{-- <option disabled selected>اختار</option> --}}
-													<option selected value="{{$product->productionToCategoryRealtions->id}}">{{$product->productionToCategoryRealtions->name}}</option>
-													@foreach ($category as $data)
-														<option value="{{$data->id}}">{{$data->name}}</option>
-													@endforeach
-												</select>
-											</div>
-										</div>
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">فئه المنتج</label>
+                                            <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
+                                              @foreach ($subCatarr as $data)
+                                                  <option value="{{$data}}">{{$data}}</option>
+                                              @endforeach
+                                          </select>
+                                          <div class="valid-feedback">
+                                              احسنت !
+                                          </div>
+                                          <div class="invalid-feedback" id="categoryId_error">
+
+                                            </div>
+
+                                          </div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">وصف المنتج: </label>
@@ -203,7 +205,7 @@
 
 <script>
 	// calculate discount
-function result (){
+    function result (){
 	var price =     document.getElementById("price").value;
 	var discount = document.getElementById("discount").value;
 	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");

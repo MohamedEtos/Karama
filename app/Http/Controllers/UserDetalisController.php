@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\merchant;
+use App\Models\points;
 use App\Models\userDetalis;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
+use Intervention\Image\Point;
 
 class UserDetalisController extends Controller
 {
@@ -23,12 +25,14 @@ class UserDetalisController extends Controller
         $productData= merchant::where('userId',Auth::User()->id)->orderBy('id','DESC')->limit('6')->get();
         $countProuduct = merchant::where('userId',Auth::User()->id)->count();
         $storeViews = visitorsCount::where('userId',Auth::User()->id)->count();
+        $points = points::where('merchantId',Auth::User()->id)->sum('points');
         return view ('merchant.profile.profileDetials',compact([
             'MainUserTable',
             'userDetalis',
             'productData',
             'countProuduct',
             'storeViews',
+            'points',
         ]));
 
     }

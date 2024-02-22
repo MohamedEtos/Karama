@@ -307,7 +307,7 @@
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
                                     @csrf
                                     @isset($notifyId)
-                                    <input type="hidden" name="uId" value="{{$notifyId->userId}}">
+                                    <input type="hidden" name="uId" value="{{$notifyId->reseverId}}">
                                     <button id="submit" type="submit"  class="badge badge-pill badge-warning mr-auto my-auto">ضع علامة  تم القراءة</button>
                                     @endisset
                             </form>
@@ -315,9 +315,7 @@
                         </div>
                         <div class="main-notification-list Notification-scroll lastrecord">
 
-                            {{-- @if ($notify->isEmpty())
 
-                            @endif --}}
 
                             @forelse ($notify as $NewData )
                             <a href="{{Route('allNotify')}}" class="p-3 d-flex border-bottom ">

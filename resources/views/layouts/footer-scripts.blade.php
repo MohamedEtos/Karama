@@ -73,7 +73,12 @@
 
     </script>
 
-<script src="{{URL::asset('assets/js/pointsnotify.js')}}"></script>
+        @isset( $notifyId->reseverId )
+            <input type="hidden" id="UID" value="{{Auth::User()->id}}">
+        @endisset
+
+
+<script src="{{URL::asset('assets/js/notifyPosher.js')}}"></script>
 
 
 <script>

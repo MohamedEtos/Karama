@@ -118,20 +118,20 @@ class PointsAdminController extends Controller
 
 
         notify::create([
-            'userId' => $request->userId,
-            'merchantId' => $request->merchantId,
+            'reseverId' => $request->userId,
+            'senderId' => $request->merchantId,
             'messages'=>' لقد تم اضافه نقاط بقميه  '  . ($pointRules * $request->price / 100) . '₪ واصبح رصيد نقاتك في المتجر ' . $totalPointCurrentStore . ' نقطه ' . '(عن طريق الاداره Karama-SC#)',
         ]);
 
-        $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
+        $NotifyData= notify::where('reseverId',$request->userId)->where('senderId',$request->merchantId)->orderBy('id','DESC')->first();
 
 
 
         $data = [
-            'userId' => $NotifyData->userId,
-            'merchantName' => $NotifyData->notifyMerchant->name,
-            'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
-            'merchantId' => $request->merchantId,
+            'reseverId' => $NotifyData->reseverId,
+            'senderName' => $NotifyData->notifyMerchant->name,
+            'senderImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+            'senderId' => $request->merchantId,
             'messages' => $NotifyData->messages,
             'price' => $request->price ,
             'points' => ($pointRules * $request->price / 100),

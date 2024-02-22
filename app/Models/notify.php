@@ -9,18 +9,18 @@ class notify extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'userId',
-        'merchantId',
+        'reseverId',
+        'senderId',
         'messages',
     ];
 
 
     public function notifyUser(): BelongsTo
     {
-        return $this->belongsTo(User::class,'userId');
+        return $this->belongsTo(User::class,'reseverId');
     }
     public function notifyMerchant(): BelongsTo
     {
-        return $this->belongsTo(User::class,'merchantId');
+        return $this->belongsTo(User::class,'senderId');
     }
 }

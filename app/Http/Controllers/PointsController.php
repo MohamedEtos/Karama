@@ -46,9 +46,12 @@ class PointsController extends Controller
 
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
 
-        if (!$oldPoints && !$userdata) {
-            $oldPoints = 'nodata';
+        if (!$userdata) {
             $userdata = 'nodata';
+            return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
+        }
+        if (!$oldPoints ) {
+            $oldPoints = 'nodata';
             return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
         }
 
@@ -57,6 +60,7 @@ class PointsController extends Controller
         return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
 
     }
+
     public function checkUserCode(Request $request)
 
     {
@@ -68,11 +72,14 @@ class PointsController extends Controller
         ->where('subtype', 'user')
         ->first();
 
-
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
 
-        if (!$oldPoints && !$userdata) {
+        if (!$oldPoints ) {
             $oldPoints = 'nodata';
+            return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
+        }
+
+        if ( !$userdata) {
             $userdata = 'nodata';
             return response()->json(array("MSG" => $userdata, 'oldPoints' => $oldPoints));
         }
@@ -91,18 +98,18 @@ class PointsController extends Controller
         ->first();
 
         notify::create([
-            'userId' => $userdata->id,
-            'merchantId' => Auth::User()->id,
+            'reseverId' => $userdata->id,
+            'senderId' => Auth::User()->id,
             'messages'=>'لقد قام المتجر بارسال طلب استبدال نقاط من حسابك رمز OTP هو ' . '('. $LastOTP->OTP .')' . ' لمده 10 دقايق',
         ]);
 
-        $NotifyData= notify::where('userId',$userdata->id)->where('merchantId', Auth::User()->id)->orderBy('id','DESC')->first();
+        $NotifyData= notify::where('reseverId',$userdata->id)->where('senderId', Auth::User()->id)->orderBy('id','DESC')->first();
 
         $data = [
-            'userId' => $NotifyData->userId,
-            'merchantName' => $NotifyData->notifyMerchant->name,
-            'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
-            'merchantId' => Auth::User()->id,
+            'reseverId' => $NotifyData->reseverId,
+            'senderName' => $NotifyData->notifyMerchant->name,
+            'senderImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+            'senderId' => Auth::User()->id,
             'messages' => $NotifyData->messages,
             'price' => '' ,
             'points' => '',
@@ -179,26 +186,28 @@ class PointsController extends Controller
 
 
         notify::create([
-            'userId' => $request->userId,
-            'merchantId' => $request->merchantId,
+            'senderId' => $request->merchantId,
+            'reseverId' => $request->userId,
             'messages'=>' لقد تم اضافه نقاط بقميه  '  . ($pointRules * $request->price / 100) . '₪ واصبح رصيد نقاتك في متجرنا ' . $totalPointCurrentStore . ' نقطه ' . 'شكرا علي زيارتك لنا ',
         ]);
 
-        $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
+        $NotifyData= notify::where('reseverId',$request->userId)->where('senderId',$request->merchantId)->orderBy('id','DESC')->first();
 
 
 
         $data = [
-            'userId' => $NotifyData->userId,
-            'merchantName' => $NotifyData->notifyMerchant->name,
-            'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
-            'merchantId' => $request->merchantId,
+            'reseverId' => $NotifyData->reseverId,
+            'senderName' => $NotifyData->notifyMerchant->name,
+            'senderImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+            'senderId' => $request->merchantId,
             'messages' => $NotifyData->messages,
             'price' => $request->price ,
             'points' => ($pointRules * $request->price / 100),
             'type'=>'add',
             'time'=>$NotifyData->created_at->diffForHumans(),
         ];
+
+
 
 
         event(new pointNofication($data));
@@ -281,12 +290,12 @@ class PointsController extends Controller
         ->sum('points');
 
         notify::create([
-            'userId' => $request->userId,
-            'merchantId' => $request->merchantId,
+            'reseverId' => $request->userId,
+            'senderId' => $request->merchantId,
             'messages'=>' لقد تم استبدال نقاط بقميه  '  . ($request->price ) . '₪ واصبح رصيد نقاتك في متجرنا ' . $totalPointCurrentStore . ' نقطه ' . 'شكرا علي زيارتك لنا ',
         ]);
 
-        $NotifyData= notify::where('userId',$request->userId)->where('merchantId',$request->merchantId)->orderBy('id','DESC')->first();
+        $NotifyData= notify::where('reseverId',$request->userId)->where('senderId',$request->merchantId)->orderBy('id','DESC')->first();
 
         // update otp success to 1
         $OTPUpdate = OTPPoints::where('OTP',$request->otp)->update([
@@ -294,10 +303,10 @@ class PointsController extends Controller
         ]);
 
     $data = [
-        'userId' => $NotifyData->userId,
-        'merchantName' => $NotifyData->notifyMerchant->name,
-        'merchantImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
-        'merchantId' => $request->merchantId,
+        'reseverId' => $NotifyData->reseverId,
+        'senderName' => $NotifyData->notifyMerchant->name,
+        'senderImg' => $NotifyData->notifyMerchant->userToDetalis->ProfileImage,
+        'senderId' => $request->merchantId,
         'messages' => $NotifyData->messages,
         'price' => $request->price ,
         'points' => ($pointRules * $request->price / 100),
@@ -326,20 +335,9 @@ class PointsController extends Controller
     {
         $mypoints = points::where('userId',Auth::User()->id)->inRandomOrder()->get();
 
-        //        traits
-        $search = $this->search($request);
-        $merchants = $this->merchant();
-        $category = $this->category();
-        $notifyCount = $this->notifyCount();
-        $notify = $this->notify();
-        $notifyId = $this->notifyId();
+
         return view('myPoints',compact([
-            'merchants',
-            'category',
-            'notifyCount',
-            'notifyId',
-            'notify',
-            'mypoints',
+
         ]));
     }
 

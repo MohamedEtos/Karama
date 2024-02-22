@@ -21,7 +21,9 @@ class userDetalis extends Model
 
     public function userToCategory(): BelongsTo
     {
-        return $this->belongsTo(category::class,'id');
+        return $this->belongsTo(category::class,'categoryId');
     }
+
+
 
 }

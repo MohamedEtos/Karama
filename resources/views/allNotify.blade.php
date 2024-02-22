@@ -30,7 +30,7 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
-<input type="hidden" id="UID" value="{{Auth::User()->id}}">
+{{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 <div class="row mt-5">
     <div class="col-md-8 col-xl-7 mx-auto">

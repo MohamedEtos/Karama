@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\ViewComposer\SearchBar;
 use App\Models\User;
 
+use App\Models\notify;
+use App\Models\category;
+use App\Models\merchant;
 use App\Models\OTPPoints;
 use Illuminate\Support\Carbon;
 use Illuminate\pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -46,5 +51,42 @@ class AppServiceProvider extends ServiceProvider
             $onlineUsersCount = User::where('last_seen', '>=', now()->subMinutes(5))->count();
             $view->with('onlineUsersCount', $onlineUsersCount);
         });
+
+
+
+        // view notifcation in all website
+        View::composer('*', function ($view) {
+            if (!request()->is('login')) {
+
+                $notify  = notify::where('reseverId',Auth::User()->id)->limit(10)->orderBy('id','DESC')->get();
+                $notifyCount = notify::where('reseverId',Auth::User()->id)
+                ->where('readed','0')
+                ->count();
+                $notifyId = notify::where('reseverId',Auth::User()->id)->orderBy('id','DESC')->first();
+                $view->with('notify', $notify);
+                $view->with('notifyCount', $notifyCount);
+                $view->with('notifyId', $notifyId);
+            }
+
+        });
+
+
+        // view serch merchant and category
+        View::composer('*', function ($view) {
+            if (!request()->is('login')) {
+                $merchants = User::where('subtype','merchant')->get('name');
+                $category = category::get('name');
+                $view->with('merchants', $merchants);
+                $view->with('category', $category);
+            }
+
+        });
+
+
+        View::composer('*',SearchBar::class);
+
+
+
+
     }
 }

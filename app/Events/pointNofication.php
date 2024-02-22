@@ -20,10 +20,10 @@ class pointNofication implements ShouldBroadcast
      * @return void
      */
 
-    public $userId;
-    public $merchantName;
-    public $merchantImg;
-    public $merchantId;
+    public $reseverId;
+    public $senderName;
+    public $senderImg;
+    public $senderId;
     public $messages;
     public $price;
     public $points;
@@ -33,10 +33,10 @@ class pointNofication implements ShouldBroadcast
 
     public function __construct($data)
     {
-        $this->userId = $data['userId'];
-        $this->merchantName = $data['merchantName'];
-        $this->merchantImg = $data['merchantImg'];
-        $this->merchantId = $data['merchantId'];
+        $this->reseverId = $data['reseverId'];
+        $this->senderName = $data['senderName'];
+        $this->senderImg = $data['senderImg'];
+        $this->senderId = $data['senderId'];
         $this->messages = $data['messages'];
         $this->price = $data['price'];
         $this->points = $data['points'];
@@ -52,7 +52,7 @@ class pointNofication implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('PointsNotify'.$this->userId );
+        return new Channel('PointsNotify'.$this->reseverId );
         // return ['mychannel'];
     }
 

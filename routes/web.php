@@ -106,6 +106,7 @@ Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')-
     Route::post('sendNotifyAjax', 'sendNotifyAjax')->name('sendNotifyAjax');
     Route::get('sendNotify', 'sendNotify')->name('sendNotify');
     Route::get('sendMail', 'sendMail')->name('sendMail');
+    Route::get('validOTP', 'validOTP')->name('validOTP');
 
 });
 

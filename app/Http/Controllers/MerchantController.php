@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\visitorsCount;
-use App\Models\merchant;
-use App\Models\category;
-use App\Models\points;
-use App\Models\pointsDetails;
-use App\Models\productImg;
-use App\Models\rejectProductmess;
+use App\Traits;
 use App\Models\User;
+use App\Models\notify;
+use App\Models\points;
+use App\Models\category;
+use App\Models\merchant;
+use App\Models\productImg;
+use App\Models\subcategory;
 use App\Models\userDetalis;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\pointsDetails;
+use App\Models\visitorsCount;
+use Illuminate\Support\Carbon;
+use App\Events\pointNofication;
+use App\Models\rejectProductmess;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
-use App\Models\notify;
-use App\Traits;
 
 // use App\Http\Controllers\ProductHomeController;
 
@@ -183,12 +186,13 @@ class MerchantController extends Controller
 
         // check max number in cateogry
 
-        $max = category::latest()->orderBy('id','DESC')->first()->id;
-        $min = 1;
+        // $request->all();
+        DB::transaction(function() use($request) {
+
 
         $request->validate([
             'name'=>'required|string',
-            'categoryId' => 'required|integer|between:'.$min.','.$max,
+            // 'categoryId' => 'required|integer|between:'.$min.','.$max,
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
             'price'=>'required|numeric',
@@ -201,10 +205,10 @@ class MerchantController extends Controller
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
             'name.string'=>'ادخل حروف صالحه',
-            'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
-            'categoryId.integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
+            // 'categoryId.integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
             'productDetalis.required'=>'لا يمكن ترك التفاصيل فارغه',
             'price.required'=>'اكتب سعر اولاً',
@@ -253,10 +257,13 @@ class MerchantController extends Controller
 
         $getLastImageId = productImg::where('userId',Auth::User()->id)->latest()->first()->id;
 
+
+
         merchant::create([
             'userId'=>Auth::User()->id,
             'name'=>$request->name,
-            'categoryId'=>$request->categoryId,
+            'categoryId'=>Auth::User()->userToDetalis->categoryId,
+            'subCat'=>$request->subCat,
             'productDescription'=>$request->productDescription,
             'productDetalis'=>$request->productDetalis,
             'price'=>$request->price,
@@ -264,6 +271,33 @@ class MerchantController extends Controller
             'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
             'imgId'=>$getLastImageId,
         ]);
+
+
+        $adminsId = User::where('subtype','admin')->first();
+
+        $notify = notify::create([
+            'reseverId'=>$adminsId->id,
+            'senderId'=>Auth::User()->id,
+            'messages'=>'لقد قمت باضافه منتج برجاء المراجعه   ',
+        ]);
+
+
+        $data = [
+            'reseverId' => $adminsId->id,
+            'senderName' => Auth::User()->name,
+            'senderImg' => Auth::User()->userToDetalis->ProfileImage,
+            'senderId' => Auth::User()->id,
+            'messages' => $notify->messages,
+            'price' => '',
+            'points' => '',
+            'type'=>'',
+            'time'=>$notify->created_at->diffForHumans(),
+        ];
+
+
+        event(new pointNofication($data));
+
+        });
 
         return response()->json(["MSG" => "تم الاضافه سيتم الموفقه علي المنتج من قبل الادارة في اقرب وقت "]);
     }
@@ -278,9 +312,16 @@ class MerchantController extends Controller
      */
     public function show()
     {
-        $category = category::get();
+        $subCat = category::where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
+
+
+        $subCatarrExplode = explode(",", $subCat->subCat);
+
+        $subCatarr = array_unique($subCatarrExplode);
+
+
         return view('merchant.new-product',compact(
-            'category'
+            'subCatarr',
         ));
     }
 
@@ -327,23 +368,14 @@ class MerchantController extends Controller
         $merchantId = merchant::where('id',$id)->first()->userId;
 
         $merchantData = User::where('id',$merchantId)->first();
-//        traits
-        $merchants = $this->merchant();
-        $category = $this->category();
-        $notifyCount = $this->notifyCount();
-        $notify = $this->notify();
-        $notifyId = $this->notifyId();
+
 
         return view('product-details',compact(
             'product_details',
             'related_products',
             'productRevew',
             'merchantData',
-            'merchants',
-            'category',
-            'notifyCount',
-            'notifyId',
-            'notify',
+
         ));
     }
 
@@ -370,11 +402,13 @@ class MerchantController extends Controller
 
         // get current product data
         $product = merchant::where('id',$id)->first();
-        $category = category::where('id','!=',$product->productionToCategoryRealtions->id)->get();
 
+        $subCat = category::where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
+        $subCatarrExplode = explode(",", $subCat->subCat);
+        $subCatarr = array_unique($subCatarrExplode);
         return view('merchant.edit-product',compact(
             'product',
-            'category',
+            'subCatarr',
         ));
     }
 
@@ -392,7 +426,7 @@ class MerchantController extends Controller
 
         $request->validate([
             'name'=>'required|string',
-            'categoryId' => 'required|integer|between:'.$min.','.$max,
+            // 'categoryId' => 'required|integer|between:'.$min.','.$max,
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
                 'price'=>'required|numeric|between:0,9999.99',
@@ -405,10 +439,10 @@ class MerchantController extends Controller
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
             'name.string'=>'ادخل حروف صالحه',
-            'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
-            'categoryId. integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
+            // 'categoryId. integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
             'productDetalis.required'=>'لا يمكن ترك التفاصيل فارغه',
             'price.required'=>'اكتب سعر اولاً',
@@ -433,7 +467,8 @@ class MerchantController extends Controller
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $mainImage = 'upload/products/img/'. $imageName;
-            productImg::where('id',$id)->update([
+            $imgId = merchant::where('id',$id)->first()->imgId;
+            productImg::where('id',$imgId)->update([
                 'mainImage'=>$mainImage,
             ]);
         }
@@ -443,7 +478,8 @@ class MerchantController extends Controller
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img2 = 'upload/products/img/'. $imageName;
-            productImg::where('id',$id)->update([
+            $imgId = merchant::where('id',$id)->first()->imgId;
+            productImg::where('id',$imgId)->update([
                 'img2'=>$img2,
             ]);
         }
@@ -454,7 +490,8 @@ class MerchantController extends Controller
             $image->save(public_path('upload/products/img/'. $imageName));
             $img3 = 'upload/products/img/'. $imageName;
             $save_url = 'upload/products/img/'. $imageName;
-            productImg::where('id',$id)->update([
+            $imgId = merchant::where('id',$id)->first()->imgId;
+            productImg::where('id',$imgId)->update([
                 'img3'=>$img3,
             ]);
         }
@@ -463,7 +500,8 @@ class MerchantController extends Controller
 
         merchant::where('id',$id)->update([
             'name'=>$request->name,
-            'categoryId'=>$request->categoryId,
+            'categoryId'=>Auth::User()->userToDetalis->categoryId,
+            'subCat'=>$request->subCat,
             'productDescription'=>$request->productDescription,
             'productDetalis'=>$request->productDetalis,
             'price'=>$request->price,
@@ -474,6 +512,31 @@ class MerchantController extends Controller
         ]);
 
         rejectProductmess::where('id',$rejectId)->delete();
+
+
+        $adminsId = User::where('subtype','admin')->first();
+
+        $notify = notify::create([
+            'reseverId'=>$adminsId->id,
+            'senderId'=>Auth::User()->id,
+            'messages'=>'لقد قمت بتعديل المنتج برجاء المراجعه مره اخري ',
+        ]);
+
+
+        $data = [
+            'reseverId' => $adminsId->id,
+            'senderName' => Auth::User()->name,
+            'senderImg' => Auth::User()->userToDetalis->ProfileImage,
+            'senderId' => Auth::User()->id,
+            'messages' => $notify->messages,
+            'price' => '',
+            'points' => '',
+            'type'=>'',
+            'time'=>$notify->created_at->diffForHumans(),
+        ];
+
+
+        event(new pointNofication($data));
 
 
         return redirect()->back()->with('success','تم تعديل المنتج سيتم المراجعه من قبل الادارة ');

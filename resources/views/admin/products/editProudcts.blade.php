@@ -85,11 +85,11 @@
 												</div>
 											</div>
 										</div>
-									
+
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الخصم %: </label>
-												<input class="form-control" name="discount" minlength="1" 
+												<input class="form-control" name="discount" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 												type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
 											  <div class="valid-feedback">
@@ -137,7 +137,7 @@
 												</div>
 												<div class="avatar-preview">
 													<div id="imagePreview2" style="background-image: url({{asset($product->productionToImgRealtions->img2)}});">
-														
+
 													</div>
 												</div>
 											</div>
@@ -204,13 +204,13 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <script>
-	// calculate discount 
+	// calculate discount
 function result (){
 	var price =     document.getElementById("price").value;
 	var discount = document.getElementById("discount").value;
 	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
 
-	match =  price -(discount*price/100)  ;
+	match =  price -(discount*price/10)  ;
 	ThePriceAfterDiscount.value = match.toFixed(2);
 };
 

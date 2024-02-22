@@ -22,7 +22,7 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
-<input type="hidden" id="UID" value="{{Auth::User()->id}}">
+{{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 <div class="row mt-5">
     @forelse ($mypoints as $mypoint )

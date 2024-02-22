@@ -10,33 +10,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Traits;
 class ProfileController extends Controller
 {
-    use Traits\navbarUser;
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        //        traits
-        $search = $this->search($request);
-        $merchants = $this->merchant();
-        $category = $this->category();
-        $notifyCount = $this->notifyCount();
-        $notify = $this->notify();
-        $notifyId = $this->notifyId();
+
 
         return view('profile.edit', [
             'user' => $request->user(),
 
-        ],compact([
-            'merchants',
-            'category',
-            'notifyCount',
-            'notifyId',
-            'notify',
-        ]));
+        ]);
     }
 
     /**

@@ -55,11 +55,10 @@
 								  	</div>
 									</div>
 									<div class="col-md-6">
-									  <label for="validationCustom02" class="form-label">القسم</label>
-									  <select class="form-control" name="categoryId" id="exampleFormControlSelect1">
-										{{-- <option disabled selected>اختار</option> --}}
-										@foreach ($category as $data)
-											<option value="{{$data->id}}">{{$data->name}}</option>
+									  <label for="validationCustom02" class="form-label">فئه المنتج</label>
+									  <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
+										@foreach ($subCatarr as $data)
+											<option value="{{$data}}">{{$data}}</option>
 										@endforeach
 									</select>
 									<div class="valid-feedback">
@@ -106,7 +105,7 @@
 									  </div>
 									<div class="col-md-4 mt-4">
 									  <label for="discount" class="form-label">الخصم %</label>
-									  <input class="form-control" name="discount" minlength="1" 
+									  <input class="form-control" name="discount" minlength="1"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 									    type="number" max="100" onkeydown="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
 									  <div class="valid-feedback">
@@ -142,7 +141,7 @@
 										<input type="file" name='img3' required class="dropify" data-height="200" />
 										<h6 id="img3_error" class="mt-2 text-danger"></h6>
 									</div>
-									
+
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المنتج</button>
 									</div>
@@ -182,13 +181,13 @@
 
 <script>
 
-// calculate discount 
+// calculate discount
 function result (){
 	var price =     document.getElementById("price").value;
 	var discount = document.getElementById("discount").value;
 	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
 
-	match =  price -(discount*price/100)  ;
+	match =  price -(discount*price/10)  ;
 	ThePriceAfterDiscount.value = match.toFixed(2);
 };
 
@@ -231,7 +230,7 @@ function result (){
 <script>
 
 	$(function() {
-		$("a").prop( "disabled", true );	
+		$("a").prop( "disabled", true );
 
 		$('#product_data').on('submit', function(e) {
 		//remove all old errors
@@ -258,7 +257,7 @@ function result (){
                     // $("#Success").html(data.MSG).slideDown("fast").delay(5000).slideUp("fast");
 					// window.location.replace('/merchant/new-product');
 					$('form').append('<input id="nofic" type="hidden" value="">');
-					$('#nofic').val(data.MSG);	
+					$('#nofic').val(data.MSG);
 					function not7() {
 							notif({
 								msg: $('#nofic').val(),
@@ -278,14 +277,14 @@ function result (){
 
 				},error: function(reject){
 
-						
+
                     var response = $.parseJSON(reject.responseText);
                     $.each(response.errors,function(key,val){
                         $("#" + key + "_error").html(val[0]);
 					});
-					
+
 					$('form').append('<input id="errors" type="hidden" value="يوجد بعض المشكلا برجاء مرجعه الحقول ">');
-					$('#errors').val();	
+					$('#errors').val();
 					function not7() {
 							notif({
 								msg: $('#errors').val(),
@@ -294,7 +293,7 @@ function result (){
 					};
 					not7();
 
-                   
+
 
 
                 }
@@ -330,7 +329,7 @@ function result (){
         form.classList.add('was-validated')
       }, false)
     })
-	
+
 
 
 

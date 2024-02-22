@@ -13,6 +13,7 @@ class merchant extends Model
         'userId',
         'name',
         'categoryId',
+        'subCat',
         'imgId',
         'productDescription',
         'productDetalis',

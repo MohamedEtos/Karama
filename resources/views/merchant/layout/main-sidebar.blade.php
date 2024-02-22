@@ -59,6 +59,14 @@
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ url('merchant/profileDetials') }}">البينات الاساسيه</a></li>
 							<li><a class="slide-item" href="{{ url('merchant/editProfile') }}">كلمه المرور</a></li>
+
+
+
+
+
+
+
+
 						</ul>
 
 				</ul>

@@ -29,7 +29,7 @@
 @endsection
 @section('contentWithOutContiner')
 	<!-- row -->
-    <input type="hidden" id="UID" value="{{Auth::User()->id}}">
+    {{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 	<div class="row row-sm">
 		<div class="mainCover col-12">

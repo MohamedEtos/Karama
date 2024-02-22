@@ -266,7 +266,7 @@
 
 								}else{
                                     finish.disabled = false;
-                                    usercode.disabled = true;
+                                    // usercode.setAttribute ('readonly');
                                     usercode.classList.add("disabled");
                                 };
 

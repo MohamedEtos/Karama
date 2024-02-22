@@ -30,7 +30,7 @@
 @section('content')
 				<!-- row -->
 				<div class="row row-sm">
-                    <input type="hidden" id="UID" value="{{Auth::User()->id}}">
+                    {{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 
 @foreach ($product_details as $item)

@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\subcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
@@ -23,14 +24,15 @@ class NewStoreController extends Controller
 
     public function NewStoreView()
     {
-        $category = category::all('id','name');
+        $categoryData = category::select('id','name')->get();
         return view('admin.merchant.registerStore',compact(
-            'category',
+            'categoryData',
         ));
     }
 
 
     public function create(request $request){
+
 
         // return $request->all();
         $request->validate([
@@ -40,6 +42,7 @@ class NewStoreController extends Controller
             'subtype' => ['string', 'max:255'],
             'password' => ['required', Rules\Password::defaults()],
             'categoryId' => 'required|numeric|exists:App\Models\category,id',
+            'categoryId' => 'required|string',
             'phone' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
             'whatsapp' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
             'facebook' => [ 'string', 'max:255','active_url','nullable'],
@@ -73,8 +76,8 @@ class NewStoreController extends Controller
         // $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
 
         $lastid = $userDetalis->id;
-        
-        User::create([
+
+       $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
@@ -84,7 +87,24 @@ class NewStoreController extends Controller
         ]);
 
         pointRules::create([
-            'merchantId'=>$lastid,
+            'merchantId'=>$user->id,
+        ]);
+
+
+        $oldSubCat = category::select('subCat')->where('id',$userDetalis->categoryId)->first();
+
+        $array1 = explode(",", $oldSubCat->subCat);
+        $array2 = explode(",", $request->subCat);
+
+        $mergedArray = array_merge($array1, $array2);
+        $uniqueArray = array_unique($mergedArray);
+        $trimmedArray = array_map('trim', $uniqueArray);
+        $arrayunique = array_unique($trimmedArray);
+        $text = implode(',', $arrayunique);
+
+
+        category::where('id',$userDetalis->categoryId)->update([
+            'subCat'=> $text,
         ]);
 
     });

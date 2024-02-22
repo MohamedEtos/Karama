@@ -7,10 +7,10 @@
                         <nav class="nav main-nav-column mg-b-20">
                             <a class="nav-link" href=""><i class="bx bxs-inbox"></i> الوارد <span>18</span></a>
                             <a class="nav-link" href="{{route('sendNotify')}}"><i class="bx bx-star"></i> ارسال اشعار <span>8</span></a>
-                            <a class="nav-link" href="{{route('notifyList')}}"><i class="bx bx-alarm-snooze"></i> كل الاشعارات <span>6</span></a>
+                            <a class="nav-link" href="{{route('notifyList')}}"><i class="bx bx-alarm-snooze"></i> كل الاشعارات <span>4</span></a>
                             <a class="nav-link" href="{{route('sendMail')}}"><i class="bx bx-bookmarks"></i> ارسال رساله <span>15</span></a>
                             <a class="nav-link" href=""><i class="bx bx-send"></i>كل الرسائل <span>24</span></a>
-                            <a class="nav-link" href=""><i class="bx bx-edit"></i> رموز OTP الفعاله <span>2</span></a>
+                            <a class="nav-link" href="{{route('validOTP')}}"><i class="bx bx-edit"></i> رموز OTP الفعاله <span>2</span></a>
                             <a class="nav-link" href=""><i class="bx bx-message-error"></i> OTP منتهيه <span>32</span></a>
                             <a class="nav-link" href=""><i class="bx bx-message-square-detail"></i> Chats <span>14</span></a>
                             <a class="nav-link" href=""><i class="bx bx-folder"></i> All Mail <span>652</span></a>

@@ -6,6 +6,34 @@
 <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 <!--Internal Sumoselect css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css')}}">
+<link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.css')}}">
+
+<style>
+    .bootstrap-tagsinput .tag {
+  background: #D72427;
+  /* border: 1px solid black; */
+  padding: 0 6px;
+  margin: 2px;
+  color: white;
+  border-radius: 4px;
+}
+
+.bootstrap-tagsinput{
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4d5875;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e1e5ef;
+    border-radius: 3px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+</style>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -107,7 +135,7 @@
 										  ممتاز !
 										</div>
 										<div class="invalid-feedback" id="email_error">
-											قم بكتابه ايميل صالح	
+											قم بكتابه ايميل صالح
 									  	</div>
 										  @error('email')
 										  <div class="text-danger">
@@ -119,8 +147,8 @@
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
 										<select class="form-control" name="categoryId"  id="exampleFormControlSelect1">
-												@foreach ($category as $categoryes)
-													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
+												@foreach ($categoryData as $categoryes)
+													<option  value="{{$categoryes->id}}">{{$categoryes->name}}</option>
 												@endforeach
 										</select>
 										<div class="valid-feedback">
@@ -136,16 +164,15 @@
 									   @enderror
 									</div>
 
-
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" minlength="4" name="storeDescription" value="{{old('storeDescription')}}" maxlength="100" class="form-control"  placeholder="ملابس اطفالي" id="validationCustom01" required>
+										<input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput" value="{{old('subCat')}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
-										<div class="invalid-feedback" id="storeDescription_error">
+										<div class="invalid-feedback" id="subCat_error">
 										</div>
-										@error('storeDescription')
+										@error('subCat')
 										<div class="text-danger">
 											{{$message}}
 										</div>
@@ -295,7 +322,7 @@
 									   @enderror
 									  </div>
 
-									
+
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المتجر</button>
 									</div>
@@ -336,6 +363,7 @@
 <script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
+<script src="{{URL::asset('https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js')}}"></script>
 
 
 
@@ -359,7 +387,7 @@
         form.classList.add('was-validated')
       }, false)
     })
-	
+
 
 
 
@@ -371,10 +399,10 @@
 <script>
 (function () {
 	$('.errspan').click(function(){
-		$('.randCode').val(Math.floor((Math.random() * 100000000) + 3))	
+		$('.randCode').val(Math.floor((Math.random() * 100000000) + 3))
 	})
 	$('.errspanpass').click(function(){
-		$('.randpass').val(Math.floor((Math.random() * 100000000) + 3))	
+		$('.randpass').val(Math.floor((Math.random() * 100000000) + 3))
 	})
 })()
 </script>

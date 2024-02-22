@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->bigInteger('categoryId')->unsigned();
             $table->foreign('categoryId')->references('id')->on('categories')->onDelete('cascade');
+            $table->string('subCat');
             $table->string('productDescription',100);
             $table->string('productDetalis',200);
             $table->decimal('price',9,2);

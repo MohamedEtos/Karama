@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\notify;
 use Illuminate\Http\Request;
 use App\Events\pointNofication;
+use App\Models\OTPPoints;
 use Illuminate\Support\Facades\Auth;
 
 class NotifyController extends Controller
@@ -15,7 +16,7 @@ class NotifyController extends Controller
 
     public function markAllReadedAjax(Request $request)
     {
-        $NotifyData= notify::where('userId',$request->uId)->update([
+        $NotifyData= notify::where('reseverId',$request->uId)->update([
             'readed'=>'1'
         ]);
         return response()->json(["MSG" => 'done']);
@@ -26,27 +27,17 @@ class NotifyController extends Controller
     public function allNotify(Request $request)
     {
 
-        $NotifyData= notify::where('userId',Auth::User()->id)->update([
+        $NotifyData= notify::where('reseverId',Auth::User()->id)->update([
             'readed'=>'1'
         ]);
 
 
-        $allNotify = notify::where('userId',Auth::User()->id)->orderBy('id','DESC')->get();
+        $allNotify = notify::where('reseverId',Auth::User()->id)->orderBy('id','DESC')->get();
 
-//        traits
-        $search = $this->search($request);
-        $merchants = $this->merchant();
-        $category = $this->category();
-        $notifyCount = $this->notifyCount();
-        $notify = $this->notify();
-        $notifyId = $this->notifyId();
+
 
         return view('allNotify',compact([
-            'merchants',
-            'category',
-            'notifyCount',
-            'notifyId',
-            'notify',
+
             'allNotify',
         ]));
     }
@@ -64,6 +55,12 @@ class NotifyController extends Controller
     }
     public function sendMail(){
         return view('admin.notify.sendMail');
+    }
+    public function validOTP(){
+        $validOTP = OTPPoints::get();
+        return view('admin.notify.validOTP',compact(
+            'validOTP'
+        ));
     }
     public function sendNotifyAjax(Request $request){
 
@@ -83,17 +80,17 @@ class NotifyController extends Controller
         ]);
 
        $notify = notify::create([
-            'userId'=>$userId->id,
-            'merchantId'=>Auth::User()->id,
+            'reseverId'=>$userId->id,
+            'senderId'=>Auth::User()->id,
             'messages'=>$request->notify,
         ]);
 
 
         $data = [
-            'userId' => $userId->id,
-            'merchantName' => 'Karama-SC # ',
-            'merchantImg' => Auth::User()->userToDetalis->ProfileImage,
-            'merchantId' => Auth::User()->id,
+            'reseverId' => $userId->id,
+            'senderName' => 'Karama-SC # ',
+            'senderImg' => Auth::User()->userToDetalis->ProfileImage,
+            'senderId' => Auth::User()->id,
             'messages' => $request->notify,
             'price' => '',
             'points' => '',

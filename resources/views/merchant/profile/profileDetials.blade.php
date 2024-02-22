@@ -191,7 +191,7 @@
 												<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
 											</div>
 											<div class="col-md-4 col text-center mb20">
-												<h5>583</h5>
+												<h5>{{$points}}</h5>
 												<h6 class="text-small text-muted mb-0">نقاط العملاء</h6>
 											</div>
 											<div class="col-md-4 col text-center mb20">
@@ -704,7 +704,7 @@ $("#imageUpload2").change(function(e) {
       }
     });
 
-    var resize = $('#upload-demoCover').croppie({
+    var resize2 = $('#upload-demoCover').croppie({
         enableExif: true,
         enableOrientation: true,
         viewport: {
@@ -722,7 +722,7 @@ $("#imageUpload2").change(function(e) {
     $('#imagesCover').on('change', function () {
       var reader2 = new FileReader();
         reader2.onload = function (e) {
-          resize.croppie('bind',{
+          resize2.croppie('bind',{
             url: e.target.result
           }).then(function(){
             console.log('success bind image');
@@ -733,7 +733,7 @@ $("#imageUpload2").change(function(e) {
     });
 
     $('.image-uploadCover').on('click', function (ev) {
-      resize.croppie('result', {
+      resize2.croppie('result', {
         type: 'canvas',
         size: 'viewport'
 
@@ -741,10 +741,10 @@ $("#imageUpload2").change(function(e) {
         $.ajax({
           url: '{{ route('CoverImage') }}',
           type: "POST",
-          data: {"image":img2},
+          data: {"image2":img2},
           success: function (data) {
-            html = '<img src="' + img2 + '" />';
-            $("#imagePreview2").html(html);
+            html2 = '<img src="' + img2 + '" />';
+            $("#imagePreview").html(html2);
 
 			// nofication
 			$('form').append('<input id="nofic" type="hidden" value="">');

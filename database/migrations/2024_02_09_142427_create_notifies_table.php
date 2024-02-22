@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('notifies', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('userId')->unsigned();
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('merchantId')->unsigned();
-            $table->foreign('merchantId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('reseverId')->unsigned();
+            $table->foreign('reseverId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('senderId')->unsigned();
+            $table->foreign('senderId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('messages');
             $table->integer('readed')->default('0');
             $table->timestamps();

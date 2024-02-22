@@ -25,7 +25,7 @@
 
 @section('content')
 				<!-- row -->
-                <input type="hidden" id="UID" value="{{Auth::User()->id}}">
+                {{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 					<div class="row ">
 

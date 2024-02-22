@@ -28,6 +28,7 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+{{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 				<!-- row -->
 				<div class="row">
@@ -206,7 +207,7 @@
 
                                 }else if (data.oldPoints == 'nodata'){
 									oldpoint.value = '0';
-                                    finish.disabled = true;
+                                    finish.disabled = false;
 
 								}
 

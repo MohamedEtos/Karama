@@ -10,12 +10,12 @@ channel.bind('UserNotify', function (data) {
 
     var html = ' <a href="" class="p-3 d-flex border-bottom ">' +
            '<div class="  drop-img  cover-image ml-2   " data-image-src="">' +
-            '<img src="' +  window.location.href + data.merchantImg  +'" alt="">'+
+            '<img src="' +  window.location.href + data.senderImg  +'" alt="">'+
                ' <span class="avatar-status bg-teal"></span>' +
                '</div>' +
                '<div class="wd-90p">' +
                ' <div class="d-flex">' +
-               ' <h5 class="mb-1 name " id="notifayTitle">'+data.merchantName +'</h5>' +
+               ' <h5 class="mb-1 name " id="notifayTitle">'+data.senderName +'</h5>' +
                ' </div>' +
                '<p class="mb-0 desc">'+ data.messages + '</p>' +
                '<p class="time mb-0 text-left float-right mr-2 mt-2">'+ data.time +'</p>' +
