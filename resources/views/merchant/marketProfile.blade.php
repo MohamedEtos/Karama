@@ -36,7 +36,7 @@
 			<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
 			<div class=" markit-image">
 				<div class="demo-avatar-group">
-					<img alt="Responsive image" class="img-thumbnail wd-30p wd-sm-200 " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
+					<img alt="Responsive image" class="img-thumbnail rounded-circle wd-30p wd-sm-200 " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
 
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 
 					<div class="row row-sm">
                         @foreach ($products as $product)
-							<div class="col-md-6 col-lg-4 col-xl-4  col-sm-12">
+							<div class="col-md-6 col-lg-4 col-xl-3  col-sm-12">
 								<div class="card shadow-none">
 									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
 										<div class="row">
@@ -124,12 +124,15 @@
 											<div class="d-flex product-sale">
 												<div class="badge bg-success">عروض المتجر</div>
 											</div>
-											<a href="{{url('product-details/'.$product->id)}}">
-												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
-											</a>
-											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
-												 <img class="bd bd-2 bd-success rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
-											</a>
+                                            <div class="row justify-content-center">
+
+                                                <a href="{{url('product-details/'.$product->id)}}">
+                                                    <img class="w-100 col-auto p-0" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
+                                                </a>
+                                                <a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
+                                                    <img class="bd bd-2 bd-success rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
+                                                </a>
+                                            </div>
 
 										</div>
 										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">

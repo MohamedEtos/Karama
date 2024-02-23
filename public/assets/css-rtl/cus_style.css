@@ -54,7 +54,7 @@ input[type=number] {
     height: 100%  ;
   }
 
-  
+
 
  .input-none-outline{
   outline: none;
@@ -89,7 +89,7 @@ input[type=number] {
     height: 100%;
     display: none;
     position: absolute;
-    background-color: #fdfdfdad;
+    background-color: #fdfdfd77;
     z-index: 999999999;
   }
 

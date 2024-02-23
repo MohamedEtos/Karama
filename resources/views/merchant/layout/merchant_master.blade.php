@@ -27,10 +27,10 @@
 			</div>
 		</div>
 		<!-- /Loader -->
-		@include('merchant.layout.main-sidebar')		
+		@include('merchant.layout.main-sidebar')
 		<!-- main-content -->
 		<div class="main-content app-content">
-			@include('merchant.layout.main-header')			
+			@include('merchant.layout.main-header')
 			<!-- container -->
 			@yield('contentWithOutContiner')
 			<div class="container-fluid">
@@ -39,6 +39,6 @@
 				{{-- @include('layouts.sidebar') --}}
 				@include('layouts.models')
             	@include('layouts.footer')
-				@include('layouts.footer-scripts')	
+				@include('layouts.footer-scripts')
 	</body>
 </html>

@@ -43,14 +43,16 @@ class MerchantController extends Controller
         // $product = visitorsCount::with('productionToviewrsRealtions.userToProduct')->first();
         // $product->productionToviewrsRealtions->userToProduct->name; // get user name
 
-        $storeViews = visitorsCount::where('userId',Auth::User()->id)->count();
+        $myId= Auth::User()->id;
 
-        $products_data = merchant::where('userid',Auth::User()->id)->get();
-        $products_count = merchant::where('userid',Auth::User()->id)->count();
+        $storeViews = visitorsCount::where('userId',$myId)->count();
+
+        $products_data = merchant::where('userid',$myId)->get();
+        $products_count = merchant::where('userid',$myId)->count();
 
         // calculate append product present
-        $appendPersent = merchant::where('userId',Auth::User()->id)->where('append','1')->count();
-        $unappendPersent = merchant::where('userId',Auth::User()->id)->where('append','0')->count();
+        $appendPersent = merchant::where('userId',$myId)->where('append','1')->count();
+        $unappendPersent = merchant::where('userId',$myId)->where('append','0')->count();
 
         if($unappendPersent>=0 or $appendPersent>=0){
          $persent = 0;
@@ -59,15 +61,15 @@ class MerchantController extends Controller
         }
 
 
-        $userPoint = points::where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
-        $userPointDetails = pointsDetails::with('pointsToDetails')->where('merchantId',Auth::User()->id)->orderBy('id','DESC')->limit(5)->get();
+        $userPoint = points::where('merchantId',$myId)->orderBy('id','DESC')->limit(5)->get();
+        $userPointDetails = pointsDetails::with('pointsToDetails')->where('merchantId',$myId)->orderBy('id','DESC')->limit(5)->get();
 
         // $persent = round($persent,'1');
 
 
         // count users in every monthes
         $points = points::select('id', 'created_at')
-        ->where('merchantId',Auth::User()->id)
+        ->where('merchantId',$myId)
         ->whereYear('created_at', '=', Carbon::now()->year)
         ->get()
         ->groupBy(function($date) {
@@ -94,7 +96,7 @@ class MerchantController extends Controller
 
         // count add points in every monthes
         $pointsadd = pointsDetails::select('id', 'created_at')
-        ->where('merchantId',Auth::User()->id)
+        ->where('merchantId',$myId)
         ->where('type','add')
         ->whereYear('created_at', '=', Carbon::now()->year)
         ->get()
@@ -122,7 +124,7 @@ class MerchantController extends Controller
 
         // count exchange points every monthes
         $pointsSub = pointsDetails::select('id', 'created_at')
-            ->where('merchantId',Auth::User()->id)
+            ->where('merchantId',$myId)
             ->where('type','Subtract')
             ->whereYear('created_at', '=', Carbon::now()->year)
             ->get()

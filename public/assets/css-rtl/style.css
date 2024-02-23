@@ -17252,7 +17252,7 @@ pre {
   display: inline-block;
   text-align: center;
   border: 3px solid #fff;
-  left: 40%;
+  /* left: 40%; */
   bottom: -24px;
   position: absolute; }
   .adtocart i {

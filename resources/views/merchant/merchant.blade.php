@@ -6,6 +6,7 @@
 <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://cdnjs.com/libraries/Chart.js"></script>
@@ -15,7 +16,7 @@
 				<div class="breadcrumb-header    rounded opacity-50 justify-content-between ">
 					<div class="left-content">
 						<div class="">
-						  <h2 class=" text-light main-content-title  tx-24 mg-b-1 mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+						  <h2 class=" text-light main-content-title  tx-24 mg-b-1 ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
 						  <p class="mg-b-0 text-light">انت الان في لوحه التحكم </p>
 						</div>
 					</div>

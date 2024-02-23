@@ -25,7 +25,8 @@ Class SearchBar
         if (request('search')) {
             $products = merchant::inRandomOrder()->where(function($query) use ($serch){
                 $query->where('name', 'like', '%' . $serch . '%')
-                    ->orWhere('productDescription', 'like', '%' . $serch . '%');
+                    ->orWhere('productDescription', 'like', '%' . $serch . '%')
+                    ->orWhere('subCat', 'like', '%' . $serch . '%');
             })->orWhereHas('productionToCategoryRealtions',function($query) use ($serch){
                 $query->where('name', 'like', '%' . $serch . '%');
             })->orWhereHas('userToProduct',function($query) use ($serch){

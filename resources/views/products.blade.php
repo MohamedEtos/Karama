@@ -59,12 +59,15 @@
 												<div class="badge bg-success">عروض المتجر</div>
 												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
 											</div>
+                                            <div class="row justify-content-center">
+
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
-											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
-												 <img class="bd bd-2 bd-success rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
+											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart col-auto overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
+												 <img  class="bd bd-2 bd-success w-100 rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
+                                        </div>
 
 										</div>
 										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">

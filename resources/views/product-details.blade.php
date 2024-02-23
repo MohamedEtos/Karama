@@ -55,10 +55,14 @@
 										  <li><a data-target="#pic-5" data-toggle="tab"><img src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="image"/></a></li>
 										</ul>
 									</div>
-									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
-											<a href="{{url('MarketProfile/'.$merchantData->id)}}" class="merchant-logo-bg">
+									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0 ">
+                                        <div class=" testttt">
+
+											<a href="{{url('MarketProfile/'.$merchantData->id)}}" class="merchant-logo-bg col-auto">
 												<img  class="merchant-logo " src="{{asset($merchantData->userToDetalis->ProfileImage)}}" alt="">
 											</a>
+                                        </div>
+
 										<h4 class="product-title mb-1">{{$item->name}}</h4>
 										<p class="text-muted tx-13 mb-1">{{$item->category}}</p>
 										<div class="rating mb-1">
@@ -113,31 +117,59 @@
 				<div class="row">
                     @foreach ($related_products as $item)
 						<a href="{{url('product-details/'.$item->id)}}">
-							<div class="col-lg-3">
-
-								<div class="card item-card">
-
-									<div class="card-body pb-0 h-100">
-										<div class="text-center">
-											<img src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="img" class="img-fluid">
-										</div>
-										<div class="card-body cardbody relative">
-											<div class="cardtitle">
-												<span>{{$item->name}}</span>
-												<a>{{$item->category}}</a>
+							<div class="col-md-4 col-lg-3 col-xl-3  col-sm-6">
+								<div class="card shadow-none">
+									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
+										<div class="row">
+											<div class="demo-avatar-group col-3">
+												<div class="main-img-user  avatar-md  mr-3">
+													{{-- <img alt="avatar" class="rounded-circle" src="http://127.0.0.1:8080/assets/img/faces/4.jpg"> --}}
+													<a href="{{url('MarketProfile/'.$item->userToProduct->id)}}" class="">
+														<img alt="avatar" class="bd bd-2 bd-success rounded-circle"src="{{URL::asset($item->userToProduct->userToDetalis->ProfileImage)}}">
+												   </a>
+												</div>
 											</div>
-											<div class="cardprice">
-												<span class="type--strikethrough">${{$item->price}}</span>
-												<span>${{$item->ThePriceAfterDiscount}}</span>
+											<div class="market-data col-9 m-auto">
+												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$item->name}}</h6>
+												<span class=" tx-12 ml-auto">
+													 خصم % <b>{{$item->discount}}</b>
+													</span>
+													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$item->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$item->price}}</span></h4>
 											</div>
 										</div>
+
+
 									</div>
-									<div class="text-center border-top pt-3 pb-3 pl-2 pr-2 ">
-										<a href="{{url('product-details/'.$item->id)}}" class="btn btn-primary"> View More</a>
-										<a href="#" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+									<div class="card-body pt-1 pt-md-3  ">
+										<div class="pro-img-box">
+											<div class="d-flex product-sale">
+												<div class="badge bg-success">عروض المتجر</div>
+												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
+											</div>
+                                            <div class="row justify-content-center">
+
+											<a href="{{url('product-details/'.$item->id)}}">
+												<img class="w-100" src="{{asset($item->productionToImgRealtions->mainImage)}}" alt="product-image">
+											</a>
+											<a href="{{url('MarketProfile/'.$item->userToProduct->id)}}" class="adtocart col-auto p-0 overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
+												 <img  class="bd bd-2 bd-success w-100 rounded-circle" src="{{URL::asset($item->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
+											</a>
+                                        </div>
+
+										</div>
+										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">
+											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$item->name}}</h3>
+											<span class="tx-15 ml-auto">
+												% الخصم <b>{{$item->discount}}</b>
+
+											</span>
+											<h4 class="h5 mb-0 mt-2 text-center d-block font-weight-bold text-danger">₪{{$item->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$item->price}}</span></h4>
+										</div>
+
 									</div>
 
 								</div>
+
 							</div>
 						</a>
 
