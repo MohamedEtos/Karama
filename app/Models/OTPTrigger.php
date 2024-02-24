@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class OTPTrigger extends Model
 {
     use HasFactory;
+    protected $table = 'o_t_p_triggers';
 }

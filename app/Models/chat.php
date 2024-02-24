@@ -12,14 +12,14 @@ class chat extends Model
     protected $guarded= [];
 
 
-    public function userRelation(): BelongsTo
+    public function senderChat(): BelongsTo
     {
-        return $this->belongsTo(User::class,'userId');
+        return $this->belongsTo(User::class,'senderId');
     }
 
-    public function adminRelation(): BelongsTo
+    public function reseverChat(): BelongsTo
     {
-        return $this->belongsTo(User::class,'adminId');
+        return $this->belongsTo(User::class,'reseverId');
     }
 
 }

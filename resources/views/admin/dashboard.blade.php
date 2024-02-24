@@ -19,21 +19,16 @@
 						</div>
 					</div>
 					<div class="main-dashboard-header-right text-light">
-						{{-- <div>
-							<label class="tx-13 text-light text-center">الزوار</label>
-							<div class="main-star text-light">
-								 <span class="text-center">({{$visetorsUnique}})</span>
-							</div>
-						</div> --}}
-						<div>
-							<label class="tx-13 text-light text-center">التجار</label>
+
+						<div class="">
+							{{-- <label class="tx-13 text-light text-center">الاعضاء</label> --}}
+							{{-- <h5 class="text-light text-center">{{$visetorsUnique}}</h5> --}}
+						</div>
+						<div class="">
+							<label class="tx-13 text-light text-center">الاعضاء</label>
 							<h5 class="text-light text-center">{{$merchantCount}}</h5>
 						</div>
-						<div>
-							<label class="tx-13 text-light text-center">التجار</label>
-							<h5 class="text-light text-center">{{$merchantCount}}</h5>
-						</div>
-						<div>
+						<div class="">
 							<label class="tx-13 text-light text-center">الاعضاء</label>
 							<h5 class="text-light text-center">{{$usersCount}}</h5>
 						</div>

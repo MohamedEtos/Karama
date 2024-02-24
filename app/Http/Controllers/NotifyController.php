@@ -8,6 +8,7 @@ use App\Models\notify;
 use Illuminate\Http\Request;
 use App\Events\pointNofication;
 use App\Models\OTPPoints;
+use App\Models\OTPTrigger;
 use Illuminate\Support\Facades\Auth;
 
 class NotifyController extends Controller
@@ -62,6 +63,7 @@ class NotifyController extends Controller
             'validOTP'
         ));
     }
+
     public function sendNotifyAjax(Request $request){
 
         // get usercode to id

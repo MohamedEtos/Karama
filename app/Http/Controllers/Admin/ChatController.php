@@ -9,6 +9,7 @@ use App\Models\userDetalis;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,25 +23,26 @@ class ChatController extends Controller
     public function chatview()
     {
 
-        $RecentChat = chat::join('users','users.id','=','chats.id')
-                    ->join('user_detalis' , 'user_detalis.id' , '=' , 'users.id')
-                    ->get([
-                        'chats.id',
-                        'chats.userId',
-                        'chats.adminId',
-                        'chats.message',
-                        'chats.created_at',
-                        'chats.updated_at',
-                        'user_detalis.ProfileImage',
-                        'users.name',
-                        ]);
 
-
-
+        // $RecentChat = chat::distinct('id')->orderBy('id','desc')->get();
+        $RecentChat = chat::select('reseverId','senderId','body','created_at')->distinct('reseverId')->orderBy('id','desc')->get();
+        $ResentUser = chat::select('reseverId','senderId','body','created_at')->distinct('reseverId')->limit(6)->inRandomOrder()->get();
+        $CountUniqeUsers = chat::select('reseverId','senderId','body','created_at')->distinct('reseverId')->count();
         return view('admin/chat/chat',compact(
-
-            'RecentChat',
+        'RecentChat',
+        'ResentUser',
+        'CountUniqeUsers'
         ));
+    }
+
+    public function getUserChat(Request $request)
+    {
+
+        $userChat = chat::with('reseverChat')->where('reseverId',$request->id)->first();
+        $chat = chat::orderBy('id','desc')->where('reseverId',$request->id)->orWhere('senderId',$request->id)->get();
+
+        return response()->json(array('MSG'=>$userChat,'chat'=>$chat));
+
     }
 
 
@@ -64,7 +66,7 @@ class ChatController extends Controller
         return response()->json(array("MSG" => $userdata));
 
     }
-    
+
     public function sendMessage(Request $request){
 
         $request->validate([

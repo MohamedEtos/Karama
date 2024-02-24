@@ -20,8 +20,8 @@ return new class extends Migration
         CREATE TRIGGER php
         BEFORE DELETE ON o_t_p_points
         FOR EACH ROW
-        INSERT INTO o_t_p_triggers(userId,merchantId,OTP,succeed)
-        VALUES(old.userId,old.merchantId,old.OTP,old.succeed)
+        INSERT INTO o_t_p_triggers(userId,merchantId,OTP,succeed,created_at,updated_at)
+        VALUES(old.userId,old.merchantId,old.OTP,old.succeed,old.created_at,old.updated_at)
         ');
 
         Schema::create('o_t_p_triggers', function (Blueprint $table) {

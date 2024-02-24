@@ -1,27 +1,28 @@
 <?php
 
 use App\Models\User;
+use App\Models\notify;
 use App\Models\category;
+use App\Models\userDetalis;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MarketProfileController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MerchantController;
-use App\Http\Controllers\ProductHomeController;
-use App\Http\Controllers\ProfileMerchantController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\UserDetalisController;
+use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\PointsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ProductHomeController;
+use App\Http\Controllers\UserDetalisController;
+use App\Http\Controllers\MarketProfileController;
 use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\Admin\PointsAdminController;
-use App\Http\Controllers\NotifyController;
-use App\Models\notify;
-use App\Models\userDetalis;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,8 @@ Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->g
     Route::get('sendMail', 'sendMail')->name('sendMail');
     Route::get('checkUserCodeMail/{usercode}', 'checkUserCodeMail')->name('checkUserCodeMail');
     Route::post('sendMessage', 'sendMessage')->name('sendMessage');
+    Route::get('getUserChat/{id}', 'getUserChat')->name('getUserChat');
+
 });
 
 Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
@@ -107,6 +110,7 @@ Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')-
     Route::get('sendNotify', 'sendNotify')->name('sendNotify');
     Route::get('sendMail', 'sendMail')->name('sendMail');
     Route::get('validOTP', 'validOTP')->name('validOTP');
+    Route::get('unvalidOTP', 'unvalidOTP')->name('unvalidOTP');
 
 });
 
@@ -180,6 +184,7 @@ require __DIR__.'/auth.php';
 Route::get('addadmin',function(){
 
 
+DB::transaction(function () {
 
 
     userDetalis::create([
@@ -191,6 +196,8 @@ Route::get('addadmin',function(){
         'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
         'ProfileImage'=>'test',
         'nationalId'=>'12345678911',
+        'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
+        'coverImage'=>'assets/img/defultUserImg/cover.webp',
     ]);
 
     User::create([
@@ -211,6 +218,8 @@ Route::get('addadmin',function(){
         'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
         'ProfileImage'=>'test',
         'nationalId'=>'12345678911',
+        'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
+        'coverImage'=>'assets/img/defultUserImg/cover.webp',
     ]);
 
     User::create([
@@ -236,6 +245,7 @@ Route::get('addadmin',function(){
         'name'=>'عطور ',
         'descrption'=>'عطور نسائيه'
     ]);
+});
 
     return redirect('merchant/merchant');
 
