@@ -54,7 +54,7 @@
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($products as $product )
+                                            @forelse ($rejectproducts as $product )
 
 
 											<tr>
@@ -74,7 +74,9 @@
                                                     @endif
                                                 </td>
 											</tr>
-                                            @endforeach
+                                            @empty
+
+                                            @endforelse
 										</tbody>
 
 									</table>

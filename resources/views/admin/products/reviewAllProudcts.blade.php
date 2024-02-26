@@ -11,10 +11,8 @@
 @section('content')
 
 				<!-- row -->
-                @if (count($products) < 1)
-                    <h2 class=" mt-5 d-flex justify-content-center text-center text-light">لا يوجد منتجات تحت المراجعه</h2>
-                @endif
-                @foreach ($products as $product )
+
+                @forelse ($ReviewProducts as $product )
                     				<!-- breadcrumb -->
 				<div class="breadcrumb-header rounded justify-content-between mb-2 mt-2">
 					<div class="my-auto  ">
@@ -159,7 +157,11 @@
 
 
 				</div>
-                @endforeach
+                @empty
+
+                <h2 class=" mt-5 d-flex justify-content-center text-center text-light">لا يوجد منتجات تحت المراجعه</h2>
+
+                @endforelse
                 <div class="col-12  d-flex justify-content-center">
                     {{$products->links()}}
                 </div>

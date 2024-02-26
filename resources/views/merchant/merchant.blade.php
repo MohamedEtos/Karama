@@ -1,11 +1,11 @@
 @extends('merchant.layout.merchant_master')
 @section('css')
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-<link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+{{-- <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" /> --}}
+{{-- <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet"> --}}
+{{-- <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" /> --}}
+{{-- <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet"> --}}
+{{-- <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet"> --}}
+{{-- <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet"> --}}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -13,17 +13,11 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header    rounded opacity-50 justify-content-between ">
-					<div class="left-content">
-						<div class="">
-						  <h2 class=" text-light main-content-title  tx-24 mg-b-1 ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
-						  <p class="mg-b-0 text-light">انت الان في لوحه التحكم </p>
-						</div>
-					</div>
-					<div class="main-dashboard-header-right">
+                <div class="col-12 mt-2 mb-2">
+                    <h2 class=" text-light  ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+                    <p class="pt-0 text-light">انت الان في لوحه التحكم </p>
 
-					</div>
-				</div>
+                </div>
 				<!-- /breadcrumb -->
 @endsection
 @section('content')
@@ -421,21 +415,20 @@
 @section('js')
 <!-- Internal Data tables -->
 <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script> --}}
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script> --}}
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection

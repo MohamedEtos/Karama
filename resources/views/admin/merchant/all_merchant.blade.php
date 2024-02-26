@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($merchants as $merchants )
+                        @foreach ($allMerchants as $merchants )
                         <tr class="text-right">
                             <td>
                                 <img alt="avatar" class="rounded-circle avatar-md mr-2" src="{{URL::asset($merchants->userToDetalis->ProfileImage)}}">
@@ -77,8 +77,8 @@
                                         }else {
                                             echo 'bg-gray-300';
                                         }
-                                        
-                                    @endphp    
+
+                                    @endphp
                                 ml-1">
                             </div>
                             @php
@@ -103,7 +103,7 @@
                                 <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$merchants->id}}" data-toggle="modal" href="">
                                     <i class="fa-brands fa-searchengin"></i>
                                 </a>
-                                        
+
                                 <!-- Large Modal -->
                                 <div class="modal" id="modaldemos{{$merchants->id}}">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -132,14 +132,14 @@
                                 <a href="{{url('admin/editStoreView/'.Crypt::encrypt($merchants->id))}}" class="btn btn-sm btn-info">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                
+
                                 <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$merchants->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$merchants->id}}">
                                     {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
-                                
 
-                            
+
+
                             <!-- delete  Modal effects-->
                             <div class="modal" id="modaldemo{{$merchants->id}}">
                                 <div class="modal-dialog modal-dialog-centered" role="document">

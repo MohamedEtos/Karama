@@ -92,7 +92,7 @@
 <div class=" d-flex  justify-content-center pt-5">
 
 <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 align-items-center ">
-	
+
 	<div class="h-25"></div>
 						<div class="card  box-shadow-1 ">
 							<div class="card-header row m-0">
@@ -112,7 +112,7 @@
 										<div class="form-group">
 											<label for="email" :value="__('usercode')">رقم الاشتراك</label>
 											<input type="number" name="usercode" value="{{old('usercode')}}"  class="form-control" id="usercode" placeholder="رقم الاشتراك">
-                                            
+
 											@error('usercode')
 												<span class="text-danger">{{$message}}</span>
 											@enderror
@@ -157,7 +157,6 @@
 <!-- Internal Select2.min js -->
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <!--Internal Ion.rangeSlider.min js -->
-<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 <!--Internal  jquery-simple-datetimepicker js -->
 <script src="{{URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
 <!-- Ionicons js -->

@@ -58,8 +58,8 @@
 									<div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0 ">
                                         <div class=" testttt">
 
-											<a href="{{url('MarketProfile/'.$merchantData->id)}}" class="merchant-logo-bg col-auto">
-												<img  class="merchant-logo " src="{{asset($merchantData->userToDetalis->ProfileImage)}}" alt="">
+											<a href="{{url('MarketProfile/'.$merchantData->id)}}" class="merchant-logo-bg col-auto ">
+												<img  class="merchant-logo bg-success rounded-circle " src="{{asset($merchantData->userToDetalis->ProfileImage)}}" alt="">
 											</a>
                                         </div>
 
@@ -112,6 +112,22 @@
 				</div>
 				<!-- /row -->
 
+                @if (count($related_products) > 0)
+                <div class="row">
+                    <div class="col-12 text-center">
+
+                        <span class="text-center text-light h4 ">
+                            منتجات ذات صله
+									<div class="d-block col-12  text-light border-bottom mb-3 mt-2"> </div>
+
+                        </span>
+
+                    </div>
+                </div>
+                @endif
+
+
+
 				<!-- row -->
 
 				<div class="row">
@@ -143,7 +159,7 @@
 									<div class="card-body pt-1 pt-md-3  ">
 										<div class="pro-img-box">
 											<div class="d-flex product-sale">
-												<div class="badge bg-success">عروض المتجر</div>
+												{{-- <div class="badge bg-success">عروض المتجر</div> --}}
 												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
 											</div>
                                             <div class="row justify-content-center">

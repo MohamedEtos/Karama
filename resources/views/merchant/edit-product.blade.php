@@ -77,7 +77,7 @@
 												<label class="form-label">السعر ₪:  </label>
 												<input name="price" class="form-control"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number" value="{{$product->price}}"   id="price" placeholder="مثال : 99 ₪"  required>
+												minlength="1" maxlength="5" max="9999"  type="number" value="{{$product->price}}"   id="price" placeholder="مثال : 99 ₪"  required>
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
@@ -92,7 +92,7 @@
 												<label class="form-label">الخصم %: </label>
 												<input class="form-control" name="discount" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
+												type="number" max="100"   id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
 											  <div class="valid-feedback">
 												ممتاز !
 											</div>
@@ -106,7 +106,7 @@
 												<label class="form-label"> بعد الخصم ₪: </label>
 												<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;"  type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
@@ -204,15 +204,25 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <script>
-	// calculate discount
-    function result (){
-	var price =     document.getElementById("price").value;
-	var discount = document.getElementById("discount").value;
-	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
+// calculate discount
 
-	match =  price -(discount*price/100)  ;
-	ThePriceAfterDiscount.value = match.toFixed(2);
-};
+function calculateDiscount() {
+  var price = parseFloat(document.getElementById('price').value);
+  var discount = parseFloat(document.getElementById('discount').value);
+
+  // Calculate discounted price
+  var ThePriceAfterDiscount = price - (price * (discount / 100));
+
+  // Display the discounted price
+  document.getElementById('ThePriceAfterDiscount').value =  ThePriceAfterDiscount.toFixed(2);
+}
+
+// Add event listeners to input fields to trigger calculation
+document.getElementById('price').addEventListener('input', calculateDiscount);
+document.getElementById('discount').addEventListener('input', calculateDiscount);
+
+// Initially calculate discount
+calculateDiscount();
 
 
 </script>

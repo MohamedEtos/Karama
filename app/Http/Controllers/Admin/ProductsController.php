@@ -76,19 +76,19 @@ class ProductsController extends Controller
 
     public function reviewAllProudcts(Request $request)
     {
-        $products = merchant::where('append','0')->paginate(5);
-        $category  = category::get();
+        $ReviewProducts = merchant::where('append','0')->paginate(5);
+        $ReviewCategory  = category::get();
         return view('admin.products.reviewAllProudcts',compact(
-            'products',
+            'ReviewProducts',
         ));
     }
 
 
     public function acceptedProudcts(Request $request)
     {
-        $products = merchant::where('append','1')->paginate(10);
+        $acceptedproducts = merchant::where('append','1')->paginate(10);
         return view('admin.products.acceptedProudcts',compact(
-            'products',
+            'acceptedproducts',
         ));
     }
 
@@ -96,9 +96,9 @@ class ProductsController extends Controller
     public function rejectedProudcts(Request $request)
     {
         // $products = merchant::where('append','2')->paginate(10);
-        $products = merchant::where('append','2')->paginate(10);
+        $rejectproducts = merchant::where('append','2')->paginate(10);
         return view('admin.products.rejectedProudcts',compact(
-            'products',
+            'rejectproducts',
         ));
     }
 

@@ -23,7 +23,7 @@ Class SearchBar
         $priceRange = request('priceRange');
 
         if (request('search')) {
-            $products = merchant::inRandomOrder()->where(function($query) use ($serch){
+            $products = merchant::inRandomOrder()->where('append','1')->where(function($query) use ($serch){
                 $query->where('name', 'like', '%' . $serch . '%')
                     ->orWhere('productDescription', 'like', '%' . $serch . '%')
                     ->orWhere('subCat', 'like', '%' . $serch . '%');
@@ -36,7 +36,7 @@ Class SearchBar
 
         } elseif (request('persent')) {
 
-            $products = merchant::inRandomOrder()->where(function($query) use ($serchpersent){
+            $products = merchant::inRandomOrder()->where('append','1')->where(function($query) use ($serchpersent){
                 $query->whereBetween('discount', [$serchpersent, 100]);
             })
                 ->latest()->paginate(16);
@@ -44,9 +44,9 @@ Class SearchBar
         }elseif(request('priceRange')){
             $substringBefore = explode(';', $priceRange)[0];
             $substringAfter = explode(';', $priceRange)[1];
-            $products = merchant::inRandomOrder()->whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);
+            $products = merchant::inRandomOrder()->where('append','1')->whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);
         }else{
-            $products = merchant::with('userToProduct.userToDetalis')->inRandomOrder()->latest()->paginate(16);
+            $products = merchant::with('userToProduct.userToDetalis')->where('append','1')->inRandomOrder()->latest()->paginate(16);
         }
 
         $view->with('products', $products);

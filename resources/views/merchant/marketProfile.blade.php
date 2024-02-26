@@ -96,7 +96,7 @@
 
 
 					<div class="row row-sm">
-                        @foreach ($products as $product)
+                        @foreach ($productt as $product)
 							<div class="col-md-6 col-lg-4 col-xl-3  col-sm-12">
 								<div class="card shadow-none">
 									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
@@ -174,7 +174,6 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 
 <script>
 	// price range

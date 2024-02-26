@@ -51,8 +51,8 @@ class MerchantController extends Controller
         $products_count = merchant::where('userid',$myId)->count();
 
         // calculate append product present
-        $appendPersent = merchant::where('userId',$myId)->where('append','1')->count();
-        $unappendPersent = merchant::where('userId',$myId)->where('append','0')->count();
+        $appendPersent = merchant::select('id')->where('userId',$myId)->where('append','1')->count();
+        $unappendPersent = merchant::select('id')->where('userId',$myId)->where('append','0')->count();
 
         if($unappendPersent>=0 or $appendPersent>=0){
          $persent = 0;
@@ -60,8 +60,12 @@ class MerchantController extends Controller
             $persent = ($unappendPersent/$appendPersent*100);
         }
 
-
-        $userPoint = points::where('merchantId',$myId)->orderBy('id','DESC')->limit(5)->get();
+        $userPoint = points::select(
+            'created_at',
+            'price',
+            'points',
+            'userId',
+            )->where('merchantId',$myId)->orderBy('id','DESC')->limit(5)->get();
         $userPointDetails = pointsDetails::with('pointsToDetails')->where('merchantId',$myId)->orderBy('id','DESC')->limit(5)->get();
 
         // $persent = round($persent,'1');
@@ -167,15 +171,7 @@ class MerchantController extends Controller
         ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -194,12 +190,12 @@ class MerchantController extends Controller
 
         $request->validate([
             'name'=>'required|string',
-            // 'categoryId' => 'required|integer|between:'.$min.','.$max,
+            // 'categoryId' => 'required|numeric|between:'.$min.','.$max,
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
             'price'=>'required|numeric',
-            'discount'=>'required|integer',
-            // 'ThePriceAfterDiscount'=>'required| integer',
+            'discount'=>'required|numeric',
+            'ThePriceAfterDiscount'=>'required| numeric',
             'mainImage'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'img2'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'img3'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
@@ -208,7 +204,7 @@ class MerchantController extends Controller
             'name.required'=>'لا يمكن ترك الاسم فارغ',
             'name.string'=>'ادخل حروف صالحه',
             // 'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
-            // 'categoryId.integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
+            // 'categoryId.numeric'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             // 'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             // 'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
@@ -216,7 +212,7 @@ class MerchantController extends Controller
             'price.required'=>'اكتب سعر اولاً',
             'price.numeric'=>'اكتب ارقام صالحه',
             'discount.required'=>'لا يمكن ترك الخصم فارغ',
-            // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
+            'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
             'mainImage.required'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
@@ -314,7 +310,7 @@ class MerchantController extends Controller
      */
     public function show()
     {
-        $subCat = category::where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
+        $subCat = category::select('subCat')->where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
 
 
         $subCatarrExplode = explode(",", $subCat->subCat);
@@ -332,7 +328,7 @@ class MerchantController extends Controller
 
         // get id user
 
-        $userId = merchant::where('id',$id)->first();
+        $userId = merchant::select('userId')->where('id',$id)->first();
 
 
         // count visetors
@@ -361,7 +357,7 @@ class MerchantController extends Controller
         $product = merchant::findorfail($id);
         $product_cat = $product->categoryId;
 
-        $related_products = merchant::where('id',$product_cat)
+        $related_products = merchant::where('categoryId',$product_cat)
         ->where('id','!=',$id)
         ->inRandomOrder()
         ->limit(4)
@@ -389,10 +385,10 @@ class MerchantController extends Controller
      */
     public function edit(Request $request)
     {
-        $products = merchant::where('userid',Auth::User()->id)->get(); //get product from image table relation
+        $listproducts = merchant::where('userid',Auth::User()->id)->get(); //get product from image table relation
 
         return view('merchant.list-product',compact(
-            'products',
+            'listproducts',
         ));
     }
 
@@ -423,17 +419,16 @@ class MerchantController extends Controller
     {
         // check max number in cateogry
 
-        $max = category::latest()->orderBy('id','DESC')->first()->id;
-        $min = 1;
+
+
 
         $request->validate([
             'name'=>'required|string',
-            // 'categoryId' => 'required|integer|between:'.$min.','.$max,
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
-                'price'=>'required|numeric|between:0,9999.99',
-            'discount'=>'required| integer',
-            // 'ThePriceAfterDiscount'=>'required| integer',
+            'price'=>'required|numeric|between:0,9999.99',
+            'discount'=>'required|numeric',
+            'ThePriceAfterDiscount'=>'required|numeric',
             'mainImage'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'img2'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'img3'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
@@ -441,15 +436,11 @@ class MerchantController extends Controller
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
             'name.string'=>'ادخل حروف صالحه',
-            // 'categoryId.required'=>'تاكد من اخيار قسم من الاقسام الموجوده',
-            // 'categoryId. integer'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            // 'categoryId.min'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
-            // 'categoryId.max'=>'برجاء اختيار قسم من الاقسام المعروضه فقط',
             'productDescription.required'=>'لا يمكن ترك الوصف فارغ',
             'productDetalis.required'=>'لا يمكن ترك التفاصيل فارغه',
             'price.required'=>'اكتب سعر اولاً',
             'discount.required'=>'لا يمكن ترك الخصم فارغ',
-            // 'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
+            'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
             'mainImage.nullable'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',

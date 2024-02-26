@@ -18,7 +18,7 @@
 
 
 <!-- Ionicons js -->
-<script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>   HERE --}}
 <!-- Moment js -->
 {{-- <script src="{{URL::asset('assets/plugins/moment/moment.js')}}"></script> --}}
 
@@ -30,7 +30,7 @@
 <script src="{{URL::asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
 <!--Internal Sparkline js -->
-<script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script> --}}
 <!-- Custom Scroll bar Js-->
 <script src="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <!-- right-sidebar js -->

@@ -33,7 +33,7 @@
 					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="product_data" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
+								<form id="product_data" class="row g-3 needs-validation" enctype="multipart/form-data"  >
 									@csrf
 									<div class="loader_cu">
 										<div class="loading">
@@ -95,7 +95,7 @@
 										<label for="price" class="form-label">السعر الاساسي</label>
 										<input name="price" class="form-control"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										minlength="1" maxlength="5" max="9999" onkeydown="result()" type="number"   id="price" placeholder="مثال : 99 ₪"  required>
+										minlength="1" maxlength="5" max="9999"  type="number"   id="price" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -107,7 +107,7 @@
 									  <label for="discount" class="form-label">الخصم %</label>
 									  <input class="form-control" name="discount" minlength="1"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-									    type="number" max="100" onkeydown="result()"  id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
+									    type="number" max="100"   id="discount" maxlength="2" max="100" placeholder="مثال : 20 %" required >
 									  <div class="valid-feedback">
 										ممتاز !
 									</div>
@@ -119,7 +119,7 @@
 										<label for="ThePriceAfterDiscount" class="form-label">الاجمالي</label>
 										<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeydown="result()" type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+										 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;"  type="number"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -127,13 +127,13 @@
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-4 mt-4">
-										<input type="file" name="mainImage"  class="dropify" data-height="200" />
+										<input type="file" name="mainImage" required  class="dropify" data-height="200" />
 										<h6 id="mainImage_error" class="mt-2 text-danger"></h6>
 
 									</div>
 
 									<div class="col-sm-12 col-md-4 mt-4">
-										<input type="file" name="img2" class="dropify" data-height="200" />
+										<input type="file" name="img2" required class="dropify" data-height="200" />
 										<h6 id="img2_error" class="mt-2 text-danger"></h6>
 									</div>
 
@@ -182,50 +182,63 @@
 <script>
 
 // calculate discount
-function result (){
-	var price =     document.getElementById("price").value;
-	var discount = document.getElementById("discount").value;
-	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
 
-	match =  price -(discount*price/10)  ;
-	ThePriceAfterDiscount.value = match.toFixed(2);
-};
+function calculateDiscount() {
+  var price = parseFloat(document.getElementById('price').value);
+  var discount = parseFloat(document.getElementById('discount').value);
 
+  // Calculate discounted price
+  var ThePriceAfterDiscount = price - (price * (discount / 100));
 
+  // Display the discounted price
+  document.getElementById('ThePriceAfterDiscount').value =  ThePriceAfterDiscount.toFixed(2);
+}
 
+// Add event listeners to input fields to trigger calculation
+document.getElementById('price').addEventListener('input', calculateDiscount);
+document.getElementById('discount').addEventListener('input', calculateDiscount);
 
+// Initially calculate discount
+calculateDiscount();
 
-
-
-
-
-// $('#getDataBtn').click(function() {
-
-// 					   $.ajax({
-// 						   type: "GET",
-// 						   url: "https://forbes400.herokuapp.com/api/forbes400?limit=400",
-// 						   dataType: 'json',
-// 						   beforeSend: function() {
-// 							   $('#loader').removeClass('hidden')
-// 						   },
-// 						   success: function(data){
-// 							   console.log(data);
-// 							   let richList = "<ol>";
-// 							   for (let i = 0; i < data.length; i++) {
-// 								 console.log(data[i].uri);
-// 								 richList += "<li>"+data[i].uri+"</li>";
-// 							   }
-// 							 richList += "</ol>"
-// 							 $('#richList').html(richList);
-// 						   },
-// 						 complete: function(){
-// 							   $('#loader').addClass('hidden')
-// 						   },
-// 					   });
-
-// 					   });
 
 </script>
+
+
+
+<script>
+	// live validation js inputs
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  var finish = document.getElementById('finish');
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('keydown', function (event) {
+
+        if (!form.checkValidity()) {
+
+        //   event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+
+
+
+
+})()
+
+</script>
+
+
+
 
 <script>
 
@@ -273,7 +286,7 @@ function result (){
                 },complete: function(){
 					$('.loader_cu').css('display','none')
 					$('.loading').css('display','none')
-					$('#product_data').reset();
+					$('#product_data')[0].reset();
 
 				},error: function(reject){
 
@@ -309,33 +322,7 @@ function result (){
 
 </script>
 
-<script>
-	// live validation js inputs
-(function () {
-  'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('keydown', function (event) {
-        if (!form.checkValidity()) {
-        //   event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-
-
-
-
-})()
-
-</script>
 
 
 @endsection

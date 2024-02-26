@@ -4,13 +4,12 @@ namespace Database\Factories;
 
 use App\Models\userDetalis;
 use Illuminate\Support\Str;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\userDetalis>
  */
-class UserDetialsSeederFactory extends Factory
+class userDetalisFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -31,7 +30,7 @@ class UserDetialsSeederFactory extends Factory
             'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
             'coverImage'=>'assets/img/defultUserImg/defultCovverImg.webp',
             'nationalId'=>fake()->randomDigit(10),
-            'categoryId' =>fake()->numberBetween(['1','5']),
+            'categoryId' =>fake()->numberBetween(['1','3']),
         ];
     }
 }

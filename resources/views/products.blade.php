@@ -102,7 +102,6 @@
 <!-- Internal Nice-select js-->
 <script src="{{URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 <script src="{{URL::asset('assets/js/rangeliderNavbar.js')}}"></script>
 
 

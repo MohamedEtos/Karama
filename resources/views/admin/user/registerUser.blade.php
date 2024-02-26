@@ -28,7 +28,7 @@
 					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="newuser" action="{{Route('registerUser')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
+								<form id="newuser" action="{{Route('registerUser')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data"  >
 									@csrf
 									<div class="loader_cu">
 										<div class="loading">
@@ -102,13 +102,13 @@
 
 
 									<div class="col-md-4 mt-4">
-										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<label for="validationCustom01" class="form-label"> ايميل (اخياري)</label>
+										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" >
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
 										<div class="invalid-feedback" id="email_error">
-											قم بكتابه ايميل صالح	
+											قم بكتابه ايميل صالح
 									  	</div>
 										  @error('email')
 										  <div class="text-danger">
@@ -152,8 +152,8 @@
 										</div>
 									   @enderror
 									  </div>
-									  
-									  
+
+
 									  <div class="col-md-4 mt-4 ">
 										<label for="startOfSubscription" class="form-label"> بدايه  الاشتراك </label>
 										<input name="startOfSubscription" pattern="\d{4}-\d{2}-\d{2}" onchange="setDate()" class="form-control"
@@ -164,7 +164,7 @@
 											ممتاز !
 										</div>
 										<div class="invalid-feedback" id="startOfSubscription_error">
-											ضع تاريخ اشتراك صالح 
+											ضع تاريخ اشتراك صالح
 										</div>
 										@error('startOfSubscription')
 										<div class="text-danger">
@@ -172,7 +172,7 @@
 										</div>
 									   @enderror
 									  </div>
-									  
+
 									  <div class="col-md-4 mt-4 ">
 										<label for="endOfSubscription" class="form-label"> نهايه الاشتراك </label>
 										<input name="endOfSubscription" class="form-control" value="{{old('endOfSubscription')}}"
@@ -181,7 +181,7 @@
 											ممتاز !
 										</div>
 										<div class="invalid-feedback" id="endOfSubscription_error">
-											ضع تاريخ اشتراك صالح 
+											ضع تاريخ اشتراك صالح
 										</div>
 										@error('endOfSubscription')
 										<div class="text-danger">
@@ -189,7 +189,7 @@
 										</div>
 									   @enderror
 									  </div>
-									  
+
 
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي </label>
@@ -209,14 +209,14 @@
 									   @enderror
 									  </div>
 
-									
+
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المشترك</button>
 									</div>
 										{{-- @foreach ($errors->all() as $error)
 										{{ $error }}<br/>
 									@endforeach --}}
-								
+
 								  </form>
 
 							</div>
@@ -231,7 +231,7 @@
 		</div>
 		<!-- main-content closed -->
 
-	
+
 		@if(Session::has('success'))
 		<input id="nofic" type="hidden" value="{{Session::get('success')}}">
 		<script>
@@ -257,7 +257,7 @@
 
 
 <script>
-	// date auto set date 
+	// date auto set date
 	document.getElementById('startOfSubscription').valueAsDate = new Date();
 
 	let now = new Date();
@@ -295,7 +295,7 @@
         form.classList.add('was-validated')
       }, false)
     })
-	
+
 
 
 
@@ -308,10 +308,10 @@
 	// magic codeuser fill
 (function () {
 	$('.errspan').click(function(){
-		$('.randCode').val(Math.floor((Math.random() * 100000000) + 3))	
+		$('.randCode').val(Math.floor((Math.random() * 100000000) + 3))
 	})
 	$('.errspanpass').click(function(){
-		$('.randpass').val(Math.floor((Math.random() * 100000000) + 3))	
+		$('.randpass').val(Math.floor((Math.random() * 100000000) + 3))
 	})
 })()
 </script>
