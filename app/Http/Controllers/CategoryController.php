@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\subCat;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,22 +15,87 @@ class CategoryController extends Controller
      */
     public function AllCategory(){
         $categories = category::latest()->paginate(5);
-
-        return view('admin.category.all_category',compact('categories'));
+        $categoriesSelect = category::get();
+        return view('admin.category.all_category',compact('categories','categoriesSelect'));
     }
+
+
+
+
+    private function convertDataToString($data)
+    {
+        // Logic to convert your data to a string
+        // This could be a simple concatenation or a more complex transformation
+
+        // Example: Concatenate the names from the data into a single string
+        $string = '';
+        foreach ($data as $item) {
+            $string .= $item->name . ', '; // Assuming 'name' is a field in your database table
+        }
+        // Remove the last comma and space
+        $string = rtrim($string, ', ');
+
+        return $string;
+    }
+    public function getCategoryAjax(Request $request){
+
+        $AllCat = subCat::where('categoryId',$request->id)->get('name');
+
+        $dataAsString = $this->convertDataToString($AllCat);
+
+
+        return response()->json(['Done'=>$dataAsString]);
+
+    }
+
+
+    public function subCatUpdate(Request $request)
+    {
+
+
+        $explode = explode(',',$request->subCat);
+        foreach($explode as $index){
+            $subCat = subCat::create([
+                'categoryId'=> $request->category,
+                'name'=> $index,
+            ]);
+        }
+
+        
+
+
+        return redirect()->back();
+
+    }
+
+
+
+
 
     public function StoreCategory(request $request)
     {
+
         $request->validate([
             'name' => 'required|max:200',
-            'descrption' => 'required|max:200'
-
+            'descrption' => 'required|max:200',
+            'subCat' => 'nullable|max:200',
         ]);
 
-        category::create([
+        $category = category::create([
             'name' =>$request->name,
             'descrption' => $request->descrption,
         ]);
+
+
+        if(! empty($request->subCat)){
+            $explode = explode(',',$request->subCat);
+            foreach($explode as $index){
+                $subCat = subCat::create([
+                    'categoryId'=> $category->id,
+                    'name'=> $index,
+                ]);
+            }
+        }
 
         return to_route('all.category');
     }

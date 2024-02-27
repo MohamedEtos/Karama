@@ -171,6 +171,22 @@ class NewStoreController extends Controller
         ]);
 
 
+        $oldSubCat = category::select('subCat')->where('id',$request->categoryId)->first();
+
+        $array1 = explode(",", $oldSubCat->subCat);
+        $array2 = explode(",", $request->subCat);
+
+        $mergedArray = array_merge($array1, $array2);
+        $uniqueArray = array_unique($mergedArray);
+        $trimmedArray = array_map('trim', $uniqueArray);
+        $arrayunique = array_unique($trimmedArray);
+        $text = implode(',', $arrayunique);
+
+        category::where('id',$request->categoryId)->update([
+            'subCat'=> $text,
+        ]);
+
+
         User::where('id',$userId)->update([
             'name' => $request->name,
             'email' => $request->email,

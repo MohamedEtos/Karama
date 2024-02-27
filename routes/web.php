@@ -43,6 +43,8 @@ Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middl
 
 Route::controller(CategoryController::class)->middleware('auth')->group(function(){
     Route::get('/all/category', 'AllCategory')->name('all.category');
+    Route::get('all/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
+    Route::post('all/subCatUpdate', 'subCatUpdate')->name('subCatUpdate');
     Route::post('/store/category', 'StoreCategory')->name('store.category');
     Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
     Route::post('/update/category/{id}', 'UpdateCategory')->name('update.category');
@@ -79,6 +81,7 @@ Route::controller(RegisteredUserController::class)->middleware('auth')->prefix('
 Route::controller(ProductsController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/allProducts', 'allProducts')->name('allProducts');
     Route::get('/editProudcts/{id}', 'editProudcts')->name('editProudcts');
+    Route::post('/updateprduct', 'updateprduct')->name('updateprduct');
     Route::get('/reviewProudcts/{id}', 'reviewProudcts')->name('reviewProudcts');
     Route::get('/reviewAllProudcts', 'reviewAllProudcts')->name('reviewAllProudcts');
     Route::post('/appendProduct', 'appendProduct')->name('appendProduct');

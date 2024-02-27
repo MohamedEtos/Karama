@@ -30,7 +30,7 @@
 									تعدي المنتج
 								</div>
 								{{-- <p class="mg-b-20">المنتج رقم </p> --}}
-								<form action="{{url('merchant/update_product/'.$product->id)}}" class="needs-validation	" method="post" enctype="multipart/form-data">
+								<form action="{{url('admin/updateprduct')}}" class="needs-validation" method="post" enctype="multipart/form-data">
 									@csrf
 									<div class="row row-sm mt-2">
 										<div class="col-4">
@@ -39,19 +39,23 @@
 												<input class="form-control" name="name" placeholder="لا يمكنك ترك الاسم فارغ" required="" value="{{$product->name}}" type="text">
 											</div>
 										</div>
-										<div class="col-4">
-											<div class="form-group mg-b-0">
-												<label class="form-label">القسم: </label>
-												{{-- <input class="form-control" name="category" placeholder="لا يمكنك ترك القسم فارغ" required="" value="{{$product->category}}" type="text"> --}}
-												<select class="form-control" name="categoryId" id="exampleFormControlSelect1">
-													{{-- <option disabled selected>اختار</option> --}}
-													<option selected value="{{$product->productionToCategoryRealtions->id}}">{{$product->productionToCategoryRealtions->name}}</option>
-													@foreach ($category as $data)
-														<option value="{{$data->id}}">{{$data->name}}</option>
-													@endforeach
-												</select>
-											</div>
-										</div>
+                                        <input type="hidden" name="productId" value="{{Crypt::encrypt($product->id)}}">
+                                        <input type="hidden" name="merchantId" value="{{Crypt::encrypt($product->userId)}}">
+                                        <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">فئه المنتج</label>
+                                            <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
+                                              @foreach ($arrayunique as $data)
+                                                  <option value="{{$data}}">{{$data}}</option>
+                                              @endforeach
+                                          </select>
+                                          <div class="valid-feedback">
+                                              احسنت !
+                                          </div>
+                                          <div class="invalid-feedback" id="categoryId_error">
+
+                                            </div>
+
+                                          </div>
 										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">وصف المنتج: </label>
@@ -76,7 +80,7 @@
 												<label class="form-label">السعر ₪:  </label>
 												<input name="price" class="form-control"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												minlength="1" maxlength="5" max="9999" onkeyup="result()" type="number" value="{{$product->price}}"   id="price" placeholder="مثال : 99 ₪"  required>
+												minlength="1" maxlength="5" max="9999"  type="number" value="{{$product->price}}"   id="price" placeholder="مثال : 99 ₪"  required>
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
@@ -91,7 +95,7 @@
 												<label class="form-label">الخصم %: </label>
 												<input class="form-control" name="discount" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												type="number" max="100" onkeyup="result()"  id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
+												type="number" max="100"   id="discount" maxlength="2" max="100" value="{{$product->discount}}" placeholder="مثال : 20 %" required >
 											  <div class="valid-feedback">
 												ممتاز !
 											</div>
@@ -105,7 +109,7 @@
 												<label class="form-label">السعر بعد الخصم ₪: </label>
 												<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;" onkeyup="result()" type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;"  type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
@@ -204,18 +208,28 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <script>
-	// calculate discount
-function result (){
-	var price =     document.getElementById("price").value;
-	var discount = document.getElementById("discount").value;
-	var ThePriceAfterDiscount = document.getElementById("ThePriceAfterDiscount");
+    // calculate discount
 
-	match =  price -(discount*price/10)  ;
-	ThePriceAfterDiscount.value = match.toFixed(2);
-};
+    function calculateDiscount() {
+      var price = parseFloat(document.getElementById('price').value);
+      var discount = parseFloat(document.getElementById('discount').value);
+
+      // Calculate discounted price
+      var ThePriceAfterDiscount = price - (price * (discount / 100));
+
+      // Display the discounted price
+      document.getElementById('ThePriceAfterDiscount').value =  ThePriceAfterDiscount.toFixed(2);
+    }
+
+    // Add event listeners to input fields to trigger calculation
+    document.getElementById('price').addEventListener('input', calculateDiscount);
+    document.getElementById('discount').addEventListener('input', calculateDiscount);
+
+    // Initially calculate discount
+    calculateDiscount();
 
 
-</script>
+    </script>
 
 <script>
 	// live validation js inputs
