@@ -48,6 +48,10 @@ class merchant extends Model
     {
         return $this->belongsTo(rejectProductmess::class,'rejectId');
     }
+    public function subCatMerchant(): BelongsTo
+    {
+        return $this->belongsTo(subCat::class,'subCat');
+    }
 
 }
 

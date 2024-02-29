@@ -46,7 +46,7 @@
 									</div>
 									<div class="col-md-6">
 									  <label for="validationCustom01" class="form-label">اسم المنتج</label>
-									  <input type="text" minlength="3" name="name" maxlength="15" class="form-control" placeholder="قم بكتابه اسم للمنتج بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" maxlength="15" class="form-control"  placeholder="قم بكتابه اسم للمنتج بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -58,7 +58,7 @@
 									  <label for="validationCustom02" class="form-label">فئه المنتج</label>
 									  <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
 										@foreach ($subCatarr as $data)
-											<option value="{{$data}}">{{$data}}</option>
+											<option value="{{$data->id}}">{{$data->name}}</option>
 										@endforeach
 									</select>
 									<div class="valid-feedback">
@@ -73,7 +73,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">وصف المنتج</label>
-										<input type="text" minlength="10" name="productDescription" maxlength="100" class="form-control"  placeholder="مثال : قميص من طيراز ABC" id="validationCustom01" required>
+										<input type="text" minlength="10" name="productDescription"  maxlength="100" class="form-control"  placeholder="مثال : قميص من طيراز ABC" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -150,7 +150,7 @@
 							</div>
 						</div>
 					</div>
-
+                    <input id="errors" type="hidden"/>
 				</div>
 				<!-- row closed -->
 			</div>
@@ -283,10 +283,12 @@ calculateDiscount();
 						$("#product_data")[0].reset();
 						// $('.invalid-feedback').css('display','none');
 						// $('input').removeClass('invalid');
+
+
                 },complete: function(){
 					$('.loader_cu').css('display','none')
 					$('.loading').css('display','none')
-					$('#product_data')[0].reset();
+					// $('#product_data')[0].reset();
 
 				},error: function(reject){
 
@@ -294,17 +296,17 @@ calculateDiscount();
                     var response = $.parseJSON(reject.responseText);
                     $.each(response.errors,function(key,val){
                         $("#" + key + "_error").html(val[0]);
-					});
 
-					$('form').append('<input id="errors" type="hidden" value="يوجد بعض المشكلا برجاء مرجعه الحقول ">');
-					$('#errors').val();
+                    $('form').append('<input id="errors" type="hidden" value="">');
+					$('#errors').val(val[0]);
 					function not7() {
 							notif({
 								msg: $('#errors').val(),
 								type: "error"
 							});
-					};
-					not7();
+						};
+						not7();
+                });
 
 
 

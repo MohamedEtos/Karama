@@ -14,7 +14,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function AllCategory(){
-        $categories = category::latest()->paginate(5);
+        $categories = category::latest()->get();
         $categoriesSelect = category::get();
         return view('admin.category.all_category',compact('categories','categoriesSelect'));
     }
@@ -44,6 +44,7 @@ class CategoryController extends Controller
         $dataAsString = $this->convertDataToString($AllCat);
 
 
+
         return response()->json(['Done'=>$dataAsString]);
 
     }
@@ -51,9 +52,8 @@ class CategoryController extends Controller
 
     public function subCatUpdate(Request $request)
     {
-
-
         $explode = explode(',',$request->subCat);
+        subCat::where('categoryId',$request->category)->delete();
         foreach($explode as $index){
             $subCat = subCat::create([
                 'categoryId'=> $request->category,
@@ -61,11 +61,7 @@ class CategoryController extends Controller
             ]);
         }
 
-        
-
-
         return redirect()->back();
-
     }
 
 
@@ -75,17 +71,17 @@ class CategoryController extends Controller
     public function StoreCategory(request $request)
     {
 
+
         $request->validate([
-            'name' => 'required|max:200',
-            'descrption' => 'required|max:200',
-            'subCat' => 'nullable|max:200',
+            'name' => [ 'string', 'required',  'max:255', 'unique:'.category::class],
+            'descrption' => 'nullable|max:200',
+            'subCat' => 'required|max:200',
         ]);
 
         $category = category::create([
             'name' =>$request->name,
             'descrption' => $request->descrption,
         ]);
-
 
         if(! empty($request->subCat)){
             $explode = explode(',',$request->subCat);
@@ -106,13 +102,11 @@ class CategoryController extends Controller
     }
 
     public function UpdateCategory(request $request, $id){
-        $data = category::find($id);
-        $data->update([
+        category::where('id',$id)->update([
             'name' =>$request->name,
             'descrption' =>$request->descrption,
         ]);
         return to_route('all.category');
-
     }
     public function DeleteCategory($id){
         Category::findorfail($id)->delete();

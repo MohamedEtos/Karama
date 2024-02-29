@@ -6,6 +6,7 @@ use App\Traits;
 use App\Models\User;
 use App\Models\notify;
 use App\Models\points;
+use App\Models\subCat;
 use App\Models\category;
 use App\Models\merchant;
 use App\Models\productImg;
@@ -184,13 +185,15 @@ class MerchantController extends Controller
 
         // check max number in cateogry
 
-        // $request->all();
+        $request->all();
         DB::transaction(function() use($request) {
+
 
 
         $request->validate([
             'name'=>'required|string',
             // 'categoryId' => 'required|numeric|between:'.$min.','.$max,
+            // 'subCat' => ['required','exists:App\Models\subCat,name'],
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
             'price'=>'required|numeric',
@@ -271,17 +274,18 @@ class MerchantController extends Controller
         ]);
 
 
-        $adminsId = User::where('subtype','admin')->first();
+
+        $adminsId = User::where('subtype','admin')->first()->id;
 
         $notify = notify::create([
-            'reseverId'=>$adminsId->id,
+            'reseverId'=>$adminsId,
             'senderId'=>Auth::User()->id,
             'messages'=>'لقد قمت باضافه منتج برجاء المراجعه   ',
         ]);
 
 
         $data = [
-            'reseverId' => $adminsId->id,
+            'reseverId' => $adminsId,
             'senderName' => Auth::User()->name,
             'senderImg' => Auth::User()->userToDetalis->ProfileImage,
             'senderId' => Auth::User()->id,
@@ -310,12 +314,13 @@ class MerchantController extends Controller
      */
     public function show()
     {
-        $subCat = category::select('subCat')->where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
+
+        $subCatarr = subCat::where('categoryId',Auth::User()->userToDetalis->categoryId)->get   ();
 
 
-        $subCatarrExplode = explode(",", $subCat->subCat);
+        // $subCatarrExplode = explode(",", $subCat->subCat);
 
-        $subCatarr = array_unique($subCatarrExplode);
+        // $subCatarr = array_unique($subCatarrExplode);
 
 
         return view('merchant.new-product',compact(
@@ -401,9 +406,8 @@ class MerchantController extends Controller
         // get current product data
         $product = merchant::where('id',$id)->first();
 
-        $subCat = category::where('id',Auth::User()->userToDetalis->categoryId)->distinct()->first();
-        $subCatarrExplode = explode(",", $subCat->subCat);
-        $subCatarr = array_unique($subCatarrExplode);
+        $subCatarr = subCat::where('categoryId',Auth::User()->userToDetalis->categoryId)->get();
+
         return view('merchant.edit-product',compact(
             'product',
             'subCatarr',
@@ -427,6 +431,7 @@ class MerchantController extends Controller
             'productDescription'=>'required|string',
             'productDetalis'=>'required|string',
             'price'=>'required|numeric|between:0,9999.99',
+            'subCat' => ['required','exists:App\Models\subCat,id'],
             'discount'=>'required|numeric',
             'ThePriceAfterDiscount'=>'required|numeric',
             'mainImage'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:1024',
@@ -515,7 +520,6 @@ class MerchantController extends Controller
             'messages'=>'لقد قمت بتعديل المنتج برجاء المراجعه مره اخري ',
         ]);
 
-
         $data = [
             'reseverId' => $adminsId->id,
             'senderName' => Auth::User()->name,
@@ -559,7 +563,7 @@ class MerchantController extends Controller
     {
         $previewProduct = merchant::findOrFail($id);
         $productRevew = visitorsCount::where('productId',$id)->count('ip_address');
-        $userDetails = User::where('userDetalis',Auth::user()->id)->first();
+        $userDetails = User::where('id',Auth::user()->id)->first();
         return view('merchant.preview-product',compact([
             'previewProduct',
             'productRevew',

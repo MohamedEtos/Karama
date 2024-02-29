@@ -65,12 +65,6 @@
 					</div>
 				</div>
 
-                <input type="text" id="myTagsInput" value="">
-                <button id="addTagBtn">Add Tag</button>
-
-
-
-
 
 				<!-- row closed -->
 			</div>
@@ -94,7 +88,7 @@
         <h6 class="modal-title"> الاقسام الفرعيه </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
     </div>
     <div class="modal-body">
-        <form method="post" action="{{route('subCatUpdate')}}" id="storeCategory">
+        <form method="post" action="{{route('subCatUpdate')}}" id="subCat">
             @csrf
             {{-- <input type="hidden" name="categoryId" value=""> --}}
 
@@ -127,7 +121,7 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn ripple btn-danger" type="submit" form="storeCategory" >حفظ</button>
+        <button class="btn ripple btn-danger" type="submit" form="subCat" >حفظ</button>
         <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
     </div>
     </form>
@@ -162,7 +156,7 @@
         <div class="mb-3">
             <label for="name">الاقسام الفرعيه</label>
             {{-- <input name="Ajax" id="Ajax" type="input" autofocus class="form-control  @error('Ajax') is-invalid @enderror"     > --}}
-            <input type="text" style="width: 100%" minlength="4" name="Ajax" data-role="tagsinput" id="Ajax"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="validationCustom01" >
+            <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput" id="Ajax"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="validationCustom01" >
             @error('subCat')
             <div class="text-danger">
                 {{$message}}
@@ -206,7 +200,7 @@
             <div class="modal-body">
                 <form method="post" id="editCategory">
                     @csrf
-                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="id" id="id" value="{{$category->id}}">
                 <div class="mb-3">
                     <label for="name">اسم القسم</label>
                     <input name="name" id="edit_name" type="text" autofocus class="form-control @error('name') is-invalid @enderror">

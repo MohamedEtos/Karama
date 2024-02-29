@@ -212,7 +212,7 @@
 							</div>
 							<div class="card-body p-0 customers mt-1">
 								<div class="list-group list-lg-group list-group-flush">
-									@foreach ($category as $categorys )
+									@foreach ($categorys as $categorys )
 										<a href="{{url('all/category')}}">
 											<div class="list-group-item list-group-item-action" >
 												<div class="media mt-0">

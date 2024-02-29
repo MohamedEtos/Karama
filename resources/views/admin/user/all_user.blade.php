@@ -46,7 +46,7 @@
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach ($users as $user )
+                                            @foreach ($AllUser as $user )
 											<tr class="text-right">
 												<td>
 													<img alt="avatar" class="rounded-circle avatar-md mr-2" src="{{URL::asset($user->userToDetalis->ProfileImage)}}">
@@ -69,8 +69,8 @@
                                                             }else {
                                                                 echo 'bg-gray-300';
                                                             }
-                                                            
-                                                        @endphp    
+
+                                                        @endphp
                                                     ml-1">
                                                 </div>
                                                 @php
@@ -93,9 +93,9 @@
                                                 <form action="{{Route('DeleteUser')}}" method="post">
 													@csrf
 													<a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemo{{$user->id}}" data-toggle="modal" href="">
-														<i class="las la-search"></i>
-													</a>
-															
+                                                        <i class="fa-brands fa-searchengin"></i>
+                                                    </a>
+
 													<!-- Large Modal -->
 													<div class="modal" id="modaldemo{{$user->id}}">
 														<div class="modal-dialog modal-lg" role="document">
@@ -121,17 +121,17 @@
 													</div>
 													<!--End Large Modal -->
 
-													<a href="{{url('admin/editUser/'.$user->userToDetalis->id)}}" class="btn btn-sm btn-info">
-														<i class="las la-pen"></i>
-													</a>
-                                                    
-													<a class="btn btn-sm btn-danger modal-effect" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">
-														<input type="hidden" name="userId"  value="{{$user->userToDetalis->id}}">
-														<i class="las la-trash"></i>
-													</a>
-													
+													<a href="{{url('admin/editUser/'.$user->id)}}" class="btn btn-sm btn-info">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>
 
-												
+													<a class="btn btn-sm btn-danger modal-effect" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo9">
+														<input type="hidden" name="userId"  value="{{$user->id}}">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+
+
+
 												<!-- delete  Modal effects-->
 												<div class="modal" id="modaldemo9">
 													<div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,7 +142,7 @@
 															<div class="modal-body">
 																<h6>سيتم حذف المستخدم وكل بيامانته</h6>
 																<p class="text-center"><i class="fa-solid fa-triangle-exclamation tx-50 mb-2 text-warning fa-xl"></i></p>
-																<input type="hidden"   name="userid" value="{{$user->userToDetalis->id}}">
+																<input type="hidden"   name="userid" value="{{$user->id}}">
 															</div>
 															<div class="modal-footer">
 																<button class="btn ripple btn-danger" type="submit">تاكيد</button>
@@ -175,7 +175,7 @@
 										<a class="page-link" href="#">Next</a>
 									</li>
 								</ul> --}}
-								{{$users->links()}}
+								{{$AllUser->links()}}
 
 							</div>
 						</div>
@@ -207,12 +207,7 @@
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->

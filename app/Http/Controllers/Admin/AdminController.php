@@ -60,7 +60,7 @@ class AdminController extends Controller
         $todayOrdersPrice = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('ThePriceAfterDiscount');
         $todayOrders = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('append',1)->count();
         $unappendproduct = merchant::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('append',0)->sum('ThePriceAfterDiscount');
-        $category = category::orderBy('id','DESC')->limit(5)->get();
+        $categorys = category::orderBy('id','DESC')->limit(5)->get();
         $weekpoints = points::whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('price');
         $totalpoints = points::orderBy('updated_at','DESC')->get();
         $weekTransPoints = pointsDetails::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('type','Subtract')->sum('price');
@@ -219,7 +219,7 @@ class AdminController extends Controller
             'todayOrders',
             'exchangPointTable',
             'todayOrdersPrice',
-            'category',
+            'categorys',
             'unappendproduct',
             'pointsAddCount',
             'pointsSubCount',
@@ -242,8 +242,8 @@ class AdminController extends Controller
 
 
     public function AllUser(){
-        $users = User::where('subtype','user')->latest()->paginate(10);
-        return view('admin.user.all_user',compact('users'));
+        $AllUser = User::where('subtype','user')->latest()->paginate(10);
+        return view('admin.user.all_user',compact('AllUser'));
     }
 
     public function DeleteUser(Request $request){
@@ -264,9 +264,8 @@ class AdminController extends Controller
 
         $request->validate([
             'name' => ['required', 'string','min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($request->userId)],
-
-            'usercode' => ['required','numeric','min_digits:8', 'max_digits:8', Rule::unique('users')->ignore($request->userDetailsId)],
+            'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('users')->ignore($request->userId)],
+            'usercode' => ['required','numeric','min_digits:8', 'max_digits:8', Rule::unique('users')->ignore($request->userId)],
             'subtype' => ['string', 'max:255'],
             // 'password' => ['required',  Rules\Password::defaults()],
             'phone' => ['numeric' ,'min_digits:10' , 'max_digits:10', Rule::unique('user_detalis')->ignore($request->userDetailsId)],

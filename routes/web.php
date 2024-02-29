@@ -73,6 +73,8 @@ Route::controller(NewStoreController::class)->middleware('auth')->prefix('admin'
     Route::get('/editStoreView/{id}', 'editStoreView')->name('editStoreView');
     Route::post('/updateStore', 'updateStore')->name('updateStore');
     Route::post('/deleteMerchant', 'deleteMerchant')->name('deleteMerchant');
+    Route::get('/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
+
 });
 Route::controller(RegisteredUserController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');

@@ -67,6 +67,17 @@
 											<div class="loading-bar"></div>
 										</div>
 									</div>
+                                    <div class="erros col-12">
+                                        @if ($errors->any())
+                                        <div class="text-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    </div>
 
 									<div class="col-md-4 mt-4">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
@@ -143,10 +154,9 @@
 										  </div>
 										 @enderror
 									</div>
-
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" name="categoryId"  id="exampleFormControlSelect1">
+										<select class="form-control" id="allCategory" name="category"  >
 												@foreach ($categoryData as $categoryes)
 													<option  value="{{$categoryes->id}}">{{$categoryes->name}}</option>
 												@endforeach
@@ -157,7 +167,7 @@
 										<div class="invalid-feedback" id="categoryId_error">
 											قم باختيار قسم للمتجر
 										</div>
-										@error('categoryId')
+										@error('category')
 										<div class="text-danger">
 											{{$message}}
 										</div>
@@ -166,7 +176,7 @@
 
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput" value="{{old('subCat')}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="validationCustom01" required>
+										<input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput" value="{{old('subCat')}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -328,6 +338,7 @@
 									</div>
 								  </form>
 
+
 							</div>
 						</div>
 					</div>
@@ -405,6 +416,54 @@
 		$('.randpass').val(Math.floor((Math.random() * 100000000) + 3))
 	})
 })()
+</script>
+
+{{-- get sub cat ajax --}}
+<script>
+    var allCategory  = document.getElementById('allCategory');
+
+
+    $('#allCategory').on('change', function() {
+
+                $.ajax({
+                    type: "GET",
+                    url: 'getCategoryAjax/'+allCategory.value,
+                    dataType: 'json',
+                    beforeSend: function() {
+                        $('.loading').css('display','flex');
+                        $('.loader_cu').css('display','flex');
+                    },
+                        success: function(data){
+                            $('#subCat').tagsinput();
+                            $('#subCat').tagsinput('removeAll');
+                            $('#subCat').tagsinput('add',data.Done );
+
+                        },complete: function(){
+                            $('.loading').css('display','none');
+                            $('.loader_cu').css('display','none');
+
+                        },error: function(reject){
+
+                            $('.loading').css('display','none');
+                            $('.loader_cu').css('display','none');
+                        },
+
+                    });
+
+
+    });
+
+    $('input').on('beforeItemRemove', function(event) {
+        alert("لا يمكن حذف الفئات السابقه فقط اضف عليهم");
+        var tag = event.item;
+        if(tag == DataMixin.data.user.username){
+            event.cancel = true;
+            console.log('cannot delete agent');
+        }else{
+            console.log('agent deleted');
+        }
+    });
+
 </script>
 
 @endsection

@@ -45,6 +45,8 @@
 <script src="{{URL::asset('assets/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
 
+<script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 {{-- fontawome --}}
 
 {{-- <script src="{{URL::asset('assets/plugins/fontawesome-free/js/all.min.js')}}"></script> --}}
@@ -121,6 +123,23 @@ $('#form').on('submit', function(e) {
 
 
 </script>
+
+
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+
+<input id="nofic" type="hidden" value="{{$error}}">
+        <script>
+            window.onload = function not7() {
+            notif({
+                msg: $('#nofic').val(),
+                type: "error"
+            });
+        }
+        </script>
+        @endforeach
+@endif
+
 
 
 

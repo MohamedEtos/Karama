@@ -42,7 +42,11 @@
                                             <label for="validationCustom02" class="form-label">فئه المنتج</label>
                                             <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
                                               @foreach ($subCatarr as $data)
-                                                  <option value="{{$data}}">{{$data}}</option>
+                                                @if ($data->id == $product->subCatMerchant->id)
+                                                    <option selected value="{{$data->id}}">{{$data->name}}</option>
+                                                @else
+                                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                                @endif
                                               @endforeach
                                           </select>
                                           <div class="valid-feedback">
@@ -106,7 +110,7 @@
 												<label class="form-label"> بعد الخصم ₪: </label>
 												<input name="ThePriceAfterDiscount" class="form-control" minlength="1"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;"  type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  required>
+												 step="any" min="1" maxlength="5" max="9999"  onkeydown="return false;"  type="number" value="{{$product->ThePriceAfterDiscount}}"   id="ThePriceAfterDiscount" placeholder="مثال : 99 ₪"  >
 												<div class="valid-feedback">
 													ممتاز !
 												</div>

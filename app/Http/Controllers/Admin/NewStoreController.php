@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Auth\Events\Registered;
+use App\Models\subCat;
 
 
 class NewStoreController extends Controller
@@ -29,20 +30,49 @@ class NewStoreController extends Controller
             'categoryData',
         ));
     }
+    private
+     function convertDataToString($data)
+    {
+        // Logic to convert your data to a string
+        // This could be a simple concatenation or a more complex transformation
+
+        // Example: Concatenate the names from the data into a single string
+        $string = '';
+        foreach ($data as $item) {
+            $string .= $item->name . ', '; // Assuming 'name' is a field in your database table
+        }
+        // Remove the last comma and space
+        $string = rtrim($string, ', ');
+
+        return $string;
+    }
+
+    public function getCategoryAjax(Request $request){
+
+        $AllCat = subCat::where('categoryId',$request->id)->get('name');
+
+        $dataAsString = $this->convertDataToString($AllCat);
 
 
-    public function create(request $request){
 
+        return response()->json(['Done'=>$dataAsString]);
+
+    }
+
+
+    public function create(request $request)
+    {
 
         // return $request->all();
         $request->validate([
             'name' => ['required', 'string', 'min:3' , 'max:255'],
-            'email' => [ 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [ 'string','nullable', 'email', 'max:255', 'unique:'.User::class],
             'userCode' => ['required','string', 'max:8', 'unique:'.User::class],
-            'subtype' => ['string', 'max:255'],
+            // 'subtype' => ['string', 'max:255'],
             'password' => ['required', Rules\Password::defaults()],
-            'categoryId' => 'required|numeric|exists:App\Models\category,id',
-            'categoryId' => 'required|string',
+            'category' => 'required|numeric|exists:App\Models\category,id',
+            'category' => 'required|string',
+            'subCat' => 'required|string',
             'phone' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
             'whatsapp' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
             'facebook' => [ 'string', 'max:255','active_url','nullable'],
@@ -59,7 +89,7 @@ class NewStoreController extends Controller
 
 
         $userDetalis = userDetalis::create([
-            'categoryId'=>$request->categoryId,
+            'categoryId'=>$request->category,
             'phone' => $request->phone,
             'whatsapp'=>$request->whatsapp,
             'facebook'=>$request->facebook,
@@ -91,21 +121,14 @@ class NewStoreController extends Controller
         ]);
 
 
-        $oldSubCat = category::select('subCat')->where('id',$userDetalis->categoryId)->first();
-
-        $array1 = explode(",", $oldSubCat->subCat);
-        $array2 = explode(",", $request->subCat);
-
-        $mergedArray = array_merge($array1, $array2);
-        $uniqueArray = array_unique($mergedArray);
-        $trimmedArray = array_map('trim', $uniqueArray);
-        $arrayunique = array_unique($trimmedArray);
-        $text = implode(',', $arrayunique);
-
-
-        category::where('id',$userDetalis->categoryId)->update([
-            'subCat'=> $text,
-        ]);
+        $explode = explode(',',$request->subCat);
+        subCat::where('categoryId',$request->category)->delete();
+        foreach($explode as $index){
+            $subCat = subCat::create([
+                'categoryId'=> $request->category,
+                'name'=> $index,
+            ]);
+        }
 
     });
 
@@ -145,7 +168,7 @@ class NewStoreController extends Controller
             'userCode' => ['required','string', 'max:8', Rule::unique('users')->ignore($userId)],
             'subtype' => ['string', 'max:255'],
             // 'password' => ['required', Rules\Password::defaults()],
-            'categoryId' => 'required|numeric|exists:App\Models\category,id',
+            'category' => 'required|numeric|exists:App\Models\category,id',
             'phone' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
             'whatsapp' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
             'facebook' => [ 'string', 'max:255','active_url','nullable'],
@@ -158,7 +181,7 @@ class NewStoreController extends Controller
         ]);
 
         userDetalis::where('id',$userDetailsId)->update([
-            'categoryId'=>$request->categoryId,
+            'categoryId'=>$request->category,
             'phone' => $request->phone,
             'whatsapp'=>$request->whatsapp,
             'facebook'=>$request->facebook,
@@ -171,21 +194,26 @@ class NewStoreController extends Controller
         ]);
 
 
-        $oldSubCat = category::select('subCat')->where('id',$request->categoryId)->first();
+        // $oldSubCat = category::select('subCat')->where('id',$request->categoryId)->first();
 
-        $array1 = explode(",", $oldSubCat->subCat);
-        $array2 = explode(",", $request->subCat);
+        // $array1 = explode(",", $oldSubCat->subCat);
+        // $array2 = explode(",", $request->subCat);
 
-        $mergedArray = array_merge($array1, $array2);
-        $uniqueArray = array_unique($mergedArray);
-        $trimmedArray = array_map('trim', $uniqueArray);
-        $arrayunique = array_unique($trimmedArray);
-        $text = implode(',', $arrayunique);
+        // $mergedArray = array_merge($array1, $array2);
+        // $uniqueArray = array_unique($mergedArray);
+        // $trimmedArray = array_map('trim', $uniqueArray);
+        // $arrayunique = array_unique($trimmedArray);
+        // $text = implode(',', $arrayunique);
 
-        category::where('id',$request->categoryId)->update([
-            'subCat'=> $text,
-        ]);
 
+        $explode = explode(',',$request->subCat);
+        subCat::where('categoryId',$request->category)->delete();
+        foreach($explode as $index){
+            $subCat = subCat::create([
+                'categoryId'=> $request->category,
+                'name'=> $index,
+            ]);
+        }
 
         User::where('id',$userId)->update([
             'name' => $request->name,
@@ -212,3 +240,5 @@ class NewStoreController extends Controller
         return to_route('all.merchant');
      }
 }
+
+

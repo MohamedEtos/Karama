@@ -52,10 +52,15 @@
 						<a class="side-menu__item" href="{{ route('all.user') }}"><span class="side-menu__label"> <i class="fa-solid fa-user "></i> &nbsp; الاعضاء</span><span class="badge badge-danger side-badge"></span></a>
 
 					</li>
-					<li class="side-item side-item-category">المنتجات</li>
+					<li class="side-item side-item-category">المنتجات </li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('allProducts') }}"><span class="side-menu__label"> <i class="fa-solid fa-box fa-xl"></i> &nbsp; جدول المنتجات</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{Route('reviewAllProudcts')}}"><span class="side-menu__label"> <i class="fa-solid fa-receipt"></i> &nbsp; المراجعه</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{Route('reviewAllProudcts')}}"><span class="side-menu__label"> <i class="fa-solid fa-receipt"></i> &nbsp; المراجعه</span><span class="badge badge-danger side-badge"></span>
+                                @if(!empty($reviewproduct))
+                                <span class="badge badge-success side-badge"> {{ count($reviewproduct) }} </span>
+                            @else
+                            @endif
+                        </a>
 						<a class="side-menu__item" href="{{ route('acceptedProudcts') }}"><span class="side-menu__label"> <i class="fa-regular fa-circle-check"></i> &nbsp; منتجات مقبوله</span><span class="badge badge-danger side-badge"></span></a>
 						<a class="side-menu__item" href="{{ route('rejectedProudcts') }}"><span class="side-menu__label"> <i class="fa-regular fa-circle-xmark"></i> &nbsp; منتجات مرفوضه</span><span class="badge badge-danger side-badge"></span></a>
 
@@ -68,8 +73,12 @@
 					</li>
 					<li class="side-item side-item-category">الاشعارات والرسائل</li>
 					<li class="slide">
-						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; عرض الاشعارات</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{route('sendNotify')}}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp;  ارسال اشعار</span><span class="badge badge-danger side-badge"></span></a>
+						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; الاشعارات والرسائل</span><span class="badge badge-danger side-badge"></span>
+                            @if(!empty($notifyCount))
+                            <span class="badge badge-success side-badge"> {{ $notifyCount }} </span>
+                        @else
+                        @endif
+                        </a>
 
 					</li>
 
