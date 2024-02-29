@@ -13,7 +13,7 @@
 				<div class="breadcrumb-header  rounded justify-content-between ">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 text-light mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+						  <h2 class="main-content-title tx-24 mg-b-1  mg-b-lg-1">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
 						  <p class="mg-b-0">انت الان تري المنتج كما يراه الاخرون</p>
 						</div>
 					</div>

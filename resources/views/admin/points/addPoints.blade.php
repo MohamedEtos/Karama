@@ -14,10 +14,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header text-light rounded justify-content-between">
+				<div class="breadcrumb-header   rounded justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">النتقاط</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/  اضافه نقاط للعميل  </span>
+							<h4 class="content-title mb-0 my-auto">النتقاط</h4><span class="  mt-1 tx-13 mr-2 mb-0">/  اضافه نقاط للعميل  </span>
 						</div>
 					</div>
 

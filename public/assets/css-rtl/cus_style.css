@@ -18,7 +18,7 @@ input[type=number] {
 
 
 
-.karama-bg-img{
+/* .karama-bg-img{
     background-image: url("/assets/img/backgrounds/krama.webp") ;
     background-attachment: fixed;
     background-position: center;
@@ -27,6 +27,20 @@ input[type=number] {
   }
 .karama-bg-img2{
     background-image: url("/assets/img/backgrounds/krama2.webp") ;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+.karama-bg-img{
+    background-image: url("/assets/test-01.svg") ;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.karama-bg-img2{
+    background-image: url("/assets/test-01.svg") ;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -263,3 +277,4 @@ cursor: pointer;
     border-radius: 3px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+

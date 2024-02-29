@@ -6,13 +6,20 @@
 <link rel="stylesheet" href="{{URL::asset('assets/css-rtl/nestDropdown.css')}}">
 
 <style>
+.modal-backdrop{
+    display: none
 
+}
+
+.modal-content{
+    /* display: none !important; */
+}
 </style>
 @endsection
 
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header mt-3 justify-content-between mb-2 rounded text-light">
+				<div class="breadcrumb-header mt-3 justify-content-between mb-2 rounded ">
 					<div class="my-auto">
 						<div class="d-flex">
 							<h4 class="content-title mb-0 my-auto">العروض والمنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
@@ -64,7 +71,7 @@
 											<a href="{{url('product-details/'.$product->id)}}">
 												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
 											</a>
-											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart col-auto overflow-hidden  d-none d-sm-none d-md-block d-lg-block">
+											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart col-auto overflow-hidden p-0  d-none d-sm-none d-md-block d-lg-block">
 												 <img  class="bd bd-2 bd-success w-100 rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
 											</a>
                                         </div>

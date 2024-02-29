@@ -6,10 +6,10 @@
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
-				<div class="breadcrumb-header text-light rounded justify-content-between mb-2 mt-2">
+				<div class="breadcrumb-header  rounded justify-content-between mb-2 mt-2">
 					<div class="my-auto  ">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto text">تعديل المنتجات</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ المنتج رقم {{$product->id}}</span>
+							<h4 class="content-title mb-0 my-auto text">تعديل المنتجات</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ المنتج رقم {{$product->id}}</span>
 						</div>
 					</div>
 

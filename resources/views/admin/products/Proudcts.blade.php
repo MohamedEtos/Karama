@@ -19,7 +19,7 @@
 				<div class="breadcrumb-header justify-content-between ">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto text-light">المنتجات</h4>
+							<h4 class="content-title mb-0 my-auto  ">المنتجات</h4>
 						</div>
 					</div>
 
@@ -87,8 +87,8 @@
                                         }else {
                                             echo 'bg-danger';
                                         }
-                                        
-                                    @endphp    
+
+                                    @endphp
                                 ml-1">
                             </div>
                             @php
@@ -110,10 +110,10 @@
                                         <i class="fa-solid fa-receipt"></i> مراجعه
                                     </a>
 
-                            
-                                    
+
+
                             </td>
-                            
+
                         </a>
                         </tr>
                         @endforeach

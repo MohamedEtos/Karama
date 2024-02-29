@@ -39,7 +39,7 @@
 				<div class="breadcrumb-header  rounded justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title text-light mb-0 my-auto">المتاجر</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ تعديل متجر  ({{$UserData->name}}) </span>
+							<h4 class="content-title  mb-0 my-auto">المتاجر</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ تعديل متجر  ({{$UserData->name}}) </span>
 						</div>
 					</div>
 

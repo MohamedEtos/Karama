@@ -15,7 +15,7 @@
 				<div class="breadcrumb-header justify-content-between  rounded ">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 text-light my-auto">المنتجات</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ تعديل المنتجات</span>
+							<h4 class="content-title mb-0  my-auto">المنتجات</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ تعديل المنتجات</span>
 						</div>
 					</div>
 					{{-- <div class="d-flex my-xl-auto right-content">

@@ -7,8 +7,8 @@
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
-						<div class="d-flex"><h4 class="content-title text-light mb-0 my-auto">الدردشه</h4></div>
-                        <h6 class="test2 text-light"></h6>
+						<div class="d-flex"><h4 class="content-title  mb-0 my-auto">الدردشه</h4></div>
+                        <h6 class="test2 "></h6>
 					</div>
 
 				</div>

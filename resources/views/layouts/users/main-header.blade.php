@@ -211,8 +211,13 @@
                         <div class="main-message-list chat-scroll">
 
                             @foreach ($category as $categorys )
+                            {{-- <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8"> --}}
 
-                            <a href="{{'/?search='.$categorys->name}}" class="p-2 d-flex border-bottom">
+
+
+                            {{-- </a> --}}
+
+                            <a  class="p-2 d-flex border-bottom modal-effect btn" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8">
                                 <div class="  cover-image  ">
                                 </div>
                                 <div class="wd-90p">
@@ -232,7 +237,24 @@
                     </div>
                 </div>
 
-
+		<!-- Modal effects -->
+		<div class="modal" id="modaldemo8">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content modal-content-demo">
+					<div class="modal-header">
+						<h6 class="modal-title">Modal Header</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+  
+					</div>
+					<div class="modal-footer">
+						<button class="btn ripple btn-block btn-primary" type="button">كل الفئات</button>
+						{{-- <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button> --}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal effects-->
 
 
 

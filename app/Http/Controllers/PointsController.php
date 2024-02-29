@@ -337,7 +337,7 @@ class PointsController extends Controller
 
 
         return view('myPoints',compact([
-
+            'mypoints'
         ]));
     }
 

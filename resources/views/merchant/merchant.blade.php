@@ -14,8 +14,8 @@
 @section('page-header')
 				<!-- breadcrumb -->
                 <div class="col-12 mt-2 mb-2">
-                    <h2 class=" text-light  ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
-                    <p class="pt-0 text-light">انت الان في لوحه التحكم </p>
+                    <h2 class="   ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
+                    <p class="pt-0 ">انت الان في لوحه التحكم </p>
 
                 </div>
 				<!-- /breadcrumb -->

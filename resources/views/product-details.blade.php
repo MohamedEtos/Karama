@@ -116,9 +116,9 @@
                 <div class="row">
                     <div class="col-12 text-center">
 
-                        <span class="text-center text-light h4 ">
+                        <span class="text-center text-danger h4 ">
                             منتجات ذات صله
-									<div class="d-block col-12  text-light border-bottom mb-3 mt-2"> </div>
+									<div class="d-block col-12  text-danger border-bottom mb-3 mt-2"> </div>
 
                         </span>
 

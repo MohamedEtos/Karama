@@ -10,7 +10,7 @@
 @section('page-header')
 				<!-- breadcrumb -->
                     <div class="col-12 mt-2 mb-2">
-                        <p class="pt-0 text-light h4">اضافه الاقسام</p>
+                        <p class="pt-0  h4">اضافه الاقسام</p>
                     </div>
 				<!-- breadcrumb -->
 @endsection

@@ -17151,8 +17151,12 @@ pre {
 .search .page-link {
   background-color: #fff; }
 
+  .card{
+    box-shadow: -8px 12px 18px 0 #dadee8 !important; 
+  }
+
 .main-card-signin, .modal-content .card {
-  box-shadow: none; }
+    box-shadow: -8px 12px 18px 0 #dadee8 !important; }
 
 @media (max-width: 920px) {
   .right-content {

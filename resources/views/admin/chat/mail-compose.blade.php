@@ -7,7 +7,7 @@
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
-						<div class="d-flex"><h4 class="content-title mb-0 my-auto text-light">الرسائل</h4><span class="text-light mt-1 tx-13 mr-2 mb-0">/ ارسال رساله</span></div>
+						<div class="d-flex"><h4 class="content-title mb-0 my-auto ">الرسائل</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ ارسال رساله</span></div>
 					</div>
 
 				</div>
@@ -74,7 +74,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</form>
 					</div>
 					<!-- Col -->
