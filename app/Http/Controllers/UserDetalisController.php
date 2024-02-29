@@ -60,8 +60,9 @@ class UserDetalisController extends Controller
         $path = public_path('upload/Profile/img/'.$image_name);
 
         file_put_contents($path, $image);
+        $userDetalisId = User::select('userDetalis')->where('id',Auth::User()->id)->first();
 
-        userDetalis::where('id',Auth::User()->id)->update([
+        userDetalis::where('id',$userDetalisId->userDetalis)->update([
             'ProfileImage'=>'upload/Profile/img/'.$image_name,
         ]);
 
@@ -100,8 +101,11 @@ class UserDetalisController extends Controller
             $image->save(public_path('upload/Profile/img/'. $imageName));
             $coverImage = 'upload/Profile/img/'. $imageName;
         }
+
+        $userDetalisId = User::select('userDetalis')->where('id',Auth::User()->id)->first();
+
         userDetalis::where('id',Auth::User()->id)->update([
-            'coverImage'=>$coverImage,
+            'coverImage'=>$userDetalisId->userDetalis,
         ]);
 
         return response()->json(["MSG" => "تم تغير صوره الغلاف "]);

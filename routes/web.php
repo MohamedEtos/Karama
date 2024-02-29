@@ -205,14 +205,14 @@ DB::transaction(function () {
         'coverImage'=>'assets/img/defultUserImg/cover.webp',
     ]);
 
-    // User::create([
-    //     'name'=>'محمد محروس',
-    //     'usercode'=>'11223344',
-    //     'email'=>'admin@admin.com',
-    //     'subtype'=>'admin',
-    //     'password'=>Hash::make('11223344'),
-    //     'userDetalis'=>1,
-    // ]);
+    User::create([
+        'name'=>'Karama-SC',
+        'usercode'=>'11223344',
+        'email'=>'admin@admin.com',
+        'subtype'=>'admin',
+        'password'=>Hash::make('11223344'),
+        'userDetalis'=>1,
+    ]);
 
     userDetalis::create([
         'phone'=>'011011011',
