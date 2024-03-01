@@ -13,7 +13,6 @@
 
 
 
-
 	<body class="main-body app sidebar-mini karama-bg-img2" >
 		<!-- Loader -->
 		{{-- <div id="global-loader"> --}}

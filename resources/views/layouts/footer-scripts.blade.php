@@ -31,7 +31,7 @@
 <script src="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
 <!--Internal Sparkline js -->
-{{-- <script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script> --}}
+<script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 <!-- Custom Scroll bar Js-->
 {{-- <script src="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script> --}}
 <script src="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js')}}"></script>

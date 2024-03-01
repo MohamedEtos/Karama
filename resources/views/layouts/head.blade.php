@@ -17,7 +17,8 @@
 <!--- Style css -->
 {{-- <link href="{{URL::asset('assets/css-rtl/style.css')}}" rel="stylesheet"> --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/feather.css">
+<link href="{{URL::asset('https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/feather.css')}}" rel="stylesheet"/>
+
 
 
 <link href="{{URL::asset('https://drive.google.com/uc?export=download&id=1ySL-VxclmYGE9tS4M4xZtRGJW8rLpOLj')}}" rel="stylesheet">

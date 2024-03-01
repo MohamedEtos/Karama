@@ -258,59 +258,7 @@
                                     <canvas id="myChart7"></canvas>
                                 </div>
 
-                                <script>
 
-                                    let pointsadd = {!! json_encode($pointsAddCount) !!};
-
-                                    let arradd = [pointsadd[1],pointsadd[2],pointsadd[3],pointsadd[4],pointsadd[5],pointsadd[6],pointsadd[7],pointsadd[8],pointsadd[9],pointsadd[10],pointsadd[11],pointsadd[12]];
-
-                                    for (let i = 0; i < arradd.length; i++) {
-                                        if (typeof arradd[i] == 'undefined') {
-                                            arradd[i] = 0;
-                                        }
-                                    }
-
-
-                                    let pointsSub = {!! json_encode($pointsSubCount) !!};
-
-                                    let arrSub = [pointsSub[1],pointsSub[2],pointsSub[3],pointsSub[4],pointsSub[5],pointsSub[6],pointsSub[7],pointsSub[8],pointsSub[9],pointsSub[10],pointsSub[11],pointsSub[12]];
-
-                                    for (let i = 0; i < arrSub.length; i++) {
-                                        if (typeof arrSub[i] == 'undefined') {
-                                            arrSub[i] = 0;
-                                        }
-                                    }
-
-
-                                    const ctx3 = document.getElementById('myChart7');
-                                    new Chart(ctx3, {
-                                        type: 'bar',
-                                        data: {
-                                            labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
-                                            datasets: [
-                                                {
-                                                    label: 'عمليه بيع',
-                                                    data: [arradd[0],arradd[1],arradd[2],arradd[3],arradd[4],arradd[5],arradd[6],arradd[7],arradd[8],arradd[9],arradd[10],arradd[11],arradd[11]],
-                                                    borderWidth: 1
-                                                },{
-                                                    type: 'bar',
-                                                    label: 'استبدال نقاط',
-                                                    data: [arrSub[0],arrSub[1],arrSub[2],arrSub[3],arrSub[4],arrSub[5],arrSub[6],arrSub[7],arrSub[8],arrSub[9],arrSub[10],arrSub[11],arrSub[11]],
-                                                    borderWidth: 1
-
-                                                }
-
-                                            ]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: true
-                                                }
-                                            }
-                                        }
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -373,58 +321,7 @@
 									<canvas id="myChart3"></canvas>
 								  </div>
 
-								  <script>
 
-									var usermcount = {!! json_encode($usermcount) !!};
-
-									let arr = [usermcount[1],usermcount[2],usermcount[3],usermcount[4],usermcount[5],usermcount[6],usermcount[7],usermcount[8],usermcount[9],usermcount[10],usermcount[11],usermcount[12]];
-
-										for (let i = 0; i < arr.length; i++) {
-										if (typeof arr[i] == 'undefined') {
-											arr[i] = 0;
-										}
-										}
-
-									var mercahntCC = {!! json_encode($mercahntCC) !!};
-
-									let marr = [mercahntCC[1],mercahntCC[2],mercahntCC[3],mercahntCC[4],mercahntCC[5],mercahntCC[6],mercahntCC[7],mercahntCC[8],mercahntCC[9],mercahntCC[10],mercahntCC[11],mercahntCC[12]];
-
-										for (let i = 0; i < marr.length; i++) {
-										if (typeof marr[i] == 'undefined') {
-											marr[i] = 0;
-										}
-										}
-
-
-									const ctx2 = document.getElementById('myChart3');
-									new Chart(ctx2, {
-									  type: 'line',
-									  data: {
-										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
-										datasets: [
-											{
-										  label: 'عضو',
-										  data: [arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8],arr[9],arr[10],arr[11],arr[11]],
-										  borderWidth: 1
-										},
-										{
-
-											label: 'متجر',
-											data: [marr[0],marr[1],marr[2],marr[3],marr[4],marr[5],marr[6],marr[7],marr[8],marr[9],marr[10],marr[11],marr[11]],
-											borderWidth: 1
-
-										}
-									]
-									  },
-									  options: {
-										scales: {
-										  y: {
-											beginAtZero: true
-										  }
-										}
-									  }
-									});
-								  </script>
 								</div>
 						</div>
 					</div>
@@ -557,6 +454,111 @@
 		<!-- Container closed -->
 @endsection
 @section('js')
+<script>
+
+    let pointsadd = {!! json_encode($pointsAddCount) !!};
+
+    let arradd = [pointsadd[1],pointsadd[2],pointsadd[3],pointsadd[4],pointsadd[5],pointsadd[6],pointsadd[7],pointsadd[8],pointsadd[9],pointsadd[10],pointsadd[11],pointsadd[12]];
+
+    for (let i = 0; i < arradd.length; i++) {
+        if (typeof arradd[i] == 'undefined') {
+            arradd[i] = 0;
+        }
+    }
+
+
+    let pointsSub = {!! json_encode($pointsSubCount) !!};
+
+    let arrSub = [pointsSub[1],pointsSub[2],pointsSub[3],pointsSub[4],pointsSub[5],pointsSub[6],pointsSub[7],pointsSub[8],pointsSub[9],pointsSub[10],pointsSub[11],pointsSub[12]];
+
+    for (let i = 0; i < arrSub.length; i++) {
+        if (typeof arrSub[i] == 'undefined') {
+            arrSub[i] = 0;
+        }
+    }
+
+
+    const ctx3 = document.getElementById('myChart7');
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+            datasets: [
+                {
+                    label: 'عمليه بيع',
+                    data: [arradd[0],arradd[1],arradd[2],arradd[3],arradd[4],arradd[5],arradd[6],arradd[7],arradd[8],arradd[9],arradd[10],arradd[11],arradd[11]],
+                    borderWidth: 1
+                },{
+                    type: 'bar',
+                    label: 'استبدال نقاط',
+                    data: [arrSub[0],arrSub[1],arrSub[2],arrSub[3],arrSub[4],arrSub[5],arrSub[6],arrSub[7],arrSub[8],arrSub[9],arrSub[10],arrSub[11],arrSub[11]],
+                    borderWidth: 1
+
+                }
+
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script>
+
+    var usermcount = {!! json_encode($usermcount) !!};
+
+    let arr = [usermcount[1],usermcount[2],usermcount[3],usermcount[4],usermcount[5],usermcount[6],usermcount[7],usermcount[8],usermcount[9],usermcount[10],usermcount[11],usermcount[12]];
+
+        for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] == 'undefined') {
+            arr[i] = 0;
+        }
+        }
+
+    var mercahntCC = {!! json_encode($mercahntCC) !!};
+
+    let marr = [mercahntCC[1],mercahntCC[2],mercahntCC[3],mercahntCC[4],mercahntCC[5],mercahntCC[6],mercahntCC[7],mercahntCC[8],mercahntCC[9],mercahntCC[10],mercahntCC[11],mercahntCC[12]];
+
+        for (let i = 0; i < marr.length; i++) {
+        if (typeof marr[i] == 'undefined') {
+            marr[i] = 0;
+        }
+        }
+
+
+    const ctx2 = document.getElementById('myChart3');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+        datasets: [
+            {
+          label: 'عضو',
+          data: [arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8],arr[9],arr[10],arr[11],arr[11]],
+          borderWidth: 1
+        },
+        {
+
+            label: 'متجر',
+            data: [marr[0],marr[1],marr[2],marr[3],marr[4],marr[5],marr[6],marr[7],marr[8],marr[9],marr[10],marr[11],marr[11]],
+            borderWidth: 1
+
+        }
+    ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 <!--Internal  Chart.bundle js -->
 {{-- <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script> --}}
 <!-- Moment js -->
