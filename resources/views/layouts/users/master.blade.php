@@ -13,9 +13,13 @@
 
 	<body class="main-body app  karama-bg-img" >
 		<!-- Loader -->
-		<div id="global-loader">
+		{{-- <div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
-		</div>
+		</div> --}}
+
+        <div class="loader-wrapper">
+            <div class="loader"></div>
+        </div>
 
 		<!-- /Loader -->
 		{{-- @include('layouts.users.sidebar_users') --}}

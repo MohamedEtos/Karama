@@ -14,13 +14,13 @@
 	</head>
 
 	<body class="main-body app sidebar-mini karama-bg-img2 ">
-        
+
 		<!-- Loader -->
 		{{-- <div id="global-loader"> --}}
 			{{-- <img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader"> --}}
 		{{-- </div> --}}
 
-		<div class="main-loader">
+		{{-- <div class="main-loader">
 			<div class="loading-cus">
 				<div class="loading-bar"></div>
 				<div class="loading-bar"></div>
@@ -28,7 +28,12 @@
 				<div class="loading-bar"></div>
 				<div class="loading-bar"></div>
 			</div>
-		</div>
+		</div> --}}
+
+        <div class="loader-wrapper">
+            <div class="loader"></div>
+        </div>
+        
 		<!-- /Loader -->
 		@include('merchant.layout.main-sidebar')
 		<!-- main-content -->

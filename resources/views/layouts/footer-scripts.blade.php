@@ -16,7 +16,6 @@
 
 
 
-
 <!-- Ionicons js -->
 {{-- <script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>   HERE --}}
 <!-- Moment js -->
@@ -66,11 +65,12 @@
     <script src="{{URL::asset('https://cdn.jsdelivr.net/npm/ion-rangeslider@2.2.0/js/ion.rangeSlider.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/rangeliderNavbar.js')}}"></script>
 
+    <script src="{{URL::asset('assets/js/barloader.js')}}"></script>
 
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
-        Pusher.logToConsole = true;
+        // Pusher.logToConsole = true;
 
         var pusher = new Pusher('bd1e4bf2bb0bebd08131', {
         cluster: 'mt1'
