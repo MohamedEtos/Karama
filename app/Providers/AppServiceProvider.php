@@ -58,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             if (!request()->is('login')) {
 
+
                 $notify  = notify::where('reseverId',Auth::User()->id)->limit(10)->orderBy('id','DESC')->get();
                 $notifyCount = notify::where('reseverId',Auth::User()->id)
                 ->where('readed','0')

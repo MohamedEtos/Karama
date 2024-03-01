@@ -32,11 +32,11 @@
     {{-- <input type="hidden" id="UID" value="{{Auth::User()->id}}"> --}}
 
 	<div class="row row-sm">
-		<div class="mainCover col-12">
+		<div class="mainCover col-12 text-center">
 			<img class="w-100 h-30" src="{{asset($marketData->userToDetalis->coverImage)}}" alt="MarkitProfile">
 			<div class=" markit-image">
 				<div class="demo-avatar-group">
-					<img alt="Responsive image" class="img-thumbnail rounded-circle wd-30p wd-sm-200 " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
+					<img alt="Responsive image" class="img-thumbnail wd-xs-100  wd-sm-100 wd-md-150 wd-lg-200  wd-xl-270  wd-30p " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
 
 				</div>
 			</div>

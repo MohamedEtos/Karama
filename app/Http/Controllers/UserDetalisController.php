@@ -76,40 +76,66 @@ class UserDetalisController extends Controller
     {
 
 
+        $image = $request->image2;
 
+        list($type, $image) = explode(';', $image);
+        list(, $image)      = explode(',', $image);
 
-        if($request->hasFile('coverImage')){
+        $image = base64_decode($image);
+        $image_name= time().'.webp';
+        $path = public_path('upload/Profile/img/'.$image_name);
 
-            $ImageFile =  $request->file('coverImage');
-            $data = getimagesize($ImageFile);
-            $width = $data[0];
-            $height = $data[1];
-
-            if($width > '1024'){
-                $width = '1024';
-            }elseif($width < '1024'){
-                $width;
-            };
-            if($height > '1024'){
-                $height = '1024';
-            }elseif($height < '1024'){
-                $height;
-            };
-
-            $image  = ImageManagerStatic::make($request->file('coverImage'))->encode('webp')->resize($width,$height);
-            $imageName = Str::random().'.webp';
-            $image->save(public_path('upload/Profile/img/'. $imageName));
-            $coverImage = 'upload/Profile/img/'. $imageName;
-        }
-
+        file_put_contents($path, $image);
         $userDetalisId = User::select('userDetalis')->where('id',Auth::User()->id)->first();
 
-        userDetalis::where('id',Auth::User()->id)->update([
-            'coverImage'=>$userDetalisId->userDetalis,
+        userDetalis::where('id',$userDetalisId->userDetalis)->update([
+            'coverImage'=>'upload/Profile/img/'.$image_name,
         ]);
 
-        return response()->json(["MSG" => "تم تغير صوره الغلاف "]);
+        return response()->json(["MSG" => "تم تغير الصوره "]);
+
+
     }
+
+
+    // public function CoverImage(Request $request)
+    // {
+
+
+
+
+    //     if($request->hasFile('coverImage')){
+
+    //         $ImageFile =  $request->file('coverImage');
+    //         $data = getimagesize($ImageFile);
+    //         $width = $data[0];
+    //         $height = $data[1];
+
+    //         if($width > '1024'){
+    //             $width = '1024';
+    //         }elseif($width < '1024'){
+    //             $width;
+    //         };
+    //         if($height > '1024'){
+    //             $height = '1024';
+    //         }elseif($height < '1024'){
+    //             $height;
+    //         };
+
+    //         $image  = ImageManagerStatic::make($request->file('coverImage'))->encode('webp')->resize($width,$height);
+    //         $imageName = Str::random().'.webp';
+    //         $image->save(public_path('upload/Profile/img/'. $imageName));
+    //         $coverImage = 'upload/Profile/img/'. $imageName;
+    //     }
+
+    //     $userDetalisId = User::select('userDetalis')->where('id',Auth::User()->id)->first();
+
+    //     userDetalis::where('id',Auth::User()->id)->update([
+    //         'coverImage'=>$userDetalisId->userDetalis,
+    //     ]);
+
+    //     return response()->json(["MSG" => "تم تغير صوره الغلاف "]);
+    // }
 
 
 

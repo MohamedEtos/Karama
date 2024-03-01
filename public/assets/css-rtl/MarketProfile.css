@@ -1,7 +1,8 @@
 .mainCover{
   width: 100%;
   overflow: hidden;
-  max-height: 400px;
+  /* max-width: 700px; */
+  /* max-height: 600px; */
 background-color: #fff;
 
 }
@@ -11,6 +12,7 @@ background-color: #fff;
   bottom:  3%;
   right: 3%;
 }
+
 .marketData{
   background-color: #fff;
   width: 100%;
@@ -23,6 +25,6 @@ background-color: #fff;
     overflow: hidden;
     max-height: 150px;
   background-color: #fff;
-  
+
   }
 }

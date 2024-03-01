@@ -13,7 +13,7 @@
 
 
 
-  <meta name="token" content="{{ csrf_token() }}">
+<meta name="token" content="{{ csrf_token() }}">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -21,7 +21,7 @@
 					<div class="breadcrumb-header  rounded  justify-content-between  ">
 						<div class="my-auto">
 							<div class="d-flex">
-								<h4 class="content-title mb-0 my-auto text-light">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+								<h4 class="content-title mb-0 my-auto ">الملف الشخصي</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 
 							</div>
 						</div>
@@ -54,12 +54,12 @@
 
 
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload1" name="coverImage" accept=".png, .jpg, .jpeg" />
-                                                            <label for="imageUpload1" data-target="#modaldemo4" data-toggle="modal"></label>
+                                                            <input type='file' id="imagesCover" name="coverImage" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imagesCover" data-target="#modaldemo4" data-toggle="modal"></label>
 
                                                         </div>
-                                                        <div class="avatar-preview cover-preview">
-                                                            <div id="imagePreview" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون الصورره  1600*400 بكسل" style="background-image: url('{{asset($userDetalis->coverImage)}}'); ">
+                                                        <div class="avatar-preview cover-preview" id="imagePreview">
+                                                            <div  data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون الصورره  1600*400 بكسل" class="coverPorfile" style="background-image: url('{{asset($userDetalis->coverImage)}}'); ">
                                                             </div>
                                                         </div>
 
@@ -116,11 +116,11 @@
                                                     <div class="avatar-upload  col-12">
                                                             @csrf
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload2"  name="ProfileImage" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' id="imageUpload2"   name="ProfileImage" accept=".png, .jpg, .jpeg" />
                                                             <label for="images" data-target="#modaldemo3" data-toggle="modal"></label>
                                                         </div>
-                                                        <div class="avatar-preview merchant-preview ">
-                                                            <div id="imagePreview2" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
+                                                        <div class="avatar-preview rounded merchant-preview ">
+                                                            <div id="imagePreview2" class="rounded" data-placement="bottom" data-toggle="tooltip" title="يفضل ان تكون صوره اقل من 1024 بكسل" style="background-image: url('{{asset($userDetalis->ProfileImage)}}');">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -622,71 +622,8 @@
 
 // image uploader
 
-$("#imageUpload2").change(function(e) {
 
 
-	e.preventDefault();
-	let formData = new FormData($('#imageUploadform')[0]);
-	// $("#name").text('');
-	$.ajax({
-
-		beforeSend: function() {
-			$('.loader_cu').css('display','flex');
-			// $('.avatar-preview').css('border-color','red').delay(500);
-
-		},
-		type: "post",
-		url: "{{route('ProfileImage')}}",
-		data : formData,
-		processData:false,
-		contentType:false,
-		cache:false,
-		success: function (data) {
-
-
-			// nofication
-			$('form').append('<input id="nofic" type="hidden" value="">');
-			$('#nofic').val(data.MSG);
-			function not7() {
-					notif({
-						msg: $('#nofic').val(),
-						type: "success"
-					});
-				};
-				not7();
-			$('.loader_cu').css('display','none');
-
-			// image uploader animated
-				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
-				$('.merchant-preview').addClass('avatar-preview-animate');
-				setTimeout(function() {
-					$('.merchant-preview').removeClass('avatar-preview-animate');
-				}, 3000);
-
-
-		},complete: function(){
-			$('.loader_cu').css('display','none')
-		},error: function(reject){
-			$('.merchant-preview').addClass('avatar-preview-animate-danger');
-			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
-			$('#errors').val();
-			function not7() {
-					notif({
-						msg: $('#errors').val(),
-						type: "error"
-					});
-			};
-			not7();
-
-		}
-
-	});
-
-
-
-});
-
-// cover uploader
 
 
 </script>
@@ -694,100 +631,8 @@ $("#imageUpload2").change(function(e) {
 
 
 
-
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js')}}"></script>
 
-<script type="text/javascript">
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-      }
-    });
-
-    var resize2 = $('#upload-demoCover').croppie({
-        enableExif: true,
-        enableOrientation: true,
-        viewport: {
-            width: 300,
-            height: 300,
-            type: 'circle'
-        },
-
-        boundary: {
-            width: 300,
-            height: 300
-        }
-    });
-
-    $('#imagesCover').on('change', function () {
-      var reader2 = new FileReader();
-        reader2.onload = function (e) {
-          resize2.croppie('bind',{
-            url: e.target.result
-          }).then(function(){
-            console.log('success bind image');
-          });
-
-        }
-        reader2.readAsDataURL(this.files[0]);
-    });
-
-    $('.image-uploadCover').on('click', function (ev) {
-      resize2.croppie('result', {
-        type: 'canvas',
-        size: 'viewport'
-
-      }).then(function (img2) {
-        $.ajax({
-          url: '{{ route('CoverImage') }}',
-          type: "POST",
-          data: {"image2":img2},
-          success: function (data) {
-            html2 = '<img src="' + img2 + '" />';
-            $("#imagePreview").html(html2);
-
-			// nofication
-			$('form').append('<input id="nofic" type="hidden" value="">');
-			$('#nofic').val(data.MSG);
-			function not7() {
-					notif({
-						msg: $('#nofic').val(),
-						type: "success"
-					});
-				};
-				not7();
-			$('.loader_cu').css('display','none');
-
-			// image uploader animated
-				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
-				$('.merchant-preview').addClass('avatar-preview-animate');
-                $('.modal-content-demo').addClass('avatar-preview-animate');
-				setTimeout(function() {
-					$('.merchant-preview').removeClass('avatar-preview-animate');
-				}, 3000);
-
-          },error: function(reject){
-			$('.merchant-preview').addClass('avatar-preview-animate-danger');
-			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
-			$('#errors').val();
-			function not7() {
-					notif({
-						msg: $('#errors').val(),
-						type: "error"
-					});
-			};
-			not7();
-
-		},beforeSend: function() {
-			$('.loader_cu').css('display','flex');
-			$('.loading').css('display','flex');
-			// $('.avatar-preview').css('border-color','red').delay(500);
-
-		}
-        });
-      });
-    });
- </script>
 
 
 
@@ -804,7 +649,7 @@ $("#imageUpload2").change(function(e) {
         viewport: {
             width: 300,
             height: 300,
-            type: 'circle'
+            type: 'square'
         },
 
         boundary: {
@@ -882,4 +727,106 @@ $("#imageUpload2").change(function(e) {
       });
     });
  </script>
+
+
+
+
+<script type="text/javascript">
+
+// cover uploader
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      }
+    });
+
+    var resize2 = $('#upload-demoCover').croppie({
+        enableExif: true,
+        enableOrientation: true,
+        viewport: {
+            width: 700,
+            height: 300,
+            type: 'square'
+        },
+
+        boundary: {
+            width: 700,
+            height: 300,
+        }
+    });
+
+    $('#imagesCover').on('change', function () {
+      var reader2 = new FileReader();
+        reader2.onload = function (e) {
+          resize2.croppie('bind',{
+            url: e.target.result
+          }).then(function(){
+            console.log('success bind image');
+          });
+
+        }
+        reader2.readAsDataURL(this.files[0]);
+    });
+
+    $('.image-uploadCover').on('click', function (ev) {
+      resize2.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+
+      }).then(function (img2) {
+        $.ajax({
+          url: '{{ route('CoverImage') }}',
+          type: "POST",
+          data: {"image2":img2},
+          success: function (data) {
+            html2 = '<img src="' + img2 + '" />';
+            $("#imagePreview").html(html2);
+
+			// nofication
+			$('form').append('<input id="nofic" type="hidden" value="">');
+			$('#nofic').val(data.MSG);
+			function not7() {
+					notif({
+						msg: $('#nofic').val(),
+						type: "success"
+					});
+				};
+				not7();
+			$('.loader_cu').css('display','none');
+
+			// image uploader animated
+				$('.merchant-preview').removeClass('avatar-preview-animate-danger');
+				$('.merchant-preview').addClass('avatar-preview-animate');
+                $('.modal-content-demo').addClass('avatar-preview-animate');
+				setTimeout(function() {
+					$('.merchant-preview').removeClass('avatar-preview-animate');
+				}, 3000);
+
+          },error: function(reject){
+			$('.merchant-preview').addClass('avatar-preview-animate-danger');
+			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');
+			$('#errors').val();
+			function not7() {
+					notif({
+						msg: $('#errors').val(),
+						type: "error"
+					});
+			};
+			not7();
+
+		},beforeSend: function() {
+			$('.loader_cu').css('display','flex');
+			$('.loading').css('display','flex');
+			// $('.avatar-preview').css('border-color','red').delay(500);
+
+		}
+        });
+      });
+    });
+ </script>
+
+
+
+
 @endsection
