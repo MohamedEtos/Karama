@@ -28,11 +28,13 @@
 
 <!--Internal  Perfect-scrollbar js -->
 <script src="{{URL::asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+<script src="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
 <!--Internal Sparkline js -->
 {{-- <script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script> --}}
 <!-- Custom Scroll bar Js-->
-<script src="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script> --}}
+<script src="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js')}}"></script>
 <!-- right-sidebar js -->
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-rtl.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
@@ -60,7 +62,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> --}}
 
 
-    <script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+    {{-- <script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script> --}}
+    <script src="{{URL::asset('https://cdn.jsdelivr.net/npm/ion-rangeslider@2.2.0/js/ion.rangeSlider.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/rangeliderNavbar.js')}}"></script>
 
 

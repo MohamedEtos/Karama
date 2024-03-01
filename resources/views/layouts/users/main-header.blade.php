@@ -245,7 +245,7 @@
 						<h6 class="modal-title">Modal Header</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
-  
+
 					</div>
 					<div class="modal-footer">
 						<button class="btn ripple btn-block btn-primary" type="button">كل الفئات</button>
@@ -375,7 +375,7 @@
 
 
 				<div class="dropdown main-profile-menu p-0 nav nav-item nav-link">
-					<a class="profile-user bg-success rounded-circle p-1 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
+					<a class="profile-user rounded-circle p-1 d-flex" href=""><img alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}"></a>
 					<div class="dropdown-menu">
 						<div class="main-header-profile bg-primary p-3">
 							<div class="d-flex wd-100p">

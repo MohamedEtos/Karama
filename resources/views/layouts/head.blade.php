@@ -6,6 +6,7 @@
 <link href="{{URL::asset('assets/css-rtl/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->
 {{-- <link href="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/> --}}
+<link href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css')}}" rel="stylesheet"/>
 <!--  Sidebar css -->
 <link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 <!-- Sidemenu css -->
@@ -14,8 +15,12 @@
 <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @yield('css')
 <!--- Style css -->
-<link href="{{URL::asset('assets/css-rtl/style.css')}}" rel="stylesheet">
-{{-- <link href="{{URL::asset('https://drive.google.com/uc?export=download&id=1ySL-VxclmYGE9tS4M4xZtRGJW8rLpOLj')}}" rel="stylesheet"> --}}
+{{-- <link href="{{URL::asset('assets/css-rtl/style.css')}}" rel="stylesheet"> --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/feather.css">
+
+
+<link href="{{URL::asset('https://drive.google.com/uc?export=download&id=1ySL-VxclmYGE9tS4M4xZtRGJW8rLpOLj')}}" rel="stylesheet">
 <!--- Dark-mode css -->
 {{-- <link href="{{URL::asset('assets/css-rtl/style-dark.css')}}" rel="stylesheet"> --}}
 <!---Skinmodes css-->
@@ -32,7 +37,8 @@
 
 
 <!-- Internal Ion.rangeSlider css -->
-<link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/rangeSlider.css">
+{{-- <link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet"> --}}
 <link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
 
 

@@ -32,45 +32,66 @@
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('admin/dashboard') }}"><span class="side-menu__label"> <i class="fa-solid fa-house  fa-xl"></i> &nbsp; الرئيسيه</span><span class="badge badge-success side-badge">1</span></a>
 					</li>
+
+					{{-- <li class="side-item side-item-category">الاقسام</li> --}}
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ route('all.category') }}">اضافه قسم</a></li>
+						</ul>
+					</li>
+
+
+					<li class="side-item side-item-category">المتاجر والاشتراكات</li>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp;  المتاجر</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ url('admin/registerStore') }}"> اضافه متجر</a></li>
+
+							<li><a class="slide-item" href="{{ url('admin/merchant') }}"> كل المتاجر</a></li>
 
 						</ul>
 					</li>
 
-					<li class="side-item side-item-category">المتاجر</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('admin/registerStore') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp; اضافه متجر</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ url('admin/merchant') }}"><span class="side-menu__label"> <i class="fa-solid fa-store "></i> &nbsp; عرض المتاجر</span><span class="badge badge-danger side-badge"></span></a>
 
-					</li>
-					<li class="side-item side-item-category">الاشتراكات</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('admin/registerUserView') }}"><span class="side-menu__label"> <i class="fa-solid fa-user fa-xl"></i> &nbsp; اضافه عضو</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ route('all.user') }}"><span class="side-menu__label"> <i class="fa-solid fa-user "></i> &nbsp; الاعضاء</span><span class="badge badge-danger side-badge"></span></a>
+					{{-- <li class="side-item side-item-category">الاشتراكات</li> --}}
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-user fa-xl"></i> &nbsp;  الاشتراكات</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ url('admin/registerUserView') }}"> اضافه مشترك</a></li>
 
+							<li><a class="slide-item" href="{{ route('all.user') }}"> المشتركين </a></li>
+
+						</ul>
 					</li>
+
+
 					<li class="side-item side-item-category">المنتجات </li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ route('allProducts') }}"><span class="side-menu__label"> <i class="fa-solid fa-box fa-xl"></i> &nbsp; جدول المنتجات</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{Route('reviewAllProudcts')}}"><span class="side-menu__label"> <i class="fa-solid fa-receipt"></i> &nbsp; المراجعه</span><span class="badge badge-danger side-badge"></span>
-                                @if(!empty($reviewproduct))
-                                <span class="badge badge-success side-badge"> {{ count($reviewproduct) }} </span>
-                            @else
-                            @endif
-                        </a>
-						<a class="side-menu__item" href="{{ route('acceptedProudcts') }}"><span class="side-menu__label"> <i class="fa-regular fa-circle-check"></i> &nbsp; منتجات مقبوله</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{ route('rejectedProudcts') }}"><span class="side-menu__label"> <i class="fa-regular fa-circle-xmark"></i> &nbsp; منتجات مرفوضه</span><span class="badge badge-danger side-badge"></span></a>
 
-					</li>
-					<li class="side-item side-item-category">النقاط</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ route('pointsOperations') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp;سجل النقاط</span><span class="badge badge-danger side-badge"></span></a>
-						<a class="side-menu__item" href="{{Route('addPoints')}}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp; اضافه نقاط</span><span class="badge badge-danger side-badge"></span></a>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label">  <i class="fa-solid fa-box fa-xl"></i> &nbsp;  المنتجات</span><i class="angle fe fe-chevron-down"> </i><span class="badge badge-success side-badge">1</span></a>
+						<ul class="slide-menu">
+                           <li> <a class="slide-item" href="{{ route('allProducts') }}">جدول المنتجات</a> </li>
+                            <li><a class="slide-item" href="{{Route('reviewAllProudcts')}}">المراجعه</a></li>
+                            <li><a class="slide-item" href="{{ route('acceptedProudcts') }}">منتجات مقبوله</a></li>
+                            <li><a class="slide-item" href="{{ route('rejectedProudcts') }}">منتجات مرفوضه</a></li>
 
+						</ul>
 					</li>
+
+
+
+                    <li class="side-item side-item-category">النقاط </li>
+
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp;  النقاط</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+                           <li> <a class="slide-item" href="{{ route('pointsOperations') }}">جدول المنتجات</a></li>
+                            <li><a class="slide-item" href="{{Route('addPoints')}}">المراجعه</a></li>
+						</ul>
+					</li>
+
+
 					<li class="side-item side-item-category">الاشعارات والرسائل</li>
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('notifyList') }}"><span class="side-menu__label"> <i class="fa-regular fa-bell fa-xl"></i> &nbsp; الاشعارات والرسائل</span><span class="badge badge-danger side-badge"></span>
