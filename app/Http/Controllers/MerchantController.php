@@ -269,7 +269,8 @@ class MerchantController extends Controller
             'productDetalis'=>$request->productDetalis,
             'price'=>$request->price,
             'discount'=>$request->discount,
-            'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
+            'ThePriceAfterDiscount'=>$request->price - ( $request->price * ($request->discount/100)) ,
+
             'imgId'=>$getLastImageId,
         ]);
 
@@ -504,7 +505,7 @@ class MerchantController extends Controller
             'productDetalis'=>$request->productDetalis,
             'price'=>$request->price,
             'discount'=>$request->discount,
-            'ThePriceAfterDiscount'=>$request->price * $request->discount/100,
+            'ThePriceAfterDiscount'=>$request->price - ( $request->price * ($request->discount/100)) ,
             'append'=>'0',
             'rejectId'=>null
         ]);
