@@ -22,7 +22,6 @@
 
 
 
-<link href="{{URL::asset('https://drive.google.com/uc?export=download&id=1ySL-VxclmYGE9tS4M4xZtRGJW8rLpOLj')}}" rel="stylesheet">
 <!--- Dark-mode css -->
 {{-- <link href="{{URL::asset('assets/css-rtl/style-dark.css')}}" rel="stylesheet"> --}}
 <!---Skinmodes css-->

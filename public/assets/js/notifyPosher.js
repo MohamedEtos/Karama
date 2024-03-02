@@ -1,3 +1,4 @@
+
 var messNotify = document.getElementById('messNotify');
 var notifayTitle = document.getElementById('notifayTitle');
 var countNotify = document.getElementById('countNotify');
@@ -10,7 +11,7 @@ channel.bind('UserNotify', function (data) {
 
     var html = ' <a href="" class="p-3 d-flex border-bottom ">' +
            '<div class="  drop-img  cover-image ml-2   " data-image-src="">' +
-            '<img src="' +  window.location.href + data.senderImg  +'" alt="">'+
+            '<img src="' +  window.location.origin +'/'+ data.senderImg  +'" alt="">'+
                ' <span class="avatar-status bg-teal"></span>' +
                '</div>' +
                '<div class="wd-90p">' +

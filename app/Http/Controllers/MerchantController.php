@@ -365,6 +365,7 @@ class MerchantController extends Controller
 
         $related_products = merchant::where('categoryId',$product_cat)
         ->where('id','!=',$id)
+        ->where('append','1')
         ->inRandomOrder()
         ->limit(4)
         ->get();

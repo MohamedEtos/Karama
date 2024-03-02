@@ -145,6 +145,7 @@
 											</div>
 										</div>
 									</div>
+									<a class="dropdown-item" href="{{route('/')}}"><i class="fa-solid fa-arrows-rotate pl-2"></i>زياره الموقع كمستخدم</a>
 									<a class="dropdown-item" href="{{route('profileDetials')}}"><i class="fa-solid fa-user pl-2"></i>الملف الشخصي</a>
 									<a class="dropdown-item" href="{{route('merchant')}}"><i class="fa fa-house pl-2"></i>الرئيسية</a>
 									<a class="dropdown-item" href=""><i class="fa-regular fa-envelope pl-2"></i>الرسائل</a>

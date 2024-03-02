@@ -43,7 +43,7 @@
 								<div class="progress progress-sm mt-2">
 									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{$persent}}" style="width: {{$persent}}%" class="progress-bar bg-primary " role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted"><span class="float-left text-muted">% {{$persent}} </span></small>
+								<small class="mb-0  text-muted"><small class="float-left text-muted">% {{$persent}} </small></small>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 								<div class="progress progress-sm mt-2">
 									<div  style="width: {{$storeViews}}%" aria-valuenow="{{$storeViews}}" aria-valuemin="0" aria-valuemax="100"  class="progress-bar bg-pink " role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">استمر لتحصل علي مميزات اكثر<span class="float-left text-muted">{{$storeViews}}%</span></small>
+								<small class="mb-0  text-muted">استمر لتحصل علي مميزات اكثر<small class="float-left text-muted">{{$storeViews}}%</small></small>
 							</div>
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 								<div class="progress progress-sm mt-2">
 									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar bg-success wd-100p" role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">ممتازه <span class="float-left text-muted">100%</span></small>
+								<small class="mb-0  text-muted">ممتازه <small class="float-left text-muted">100%</small></small>
 							</div>
 						</a>
 						</div>
@@ -123,7 +123,7 @@
 								<div class="progress progress-sm mt-2 ">
 									<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar bg-purple wd-100p" role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">قم بتسجيل قميه مشتريات العميل<span class="float-left text-muted"></span></small>
+								<small class="mb-0  text-muted">قم بتسجيل قميه مشتريات العميل<small class="float-left text-muted"></small></small>
 							</div>
 							</a>
 						</div>
@@ -244,7 +244,7 @@
 										}
 									  }
 									});
-                                    
+
 								  </script>
 								</div>
 						</div>

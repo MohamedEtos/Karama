@@ -86,8 +86,8 @@
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp;  النقاط</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-                           <li> <a class="slide-item" href="{{ route('pointsOperations') }}">جدول المنتجات</a></li>
-                            <li><a class="slide-item" href="{{Route('addPoints')}}">المراجعه</a></li>
+                           <li> <a class="slide-item" href="{{ route('pointsOperations') }}">حركات النقاط</a></li>
+                            <li><a class="slide-item" href="{{Route('addPoints')}}">اضافه نقاط</a></li>
 						</ul>
 					</li>
 

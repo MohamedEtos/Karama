@@ -25,12 +25,13 @@ Class SearchBar
         if (request('search')) {
             $products = merchant::inRandomOrder()->where('append','1')->where(function($query) use ($serch){
                 $query->where('name', 'like', '%' . $serch . '%')
+                    ->where('append','1')
                     ->orWhere('productDescription', 'like', '%' . $serch . '%')
                     ->orWhere('subCat', 'like', '%' . $serch . '%');
             })->orWhereHas('productionToCategoryRealtions',function($query) use ($serch){
-                $query->where('name', 'like', '%' . $serch . '%');
+                $query->where('name', 'like', '%' . $serch . '%')->where('append','1');
             })->orWhereHas('userToProduct',function($query) use ($serch){
-                $query->where('name', 'like', '%' . $serch . '%');
+                $query->where('name', 'like', '%' . $serch . '%')->where('append','1');
             })
                 ->latest()->paginate(16);
 

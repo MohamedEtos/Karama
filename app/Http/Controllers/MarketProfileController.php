@@ -15,7 +15,7 @@ class MarketProfileController extends Controller
     {
 
         $marketData = User::where('id',$id)->first();
-        $productt = merchant::where('userId',$id)->latest()->paginate(15);
+        $productt = merchant::where('userId',$id)->latest()->where('append',1)->paginate(15);
         $productsCounter = merchant::where('userId',$id)->count();
         $visetorCounter = visitorsCount::where('userId',$id)->count();
         $pointlimit = pointRules::where('merchantId',$id)->first();

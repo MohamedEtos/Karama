@@ -14,23 +14,23 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title text-light tx-24 mg-b-1 mg-b-lg-1">اهلا بك يا {{ Auth::User()->name}}</h2>
-						  <p class="mg-b-0 text-light">لوحه تحكم الادمن</p>
+						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">اهلا بك يا {{ Auth::User()->name}}</h2>
+						  <p class="mg-b-0">لوحه تحكم الادمن</p>
 						</div>
 					</div>
-					<div class="main-dashboard-header-right text-light">
+					<div class="main-dashboard-header-right">
 
 						<div class="">
-							{{-- <label class="tx-13 text-light text-center">الاعضاء</label> --}}
+							{{-- <label class="tx-13 text-center">الاعضاء</label> --}}
 							{{-- <h5 class="text-light text-center">{{$visetorsUnique}}</h5> --}}
 						</div>
 						<div class="">
-							<label class="tx-13 text-light text-center">التجار</label>
-							<h5 class="text-light text-center">{{$merchantCount}}</h5>
+							<label class="tx-13 text-center">التجار</label>
+							<h5 class=" text-center">{{$merchantCount}}</h5>
 						</div>
 						<div class="">
-							<label class="tx-13 text-light text-center">الاعضاء</label>
-							<h5 class="text-light text-center">{{$usersCount}}</h5>
+							<label class="tx-13 text-center">الاعضاء</label>
+							<h5 class=" text-center">{{$usersCount}}</h5>
 						</div>
 					</div>
 				</div>
@@ -280,31 +280,7 @@
 								  </div>
 
 
-								  <script>
-									var MCC = {!! json_encode($MCC) !!};
-									const ctx = document.getElementById('myChart4');
-									new Chart(ctx, {
-									  type: 'bar',
-									  data: {
-										labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
-										datasets: [{
-										  label: 'منتج',
-										  data: [MCC[1],MCC[2],MCC[3],MCC[4],MCC[5],MCC[6],MCC[7],MCC[8],MCC[9],MCC[10],MCC[11],MCC[12]],
-										  borderWidth: 1,
-										  borderColor: '#36A2EB',
-										  backgroundColor: '#36A2EB	',
 
-										}]
-									  },
-									  options: {
-										scales: {
-										  y: {
-											beginAtZero: true
-										  }
-										}
-									  }
-									});
-								  </script>
 								</div>
 							</div>
 					</div>
@@ -454,6 +430,35 @@
 		<!-- Container closed -->
 @endsection
 @section('js')
+
+
+<script>
+    var MCC = {!! json_encode($MCC) !!};
+    const ctx = document.getElementById('myChart4');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو" , "يوليو" , "اغسطس" , "سبتمبر" , "اكتوبر" , "نوفمبر","ديسمبر"],
+        datasets: [{
+          label: 'منتج',
+          data: [MCC[1],MCC[2],MCC[3],MCC[4],MCC[5],MCC[6],MCC[7],MCC[8],MCC[9],MCC[10],MCC[11],MCC[12]],
+          borderWidth: 1,
+          borderColor: '#36A2EB',
+          backgroundColor: '#36A2EB	',
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+
 <script>
 
     let pointsadd = {!! json_encode($pointsAddCount) !!};
@@ -577,7 +582,7 @@
 {{-- <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script> --}}
 {{-- <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script> --}}
 <!--Internal  index js -->
-<script src="{{URL::asset('assets/js/index.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/js/index.js')}}"></script> --}}
 {{-- <script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script> --}}
 
 
