@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\notify;
 use App\Models\points;
+use App\Models\merchant;
 use App\Models\pointRules;
 use Illuminate\Http\Request;
 use App\Models\pointsDetails;
@@ -147,5 +148,12 @@ class PointsAdminController extends Controller
 
     }
 
+    public function pointSetting(Request $request)
+    {
+        $allMerchant =  pointRules::get();
+        return view('admin.points.pointSetting',compact(
+            'allMerchant',
+        ));
+    }
 
 }
