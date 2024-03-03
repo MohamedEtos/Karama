@@ -81,7 +81,7 @@
 
 									<div class="col-md-4 mt-4">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="30" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -194,7 +194,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="10" maxlength="10" min="100000000"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="8" maxlength="20" min="100000000"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المتجر"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -211,7 +211,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
-										minlength="10" maxlength="10"  min="100000000"  type="number"  value="{{old('whatsapp')}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
+										minlength="8" maxlength="20"  min="100000000"  type="number"  value="{{old('whatsapp')}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>

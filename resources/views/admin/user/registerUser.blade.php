@@ -41,8 +41,8 @@
 									</div>
 
 									<div class="col-md-4 mt-4">
-									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <label for="validationCustom01" class="form-label">اسم المشترك</label>
+									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="30" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -121,7 +121,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المشترك (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="1" maxlength="12"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المشترك"   >
+										minlength="1" maxlength="20"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المشترك"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -139,7 +139,7 @@
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control" value="{{old('whatsapp')}}"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										minlength="1" maxlength="11"   type="number"   id="whatsapp" placeholder=" واتس اب المشترك"  >
+										minlength="1" maxlength="20"   type="number"   id="whatsapp" placeholder=" واتس اب المشترك"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>

@@ -1,4 +1,4 @@
-@extends('merchant.layout.merchant_master')
+@extends('admin.layout.admin_master')
 @section('css')
 <!-- Internal Select2 css -->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -185,7 +185,7 @@
 										<div class="main-profile-bio">
 											متجر ايداس متخصص في الملابس الرياضيه وكل ما هو جديد في عالم الملابس والاحذية
 										</div><!-- main-profile-bio -->
-										<div class="row">
+										{{-- <div class="row">
 											<div class="col-md-4 col text-center mb20">
 												<h5>{{$storeViews}}</h5>
 												<h6 class="text-small text-muted mb-0"> زوار المتجر</h6>
@@ -198,7 +198,7 @@
 												<h5>{{$countProuduct}}</h5>
 												<h6 class="text-small text-muted mb-0">المنتجات</h6>
 											</div>
-										</div>
+										</div> --}}
 										<hr class="mg-y-30">
 										<label class="main-content-label tx-13 mg-b-20">التواصل</label>
 										<div class="main-profile-social-list">
@@ -245,7 +245,7 @@
 					</div>
 					<div class="col-lg-8">
 						<div class="row row-sm">
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
+							{{-- <div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
 								<div class="card ">
 									<div class="card-body">
 										<div class="counter-status d-flex md-mb-0">
@@ -291,7 +291,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 						<div class="card">
 							<div class="card-body">
@@ -301,9 +301,9 @@
 										<li class="active">
 											<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">من نحن	 </span> </a>
 										</li>
-										<li class="">
+										{{-- <li class="">
 											<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">المنتجات</span> </a>
-										</li>
+										</li> --}}
 										<li class="">
 											<a href="#social" data-toggle="tab" class="" aria-expanded="false"> <span class="visible-xs"><i class="fa-solid fa-hashtag "></i></span> <span class="hidden-xs">التواصل الاجتماعي</span> </a>
 										</li>
@@ -344,7 +344,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane" id="profile">
+									{{-- <div class="tab-pane" id="profile">
 										<div class="row">
 											@foreach ($productData as $productDataa )
 												<div class="col-sm-4">
@@ -358,9 +358,9 @@
 											@endforeach
 
 										</div>
-									</div>
+									</div> --}}
 									<div class="tab-pane" id="social">
-										<form id="formSochial" method="POST" action="{{Route('updateSochial')}}" class="needs-validation">
+										<form id="formSochial" method="POST" action="{{Route('updateSochialAdmin')}}" class="needs-validation">
 
 											@csrf
 											<div class="loader_cu">
@@ -401,7 +401,7 @@
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content modal-content-demo">
 														<div class="modal-header">
-															<h6 class="modal-title">تحديث بينات</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+															<h6 class="modal-title">تحديث بينات</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="false">&times;</span></button>
 														</div>
 														<div class="modal-body">
 															<h6>اجراء امني</h6>
@@ -416,6 +416,7 @@
 												</div>
 											</div>
 											<!-- End Modal effects-->
+
 
 											{{-- <input id="submitBTN" data-target="#select2modal" data-effect="effect-rotate-left" data-toggle="modal" class="btn btn-danger btn-block waves-effect waves-light w-md" value="تحديث" type="button" type=""> --}}
 										<a class="modal-effect btn btn-danger btn-block" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo8">تاكيد</a>
@@ -636,6 +637,9 @@
 
 
 <script type="text/javascript">
+
+
+
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
@@ -677,7 +681,7 @@
 
       }).then(function (img) {
         $.ajax({
-          url: '{{ route('ProfileImage') }}',
+          url: '{{ route('ProfileImageAdmin') }}',
           type: "POST",
           data: {"image":img},
           success: function (data) {
@@ -703,8 +707,7 @@
 				setTimeout(function() {
 					$('.merchant-preview').removeClass('avatar-preview-animate');
 				}, 3000);
-
-				setTimeout(function() {
+                setTimeout(function() {
 					$('#modaldemo3').modal('hide');
 				}, 500);
           },error: function(reject){
@@ -778,12 +781,13 @@
 
       }).then(function (img2) {
         $.ajax({
-          url: '{{ route('CoverImage') }}',
+          url: '{{ route('CoverImageAdmin') }}',
           type: "POST",
           data: {"image2":img2},
           success: function (data) {
             html2 = '<img src="' + img2 + '" />';
             $("#imagePreview").html(html2);
+
 
 			// nofication
 			$('form').append('<input id="nofic" type="hidden" value="">');
@@ -803,11 +807,13 @@
                 $('.modal-content-demo').addClass('avatar-preview-animate');
 				setTimeout(function() {
 					$('.merchant-preview').removeClass('avatar-preview-animate');
-				}, 3000);
 
+				}, 3000);
 				setTimeout(function() {
 					$('#modaldemo4').modal('hide');
 				}, 500);
+
+
           },error: function(reject){
 			$('.merchant-preview').addClass('avatar-preview-animate-danger');
 			$('form').append('<input id="errors" type="hidden" value="يوجد مشكله برجاء التواصل معي الاداره">');

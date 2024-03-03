@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\Admin\PointsAdminController;
+use App\Http\Controllers\Admin\UserDetalisAdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -40,6 +41,24 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 //Admin Routes
 Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
+
+
+//profile
+
+
+
+Route::controller(UserDetalisAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('editProfile',  'edit')->name('editProfile');
+    Route::get('profileDetialsAdmin',  'profileDetials')->name('profileDetialsAdmin');
+    Route::post('ProfileImageAdmin',  'ProfileImage')->name('ProfileImageAdmin');
+    Route::post('CoverImageAdmin',  'CoverImage')->name('CoverImageAdmin');
+    Route::post('updateSochialAdmin',  'updateSochial')->name('updateSochialAdmin');
+    Route::post('updateBasicProfileAdmin',  'updateBasicProfile')->name('updateBasicProfileAdmin');
+});
+
+
+
+
 
 Route::controller(CategoryController::class)->middleware('auth')->group(function(){
     Route::get('/all/category', 'AllCategory')->name('all.category');

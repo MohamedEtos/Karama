@@ -42,7 +42,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											@forelse ($categories as $category )
+											@forelse ($categories as $category ) 
 												<tr class="text-center">
 													<td>{{$category->name}}</td>
 													<td>سسس</td>

@@ -37,11 +37,11 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string','min:3', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'userCode' => ['required','integer','min_digits:8', 'max_digits:8', 'unique:'.User::class],
+            'userCode' => ['required','numeric','min_digits:8', 'max_digits:8', 'unique:'.User::class],
             'subtype' => ['string', 'max:255'],
             'password' => ['required',  Rules\Password::defaults()],
-            'phone' => ['integer','nullable ' ,'min_digits:1' , 'max_digits:15', 'unique:'.userDetalis::class],
-            'whatsapp' => ['integer' ,'nullable ','min_digits:1' , 'max_digits:15', 'unique:'.userDetalis::class],
+            'phone' => ['numeric','nullable ' ,'min_digits:1' , 'max_digits:15', 'unique:'.userDetalis::class],
+            'whatsapp' => ['numeric' ,'nullable ','min_digits:1' , 'max_digits:15', 'unique:'.userDetalis::class],
             'startOfSubscription'=>['required','date'],
             'endOfSubscription'=>['required','date'],
         ]);
