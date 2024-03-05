@@ -21,8 +21,8 @@
 				</div> --}}
 
 				<div class="row  title-brand mb-3 mt-2">
-					<div class="col-12 p-2 text-white">
-						<h3><a href="{{url('MarketProfile/'.$merchantData->id)}}" class="text-white">{{$merchantData->name}}</a></h3>
+					<div class="col-12 p-2 mr-4">
+						<h3><a href="{{url('MarketProfile/'.$merchantData->id)}}" class="">{{$merchantData->name}}</a></h3>
 					</div>
 				</div>
 				<!-- breadcrumb -->
@@ -116,7 +116,7 @@
                 <div class="row">
                     <div class="col-12 text-center">
 
-                        <span class="text-center text-danger h4 ">
+                        <span class="text-center  h4 ">
                             منتجات ذات صله
 									<div class="d-block col-12  text-danger border-bottom mb-3 mt-2"> </div>
 

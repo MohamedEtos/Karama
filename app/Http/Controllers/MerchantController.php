@@ -22,6 +22,7 @@ use App\Models\rejectProductmess;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\ImageManagerStatic;
 
 // use App\Http\Controllers\ProductHomeController;
@@ -404,6 +405,7 @@ class MerchantController extends Controller
     public function show_update (Request $request,$id)
     {
 
+        $id = Crypt::decrypt($id);
 
         // get current product data
         $product = merchant::where('id',$id)->first();
@@ -552,10 +554,12 @@ class MerchantController extends Controller
     public function destroy(Request $request)
     {
         // $imgName = merchant::where('id',$request->id)->first('img');
-        $imgName = merchant::findOrFail($request->id)->img;
+        $id = Crypt::decrypt($request->id);
+        $imgName = merchant::findOrFail($id)->img;
         File::delete(public_path().$imgName);
-        merchant::where('id',$request->id)->delete();
-        return response()->json(["id" => $request->id,'test'=>public_path().$imgName]);
+        merchant::where('id',$id)->delete();
+        $idResponse = Crypt::encrypt($id);
+        return response()->json(["id" => $idResponse,'test'=>public_path().$imgName]);
 
 
     }

@@ -66,7 +66,7 @@
 										</thead>
 										<tbody>
 											@foreach ($listproducts as $data )
-											<tr id="row{{$data->id}}">
+											<tr id="{{'row'.Crypt::encrypt($data->id)}}">
 													<td>
 														<div class="media">
 															<div class="card-aside-img">
@@ -94,12 +94,12 @@
 
 													<td class="text-center">
 
-														<a class="remove-from-cart m-3" href="{{url('merchant/edit-product/'.$data->id)}}" data-toggle="tooltip" title="" data-original-title="تعديل المنتج"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i>
+														<a class="remove-from-cart m-3" href="{{url('merchant/edit-product/'.Crypt::encrypt($data->id))}}" data-toggle="tooltip" title="" data-original-title="تعديل المنتج"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i>
 														</a>
-														<a class="remove-from-cart m-3 swal-ajax"  href="#" proId='{{$data->id}}' data-toggle="tooltip" title="" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
+														<a class="remove-from-cart m-3 swal-ajax"  href="#" proId='{{Crypt::encrypt($data->id)}}' data-toggle="tooltip" title="" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
 														</a>
 														<form>
-															<input type="hidden" name="proId" value="{{$data->id}}" >
+															<input type="hidden" name="proId" value="{{Crypt::encrypt($data->id)}}" >
 														</form>
 
 													</td>
