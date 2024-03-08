@@ -236,6 +236,7 @@ class AdminController extends Controller
     }
 
     public function AllMerchant(){
+
         $allMerchants = User::where('subtype','merchant')->latest()->paginate(10);
         return view ('admin.merchant.all_merchant',compact('allMerchants'));
     }

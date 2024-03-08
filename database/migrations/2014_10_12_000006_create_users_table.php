@@ -24,10 +24,11 @@ return new class extends Migration
             $table->date('startOfSubscription')->nullable();
             $table->date('endOfSubscription')->nullable();
             $table->bigInteger('userDetalis')->unsigned();
-            $table->foreign('userDetalis')->references('id')->on('user_detalis')->onDelete('cascade');  
+            $table->foreign('userDetalis')->references('id')->on('user_detalis')->onDelete('cascade');
+            $table->time('last_seen')->nullable();
+            $table->text('roles_name');
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
-            $table->time('last_seen')->nullable();
             $table->timestamps();
         });
     }

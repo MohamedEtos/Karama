@@ -3,16 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class User extends Authenticatable
 {
+    use Notifiable;
+    use HasRoles;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -41,13 +44,15 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'roles_name'=>'array',
     ];
+
+
     public function userToDetalis(): BelongsTo
     {
         return $this->belongsTo(userDetalis::class,'userDetalis');
     }
 
-    
 
     // public function userDetalis()
     // {

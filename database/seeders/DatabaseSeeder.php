@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory()->create();
         // User::factory()->count(50)->create();
-        userDetalis::factory()->count(50)->create();
 
-        // $this->call([
-            // UserSeeder::class,
-        // ]);
+        $this->call([
+            PermissionTableSeeder::class,
+        ]);
+        $this->call([
+            CreateAdminUserSeeder::class,
+        ]);
 
 
     }

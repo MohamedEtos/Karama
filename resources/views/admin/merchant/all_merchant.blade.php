@@ -49,7 +49,7 @@
                             <th class="wd-lg-20p"><span>الهاتف</span></th>
                             <th class="wd-lg-20p"><span>نهايه الاشتراك</span></th>
                             <th class="wd-lg-20p"><span>الحاله</span></th>
-                            <th class="wd-lg-20p"><span>اخر ظهور</span></th>
+                            <th class="wd-lg-20p"><span>الصلاحيات</span></th>
                             <th class="wd-lg-20p">تحكم</th>
                         </tr>
                     </thead>
@@ -83,19 +83,19 @@
                             </div>
                             @php
                                 if($merchants->status == 'active'){
-                                    echo 'متصل';
+                                    echo 'مفعل';
                                 }else {
-                                    echo 'غير متصل';
+                                    echo 'غير مفعل';
                                 }
                             @endphp
                             </span>
                             </td>
                             <td>
-                                @if (!$merchants->userToDetalis->last_seen == NULL)
-                                    {{$merchants->userToDetalis->last_seen}}
-                                @else
-                                {{'لم يتصل بعد'}}
-                                @endif
+                                @if (!empty($merchants->getRoleNames()))
+                                @foreach ($merchants->getRoleNames() as $v)
+                                    <label class="badge badge-success">{{ $v }}</label>
+                                @endforeach
+                            @endif
                             </td>
                             <td>
                             <form action="{{Route('deleteMerchant')}}" method="post">

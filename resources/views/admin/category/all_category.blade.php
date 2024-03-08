@@ -42,7 +42,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											@forelse ($categories as $category ) 
+											@forelse ($categories as $category )
 												<tr class="text-center">
 													<td>{{$category->name}}</td>
 													<td>سسس</td>
@@ -200,7 +200,10 @@
             <div class="modal-body">
                 <form method="post" id="editCategory">
                     @csrf
-                    <input type="hidden" name="id" id="id" value="{{$category->id}}">
+                    <input type="hidden" name="id" id="id" value="
+                    @isset($category->id)
+                    {{$category->id}}
+                    @endisset">
                 <div class="mb-3">
                     <label for="name">اسم القسم</label>
                     <input name="name" id="edit_name" type="text" autofocus class="form-control @error('name') is-invalid @enderror">

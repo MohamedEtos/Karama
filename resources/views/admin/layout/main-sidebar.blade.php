@@ -33,11 +33,21 @@
 						<a class="side-menu__item" href="{{ url('admin/dashboard') }}"><span class="side-menu__label"> <i class="fa-solid fa-house  fa-xl"></i> &nbsp; الرئيسيه</span><span class="badge badge-success side-badge">1</span></a>
 					</li>
 
-					{{-- <li class="side-item side-item-category">الاقسام</li> --}}
+                    @can('الاقسام')
+                        {{-- <li class="side-item side-item-category">الاقسام</li> --}}
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{ route('all.category') }}">اضافه قسم</a></li>
+                            </ul>
+                        </li>
+                    @endcan
+
+
                     <li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الصلاحيات</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ route('all.category') }}">اضافه قسم</a></li>
+							<li><a class="slide-item" href="{{ url('admin/roles') }}">قائمه الصلاحيات </a></li>
 						</ul>
 					</li>
 
@@ -48,6 +58,7 @@
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ url('admin/registerStore') }}"> اضافه متجر</a></li>
 							<li><a class="slide-item" href="{{ url('admin/merchant') }}"> كل المتاجر</a></li>
+							{{-- <li><a class="slide-item" href="{{ url('users') }}"> قائمه المستخديمن </a></li> --}}
 						</ul>
 					</li>
 

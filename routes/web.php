@@ -5,9 +5,13 @@ use App\Models\notify;
 use App\Models\category;
 use App\Models\userDetalis;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ProfileController;
@@ -22,8 +26,10 @@ use App\Http\Controllers\Admin\NewStoreController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\Admin\PointsAdminController;
-use App\Http\Controllers\Admin\UserDetalisAdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Admin\UserDetalisAdminController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +43,16 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 */
 
 
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Our resource routes
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+});
 
 
 //Admin Routes
@@ -225,14 +241,7 @@ DB::transaction(function () {
         'coverImage'=>'assets/img/defultUserImg/cover.webp',
     ]);
 
-    User::create([
-        'name'=>'Karama-SC',
-        'usercode'=>'11223344',
-        'email'=>'admin@admin.com',
-        'subtype'=>'admin',
-        'password'=>Hash::make('11223344'),
-        'userDetalis'=>1,
-    ]);
+
 
     userDetalis::create([
         'phone'=>'011011011',

@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\subCat;
 use App\Models\category;
 use App\Models\merchant;
 use App\Models\pointRules;
+use App\Models\subcategory;
 use App\Models\userDetalis;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\subcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Auth\Events\Registered;
-use App\Models\subCat;
 
 
 class NewStoreController extends Controller
@@ -26,12 +27,14 @@ class NewStoreController extends Controller
     public function NewStoreView()
     {
         $categoryData = category::select('id','name')->get();
+        $roles = Role::pluck('name','name')->all();
         return view('admin.merchant.registerStore',compact(
             'categoryData',
+            'roles',
         ));
     }
-    private
-     function convertDataToString($data)
+
+    private function convertDataToString($data)
     {
         // Logic to convert your data to a string
         // This could be a simple concatenation or a more complex transformation
@@ -82,6 +85,7 @@ class NewStoreController extends Controller
             'bio' => [ 'string', 'max:255','nullable'],
             'storeDescription' => [ 'string', 'max:255','nullable'],
             'nationalId' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
+            'roles_name' => 'required',
         ]);
 
 
@@ -114,7 +118,11 @@ class NewStoreController extends Controller
             'subtype' => 'merchant',
             'userDetalis' => $lastid ,
             'password' => Hash::make($request->password ),
+            'roles_name' =>$request->input('roles_name'),
         ]);
+
+        $user->assignRole($request->input('roles_name'));
+
 
         pointRules::create([
             'merchantId'=>$user->id,
