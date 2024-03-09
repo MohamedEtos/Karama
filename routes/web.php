@@ -48,18 +48,18 @@ use App\Http\Controllers\Admin\UserDetalisAdminController;
 
 
 //Admin Routes
-Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
+Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware(['role:مدير عام|owner','auth'])->name('admin.dashboard');
 
 
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });
 
 //profile
 
-Route::controller(UserDetalisAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(UserDetalisAdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('editProfile',  'edit')->name('editProfile');
     Route::get('profileDetialsAdmin',  'profileDetials')->name('profileDetialsAdmin');
     Route::post('ProfileImageAdmin',  'ProfileImage')->name('ProfileImageAdmin');
@@ -72,7 +72,7 @@ Route::controller(UserDetalisAdminController::class)->middleware('auth')->prefix
 
 
 
-Route::controller(CategoryController::class)->middleware('auth')->group(function(){
+Route::controller(CategoryController::class)->middleware(['role:مدير عام|owner','auth'])->group(function(){
     Route::get('/all/category', 'AllCategory')->name('all.category');
     Route::get('all/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
     Route::post('all/subCatUpdate', 'subCatUpdate')->name('subCatUpdate');
@@ -83,7 +83,7 @@ Route::controller(CategoryController::class)->middleware('auth')->group(function
 
 });
 
-Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(AdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('merchant', 'AllMerchant')->name('all.merchant');
 
     Route::get('user', 'AllUser')->name('all.user');
@@ -98,7 +98,7 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->
 
 });
 
-Route::controller(NewStoreController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(NewStoreController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('/registerStore', 'NewStoreView')->name('registerStore');
     Route::post('/createStore', 'create')->name('createStore');
     Route::get('/editStoreView/{id}', 'editStoreView')->name('editStoreView');
@@ -107,11 +107,11 @@ Route::controller(NewStoreController::class)->middleware('auth')->prefix('admin'
     Route::get('/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
 
 });
-Route::controller(RegisteredUserController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(RegisteredUserController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
     Route::post('/registerUser', 'store')->name('registerUser');
 });
-Route::controller(ProductsController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(ProductsController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('/allProducts', 'allProducts')->name('allProducts');
     Route::get('/editProudcts/{id}', 'editProudcts')->name('editProudcts');
     Route::post('/updateprduct', 'updateprduct')->name('updateprduct');
@@ -123,7 +123,7 @@ Route::controller(ProductsController::class)->middleware('auth')->prefix('admin'
     Route::get('/rejectedProudcts', 'rejectedProudcts')->name('rejectedProudcts');
 });
 
-Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(ChatController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('chatview', 'chatview')->name('chatview');
     Route::get('sendMail', 'sendMail')->name('sendMail');
     Route::get('checkUserCodeMail/{usercode}', 'checkUserCodeMail')->name('checkUserCodeMail');
@@ -132,7 +132,7 @@ Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->g
 
 });
 
-Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(PointsAdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('pointsOperations', 'pointsOperations')->name('pointsOperations');
     Route::get('addPoints', 'addPoints')->name('addPoints');
     Route::get('checkUserCode/{usercode}/{merchantId}', 'checkUserCode')->name('checkUserCode');
@@ -141,7 +141,7 @@ Route::controller(PointsAdminController::class)->middleware('auth')->prefix('adm
 
 });
 
-Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')->group(function(){
+Route::controller(NotifyController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
     Route::get('notifyList', 'notifyList')->name('notifyList');
     Route::post('sendNotifyAjax', 'sendNotifyAjax')->name('sendNotifyAjax');
     Route::get('sendNotify', 'sendNotify')->name('sendNotify');
@@ -156,7 +156,7 @@ Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')-
 
 // merchant
 
-Route::prefix('merchant')->middleware(['role:تاجر','auth'])->group(function () {
+Route::prefix('merchant')->middleware(['role:تاجر|owner','auth'])->group(function () {
 
     Route::get('merchant',[MerchantController::class, 'index'])->name('merchant');
     Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');
@@ -204,11 +204,14 @@ Route::middleware('auth')->group(function () {
     Route::POST('markAllReadedAjax', [NotifyController::class, 'markAllReadedAjax'])->name('markAllReadedAjax');
     Route::get('/myPoints', [PointsController::class, 'myPoints'])->name('myPoints');
 
+});
+
+Route::middleware(['role:مشترك','auth'])->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('empty', [AdminController::class, 'empty'])->name('empty');
-
 });
 
 require __DIR__.'/auth.php';
@@ -218,76 +221,8 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('addadmin',function(){
 
 
-DB::transaction(function () {
-
-
-    userDetalis::create([
-        'phone'=>'01033441143',
-        'whatsapp'=>'01033441143',
-        'facebook'=>'https://www.facebook.com/mohamed.etos/',
-        'website'=>'www.Karama-SC.com',
-        'location'=>'11 ش خالد بن الوليد المنيب الجيزه ',
-        'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
-        'ProfileImage'=>'test',
-        'nationalId'=>'12345678911',
-        'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
-        'coverImage'=>'assets/img/defultUserImg/cover.webp',
-    ]);
-
-
-
-    userDetalis::create([
-        'phone'=>'011011011',
-        'whatsapp'=>'011011011',
-        'facebook'=>'https://www.facebook.com/addidas.etos/',
-        'website'=>'www.Karama-SC.com',
-        'location'=>'11 ش خالد بن الوليد المنيب الجيزه ',
-        'bio'=>'اداياس هو متجر للملابس الرياضيه وخاص بكل جديد في عالم الملابس والموضه ',
-        'ProfileImage'=>'test',
-        'nationalId'=>'12345678911',
-        'ProfileImage'=>'assets/img/defultUserImg/defultUserImg.webp',
-        'coverImage'=>'assets/img/defultUserImg/cover.webp',
-    ]);
-
-    User::create([
-        'name'=>'addidas',
-        'usercode'=>'11223355',
-        'email'=>'addidas@addidas.com',
-        'subtype'=>'user',
-        'password'=>Hash::make('11223355'),
-        'userDetalis'=>2,
-    ]);
-
-
-
-    category::create([
-        'name'=>'ملابس ',
-        'descrption'=>'ملابس رجالي'
-    ]);
-    category::create([
-        'name'=>'سيارات ',
-        'descrption'=>'قطع غيار'
-    ]);
-    category::create([
-        'name'=>'عطور ',
-        'descrption'=>'عطور نسائيه'
-    ]);
-});
-
-    return redirect('merchant/merchant');
-
-});
-
-// theme
-// Route::get('/{page}', [AdminController::class, 'index']);
-
-
-
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');

@@ -29,7 +29,7 @@
 									تعدي المنتج
 								</div>
 								{{-- <p class="mg-b-20">المنتج رقم </p> --}}
-								<form action="{{url('merchant/update_product/'.$product->id)}}" class="needs-validation	" method="post" enctype="multipart/form-data">
+								<form action="{{url('merchant/update_product/'.Crypt::encrypt($product->id))}}" class="needs-validation	" method="post" enctype="multipart/form-data">
 									@csrf
 									<div class="row row-sm mt-2">
 										<div class="col-4">

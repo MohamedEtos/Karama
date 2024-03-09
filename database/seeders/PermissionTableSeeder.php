@@ -14,6 +14,8 @@ class PermissionTableSeeder extends Seeder
     {
         $permissions = [
 
+            'مستخدم',
+            'تاجر',
 
 
             'عرض النقاط',
