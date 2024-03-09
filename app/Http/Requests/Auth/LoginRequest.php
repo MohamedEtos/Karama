@@ -48,15 +48,29 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
+
+
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('usercode', 'password'), $this->boolean('remember'))) {
+
+        if (! Auth::attempt(array_merge( $this->only('usercode', 'password'), ['status' => 'active' ]), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'usercode' => trans('auth.failed'),
+                'usercode' => __('auth.failed'),
             ]);
         }
+
+
+
+
+        // if (! Auth::attempt($this->only('usercode', 'password'),['status' => 'inactive' ], $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
+
+        //     throw ValidationException::withMessages([
+        //         'usercode' => trans('auth.failed'),
+        //     ]);
+        // }
 
         RateLimiter::clear($this->throttleKey());
     }

@@ -38,18 +38,26 @@
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
                             <ul class="slide-menu">
-                                <li><a class="slide-item" href="{{ route('all.category') }}">اضافه قسم</a></li>
+                                @can('اضافة قسم')
+                                    <li><a class="slide-item" href="{{ route('all.category') }}">اضافه قسم</a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
 
 
-                    <li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الصلاحيات</span><i class="angle fe fe-chevron-down"></i></a>
-						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('admin/roles') }}">قائمه الصلاحيات </a></li>
-						</ul>
-					</li>
+                    @can('عرض صلاحية')
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-lock fa-xl"></i> &nbsp;  الصلاحيات</span><i class="angle fe fe-chevron-down"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" href="{{ url('admin/roles') }}">قائمه الصلاحيات </a></li>
+
+                                @can('اضافة صلاحية')
+                                    <li><a class="slide-item" href="{{ url('admin/roles/create') }}">اضافه صلاحيات</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcan
 
 
 					<li class="side-item side-item-category">المتاجر والاشتراكات</li>

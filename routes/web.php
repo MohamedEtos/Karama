@@ -44,24 +44,20 @@ use App\Http\Controllers\Admin\UserDetalisAdminController;
 
 
 
-Route::middleware('auth')->prefix('admin')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Our resource routes
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-});
 
 
 //Admin Routes
 Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
 
 
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+});
+
 //profile
-
-
 
 Route::controller(UserDetalisAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('editProfile',  'edit')->name('editProfile');
@@ -160,7 +156,7 @@ Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')-
 
 // merchant
 
-Route::prefix('merchant')->middleware('auth')->group(function () {
+Route::prefix('merchant')->middleware(['role:تاجر','auth'])->group(function () {
 
     Route::get('merchant',[MerchantController::class, 'index'])->name('merchant');
     Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');

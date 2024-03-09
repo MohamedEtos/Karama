@@ -25,9 +25,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
+
+
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        if(! Auth::User()->status == 'active'){
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/');
+        };
+
 
         if(Auth::User()->subtype == 'admin'){
             return redirect('admin/dashboard');
@@ -36,6 +50,11 @@ class AuthenticatedSessionController extends Controller
         }else{
             return redirect()->intended(RouteServiceProvider::HOME);
         }
+
+
+
+
+
 
     }
 
