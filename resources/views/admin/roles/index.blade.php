@@ -1,7 +1,12 @@
 @extends('admin.layout.admin_master')
 @section('css')
     <!--Internal   Notify -->
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+    <link href="{{URL::asset('assets/plugins/multislider/multislider.css')}}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+
+    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 
 @endsection
 @section('page-header')
@@ -127,6 +132,19 @@
 @endsection
 @section('js')
 <!--Internal  Notify js -->
-<script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+<!---Internal  Multislider js-->
+<script src="{{URL::asset('assets/plugins/multislider/multislider.js')}}"></script>
+<script src="{{URL::asset('assets/js/carousel.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
+
+<!-- Internal Data tables -->
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script> // now cdn --}}
+<script src="{{URL::asset('https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script> now cdn --}}
+<script src="{{URL::asset('https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/dataTables.buttons.min.js')}}"></script>
+
+<!--Internal  Datatable js -->
+<script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection

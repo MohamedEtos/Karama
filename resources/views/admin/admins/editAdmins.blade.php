@@ -7,7 +7,6 @@
 <!--Internal Sumoselect css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css')}}">
 <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.css')}}">
-
 <style>
     .bootstrap-tagsinput .tag {
   background: #D72427;
@@ -40,7 +39,7 @@
 				<div class="breadcrumb-header  rounded justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto ">المتاجر</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافه متجرر جديد</span>
+							<h4 class="content-title  mb-0 my-auto">المتاجر</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ تعديل متجر  ({{$UserData->name}}) </span>
 						</div>
 					</div>
 
@@ -56,8 +55,10 @@
 					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="newStore" action="{{Route('createStore')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
+								<form id="newStore" action="{{Route('updateStore')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
 									@csrf
+									<input type="hidden" name="userId" value="{{Crypt::encrypt($UserData->id)}}">
+									<input type="hidden" name="userDetailsId" value="{{Crypt::encrypt($UserData->userToDetalis->id)}}">
 									<div class="loader_cu">
 										<div class="loading">
 											<div class="loading-bar"></div>
@@ -67,21 +68,10 @@
 											<div class="loading-bar"></div>
 										</div>
 									</div>
-                                    <div class="erros col-12">
-                                        @if ($errors->any())
-                                        <div class="text-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                    </div>
 
 									<div class="col-md-4 mt-4">
 									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" value="{{old('name')}}" maxlength="30" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" value="{{$UserData->name}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
@@ -98,9 +88,9 @@
 									<div class="col-md-4 mt-4 ">
 										<label for="userCode" class="form-label">كود المشترك</label>
 										<input name="userCode" class="form-control randCode"
-										value="{{old('userCode')}}"
+										value="{{$UserData->usercode}}"
 										min="10000000"
-										minlength="8" maxlength="8"  type="number" id="userCode" value="{{old('userCode')}}" placeholder=" كود المشترك " required >
+										minlength="8" maxlength="8"  type="number" id="userCode"  placeholder=" كود المشترك " required >
 										<div class="errspan">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -121,7 +111,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">كلمه المرور</label>
-										<input type="text" minlength="8" name="password" maxlength="32" value="{{old('password')}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
+										<input type="text" minlength="8" name="password" maxlength="32" value="{{$UserData->password}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
 										<div class="errspanpass">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -141,7 +131,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<input type="email" minlength="3" name="email" maxlength="20" value="{{$UserData->email}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -154,11 +144,13 @@
 										  </div>
 										 @enderror
 									</div>
+
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" id="allCategory" name="category"  >
-												@foreach ($categoryData as $categoryes)
-													<option  value="{{$categoryes->id}}">{{$categoryes->name}}</option>
+										<select class="form-control" name="categoryId"  id="allCategory">
+											<option selected value="{{$UserData->userToDetalis->userToCategory->id}}">{{$UserData->userToDetalis->userToCategory->name}}</option>
+												@foreach ($category as $categoryes)
+													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
 												@endforeach
 										</select>
 										<div class="valid-feedback">
@@ -167,22 +159,24 @@
 										<div class="invalid-feedback" id="categoryId_error">
 											قم باختيار قسم للمتجر
 										</div>
-										@error('category')
+										@error('categoryId')
 										<div class="text-danger">
 											{{$message}}
 										</div>
 									   @enderror
 									</div>
 
+
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-										<input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput" value="{{old('subCat')}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
+                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$UserData->userToDetalis->userToCategory->subCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
+
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
-										<div class="invalid-feedback" id="subCat_error">
+										<div class="invalid-feedback" id="storeDescription_error">
 										</div>
-										@error('subCat')
+										@error('storeDescription')
 										<div class="text-danger">
 											{{$message}}
 										</div>
@@ -194,7 +188,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="8" maxlength="20" min="100000000"   type="number" value="{{old('phone')}}"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="10" maxlength="10" min="100000000"   type="number" value="{{$UserData->userToDetalis->phone}}"   id="phone" placeholder=" هاتف المتجر"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -211,7 +205,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
-										minlength="8" maxlength="20"  min="100000000"  type="number"  value="{{old('whatsapp')}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
+										minlength="10" maxlength="10"  min="100000000"  type="number"  value="{{$UserData->userToDetalis->whatsapp}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -228,7 +222,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="facebook" class="form-label">فيس بوك (اخياري)</label>
 										<input name="facebook" class="form-control"
-										value="{{old('facebook')}}"
+										value="{{$UserData->userToDetalis->facebook}}"
 										   type="text"   id="facebook" placeholder="https//www.facebook.com "  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -247,7 +241,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="website" class="form-label"> الموقع الالكتروني (اخياري)</label>
 										<input name="website" class="form-control"
-										value="{{old('website')}}"
+										value="{{$UserData->userToDetalis->website}}"
 										 type="text"   id="website" placeholder="https//www.Karama-SC.com"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -266,7 +260,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="maps" class="form-label"> موقعك علي الخريطه (اخياري)</label>
 										<input name="maps" class="form-control"
-										value="{{old('maps')}}"
+										value="{{$UserData->userToDetalis->maps}}"
 										 type="text"   id="maps" placeholder="https://www.google.com/maps/@30.0308657,31.1111907,14z?entry=ttu"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -284,7 +278,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="location" class="form-label">  العنوان (اخياري)</label>
 										<input name="location" class="form-control"
-										value="{{old('location')}}"
+										value="{{$UserData->userToDetalis->location}}"
 										 type="text"   id="location" placeholder="العنوان"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -301,7 +295,7 @@
 									  <div class="col-md-8 mt-4 ">
 										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
 										<textarea name="bio" class="form-control"
-										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{old('bio')}}</textarea>
+										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{$UserData->userToDetalis->bio}}</textarea>
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -317,7 +311,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
 										<input name="nationalId" class="form-control"
-										value="{{old('nationalId')}}"
+										value="{{$UserData->userToDetalis->nationalId}}"
 										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -332,26 +326,11 @@
 									   @enderror
 									  </div>
 
-									  {{-- <div class="col-md-4 mt-4 ">
-                                          <div class="form-group">
-                                              <label class="form-label"> صلاحية المستخدم</label>
-                                              {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-                                              <select name="roles_name" class="form-control multiple" id="">
-                                                @forelse ($roles as $role )
-                                                    <option value="{{$role}}">{{$role}}</option>
-                                                @empty
-
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div> --}}
-
 
 									<div class="col-12 mt-4">
-									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">اضافه المتجر</button>
+									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">تعديل المتجر</button>
 									</div>
 								  </form>
-
 
 							</div>
 						</div>
@@ -432,16 +411,16 @@
 })()
 </script>
 
+
 {{-- get sub cat ajax --}}
 <script>
     var allCategory  = document.getElementById('allCategory');
-
 
     $('#allCategory').on('change', function() {
 
                 $.ajax({
                     type: "GET",
-                    url: 'getCategoryAjax/'+allCategory.value,
+                    url: 'admin/getCategoryAjax/'+allCategory.value,
                     dataType: 'json',
                     beforeSend: function() {
                         $('.loading').css('display','flex');
@@ -479,5 +458,6 @@
     });
 
 </script>
+
 
 @endsection

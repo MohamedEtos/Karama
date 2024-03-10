@@ -19,21 +19,27 @@ use Intervention\Image\ImageManagerStatic;
 class UserDetalisAdminController extends Controller
 {
 
+
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+    //     $this->middleware('permission:', ['only' => ['']]);
+
+    // }
+
     public function profileDetials(Request $request){
 
         $MainUserTable = User::where('id',Auth::User()->id)->first();
         $userDetalis = userDetalis::where('id',Auth::User()->id)->first();
-        $productData= merchant::where('userId',Auth::User()->id)->orderBy('id','DESC')->limit('6')->get();
-        $countProuduct = merchant::where('userId',Auth::User()->id)->count();
-        $storeViews = visitorsCount::where('userId',Auth::User()->id)->count();
-        $points = points::where('merchantId',Auth::User()->id)->sum('points');
         return view ('admin.profile.profileDetials',compact([
             'MainUserTable',
             'userDetalis',
-            'productData',
-            'countProuduct',
-            'storeViews',
-            'points',
         ]));
 
     }

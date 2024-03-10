@@ -209,12 +209,12 @@
 									   @enderror
 									  </div>
 
-									  <div class="col-md-4 mt-4 ">
+									  {{-- <div class="col-md-4 mt-4 ">
                                             <div class="form-group">
                                                 <label class="form-label"> صلاحية المستخدم</label>
                                                 {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')) !!}
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
 									<div class="col-12 mt-4">

@@ -19,6 +19,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ManagersControllers;
 use App\Http\Controllers\ProductHomeController;
 use App\Http\Controllers\UserDetalisController;
 use App\Http\Controllers\MarketProfileController;
@@ -48,18 +49,26 @@ use App\Http\Controllers\Admin\UserDetalisAdminController;
 
 
 //Admin Routes
-Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware(['role:مدير عام|owner','auth'])->name('admin.dashboard');
+Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middleware('auth')->name('admin.dashboard');
+
+Route::controller(ManagersControllers::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('AddMangers',  'AddMangers')->name('AddMangers');
+    Route::get('ViewMangers',  'ViewMangers')->name('ViewMangers');
+    Route::post('storeMangers',  'storeMangers')->name('storeMangers');
+
+});
 
 
 
-Route::middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function () {
+
+Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });
 
 //profile
 
-Route::controller(UserDetalisAdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(UserDetalisAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('editProfile',  'edit')->name('editProfile');
     Route::get('profileDetialsAdmin',  'profileDetials')->name('profileDetialsAdmin');
     Route::post('ProfileImageAdmin',  'ProfileImage')->name('ProfileImageAdmin');
@@ -72,7 +81,7 @@ Route::controller(UserDetalisAdminController::class)->middleware(['role:مدير
 
 
 
-Route::controller(CategoryController::class)->middleware(['role:مدير عام|owner','auth'])->group(function(){
+Route::controller(CategoryController::class)->middleware('auth')->group(function(){
     Route::get('/all/category', 'AllCategory')->name('all.category');
     Route::get('all/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
     Route::post('all/subCatUpdate', 'subCatUpdate')->name('subCatUpdate');
@@ -83,7 +92,7 @@ Route::controller(CategoryController::class)->middleware(['role:مدير عام|
 
 });
 
-Route::controller(AdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('merchant', 'AllMerchant')->name('all.merchant');
 
     Route::get('user', 'AllUser')->name('all.user');
@@ -98,7 +107,7 @@ Route::controller(AdminController::class)->middleware(['role:مدير عام|own
 
 });
 
-Route::controller(NewStoreController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(NewStoreController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/registerStore', 'NewStoreView')->name('registerStore');
     Route::post('/createStore', 'create')->name('createStore');
     Route::get('/editStoreView/{id}', 'editStoreView')->name('editStoreView');
@@ -107,11 +116,11 @@ Route::controller(NewStoreController::class)->middleware(['role:مدير عام|
     Route::get('/getCategoryAjax/{id}', 'getCategoryAjax')->name('getCategoryAjax');
 
 });
-Route::controller(RegisteredUserController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(RegisteredUserController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/registerUserView', 'registerUserView')->name('registerUserView');
     Route::post('/registerUser', 'store')->name('registerUser');
 });
-Route::controller(ProductsController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(ProductsController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('/allProducts', 'allProducts')->name('allProducts');
     Route::get('/editProudcts/{id}', 'editProudcts')->name('editProudcts');
     Route::post('/updateprduct', 'updateprduct')->name('updateprduct');
@@ -123,7 +132,7 @@ Route::controller(ProductsController::class)->middleware(['role:مدير عام|
     Route::get('/rejectedProudcts', 'rejectedProudcts')->name('rejectedProudcts');
 });
 
-Route::controller(ChatController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(ChatController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('chatview', 'chatview')->name('chatview');
     Route::get('sendMail', 'sendMail')->name('sendMail');
     Route::get('checkUserCodeMail/{usercode}', 'checkUserCodeMail')->name('checkUserCodeMail');
@@ -132,7 +141,7 @@ Route::controller(ChatController::class)->middleware(['role:مدير عام|owne
 
 });
 
-Route::controller(PointsAdminController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(PointsAdminController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('pointsOperations', 'pointsOperations')->name('pointsOperations');
     Route::get('addPoints', 'addPoints')->name('addPoints');
     Route::get('checkUserCode/{usercode}/{merchantId}', 'checkUserCode')->name('checkUserCode');
@@ -141,7 +150,7 @@ Route::controller(PointsAdminController::class)->middleware(['role:مدير عا
 
 });
 
-Route::controller(NotifyController::class)->middleware(['role:مدير عام|owner','auth'])->prefix('admin')->group(function(){
+Route::controller(NotifyController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('notifyList', 'notifyList')->name('notifyList');
     Route::post('sendNotifyAjax', 'sendNotifyAjax')->name('sendNotifyAjax');
     Route::get('sendNotify', 'sendNotify')->name('sendNotify');
@@ -156,7 +165,7 @@ Route::controller(NotifyController::class)->middleware(['role:مدير عام|ow
 
 // merchant
 
-Route::prefix('merchant')->middleware(['role:تاجر|owner','auth'])->group(function () {
+Route::prefix('merchant')->middleware('auth')->group(function () {
 
     Route::get('merchant',[MerchantController::class, 'index'])->name('merchant');
     Route::get('new-product',[MerchantController::class, 'show'])->name('new-product');
@@ -206,7 +215,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::middleware(['role:مشترك','auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -17,6 +17,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PointsAdminController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('permission:عرض النقاط', ['only' => ['pointsOperations']]);
+        $this->middleware('permission:اضافة نقاط', ['only' => ['addPoints','checkUserCode','addUserPoints']]);
+        $this->middleware('permission:اعدادات النقاط', ['only' => ['pointSetting']]);
+    }
+
     public function pointsOperations()
     {
 

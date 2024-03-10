@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('permission:الرسائل', ['only' => ['sendMessage','sendMail']]);
+        $this->middleware('permission:الاشعارات', ['only' => ['AllMerchant']]);
+        $this->middleware('permission:OTP', ['only' => ['AllUser']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *

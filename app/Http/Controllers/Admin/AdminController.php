@@ -27,23 +27,14 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 class AdminController extends Controller
 {
 
-    // public function index($id)
-    // {
-    //     if(view()->exists($id)){
-    //         return view($id);
-    //     }
-    //     else
-    //     {
-    //         return view('404');
-    //     }
-
-    //  //   return view($id);
-    // }
-
-    public function empty(){
-        return view('empty');
-    }
-
+    public function __construct()
+{
+    $this->middleware('permission:رئيسيه المدير', ['only' => ['AdminDashboard']]);
+    $this->middleware('permission:عرض التجار', ['only' => ['AllMerchant']]);
+    $this->middleware('permission:عرض المستخدمين', ['only' => ['AllUser']]);
+    $this->middleware('permission:حذف مستخدم|حذف تاجر', ['only' => ['DeleteUser']]);
+    $this->middleware('permission:تعديل مستخدم', ['only' => ['editUser','updateUser']]);
+}
 
     public function AdminDashboard(){
 

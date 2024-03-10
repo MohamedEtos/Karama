@@ -24,6 +24,16 @@ use Illuminate\Auth\Events\Registered;
 class NewStoreController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('permission:اضافة تاجر', ['only' => ['create','NewStoreView']]);
+        $this->middleware('permission:تعديل تاجر', ['only' => ['editStoreView','updateStore']]);
+        $this->middleware('permission:حذف تاجر', ['only' => ['deleteMerchant']]);
+    }
+
+
+
     public function NewStoreView()
     {
         $categoryData = category::select('id','name')->get();
@@ -85,7 +95,7 @@ class NewStoreController extends Controller
             'bio' => [ 'string', 'max:255','nullable'],
             'storeDescription' => [ 'string', 'max:255','nullable'],
             'nationalId' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
-            'roles_name' => 'required',
+            // 'roles_name' => 'required',
         ]);
 
 
@@ -118,10 +128,10 @@ class NewStoreController extends Controller
             'subtype' => 'merchant',
             'userDetalis' => $lastid ,
             'password' => Hash::make($request->password ),
-            'roles_name' =>$request->input('roles_name'),
+            'roles_name' =>'تاجر',
         ]);
 
-        $user->assignRole($request->input('roles_name'));
+        $user->assignRole('تاجر');
 
 
         pointRules::create([

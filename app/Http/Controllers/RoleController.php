@@ -14,10 +14,13 @@ class RoleController extends Controller
 *
 * @return \Illuminate\Http\Response
 */
-// public function __construct()
-// {
-//     $this->addMiddleware('not_member', ['only' => ['login', 'login_verify']]);
-// }
+public function __construct()
+{
+    $this->middleware('permission:عرض صلاحية', ['only' => ['index']]);
+    $this->middleware('permission:اضافة صلاحية', ['only' => ['create','store']]);
+    $this->middleware('permission:تعديل صلاحية', ['only' => ['edit','update']]);
+    $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]);
+}
 
 
 

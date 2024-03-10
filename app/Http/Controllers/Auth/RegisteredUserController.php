@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
 
             $lastid = userDetalis::latest()->orderBy('id','DESC')->first()->id;
 
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'userCode' => $request->userCode,
@@ -69,7 +69,11 @@ class RegisteredUserController extends Controller
                 'endOfSubscription' => $request->endOfSubscription,
                 'password' => Hash::make($request->password),
                 'userDetalis'=>$lastid,
+                'roles_name' =>'تاجر',
+
             ]);
+
+             $user->assignRole('مشترك');
 
             // event(new Registered($user));
 

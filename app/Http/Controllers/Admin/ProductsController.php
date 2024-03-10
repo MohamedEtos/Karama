@@ -15,6 +15,20 @@ use Intervention\Image\ImageManagerStatic;
 
 class ProductsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('permission:عرض المنتجات', ['only' => ['allProducts']]);
+        $this->middleware('permission:تعديل منتج', ['only' => ['editProudcts','updateprduct']]);
+        $this->middleware('permission:المراجعات', ['only' => ['reviewProudcts','reviewAllProudcts']]);
+        $this->middleware('permission:قبول منتجات', ['only' => ['appendProduct']]);
+        $this->middleware('permission:رفض منتجات', ['only' => ['unappendProduct']]);
+        $this->middleware('permission:منتجات مقبوله', ['only' => ['acceptedProudcts']]);
+        $this->middleware('permission:منتجات مرفوضه', ['only' => ['rejectedProudcts']]);
+    }
+
+
     public function allProducts()
     {
         $product = merchant::get();

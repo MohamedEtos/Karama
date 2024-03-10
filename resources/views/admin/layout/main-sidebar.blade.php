@@ -60,54 +60,100 @@
                     @endcan
 
 
+
 					<li class="side-item side-item-category">المتاجر والاشتراكات</li>
+                    @can('المديرين')
                     <li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp;  المتاجر</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-user-tie fa-xl"></i> &nbsp;  المديرين</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('admin/registerStore') }}"> اضافه متجر</a></li>
-							<li><a class="slide-item" href="{{ url('admin/merchant') }}"> كل المتاجر</a></li>
+                            @can('اضافه مدير')
+							<li><a class="slide-item" href="{{ url('admin/AddMangers') }}"> اضافه مدير</a></li>
+
+                            @endcan
+                            @can('عرض المديرين')
+							<li><a class="slide-item" href="{{ url('admin/ViewMangers') }}"> كل المديرين</a></li>
+                            @endcan
 							{{-- <li><a class="slide-item" href="{{ url('users') }}"> قائمه المستخديمن </a></li> --}}
 						</ul>
 					</li>
+                    @endcan
 
+
+                    @can('عرض التجار')
+
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-store fa-xl"></i> &nbsp;  المتاجر</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+                            @can('اضافة تاجر')
+							<li><a class="slide-item" href="{{ url('admin/registerStore') }}"> اضافه متجر</a></li>
+                            @endcan
+                            @can('عرض التجار')
+							<li><a class="slide-item" href="{{ url('admin/merchant') }}"> كل المتاجر</a></li>
+                            @endcan
+							{{-- <li><a class="slide-item" href="{{ url('users') }}"> قائمه المستخديمن </a></li> --}}
+						</ul>
+					</li>
+                    @endcan
+
+
+                    @can('عرض المستخدمين')
 
 					{{-- <li class="side-item side-item-category">الاشتراكات</li> --}}
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-user fa-xl"></i> &nbsp;  الاشتراكات</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
+                            @can('اضافة مستخدم')
 							<li><a class="slide-item" href="{{ url('admin/registerUserView') }}"> اضافه مشترك</a></li>
-
+                            @endcan
+                            @can('عرض المستخدمين')
 							<li><a class="slide-item" href="{{ route('all.user') }}"> المشتركين </a></li>
+                            @endcan
 
 						</ul>
 					</li>
+                    @endcan
 
 
+                    @can('عرض المنتجات')
 					<li class="side-item side-item-category">المنتجات </li>
-
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label">  <i class="fa-solid fa-box fa-xl"></i> &nbsp;  المنتجات</span><i class="angle fe fe-chevron-down"> </i><span class="badge badge-success side-badge">1</span></a>
 						<ul class="slide-menu">
-                           <li> <a class="slide-item" href="{{ route('allProducts') }}">جدول المنتجات</a> </li>
+                            @can('عرض المنتجات')
+                            <li> <a class="slide-item" href="{{ route('allProducts') }}">جدول المنتجات</a> </li>
+                            @endcan
+                            @can('المراجعات')
                             <li><a class="slide-item" href="{{Route('reviewAllProudcts')}}">المراجعه</a></li>
+                            @endcan
+                            @can('منتجات مقبوله')
                             <li><a class="slide-item" href="{{ route('acceptedProudcts') }}">منتجات مقبوله</a></li>
+                            @endcan
+                            @can('منتجات مرفوضه')
                             <li><a class="slide-item" href="{{ route('rejectedProudcts') }}">منتجات مرفوضه</a></li>
+                            @endcan
 
 						</ul>
 					</li>
+                    @endcan
 
 
-
+                    @can('عرض النقاط')
                     <li class="side-item side-item-category">النقاط </li>
-
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-brands fa-pinterest-p fa-xl"></i> &nbsp;  النقاط</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
+                            @can('اعدادات النقاط')
 							<li><a class="slide-item" href="{{ url('admin/pointSetting') }}"> اعدادات النقاط</a></li>
-                           	<li> <a class="slide-item" href="{{ route('pointsOperations') }}">حركات النقاط</a></li>
+                            @endcan
+                            @can('عرض النقاط')
+                            <li> <a class="slide-item" href="{{ route('pointsOperations') }}">حركات النقاط</a></li>
+                            @endcan
+                            @can('اضافة نقاط')
                             <li><a class="slide-item" href="{{Route('addPoints')}}">اضافه نقاط</a></li>
+                            @endcan
 						</ul>
 					</li>
+                    @endcan
 
 
 					<li class="side-item side-item-category">الاشعارات والرسائل</li>
