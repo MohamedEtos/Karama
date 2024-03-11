@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+
+    
+    public function __construct()
+    {
+        $this->middleware('permission:الاقسام', ['only' => ['AllCategory']]);
+        $this->middleware('permission:اضافة قسم', ['only' => ['StoreCategory']]);
+        $this->middleware('permission:تعديل قسم', ['only' => ['UpdateCategory','EditCategory']]);
+        $this->middleware('permission:حذف قسم', ['only' => ['DeleteCategory']]);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

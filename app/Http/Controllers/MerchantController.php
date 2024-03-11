@@ -33,6 +33,12 @@ class MerchantController extends Controller
     use Traits\navbarUser;
 
 
+
+    public function __construct()
+    {
+        $this->middleware(['role:تاجر','permission:تاجر']);
+    }
+
     /**
      * Display a listing of the resource.
      *
