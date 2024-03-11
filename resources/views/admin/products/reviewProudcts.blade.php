@@ -76,17 +76,22 @@
                             @if (!$product->append == 1)
                             <form action="{{route('appendProduct')}}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-success btn-block ">موافقه</button>
-                                <input type="hidden" name="status" value="true">
-                                <input type="hidden" name="id" value="{{$product->id}}">
+                                @can('قبول منتجات')
+                                    <button type="submit" class="btn btn-success btn-block ">موافقه</button>
+                                    <input type="hidden" name="status" value="true">
+                                    <input type="hidden" name="id" value="{{$product->id}}">
+                                @endcan
+
                             </form>
                             @endif
 
-
+                            @can('رفض منتجات')
                             <a class="btn btn-danger btn-block modal-effect" data-target="#modaldemo{{$product->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$product->id}}">
                                 {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
                                 رفض
                             </a>
+                            @endcan
+
 
 
 

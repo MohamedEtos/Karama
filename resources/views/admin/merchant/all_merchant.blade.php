@@ -97,9 +97,12 @@
                             <td>
                             <form action="{{Route('deleteMerchant')}}" method="post">
                                 @csrf
+                                @can('عرض التجار')
                                 <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$merchants->id}}" data-toggle="modal" href="">
                                     <i class="fa-brands fa-searchengin"></i>
                                 </a>
+                                @endcan
+
 
                                 <!-- Large Modal -->
                                 <div class="modal" id="modaldemos{{$merchants->id}}">
@@ -126,14 +129,20 @@
                                 </div>
                                 <!--End Large Modal -->
 
+                                @can('تعديل تاجر')
                                 <a href="{{url('admin/editStoreView/'.Crypt::encrypt($merchants->id))}}" class="btn btn-sm btn-info">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
+                                @endcan
 
-                                <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$merchants->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$merchants->id}}">
-                                    {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
-                                    <i class="fa-solid fa-trash"></i>
-                                                                </a>
+
+                                @can('حذف تاجر')
+                                    <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$merchants->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$merchants->id}}">
+                                        {{-- <input type="hidden" name="userId"  value="{{$merchants->userToDetalis->id}}"> --}}
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                @endcan
+
 
 
 

@@ -103,12 +103,20 @@
                             </span>
                             </td>
                             <td class="text-center">
+                                @can('تعديل منتج')
                                     <a href="{{url('admin/editProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-info">
-                                        <i class="fa-solid fa-pen"></i>                                    </a>
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                @endcan
 
+                                @can('المراجعات')
                                     <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-primary">
                                         <i class="fa-solid fa-receipt"></i> مراجعه
                                     </a>
+                                @endcan
+
+
+
 
 
 

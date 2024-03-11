@@ -36,7 +36,7 @@ class MerchantController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:تاجر','permission:تاجر']);
+        $this->middleware(['permission:تاجر']);
     }
 
     /**
