@@ -13,6 +13,15 @@ use Illuminate\View\View;
 
 class ProfileMerchantController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware(['role:تاجر','permission:تاجر']);
+    }
+
+
+
     /**
      * Display the user's profile form.
      */

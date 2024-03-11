@@ -39,7 +39,7 @@
 				<div class="breadcrumb-header  rounded justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title  mb-0 my-auto">المتاجر</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ تعديل متجر  ({{$UserData->name}}) </span>
+							<h4 class="content-title  mb-0 my-auto">المديرين</h4><span class=" mt-1 tx-13 mr-2 mb-0">/ تعديل مدير  ({{$manger->name}}) </span>
 						</div>
 					</div>
 
@@ -55,10 +55,10 @@
 					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="newStore" action="{{Route('updateStore')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
+								<form id="newStore" action="{{Route('updateManger')}}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate >
 									@csrf
-									<input type="hidden" name="userId" value="{{Crypt::encrypt($UserData->id)}}">
-									<input type="hidden" name="userDetailsId" value="{{Crypt::encrypt($UserData->userToDetalis->id)}}">
+									<input type="hidden" name="userId" value="{{Crypt::encrypt($manger->id)}}">
+									<input type="hidden" name="userDetailsId" value="{{Crypt::encrypt($manger->userToDetalis->id)}}">
 									<div class="loader_cu">
 										<div class="loading">
 											<div class="loading-bar"></div>
@@ -70,13 +70,13 @@
 									</div>
 
 									<div class="col-md-4 mt-4">
-									  <label for="validationCustom01" class="form-label">اسم المتجر</label>
-									  <input type="text" minlength="3" name="name" value="{{$UserData->name}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المتجر بشكل واضح" id="validationCustom01" required>
+									  <label for="validationCustom01" class="form-label">اسم المدير</label>
+									  <input type="text" minlength="3" name="name" value="{{$manger->name}}" maxlength="15" class="form-control" placeholder="قم بكتابه اسم المدير بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>
 									  <div class="invalid-feedback" id="name_error">
-										يجب الا يقل اسم المتجرر عن 3 احرف
+										يجب الا يقل اسم المدير عن 3 احرف
 									</div>
 									@error('name')
 									<div class="text-danger">
@@ -86,9 +86,9 @@
 									</div>
 
 									<div class="col-md-4 mt-4 ">
-										<label for="userCode" class="form-label">كود المشترك</label>
+										<label for="userCode" class="form-label">كود المدير</label>
 										<input name="userCode" class="form-control randCode"
-										value="{{$UserData->usercode}}"
+										value="{{$manger->usercode}}"
 										min="10000000"
 										minlength="8" maxlength="8"  type="number" id="userCode"  placeholder=" كود المشترك " required >
 										<div class="errspan">
@@ -111,7 +111,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">كلمه المرور</label>
-										<input type="text" minlength="8" name="password" maxlength="32" value="{{$UserData->password}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
+										<input type="text" minlength="8" name="password" maxlength="32" value="{{$manger->password}}" class="form-control randpass" placeholder="اكتب كلمه مرور" id="validationCustom01" required>
 										<div class="errspanpass">
 											<i class="fa-solid fa-wand-sparkles text-info "></i>
 										</div>
@@ -131,7 +131,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" value="{{$UserData->email}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<input type="email" minlength="3" name="email" maxlength="20" value="{{$manger->email}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -145,50 +145,16 @@
 										 @enderror
 									</div>
 
-									<div class="col-md-4 mt-4">
-										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" name="categoryId"  id="allCategory">
-											<option selected value="{{$UserData->userToDetalis->userToCategory->id}}">{{$UserData->userToDetalis->userToCategory->name}}</option>
-												@foreach ($category as $categoryes)
-													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
-												@endforeach
-										</select>
-										<div class="valid-feedback">
-											احسنت !
-										</div>
-										<div class="invalid-feedback" id="categoryId_error">
-											قم باختيار قسم للمتجر
-										</div>
-										@error('categoryId')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									</div>
 
 
-									<div class="col-md-4 mt-4 ">
-										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$UserData->userToDetalis->userToCategory->subCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
 
-										<div class="valid-feedback">
-										  ممتاز !
-										</div>
-										<div class="invalid-feedback" id="storeDescription_error">
-										</div>
-										@error('storeDescription')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
 
 
 
 									  <div class="col-md-4 mt-4 ">
-										<label for="phone" class="form-label">هاتف المتجر (اخياري)</label>
+										<label for="phone" class="form-label">هاتف المدير (اخياري)</label>
 										<input name="phone" class="form-control"
-										minlength="10" maxlength="10" min="100000000"   type="number" value="{{$UserData->userToDetalis->phone}}"   id="phone" placeholder=" هاتف المتجر"   >
+										minlength="10" maxlength="10" min="100000000"   type="number" value="{{$manger->userToDetalis->phone}}"   id="phone" placeholder=" هاتف المدير"   >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -205,7 +171,7 @@
 									  <div class="col-md-4 mt-4 ">
 										<label for="whatsapp" class="form-label">واتس اب  (اخياري)</label>
 										<input name="whatsapp" class="form-control"
-										minlength="10" maxlength="10"  min="100000000"  type="number"  value="{{$UserData->userToDetalis->whatsapp}}"  id="whatsapp" placeholder=" هاتف المتجر"  >
+										minlength="10" maxlength="10"  min="100000000"  type="number"  value="{{$manger->userToDetalis->whatsapp}}"  id="whatsapp" placeholder=" هاتف المدير"  >
 										<div class="valid-feedback">
 											ممتاز !
 										</div>
@@ -219,99 +185,13 @@
 									   @enderror
 									  </div>
 
-									  <div class="col-md-4 mt-4 ">
-										<label for="facebook" class="form-label">فيس بوك (اخياري)</label>
-										<input name="facebook" class="form-control"
-										value="{{$UserData->userToDetalis->facebook}}"
-										   type="text"   id="facebook" placeholder="https//www.facebook.com "  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="facebook_error">
-											ضع لينك صفحه الفيس بوك
-										</div>
-										@error('facebook')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
 
 
-									  <div class="col-md-4 mt-4 ">
-										<label for="website" class="form-label"> الموقع الالكتروني (اخياري)</label>
-										<input name="website" class="form-control"
-										value="{{$UserData->userToDetalis->website}}"
-										 type="text"   id="website" placeholder="https//www.Karama-SC.com"  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="website_error">
-											ضع لينك المتجر
-										</div>
-										@error('website')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-
-
-									  <div class="col-md-4 mt-4 ">
-										<label for="maps" class="form-label"> موقعك علي الخريطه (اخياري)</label>
-										<input name="maps" class="form-control"
-										value="{{$UserData->userToDetalis->maps}}"
-										 type="text"   id="maps" placeholder="https://www.google.com/maps/@30.0308657,31.1111907,14z?entry=ttu"  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="maps_error">
-											ضع لينك المتجر
-										</div>
-										@error('maps')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-
-									  <div class="col-md-4 mt-4 ">
-										<label for="location" class="form-label">  العنوان (اخياري)</label>
-										<input name="location" class="form-control"
-										value="{{$UserData->userToDetalis->location}}"
-										 type="text"   id="location" placeholder="العنوان"  >
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="location_error">
-											ضع لينك صفحه الفيس بوك
-										</div>
-										@error('location')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
-									  <div class="col-md-8 mt-4 ">
-										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
-										<textarea name="bio" class="form-control"
-										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{$UserData->userToDetalis->bio}}</textarea>
-										<div class="valid-feedback">
-											ممتاز !
-										</div>
-										<div class="invalid-feedback" id="bio_error">
-										</div>
-										@error('location')
-										<div class="text-danger">
-											{{$message}}
-										</div>
-									   @enderror
-									  </div>
 
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
 										<input name="nationalId" class="form-control"
-										value="{{$UserData->userToDetalis->nationalId}}"
+										value="{{$manger->userToDetalis->nationalId}}"
 										 type="text"   id="nationalId" placeholder="الرقم القومي"  >
 										<div class="valid-feedback">
 											ممتاز !
@@ -326,9 +206,50 @@
 									   @enderror
 									  </div>
 
+                                      <div class="col-md-4 mt-4 ">
+                                        <div class="form-group">
+                                            <label class="form-label"> صلاحية المستخدم</label>
+                                            {{-- {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')) !!} --}}
+                                            <select name="roles_name" class="form-control multiple" id="">
+                                              @forelse ($roles as $role )
+
+                                                @if ($role == $manger->roles_name)
+                                                    <option selected value="{{$role}}">{{$role}}</option>
+                                                @else
+                                                    <option  value="{{$role}}">{{$role}}</option>
+                                                @endif
+
+                                              @empty
+                                                <option  value="">لا يوجد صلاحيات</option>
+                                              @endforelse
+                                          </select>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-md-4 mt-4 ">
+                                    <div class="form-group">
+                                        <label class="form-label">حاله الحساب</label>
+                                        <select name="status" class="form-control " id="">
+                                            @if ($manger->status == 'inactive')
+                                                <option selected value="inactive" class="text-danger">تم الايقاف</option>
+                                                <option class="text-primary" value="active">مفعل</option>
+                                            @else
+                                            <option class="text-primary" value="active">مفعل</option>
+                                            <option value="inactive" class="text-danger">ايقاف الحساب</option>
+                                            @endif
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
 
 									<div class="col-12 mt-4">
-									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">تعديل المتجر</button>
+									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">تحديث المدير</button>
 									</div>
 								  </form>
 
@@ -412,52 +333,7 @@
 </script>
 
 
-{{-- get sub cat ajax --}}
-<script>
-    var allCategory  = document.getElementById('allCategory');
 
-    $('#allCategory').on('change', function() {
-
-                $.ajax({
-                    type: "GET",
-                    url: 'admin/getCategoryAjax/'+allCategory.value,
-                    dataType: 'json',
-                    beforeSend: function() {
-                        $('.loading').css('display','flex');
-                        $('.loader_cu').css('display','flex');
-                    },
-                        success: function(data){
-                            $('#subCat').tagsinput();
-                            $('#subCat').tagsinput('removeAll');
-                            $('#subCat').tagsinput('add',data.Done );
-
-                        },complete: function(){
-                            $('.loading').css('display','none');
-                            $('.loader_cu').css('display','none');
-
-                        },error: function(reject){
-
-                            $('.loading').css('display','none');
-                            $('.loader_cu').css('display','none');
-                        },
-
-                    });
-
-
-    });
-
-    $('input').on('beforeItemRemove', function(event) {
-        alert("لا يمكن حذف الفئات السابقه فقط اضف عليهم");
-        var tag = event.item;
-        if(tag == DataMixin.data.user.username){
-            event.cancel = true;
-            console.log('cannot delete agent');
-        }else{
-            console.log('agent deleted');
-        }
-    });
-
-</script>
 
 
 @endsection

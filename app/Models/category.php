@@ -11,5 +11,4 @@ class category extends Model
     use HasFactory;
     protected $guarded= [];
 
-
 }

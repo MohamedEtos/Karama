@@ -157,6 +157,7 @@
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
 										<select class="form-control" id="allCategory" name="category"  >
+                                            <option value="" disabled selected>اختر قسم --</option>
 												@foreach ($categoryData as $categoryes)
 													<option  value="{{$categoryes->id}}">{{$categoryes->name}}</option>
 												@endforeach
@@ -437,7 +438,7 @@
     var allCategory  = document.getElementById('allCategory');
 
 
-    $('#allCategory').on('change', function() {
+    $('#allCategory').on('change ', function() {
 
                 $.ajax({
                     type: "GET",

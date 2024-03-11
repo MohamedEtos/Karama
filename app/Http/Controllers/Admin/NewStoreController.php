@@ -36,7 +36,9 @@ class NewStoreController extends Controller
 
     public function NewStoreView()
     {
+        // $subCat = subCat::where('categoryId',$UserData->userToDetalis->userToCategory->id)->first()->name;
         $categoryData = category::select('id','name')->get();
+        // return $categoryData;
         $roles = Role::pluck('name','name')->all();
         return view('admin.merchant.registerStore',compact(
             'categoryData',
@@ -61,15 +63,9 @@ class NewStoreController extends Controller
     }
 
     public function getCategoryAjax(Request $request){
-
         $AllCat = subCat::where('categoryId',$request->id)->get('name');
-
         $dataAsString = $this->convertDataToString($AllCat);
-
-
-
         return response()->json(['Done'=>$dataAsString]);
-
     }
 
 
@@ -163,11 +159,13 @@ class NewStoreController extends Controller
 
     public function editStoreView($id)
     {
-        $category = category::get();
+        $categorylist = category::get();
         $UserData = User::where('id',Crypt::decrypt($id))->first();
+        $subCat = subCat::where('categoryId',$UserData->userToDetalis->userToCategory->id)->first()->name;
         return view('admin.merchant.editStore',compact(
-            'category',
-            'UserData'
+            'categorylist',
+            'UserData',
+            'subCat'
         ));
     }
 
@@ -182,7 +180,7 @@ class NewStoreController extends Controller
         // return $request->all();
         $request->validate([
             'name' => ['required', 'string', 'min:3' , 'max:255'],
-            'email' => [ 'string', 'email', 'max:255', Rule::unique('users')->ignore($userId)],
+            'email' => [ 'string', 'nullable', 'email', 'max:255', Rule::unique('users')->ignore($userId)],
             'userCode' => ['required','string', 'max:8', Rule::unique('users')->ignore($userId)],
             'subtype' => ['string', 'max:255'],
             // 'password' => ['required', Rules\Password::defaults()],
@@ -237,7 +235,7 @@ class NewStoreController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'userCode' => $request->userCode,
-            'subtype' => 'merchant',
+            'status'=>$request->status,
         ]);
 
     });

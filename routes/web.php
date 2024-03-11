@@ -54,7 +54,10 @@ Route::get('/admin/dashboard',[AdminController::class, 'AdminDashboard'])->middl
 Route::controller(ManagersControllers::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('AddMangers',  'AddMangers')->name('AddMangers');
     Route::get('ViewMangers',  'ViewMangers')->name('ViewMangers');
+    Route::get('editMangerView/{id}',  'editMangerView')->name('editMangerView');
+    Route::post('updateManger',  'updateManger')->name('updateManger');
     Route::post('storeMangers',  'storeMangers')->name('storeMangers');
+    Route::post('removeManger',  'removeManger')->name('removeManger');
 
 });
 
@@ -63,7 +66,7 @@ Route::controller(ManagersControllers::class)->middleware('auth')->prefix('admin
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
+    // Route::resource('users', UserController::class);
 });
 
 //profile

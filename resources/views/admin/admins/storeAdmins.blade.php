@@ -217,6 +217,7 @@
                                               {{-- {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')) !!} --}}
                                               <select name="roles_name" class="form-control multiple" id="">
                                                 <option value="" selected>اختر صلاحيات المدير</option>
+                                                
                                                 @forelse ($roles as $role )
                                                     <option value="{{$role}}">{{$role}}</option>
                                                 @empty

@@ -39,8 +39,8 @@
 
 {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
 <!-- row -->
-<div class="row">
-    <div class="col-md-12">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8">
         <div class="card mg-b-20">
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
@@ -51,26 +51,26 @@
                 </div>
                 <div class="row">
                     <!-- col -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-12">
                         <ul id="treeview1">
-                            <li><a href="#">الصلاحيات</a>
-                                <ul>
-                                    <li>
-                                        @foreach($permission as $value)
-                                        <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                                            {{ $value->name }}</label>
-                                        <br />
-                                        @endforeach
-                                    </li>
-
-                                </ul>
+                            <li class="mr-1"><a href="#" class="h5">الصلاحيات</a> <i class="fa-solid fa-caret-down"></i>
+                                <ul class="pr-2">
                             </li>
+                            @foreach($permission as $value)
+                                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
+                                    {{ $value->name }}</label>
+                            @endforeach
+                            </li>
+
+                        </ul>
+                        </li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">تحديث</button>
-                    </div>
                     <!-- /col -->
+                    <div class="col-xs-12 col-sm-12 mt-3 col-md-12 text-center">
+                        <button type="submit" class="btn btn-block btn-danger">تحديث</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -86,4 +86,8 @@
 @section('js')
 <!-- Internal Treeview js -->
 <script src="{{URL::asset('assets/plugins/treeview/treeview.js')}}"></script>
+
+<script>
+$('label').css('display','inline-block');
+</script>
 @endsection

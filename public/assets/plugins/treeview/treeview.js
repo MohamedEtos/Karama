@@ -1,9 +1,9 @@
 $.fn.extend({
     treed: function (o) {
-      
-      var openedClass = 'si si-minus';
+
+      var openedClass = '   ';
       var closedClass = 'si si-plus';
-      
+
       if (typeof o != 'undefined'){
         if (typeof o.openedClass != 'undefined'){
         openedClass = o.openedClass;
@@ -12,7 +12,7 @@ $.fn.extend({
         closedClass = o.closedClass;
         }
       };
-      
+
         //initialize each of the top levels
         var tree = $(this);
         tree.addClass("tree");

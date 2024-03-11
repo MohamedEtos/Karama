@@ -4,9 +4,8 @@
 <link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 <!--Internal  treeview -->
 <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
-@section('title')
-اضافة الصلاحيات - مورا سوفت للادارة القانونية
-@stop
+
+
 
 @endsection
 @section('page-header')
@@ -43,24 +42,25 @@
 
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <!-- row -->
-<div class="row">
-    <div class="col-md-12">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-12 col-xl-8 col-lg-8">
         <div class="card mg-b-20">
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
-                    <div class="col-xs-7 col-sm-7 col-md-7">
+                    <div >
                         <div class="form-group">
-                            <p>اسم الصلاحية :</p>
-                            {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                            <p class="h5 mb-2">اسم الصلاحية :</p>
+                            {{-- {!! Form::text('name', null, array('class' => 'form-control ','class'=>'col-12')) !!} --}}
+                            <input type="text" name="name" id="" class="form-control col-12 ">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <!-- col -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-12">
                         <ul id="treeview1">
-                            <li><a href="#">الصلاحيات</a>
-                                <ul>
+                            <li class="mr-1"><a href="#" class="h5">الصلاحيات</a> <i class="fa-solid fa-caret-down"></i>
+                                <ul class="pr-2">
                             </li>
                             @foreach($permission as $value)
                             <label
@@ -75,8 +75,8 @@
                         </ul>
                     </div>
                     <!-- /col -->
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">تاكيد</button>
+                    <div class="col-xs-12 col-sm-12 mt-3 col-md-12 text-center">
+                        <button type="submit" class="btn btn-block btn-danger">تاكيد</button>
                     </div>
 
                 </div>
@@ -96,4 +96,10 @@
 @section('js')
 <!-- Internal Treeview js -->
 <script src="{{URL::asset('assets/plugins/treeview/treeview.js')}}"></script>
+
+<script>
+$('label').css('display','inline-block');
+
+</script>
+
 @endsection

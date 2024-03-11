@@ -27,35 +27,25 @@
 
 
 <!-- row -->
-<div class="row">
-    <div class="col-md-12">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-12 col-xl-8 col-lg-8">
         <div class="card mg-b-20">
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
-                    <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('roles.index') }}">رجوع</a>
-                    </div>
+                    <a href="{{route('roles.index')}}" class="btn btn-danger btn-sm">رجوع</a>
                 </div>
+                <hr>
                 <div class="row">
-                    <!-- col -->
-                    <div class="col-lg-4">
-                        <ul id="treeview1">
-                            <li><a href="#">{{ $role->name }}</a>
-                                <ul>
-                                    @if(!empty($rolePermissions))
-                                    @foreach($rolePermissions as $v)
-                                    <li>{{ $v->name }}</li>
-                                    @endforeach
-                                    @endif
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /col -->
+                    @if(!empty($rolePermissions))
+                        @foreach($rolePermissions as $v)
+                            <div class="col-6 col-md-3 "><li>{{ $v->name }}</li></div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <!-- row closed -->
 </div>

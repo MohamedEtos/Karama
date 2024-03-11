@@ -47,7 +47,6 @@
                             <th class="wd-lg-8p text-center"><span>الاسم</span></th>
                             <th class="wd-lg-20p"><span>كود المشترك</span></th>
                             <th class="wd-lg-20p"><span>الهاتف</span></th>
-                            <th class="wd-lg-20p"><span>نهايه الاشتراك</span></th>
                             <th class="wd-lg-20p"><span>الحاله</span></th>
                             <th class="wd-lg-20p"><span>الصلاحيات</span></th>
                             <th class="wd-lg-20p">تحكم</th>
@@ -66,9 +65,7 @@
                             <td>
                                 {{$merchants->userToDetalis->phone}}
                             </td>
-                            <td>
-                                {{$merchants->endOfSubscription}}
-                            </td>
+
                             <td class="text-center">
                                 <span class="label text-muted d-flex"><div class="dot-label bg-gray-300
                                     @php

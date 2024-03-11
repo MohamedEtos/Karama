@@ -147,19 +147,26 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom02" class="form-label">قسم المتجر</label>
-										<select class="form-control" name="categoryId"  id="allCategory">
-											<option selected value="{{$UserData->userToDetalis->userToCategory->id}}">{{$UserData->userToDetalis->userToCategory->name}}</option>
-												@foreach ($category as $categoryes)
-													<option value="{{$categoryes->id}}">{{$categoryes->name}}</option>
+										<select class="form-control allCategory" name="category"  id="allCategory">
+
+												@foreach ($categorylist as $categoryes)
+                                                    @if ($UserData->userToDetalis->userToCategory->id == $categoryes->id)
+													    <option selected value="{{$categoryes->id}}">{{$categoryes->name}}</option>
+                                                    @else
+                                                    <option  value="{{$categoryes->id}}">{{$categoryes->name}}</option>
+
+                                                    @endif
+
 												@endforeach
+
 										</select>
 										<div class="valid-feedback">
 											احسنت !
 										</div>
-										<div class="invalid-feedback" id="categoryId_error">
+										<div class="invalid-feedback" id="category_error">
 											قم باختيار قسم للمتجر
 										</div>
-										@error('categoryId')
+										@error('category')
 										<div class="text-danger">
 											{{$message}}
 										</div>
@@ -167,10 +174,11 @@
 									</div>
 
 
+
+
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$UserData->userToDetalis->userToCategory->subCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
-
+                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$subCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>
@@ -292,7 +300,7 @@
 										</div>
 									   @enderror
 									  </div>
-									  <div class="col-md-8 mt-4 ">
+									  <div class="col-md-4 mt-4 ">
 										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
 										<textarea name="bio" class="form-control"
 										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{$UserData->userToDetalis->bio}}</textarea>
@@ -307,6 +315,22 @@
 										</div>
 									   @enderror
 									  </div>
+
+                                      <div class="col-md-4 mt-4 ">
+                                        <div class="form-group">
+                                            <label class="form-label">حاله الحساب</label>
+                                            <select name="status" class="form-control " id="">
+                                                @if ($UserData->status == 'inactive')
+                                                    <option selected value="inactive" class="text-danger">تم الايقاف</option>
+                                                    <option class="text-primary" value="active">مفعل</option>
+                                                @else
+                                                <option class="text-primary" value="active">مفعل</option>
+                                                <option value="inactive" class="text-danger">ايقاف الحساب</option>
+                                                @endif
+
+                                            </select>
+                                        </div>
+                                    </div>
 
 									  <div class="col-md-4 mt-4 ">
 										<label for="nationalId" class="form-label">  الرقم القومي (اخياري)</label>
@@ -414,37 +438,46 @@
 
 {{-- get sub cat ajax --}}
 <script>
-    var allCategory  = document.getElementById('allCategory');
 
-    $('#allCategory').on('change', function() {
 
-                $.ajax({
-                    type: "GET",
-                    url: 'admin/getCategoryAjax/'+allCategory.value,
-                    dataType: 'json',
-                    beforeSend: function() {
-                        $('.loading').css('display','flex');
-                        $('.loader_cu').css('display','flex');
+var allCategory  = document.getElementById('allCategory');
+
+// alert($('#subCatHidden').val())
+
+// $('#subCat').tagsinput();
+// $('#subCat').tagsinput('removeAll');
+// $('#subCat').tagsinput('add', );
+$('#allCategory').on('change load', function() {
+
+    console.log(allCategory.value)
+
+            $.ajax({
+                type: "GET",
+                url: '/admin/getCategoryAjax/'+allCategory.value,
+                dataType: 'json',
+                beforeSend: function() {
+                    $('.loading').css('display','flex');
+                    $('.loader_cu').css('display','flex');
+                },
+                    success: function(data){
+                        $('#subCat').tagsinput();
+                        $('#subCat').tagsinput('removeAll');
+                        $('#subCat').tagsinput('add',data.Done );
+
+                    },complete: function(){
+                        $('.loading').css('display','none');
+                        $('.loader_cu').css('display','none');
+
+                    },error: function(reject){
+
+                        $('.loading').css('display','none');
+                        $('.loader_cu').css('display','none');
                     },
-                        success: function(data){
-                            $('#subCat').tagsinput();
-                            $('#subCat').tagsinput('removeAll');
-                            $('#subCat').tagsinput('add',data.Done );
 
-                        },complete: function(){
-                            $('.loading').css('display','none');
-                            $('.loader_cu').css('display','none');
-
-                        },error: function(reject){
-
-                            $('.loading').css('display','none');
-                            $('.loader_cu').css('display','none');
-                        },
-
-                    });
+                });
 
 
-    });
+});
 
     $('input').on('beforeItemRemove', function(event) {
         alert("لا يمكن حذف الفئات السابقه فقط اضف عليهم");

@@ -16,8 +16,12 @@
 @endsection
 @section('content')
 				<!-- row -->
-                  <a class="btn ripple btn-danger " data-target="#modaldemo1" data-toggle="modal" href="">اضافة قسم</a>
-                  <a class="btn ripple btn-danger " data-target="#modaldemo3" data-toggle="modal" href="">الاقسام الفرعيه</a>
+                @can('اضافة قسم')
+                    <a class="btn ripple btn-danger " data-target="#modaldemo1" data-toggle="modal" href="">اضافة قسم</a>
+                @endcan
+                @can('تعديل قسم')
+                    <a class="btn ripple btn-danger " data-target="#modaldemo3" data-toggle="modal" href="">الاقسام الفرعيه</a>
+                @endcan
                   <br><br>
 
                   <div class="row">
@@ -48,10 +52,34 @@
 													<td>سسس</td>
 													<td>{{$category->descrption}}</td>
                                                     <td class="text-center ">
-														<a class=" mr-3 edit-button" data-id="{{$category->id}}" href="#edit{{$category->id}}"  title="" data-original-title="تعديل المنتج"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i>
-														</a>
-														<a class=" mr-3  swal-ajax text-danger" id="    "  data-toggle="tooltip" title="" href="{{route('delete.category',$category->id)}}" data-original-title="حذف المنتج"><i class="fa fa-trash fa-lg"></i>
-														</a>
+                                                        @can('تعديل قسم')
+														    <a class=" mr-3 edit-button" data-id="{{$category->id}}" href="#edit{{$category->id}}"  title="" data-original-title="تعديل القسم"><i style="color:#213B74" class="fa-solid fa-pen-to-square  fa-lg"></i></a>
+                                                        @endcan
+                                                        @can('حذف قسم')
+
+                                                            <a class="mr-3  swal-ajax text-danger com modal-effect" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$category->id}}"><i class="fa fa-trash fa-lg"></i></a>
+                                                            <!-- delete  Modal effects-->
+                                                            <div class="modal" id="modaldemo{{$category->id}}">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content modal-content-demo">
+                                                                        <div class="modal-header">
+                                                                            <h6 class="modal-title">هل انت متاكد من عمليه الحذف</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <h6>سيتم حذف القسم وكل وكل المنتجات الموجوده داخل</h6>
+                                                                            <p class="text-center"><i class="fa-solid fa-triangle-exclamation tx-50 mb-2 text-warning fa-xl"></i></p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <a href="{{route('delete.category',$category->id)}}" id="deletebtn" class="btn ripple btn-danger ">تاكيد</a>
+                                                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Modal effects-->
+
+
+                                                        @endcan
 													</td>
 												</tr>
                                                 @empty
@@ -225,6 +253,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+
                 @isset($category->id)
                     <button type="submit" class="btn btn-danger" form="editCategory" formaction="{{route('update.category',$category->id)}}">حفظ التعديل</button>
                 @endisset
@@ -249,6 +278,7 @@
 <script src="{{URL::asset('https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/dataTables.buttons.min.js')}}"></script>
 
 <script src="{{URL::asset('https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js')}}"></script>
+<script src="{{URL::asset('assets/js/modal.js')}}"></script>
 
 
 

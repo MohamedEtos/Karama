@@ -20,6 +20,23 @@ use App\Traits;
 class PointsController extends Controller
 {
 
+
+        public function __construct()
+    {
+        $this->middleware('permission:تاجر', ['only' => [
+            'UserPoints',
+            'checkUserCodeAddPoints',
+            'checkUserCode',
+            'addUserPoints',
+            'exchangePointsView',
+            'exchangePoints',
+            'settingPoints',
+            ]]);
+        $this->middleware('permission:مستخدم', ['only' => ['myPoints']]);
+
+    }
+
+
     use Traits\navbarUser;
 
     /**

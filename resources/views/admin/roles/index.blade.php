@@ -62,7 +62,7 @@
 
 <!-- row -->
 <div class="row row-sm">
-    <div class="col-xl-12">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
@@ -79,9 +79,9 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table mg-b-0 text-md-nowrap table-hover ">
+                    <table class="table text-md-nowrap" id="example1"   data-ordering="false">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th>#</th>
                                 <th>الاسم</th>
                                 <th>العمليات</th>
@@ -89,10 +89,10 @@
                         </thead>
                         <tbody>
                             @foreach ($roles as $key => $role)
-                                <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
+                                <tr class="text-center">
+                                    <td class="wd-15p border-bottom-0 ">{{ ++$i }}</td>
+                                    <td class="wd-15p border-bottom-0 ">{{ $role->name }}</td>
+                                    <td class="wd-15p border-bottom-0 ">
                                         @can('عرض صلاحية')
                                             <a class="btn btn-success btn-sm"
                                                 href="{{ route('roles.show', $role->id) }}">عرض</a>

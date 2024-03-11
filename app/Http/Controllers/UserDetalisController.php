@@ -48,8 +48,6 @@ class UserDetalisController extends Controller
     public function ProfileImage(Request $request)
     {
 
-
-
         $image = $request->image;
 
         list($type, $image) = explode(';', $image);

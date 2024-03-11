@@ -15,15 +15,25 @@ class NotifyController extends Controller
 {
     use Traits\navbarUser;
 
+
+        public function __construct()
+    {
+        $this->middleware('permission:كل الاشعارات', ['only' => ['notifyList']]);
+        $this->middleware('permission:ارسال اشعار', ['only' => ['sendNotify','sendNotifyAjax']]);
+        $this->middleware('permission:عرض رموز OTP', ['only' => ['validOTP']]);
+        // $this->middleware('permission:الرسائل', ['only' => ['']]);
+        // $this->middleware('permission:ارسال رساله', ['only' => ['']]);
+
+
+    }
+
     public function markAllReadedAjax(Request $request)
     {
         $NotifyData= notify::where('reseverId',$request->uId)->update([
             'readed'=>'1'
         ]);
         return response()->json(["MSG" => 'done']);
-
     }
-
 
     public function allNotify(Request $request)
     {
@@ -32,10 +42,7 @@ class NotifyController extends Controller
             'readed'=>'1'
         ]);
 
-
         $allNotify = notify::where('reseverId',Auth::User()->id)->orderBy('id','DESC')->get();
-
-
 
         return view('allNotify',compact([
 
