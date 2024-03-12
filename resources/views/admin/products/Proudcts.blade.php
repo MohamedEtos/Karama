@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($product as $allproducts )
+                        @foreach ($producta as $allproducts )
                         <tr class="">
                             <a href="">
                             <td class="text-right">
