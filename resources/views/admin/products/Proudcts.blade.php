@@ -56,33 +56,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($product as $products )
+                        @foreach ($product as $allproducts )
                         <tr class="">
                             <a href="">
                             <td class="text-right">
-                                <img alt="avatar" class="wd-50p wd-sm-70" src="{{URL::asset($products->productionToImgRealtions->mainImage)}}">
+                                <img alt="avatar" class="wd-50p wd-sm-70" src="{{URL::asset($allproducts->productionToImgRealtions->mainImage)}}">
                             </td>
-                            <td class="text-right">{{$products->userToProduct->name}}</td>
-                            <td class="text-right">{{$products->name}}</td>
+                            <td class="text-right">{{$allproducts->userToProduct->name}}</td>
+                            <td class="text-right">{{$allproducts->name}}</td>
                             <td class="text-right">
-                                {{$products->productionToCategoryRealtions->name}}
+                                {{$allproducts->productionToCategoryRealtions->name}}
                             </td>
                             <td class="text-right">
-                                {{$products->price}}
+                                {{$allproducts->price}}
                             </td>
 
                             <td class="text-right">
-                                    {{$products->discount}}
+                                    {{$allproducts->discount}}
                             </td>
                             <td class="text-right">
-                                {{$products->ThePriceAfterDiscount}}
+                                {{$allproducts->ThePriceAfterDiscount}}
                             </td>
                             <td class="text-right" class="text-right">
                                 <span class="label text-muted d-flex"><div class="dot-label bg-gray-300
                                     @php
-                                        if ($products->append == '0'){
+                                        if ($allproducts->append == '0'){
                                             echo 'bg-warning';
-                                        }elseif($products->append == '1') {
+                                        }elseif($allproducts->append == '1') {
                                             echo 'bg-success';
                                         }else {
                                             echo 'bg-danger';
@@ -92,9 +92,9 @@
                                 ml-1">
                             </div>
                             @php
-                                if($products->append == '0'){
+                                if($allproducts->append == '0'){
                                     echo 'بانتظار الرد';
-                                }elseif($products->append == '1') {
+                                }elseif($allproducts->append == '1') {
                                     echo ' مقبول';
                                 }else{
                                     echo 'غير مقبول';
@@ -104,13 +104,13 @@
                             </td>
                             <td class="text-center">
                                 @can('تعديل منتج')
-                                    <a href="{{url('admin/editProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-info">
+                                    <a href="{{url('admin/editProudcts/'.Crypt::encrypt($allproducts->id))}}" class="btn btn-sm btn-info">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
                                 @endcan
 
                                 @can('المراجعات')
-                                    <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($products->id))}}" class="btn btn-sm btn-primary">
+                                    <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($allproducts->id))}}" class="btn btn-sm btn-primary">
                                         <i class="fa-solid fa-receipt"></i> مراجعه
                                     </a>
                                 @endcan
@@ -142,7 +142,7 @@
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul> --}}
-            {{-- {{$products->links()}} --}}
+            {{-- {{$allproducts->links()}} --}}
 
         </div>
     </div>
