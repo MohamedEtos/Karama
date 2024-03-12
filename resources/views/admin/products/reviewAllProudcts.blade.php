@@ -63,7 +63,7 @@
 
                             <div class="col-12 h5 ">الاسم :  <span class="bold"> {{$product->name}}</span></div>
                             <div class="col-12 h5 ">المتجر :  <span class="bold"> {{$product->userToProduct->name}}</span></div>
-                            <div class="col-12 h5 ">القسم :  <span class="bold"> {{$product->productionToCategoryRealtions->name}}</span></div>
+                            {{-- <div class="col-12 h5 ">القسم :  <span class="bold"> {{$product->productionToCategoryRealtions->name}}</span></div> --}}
                             <div class="col-12 h5 ">بيانات المنتج :  <span class="bold"> {{$product->productDescription}}</span></div>
                             <div class="col-12 h5 ">تفاصيل المنتج :  <span class="bold"> {{$product->productDetalis}}</span></div>
                             <div class="col-12 h5 ">السعر :  <span class="bold"> {{$product->price}}</span></div>

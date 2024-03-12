@@ -43,7 +43,7 @@
 												<th>رقم</th>
 												<th>التاجر</th>
 												<th>اسم المنتج  </th>
-												<th>القسم</th>
+												{{-- <th>القسم</th> --}}
 												<th>رفض !</th>
 											</tr>
 										</thead>
@@ -55,7 +55,7 @@
 												<th scope="row">{{$product->id}}</th>
 												<td>{{$product->userToProduct->name}}</td>
 												<td>{{$product->name}}</td>
-												<td>{{$product->productionToCategoryRealtions->name}}</td>
+												{{-- <td>{{$product->productionToCategoryRealtions->name}}</td> --}}
 												<td class="text-danger">
                                                     <a class="btn btn-danger  modal-effect" data-target="#modaldemo{{$product->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$product->id}}">
                                                             رفض

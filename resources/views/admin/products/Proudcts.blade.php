@@ -47,7 +47,7 @@
                             <th class="wd-lg-5p  text-right"><span>صوره المنتج</span></th>
                             <th class="wd-lg-10p text-right"><span>المتجر</span></th>
                             <th class="wd-lg-10p text-right"><span>الاسم</span></th>
-                            <th class="wd-lg-10p text-right"><span>القسم</span></th>
+                            {{-- <th class="wd-lg-10p text-right"><span>القسم</span></th> --}}
                             <th class="wd-lg-10p text-right"><span>السعر</span></th>
                             <th class="wd-lg-10p text-right"><span>الخصم</span></th>
                             <th class="wd-lg-10p text-right"><span>السعر النهائي</span></th>
@@ -56,31 +56,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($producta as $allproducts )
+                        @foreach ($producta as $product )
                         <tr class="">
                             <a href="">
                             <td class="text-right">
-                                <img alt="avatar" class="wd-50p wd-sm-70" src="{{URL::asset($allproducts->productionToImgRealtions->mainImage)}}">
+                                <img alt="avatar" class="wd-50p wd-sm-70" src="{{URL::asset($product->productionToImgRealtions->mainImage)}}">
                             </td>
-                            <td class="text-right">{{$allproducts->userToProduct->name}}</td>
-                            <td class="text-right">{{$allproducts->name}}</td>
-                            <td class="text-right">{{$allproducts->productionToCategoryRealtions->name}}</td>
+                            <td class="text-right">{{$product->userToProduct->name}}</td>
+                            <td class="text-right">{{$product->name}}</td>
+                            {{-- <td class="text-right">{{$product->productionToCategoryRealtions->name}}</td> --}}
                             <td class="text-right">
-                                {{$allproducts->price}}
+                                {{$product->price}}
                             </td>
 
                             <td class="text-right">
-                                    {{$allproducts->discount}}
+                                    {{$product->discount}}
                             </td>
                             <td class="text-right">
-                                {{$allproducts->ThePriceAfterDiscount}}
+                                {{$product->ThePriceAfterDiscount}}
                             </td>
                             <td class="text-right" class="text-right">
                                 <span class="label text-muted d-flex"><div class="dot-label bg-gray-300
                                     @php
-                                        if ($allproducts->append == '0'){
+                                        if ($product->append == '0'){
                                             echo 'bg-warning';
-                                        }elseif($allproducts->append == '1') {
+                                        }elseif($product->append == '1') {
                                             echo 'bg-success';
                                         }else {
                                             echo 'bg-danger';
@@ -90,9 +90,9 @@
                                 ml-1">
                             </div>
                             @php
-                                if($allproducts->append == '0'){
+                                if($product->append == '0'){
                                     echo 'بانتظار الرد';
-                                }elseif($allproducts->append == '1') {
+                                }elseif($product->append == '1') {
                                     echo ' مقبول';
                                 }else{
                                     echo 'غير مقبول';
@@ -102,13 +102,13 @@
                             </td>
                             <td class="text-center">
                                 @can('تعديل منتج')
-                                    <a href="{{url('admin/editProudcts/'.Crypt::encrypt($allproducts->id))}}" class="btn btn-sm btn-info">
+                                    <a href="{{url('admin/editProudcts/'.Crypt::encrypt($product->id))}}" class="btn btn-sm btn-info">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
                                 @endcan
 
                                 @can('المراجعات')
-                                    <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($allproducts->id))}}" class="btn btn-sm btn-primary">
+                                    <a href="{{url('admin/reviewProudcts/'.Crypt::encrypt($product->id))}}" class="btn btn-sm btn-primary">
                                         <i class="fa-solid fa-receipt"></i> مراجعه
                                     </a>
                                 @endcan
@@ -140,7 +140,7 @@
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul> --}}
-            {{-- {{$allproducts->links()}} --}}
+            {{-- {{$product->links()}} --}}
 
         </div>
     </div>
