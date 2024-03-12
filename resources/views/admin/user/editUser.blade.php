@@ -212,6 +212,22 @@
 									   @enderror
 									  </div>
 
+                                     <div class="col-md-4 mt-4 ">
+                                        <div class="form-group">
+                                            <label class="form-label">حاله الحساب</label>
+                                            <select name="status" class="form-control " id="">
+                                                @if ($user->status == 'inactive')
+                                                    <option selected value="inactive" class="text-danger">تم الايقاف</option>
+                                                    <option class="text-primary" value="active">مفعل</option>
+                                                @else
+                                                <option class="text-primary" value="active">مفعل</option>
+                                                <option value="inactive" class="text-danger">ايقاف الحساب</option>
+                                                @endif
+
+                                            </select>
+                                        </div>
+                                    </div>
+
 
 									<div class="col-12 mt-4">
 									  <button class="btn btn-block btn-lg btn-danger" id="finish" type="submit">تعديل بيانات المشترك</button>

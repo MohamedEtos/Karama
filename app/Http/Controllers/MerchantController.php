@@ -162,6 +162,7 @@ class MerchantController extends Controller
         }
         // end count exchange points every monthes
 
+        $countUsers = User::where('subtype','user')->count();
 
         return view('merchant.merchant',compact(
             'products_data',
@@ -175,6 +176,7 @@ class MerchantController extends Controller
             'userPointDetails',
             'pointsAddCount',
             'pointsSubCount',
+            'countUsers',
             // 'VisitorsCountController',
         ));
     }

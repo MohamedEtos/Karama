@@ -260,8 +260,8 @@ class AdminController extends Controller
             'usercode' => ['required','numeric','min_digits:8', 'max_digits:8', Rule::unique('users')->ignore($request->userId)],
             'subtype' => ['string', 'max:255'],
             // 'password' => ['required',  Rules\Password::defaults()],
-            'phone' => ['numeric' ,'min_digits:10' , 'max_digits:10', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
-            'whatsapp' => ['numeric' ,'min_digits:10' , 'max_digits:10', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
+            'phone' => ['numeric' ,'nullable','min_digits:7' , 'max_digits:20', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
+            'whatsapp' => ['numeric' ,'nullable','min_digits:7' , 'max_digits:20', Rule::unique('user_detalis')->ignore($request->userDetailsId)],
             'startOfSubscription'=>['required','date'],
             'endOfSubscription'=>['required','date'],
         ]);
@@ -278,6 +278,7 @@ class AdminController extends Controller
                 'usercode' => $request->usercode,
                 'startOfSubscription' => $request->startOfSubscription,
                 'endOfSubscription' => $request->endOfSubscription,
+                'status'=>$request->status,
                 // 'password' => Hash::make($request->password),
             ]);
         });

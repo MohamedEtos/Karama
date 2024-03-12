@@ -75,9 +75,9 @@
                                                 </div>
                                                 @php
                                                     if($user->status == 'active'){
-                                                        echo 'متصل';
+                                                        echo 'مفعل';
                                                     }else {
-                                                        echo 'غير متصل';
+                                                        echo 'غير مفعل';
                                                     }
                                                 @endphp
                                                 </span>
