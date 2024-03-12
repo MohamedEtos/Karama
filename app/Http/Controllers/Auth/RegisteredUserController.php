@@ -69,7 +69,7 @@ class RegisteredUserController extends Controller
                 'endOfSubscription' => $request->endOfSubscription,
                 'password' => Hash::make($request->password),
                 'userDetalis'=>$lastid,
-                'roles_name' =>'تاجر',
+                'roles_name' =>'مشترك',
 
             ]);
 
