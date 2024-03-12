@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\rejectProductmess;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\subCat;
 use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\ImageManagerStatic;
 
@@ -41,13 +42,9 @@ class ProductsController extends Controller
         $id =  Crypt::decrypt($id);
 
         $product = merchant::where('id',$id)->first();
-        $subCat  = category::where('id',$product->categoryId)->first();
+        $catid  = category::where('id',$product->categoryId)->first();
+        $arrayunique = subCat::where('categoryId',$catid->id)->get();
 
-        $array1 = explode(",", $subCat->subCat);
-
-        $uniqueArray = array_unique($array1);
-        $trimmedArray = array_map('trim', $uniqueArray);
-        $arrayunique = array_unique($trimmedArray);
 
 
         return view('admin.products.editProudcts',compact(

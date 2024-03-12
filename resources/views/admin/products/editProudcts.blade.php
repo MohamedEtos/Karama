@@ -45,7 +45,7 @@
                                             <label for="validationCustom02" class="form-label">فئه المنتج</label>
                                             <select  class="form-control" name="subCat" id="exampleFormControlSelect1">
                                               @foreach ($arrayunique as $data)
-                                                  <option value="{{$data}}">{{$data}}</option>
+                                                  <option value="{{$data->id}}">{{$data->name}}</option>
                                               @endforeach
                                           </select>
                                           <div class="valid-feedback">
