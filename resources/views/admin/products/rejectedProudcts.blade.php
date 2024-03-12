@@ -61,7 +61,7 @@
 												<th scope="row">{{$product->id}}</th>
 												<td>{{$product->userToProduct->name}}</td>
 												<td>{{$product->name}}</td>
-												<td>{{$product->productionToCategoryRealtions->name}}</td>
+												{{-- <td>{{$product->productionToCategoryRealtions->name}}</td> --}}
 												<td class="text-danger">{{$product->rejectMess->rejectMessage}}</td>
 												<td class="text-success">
                                                     @if ($product->append == 2)
