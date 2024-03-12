@@ -17,10 +17,10 @@
 @section('content')
 				<!-- row -->
                 @can('اضافة قسم')
-                    <a class="btn ripple btn-danger " data-target="#modaldemo1" data-toggle="modal" href="">اضافة قسم</a>
+                    <a class="btn ripple btn-danger " data-target="#modaldemo1x" data-toggle="modal" href="">اضافة قسم</a>
                 @endcan
                 @can('تعديل قسم')
-                    <a class="btn ripple btn-danger " data-target="#modaldemo3x" data-toggle="modal" href="modaldemo3x">الاقسام الفرعيه</a>
+                    <a class="btn ripple btn-danger " data-target="#modaldemo3x" data-toggle="modal" href="">الاقسام الفرعيه</a>
                 @endcan
                   <br><br>
 
@@ -162,7 +162,7 @@
 
 
 <!-- Button trigger modal -->
-<div class="modal" id="modaldemo1">
+<div class="modal" id="modaldemo1x">
     <div class="modal-dialog" role="document">
 <div class="modal-content modal-content-demo">
     <div class="modal-header">
