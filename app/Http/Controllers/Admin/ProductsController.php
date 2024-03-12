@@ -41,7 +41,7 @@ class ProductsController extends Controller
         $id =  Crypt::decrypt($id);
 
         $product = merchant::where('id',$id)->first();
-        $subCat  = category::select('subCat')->where('id',$product->categoryId)->first();
+        $subCat  = category::where('id',$product->categoryId)->first();
 
         $array1 = explode(",", $subCat->subCat);
 
