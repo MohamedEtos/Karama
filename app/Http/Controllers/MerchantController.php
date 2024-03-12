@@ -34,10 +34,12 @@ class MerchantController extends Controller
 
 
 
+
     public function __construct()
-    {
-        $this->middleware(['permission:تاجر']);
-    }
+{
+    // $this->middleware(['permission:تاجر']);
+    // $this->middleware('permission:مشترك', ['only' => ['ProductDetails']]);
+}
 
     /**
      * Display a listing of the resource.
