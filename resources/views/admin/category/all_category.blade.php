@@ -20,7 +20,7 @@
                     <a class="btn ripple btn-danger " data-target="#modaldemo1" data-toggle="modal" href="">اضافة قسم</a>
                 @endcan
                 @can('تعديل قسم')
-                    <a class="btn ripple btn-danger " data-target="#modaldemo3" data-toggle="modal" href="">الاقسام الفرعيه</a>
+                    <a class="btn ripple btn-danger " data-target="#modaldemo3" data-toggle="modal" href="modaldemo3">الاقسام الفرعيه</a>
                 @endcan
                   <br><br>
 

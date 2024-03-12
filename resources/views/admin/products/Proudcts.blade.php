@@ -65,7 +65,7 @@
                             <td class="text-right">{{$products->userToProduct->name}}</td>
                             <td class="text-right">{{$products->name}}</td>
                             <td class="text-right">
-                                {{-- {{$products->productionToCategoryRealtions->name}} --}}
+                                {{$products->productionToCategoryRealtions->name}}
                             </td>
                             <td class="text-right">
                                 {{$products->price}}

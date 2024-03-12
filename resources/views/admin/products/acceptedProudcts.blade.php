@@ -55,7 +55,7 @@
 												<th scope="row">{{$product->id}}</th>
 												<td>{{$product->userToProduct->name}}</td>
 												<td>{{$product->name}}</td>
-												{{-- <td>{{$product->productionToCategoryRealtions->name}}</td> --}}
+												<td>{{$product->productionToCategoryRealtions->name}}</td>
 												<td class="text-danger">
                                                     <a class="btn btn-danger  modal-effect" data-target="#modaldemo{{$product->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$product->id}}">
                                                             رفض
