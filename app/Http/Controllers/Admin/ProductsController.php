@@ -31,9 +31,9 @@ class ProductsController extends Controller
 
     public function allProducts()
     {
-        $product = merchant::get();
+        $producta = merchant::get();
         return view('admin.products.Proudcts',compact(
-            'product',
+            'producta',
         ));
     }
     public function editProudcts($id)
