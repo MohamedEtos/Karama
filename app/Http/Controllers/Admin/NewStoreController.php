@@ -91,6 +91,9 @@ class NewStoreController extends Controller
             'bio' => [ 'string', 'max:255','nullable'],
             'storeDescription' => [ 'string', 'max:255','nullable'],
             'nationalId' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
+            'transferPoints' => 'numeric|regex:/^\d*(\.\d{1,2})?$/|nullable|max_digits:10',
+            'exchangeLimit' => 'numeric|regex:/^\d*(\.\d{1,2})?$/|nullable|max_digits:10',
+
             // 'roles_name' => 'required',
         ]);
 
@@ -130,9 +133,20 @@ class NewStoreController extends Controller
         $user->assignRole('تاجر');
 
 
-        pointRules::create([
-            'merchantId'=>$user->id,
-        ]);
+        if(empty($request->exchangeLimit) || empty($request->transferPoints)){
+            pointRules::create([
+                'merchantId'=>$user->id,
+                'exchangeLimit'=>0,
+                'transferPoints'=>0,
+            ]);
+        }else{
+            pointRules::create([
+                'merchantId'=>$user->id,
+                'exchangeLimit'=>$request->exchangeLimit,
+                'transferPoints'=>$request->transferPoints,
+            ]);
+        }
+
 
 
         $explode = explode(',',$request->subCat);

@@ -33,7 +33,7 @@
 				<!-- row -->
 				<div class="row">
 
-					<div class="col-md-6 col-xl-6 col-xs-12 col-sm-12 m-auto">
+					<div class="col-md-9 col-xl-6 col-xs-12 col-sm-12 m-auto" >
 						<div class="card">
 							<div class="card-body">
 								<form  action="{{url('merchant/addUserPoints')}}" method="POST" id="pointsForm" class="row g-3 "   >

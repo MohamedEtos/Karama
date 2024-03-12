@@ -264,7 +264,7 @@
 									  </div>
 
 
-									  <div class="col-md-4 mt-4 ">
+									  {{-- <div class="col-md-4 mt-4 ">
 										<label for="maps" class="form-label"> موقعك علي الخريطه (اخياري)</label>
 										<input name="maps" class="form-control"
 										value="{{old('maps')}}"
@@ -280,7 +280,7 @@
 											{{$message}}
 										</div>
 									   @enderror
-									  </div>
+									  </div> --}}
 
 									  <div class="col-md-4 mt-4 ">
 										<label for="location" class="form-label">  العنوان (اخياري)</label>
@@ -299,7 +299,7 @@
 										</div>
 									   @enderror
 									  </div>
-									  <div class="col-md-8 mt-4 ">
+									  <div class="col-md-4 mt-4 ">
 										<label for="bio" class="form-label">  نبذه عن المتجر (اخياري)</label>
 										<textarea name="bio" class="form-control"
 										 type="text"   id="bio" placeholder="نبذة عن المتجر"  >{{old('bio')}}</textarea>
@@ -327,6 +327,41 @@
 											ضع لينك صفحه الفيس بوك
 										</div>
 										@error('nationalId')
+										<div class="text-danger">
+											{{$message}}
+										</div>
+									   @enderror
+									  </div>
+
+									  <div class="col-md-4 mt-4 ">
+										<label for="nationalId" class="form-label text-danger">الحد الادني لستبدال النقاط</label>
+										<input name="exchangeLimit" class="form-control" required
+										value="{{old('exchangeLimit')}}"
+										 type="text"   id="exchangeLimit" placeholder="اقل نقاط يمكن استبدالها"  >
+										<div class="valid-feedback">
+											ممتاز !
+										</div>
+										<div class="invalid-feedback" id="exchangeLimit_error">
+											ضع الحد الادني لستبدال النقاط
+										</div>
+										@error('exchangeLimit')
+										<div class="text-danger">
+											{{$message}}
+										</div>
+									   @enderror
+									  </div>
+									  <div class="col-md-4 mt-4 ">
+										<label for="nationalId" class="form-label text-danger">النقاط علي كل 100 شيكل</label>
+										<input name="transferPoints" class="form-control" required
+										value="{{old('transferPoints')}}"
+										 type="text"   id="transferPoints" placeholder="كم نقطه يمكن كسبها من كل 100 نقطه"  >
+										<div class="valid-feedback">
+											ممتاز !
+										</div>
+										<div class="invalid-feedback" id="transferPoints_error">
+                                            كم نقطه لكل 100 نقطه شراء
+										</div>
+										@error('transferPoints')
 										<div class="text-danger">
 											{{$message}}
 										</div>
