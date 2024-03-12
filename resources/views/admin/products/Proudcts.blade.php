@@ -64,9 +64,7 @@
                             </td>
                             <td class="text-right">{{$allproducts->userToProduct->name}}</td>
                             <td class="text-right">{{$allproducts->name}}</td>
-                            <td class="text-right">
-                                {{$allproducts->productionToCategoryRealtions->name}}
-                            </td>
+                            <td class="text-right">{{$allproducts->productionToCategoryRealtions->name}}</td>
                             <td class="text-right">
                                 {{$allproducts->price}}
                             </td>
