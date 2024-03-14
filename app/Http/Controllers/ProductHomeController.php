@@ -19,6 +19,6 @@ class ProductHomeController extends Controller
         // get notifactions
 
 
-        return view('products');
+        return view('store.index');
     }
 }

@@ -6,13 +6,41 @@
 <link rel="stylesheet" href="{{URL::asset('assets/css-rtl/nestDropdown.css')}}">
 
 <style>
-.modal-backdrop{
-    display: none
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+.card{
+	border-radius: 10px;
 }
 
-.modal-content{
-    /* display: none !important; */
+.card-img-top{
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.mid{
+	background: #ECEDF1;
+}
+
+small.key{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.btn-danger{
+	color: #FFCBD2;
+}
+.btn-danger:focus{
+	box-shadow: none;
+}
+small.justify-content-center{
+	font-size: 9px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+@media screen and (max-width:600px){
+    .col-sm-4{
+        margin-bottom: 50px;
+    }
 }
 </style>
 @endsection
@@ -37,61 +65,32 @@
 					<div class="row ">
 
                         @foreach ($products as $product)
-							<div class="col-md-4 col-lg-3 col-xl-3  col-sm-6">
-								<div class="card shadow-none">
-									<div class="card-title mt-2  d-block d-sm-block d-md-none d-lg-none">
-										<div class="row">
-											<div class="demo-avatar-group col-3">
-												<div class="main-img-user  avatar-md  mr-3">
-													{{-- <img alt="avatar" class="rounded-circle" src="http://127.0.0.1:8080/assets/img/faces/4.jpg"> --}}
-													<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="">
-														<img alt="avatar" class="bd bd-2 bd-success rounded-circle"src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}">
-												   </a>
-												</div>
-											</div>
-											<div class="market-data col-9 m-auto">
-												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$product->name}}</h6>
-												<span class=" tx-12 ml-auto">
-													 خصم % <b>{{$product->discount}}</b>
-													</span>
-													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
-											</div>
-										</div>
-
-
+						<div class="col-sm-3">
+								<a href="">
+								<div class="card">
+								  <img src="{{asset($product->productionToImgRealtions->mainImage)}}" class="card-img-top" width="100%">
+								  <div class="card-body pt-2 px-0">
+									<div class="d-flex flex-row tx-20 justify-content-between mb-0 px-3">
+									  <small class="text-muted tx-20 mt-1">عرض المتجر</small>
+									  <h3>&#8362;22,495</h3>
 									</div>
-									<div class="card-body pt-1 pt-md-3  ">
-										<div class="pro-img-box">
-											<div class="d-flex product-sale">
-												<div class="badge bg-success">عروض المتجر</div>
-												{{-- <i class="mdi mdi-heart-outline ml-auto wishlist"></i> --}}
-											</div>
-                                            <div class="row justify-content-center">
-
-											<a href="{{url('product-details/'.$product->id)}}">
-												<img class="w-100" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="product-image">
-											</a>
-											<a href="{{url('MarketProfile/'.$product->userToProduct->id)}}" class="adtocart col-auto overflow-hidden p-0  d-none d-sm-none d-md-block d-lg-block">
-												 <img  class="bd bd-2 bd-success w-100 rounded-circle" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="merchant-logo"></i>
-											</a>
-                                        </div>
-
-										</div>
-										<div class="text-center pt-3 d-none d-sm-none d-md-block d-lg-block">
-											<h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{$product->name}}</h3>
-											<span class="tx-15 ml-auto">
-												% الخصم <b>{{$product->discount}}</b>
-
-											</span>
-											<h4 class="h5 mb-0 mt-2 text-center d-block font-weight-bold text-danger">₪{{$product->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$product->price}}</span></h4>
-										</div>
-
+									<hr class="mt-2 mx-3">
+									<div class="d-flex flex-row justify-content-between px-3 pb-4">
+									  <div class="d-flex flex-column"><span class="text-muted">خصم</span><small class="text-muted">L/100KM&ast;</small></div>
+									  <div class="d-flex flex-column"><h5 class="mb-0">% <b>{{$product->discount}}</b></h5><small class="text-muted text-right">(city/Hwy)</small></div>
 									</div>
-
+									<div class="d-flex flex-row justify-content-between p-3 mid">
+									  <div class="d-flex flex-column"><small class="text-muted mb-1">ENGINE</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">1.4L MultiAir</small><small class="ghj">16V I-4 Turbo</small></div></div></div>
+									  <div class="d-flex flex-column"><small class="text-muted mb-2">HORSEPOWER</small><div class="d-flex flex-row"><img src="https://imgur.com/J11mEBq.png"><h6 class="ml-1">135 hp&ast;</h6></div></div>
+									</div>
+									<small class="text-muted key pl-3">Standard key Features</small>
+									<div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"><small>BUILD & PRICE</small></button></div>
+									<small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>
+								  </div>
 								</div>
-
+							</a>
 							</div>
-                            @endforeach
+						@endforeach
 
 					</div>
 					<div class="col-12 w-100 pagination ">
