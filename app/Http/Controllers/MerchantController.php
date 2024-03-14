@@ -252,19 +252,19 @@ class MerchantController extends Controller
 
 
         if($request->hasFile('mainImage')){
-            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->scale(600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $mainImage = 'upload/products/img/'. $imageName;
         }
         if($request->hasFile('img2')){
-            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img2 = 'upload/products/img/'. $imageName;
         }
         if($request->hasFile('img3')){
-            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img3 = 'upload/products/img/'. $imageName;
@@ -484,8 +484,8 @@ class MerchantController extends Controller
 
         // update product
         if($request->hasFile('mainImage')){
-            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,350);
-            // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->resize(600,600);
+            // $image  = ImageManagerStatic::make($request->file('mainImg'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $mainImage = 'upload/products/img/'. $imageName;
@@ -496,7 +496,7 @@ class MerchantController extends Controller
         }
 
         if($request->hasFile('img2')){
-            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('img2'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img2 = 'upload/products/img/'. $imageName;
@@ -507,7 +507,7 @@ class MerchantController extends Controller
         }
 
         if($request->hasFile('img3')){
-            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,350);
+            $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img3 = 'upload/products/img/'. $imageName;

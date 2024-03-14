@@ -1,9 +1,10 @@
 <?php
 namespace App\ViewComposer;
 
+use App\Models\subCat;
 use App\Models\merchant;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Request;
 
 Class SearchBar
 {
@@ -50,7 +51,15 @@ Class SearchBar
             $products = merchant::with('userToProduct.userToDetalis')->where('append','1')->inRandomOrder()->latest()->paginate(16);
         }
 
-        $view->with('products', $products);
+
+        $mainCat = subCat::get();
+
+        $mainCatindex4 = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(4)->get();
+
+
+        $view->with('products', $products)
+        ->with('mainCat',$mainCat)
+        ->with('mainCatindex4',$mainCatindex4);
 
     }
 

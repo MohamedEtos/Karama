@@ -5,6 +5,7 @@
 <!--- Internal Sweet-Alert css-->
 <link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.css')}}">
+<link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 
 @endsection
 @section('page-header')
@@ -169,7 +170,7 @@
         <h6 class="modal-title">اضافه القسم</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
     </div>
     <div class="modal-body">
-        <form method="post" action="{{route('store.category')}}" id="storeCategory">
+        <form method="post" action="{{route('store.category')}}" id="storeCategory" enctype="multipart/form-data">
             @csrf
             {{-- <input type="hidden" name="categoryId" value=""> --}}
         <div class="mb-3">
@@ -192,9 +193,10 @@
            @enderror
         </div>
         <div class="mb-3">
-            <label for="name">وصف القسم</label>
-            <input name="descrption" id="descrption" type="textarea" autofocus class="form-control  @error('name') is-invalid @enderror" required>
-            @error('descrption')
+            <label for="name">صوره القسم</label>
+            <input type="file" name='catimg' required class="dropify @error('name') is-invalid @enderror"  data-height="200" />
+            {{-- <input name="descrption" id="descrption" type="textarea" autofocus class="form-control  @error('name') is-invalid @enderror" required> --}}
+            @error('catimg')
             <div class="text-danger">
                 {{$message}}
             </div>
@@ -279,7 +281,8 @@
 
 <script src="{{URL::asset('https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js')}}"></script>
 <script src="{{URL::asset('assets/js/modal.js')}}"></script>
-
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 
 
 <!--Internal  Datatable js -->

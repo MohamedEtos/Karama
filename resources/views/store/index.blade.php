@@ -33,7 +33,7 @@
                 }
               }'>
               <div class="swiper-wrapper">
-            
+
                 <!-- Slide-->
                 <div class="swiper-slide position-relative h-100 w-100">
                   <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
@@ -52,7 +52,7 @@
                   </div>
                 </div>
                 <!-- /Slide-->
-            
+
                 <!-- Slide-->
                 <div class="swiper-slide position-relative h-100 w-100">
                   <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
@@ -71,7 +71,7 @@
                   </div>
                 </div>
                 <!--/Slide-->
-            
+
                 <!-- Slide-->
                 <div class="swiper-slide position-relative h-100 w-100">
                   <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 <!-- /Slide-->
-            
+
                 <!--Slide-->
                 <div class="swiper-slide position-relative h-100 w-100">
                   <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
@@ -109,11 +109,11 @@
                   </div>
                 </div>
                 <!--/Slide-->
-            
+
               </div>
-            
+
               <div class="swiper-pagination swiper-pagination-bullet-light"></div>
-            
+
             </div>
             <!-- / Swiper Info-->        </section>
         <!--/ Top Banner-->
@@ -124,134 +124,37 @@
                 <section class="marquee marquee-hover-pause">
                     <div class="marquee-body">
                         <div class="marquee-section animation-marquee-50">
+
+
+                            @foreach ($products as $product)
+
                             <div class="mx-3 mx-lg-5 f-w-24">
                                 <a class="d-block" href="./category.html">
                                     <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-1.svg" alt="">
+                                        <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
                                     </picture>
                                 </a>
                             </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-2.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-3.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-4.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-5.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-6.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-7.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-8.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-9.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
+
+
+                            @endforeach
+
                         </div>
                         <div class="marquee-section animation-marquee-50">
+
+                            @foreach ($products as $product)
+
                             <div class="mx-5 f-w-24">
                                 <a class="d-block" href="./category.html">
                                     <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-1.svg" alt="">
+                                        <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
                                     </picture>
                                 </a>
                             </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-2.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-3.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-4.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-5.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-6.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-7.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-8.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-9.svg" alt="">
-                                    </picture>
-                                </a>
-                            </div>
+
+
+                            @endforeach
+
                         </div>
                     </div>
                 </section>
@@ -271,7 +174,7 @@
                         "slidesPerView": 1,
                         "observer": true,
                         "observeParents": true,
-                        "breakpoints": {     
+                        "breakpoints": {
                           "540": {
                             "slidesPerView": 1,
                             "spaceBetween": 0
@@ -288,98 +191,42 @@
                           "1500": {
                             "slidesPerView": 5
                           }
-                        },   
+                        },
                         "navigation": {
                           "nextEl": ".swiper-next",
                           "prevEl": ".swiper-prev"
                         }
                       }'>
                       <div class="swiper-wrapper">
+
+
+                        @foreach ($mainCatindex as $mainCats)
+
                           <div class="swiper-slide align-self-stretch bg-transparent h-auto">
                             <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="000">
                                 <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-7.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                    <img class="w-100" title="" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
                                 </picture>
-                                <p class="title-small mb-2 text-muted">Must Haves</p>
-                                <h4 class="lead fw-bold">Premium Essentials</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
+                                <div class="" style="margin-right: 70px">
+                                    <p class="title-small mb-2 text-muted">قسم</p>
+                                    <h4 class="lead fw-bold">{{$mainCats->subCatRelation->name}}</h4>
+                                    <a href="{{'products?search='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
+                                </div>
                             </div>
                           </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="100">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Curated Selection</p>
-                                <h4 class="lead fw-bold">Our Favourites</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="200">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-3.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Streetwear Basics</p>
-                                <h4 class="lead fw-bold">T-Shirts &amp; Shirts</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="300">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-4.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Waterproof &amp; Lightweight</p>
-                                <h4 class="lead fw-bold">Jackets &amp; Coats</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="400">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-5.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Keep Warm</p>
-                                <h4 class="lead fw-bold">Hats &amp; Beanies</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="500">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-6.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">20% Off</p>
-                                <h4 class="lead fw-bold">Summer Sale</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="600">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Just Arrived</p>
-                                <h4 class="lead fw-bold">Latest Kicks</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="700">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="./Front-Store/images/categories/category-8.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                </picture>
-                                <p class="title-small mb-2 text-muted">Accessories</p>
-                                <h4 class="lead fw-bold">Bags &amp; Rugsacks</h4>
-                                <a href="./category.html" class="btn btn-psuedo align-self-start">Shop Now</a>
-                            </div>
-                          </div>
+
+
+                          @endforeach
+
+
+
+
+
                       </div>
-                    
+
                       <div class="swiper-btn swiper-prev swiper-disabled-hide swiper-btn-side btn-icon bg-white text-dark ms-3 shadow mt-n5"><i class="ri-arrow-left-s-line "></i></div>
                       <div class="swiper-btn swiper-next swiper-disabled-hide swiper-btn-side swiper-btn-side-right btn-icon bg-white text-dark me-3 shadow mt-n5"><i class="ri-arrow-right-s-line ri-lg"></i></div>
-                    
+
                     </div>
                     <!-- / Swiper Latest-->                <!-- SVG Used for Clipath on featured images above-->
                 <svg width="0" height="0">
@@ -394,24 +241,24 @@
             <!-- Homepage Intro-->
             <div class="position-relative row my-lg-7 pt-5 pt-lg-0 g-8">
                 <div class="bg-text bottom-0 start-0 end-0" data-aos="fade-up">
-                    <h2 class="bg-text-title opacity-10"><span class="text-outline-dark">Old</span>Skool</h2>
+                    <h2 class="bg-text-title opacity-10"><span class="text-outline-dark">Karama</span>.SC</h2>
                 </div>
                 <div class="col-12 col-md-6 position-relative z-index-20 mb-7 mb-lg-0" data-aos="fade-right">
-                    <p class="text-muted title-small">Welcome</p>
-                    <h3 class="display-3 fw-bold mb-5"><span class="text-outline-dark">OldSkool</span> - streetwear & footwear specialists</h3>
-                    <p class="lead">We are OldSkool, a leading supplier of global streetwear brands, including names such as <a href="./category.html">Stussy</a>, <a href="./category.html">Carhartt</a>, <a href="./category.html">Gramicci</a>, <a href="./category.html">Afends</a> and many more.</p>
-                    <p class="lead">With worldwide shipping and unbeatable prices - now's a great time to pick out something from our range.</p>
-                    <a href="./category.html" class="btn btn-psuedo" role="button">Shop New Arrivals</a>
+                    <p class="text-muted title-small">مرحبا</p>
+                    <h3 class="display-3 fw-bold mb-5"><span class="text-outline-dark">نادي الكرامه</span> - نادي نابلسي حديث التأسيس بأيدي شبابية</h3>
+                    <p class="lead">يهدف لنشر الوعي والتثقيف الرياضي والوطني وتعزيز روح الانتماء والعمل التطوعي من خلال تقديم الأنشطة.</p>
+                    <p class="lead">الثقافية والرياضية والمجتمعية بجودة عالية وبالتعاون مع كوادر مؤهلة، وبهمة شباب متطوعين</p>
+                    <a target="_blank" href="https://www.facebook.com/karamacsclube" class="btn btn-psuedo" role="button">زورونا علي فيس بوك</a>
                 </div>
-                <div class="col-12 col-md-6 position-relative z-index-20 pe-0" data-aos="fade-left">
+                <div class="col-12 col-md-6 position-relative z-index-20 pe-200 SC_Image" data-aos="fade-left">
                     <picture class="w-50 d-block position-relative z-index-10 border border-white border-4 shadow-lg">
-                        <img class="img-fluid" src="./Front-Store/images/banners/banner-5.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/first.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
                     </picture>
                     <picture class="w-60 d-block me-8 mt-n10 shadow-lg border border-white border-4 position-relative z-index-20 ms-auto">
-                        <img class="img-fluid" src="./Front-Store/images/banners/banner-6.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
                     </picture>
                     <picture class="w-50 d-block me-8 mt-n7 shadow-lg border border-white border-4 position-absolute top-0 end-0 z-index-0 ">
-                        <img class="img-fluid" src="./Front-Store/images/banners/banner-7.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/363744914_125960060558186_7383906757758911412_n.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
                     </picture>
                 </div>
             </div>
@@ -426,58 +273,31 @@
                         </picture>
                         <div class="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center z-index-20">
                             <div class="py-6 px-5 px-lg-10 text-center w-100">
-                                <h2 class="display-1 mb-3 fw-bold text-white"><span class="text-outline-light">Flash</span> Sale</h2>
-                                <p class="fs-5 fw-light text-white d-none d-md-block">Our yearly flash sale is now on! Grab yourself a bargain from the world's leading streetwear brands.</p>
-                                <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop All Sale Items</a>
+                                <h2 class="display-1 mb-3 fw-bold text-white"><span class="text-outline-light">%</span> خصومات</h2>
+                                <p class="fs-5 fw-light text-white d-none d-md-block">استمتع بتخفيضات ومميزات بطاقه الكرامه ونظام النقاط الاول في فلسطين .</p>
+                                <a href="" class="btn btn-psuedo text-white" role="button">تسوق الان</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-xl-6" data-aos="fade-left">
+
                         <div class="row g-4 justify-content-end">
+                        @foreach ($mainCatindex4 as $mainCats4)
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="card position-relative overflow-hidden">
-                                    <picture class="position-relative z-index-10 d-block bg-light">
-                                        <img class="w-100 rounded" src="./Front-Store/images/banners/banner-8.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                    <picture class="position-relative z-index-10  d-block bg-light">
+                                        <img class="w-100 rounded" src="{{asset($mainCats4->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
                                     </picture>
                                     <div class="card-overlay">
-                                        <p class="lead fw-bolder mb-2">The Jordan Delta 2</p>
-                                        <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop Kicks</a>
+                                        <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>
+                                        <a href="{{'products?search='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 d-flex">
-                                <div class="card position-relative overflow-hidden">
-                                    <picture class="position-relative z-index-10 d-block bg-light">
-                                        <img class="w-100 rounded" src="./Front-Store/images/banners/banner-9.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                    </picture>
-                                    <div class="card-overlay">
-                                        <p class="lead fw-bolder mb-2">Latest Mens Shirts</p>
-                                        <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop New</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 d-flex">
-                                <div class="card position-relative overflow-hidden">
-                                    <picture class="position-relative z-index-10 d-block bg-light">
-                                        <img class="w-100 rounded" src="./Front-Store/images/banners/banner-10.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                    </picture>
-                                    <div class="card-overlay">
-                                        <p class="lead fw-bolder mb-2">KiiKii Osake Tees</p>
-                                        <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop T-Shirts</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 d-flex">
-                                <div class="card position-relative overflow-hidden">
-                                    <picture class="position-relative z-index-10 d-block bg-light">
-                                        <img class="w-100 rounded" src="./Front-Store/images/banners/banner-11.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                    </picture>
-                                    <div class="card-overlay">
-                                        <p class="lead fw-bolder mb-2">Multibuy Womens Shirts</p>
-                                        <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop Sale Items</a>
-                                    </div>
-                                </div>
-                            </div>
+
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>
@@ -487,8 +307,9 @@
             <!-- Instagram-->
             <!-- Swiper Instagram -->
             <div data-aos="fade-in">
-              <h3 class="title-small text-muted text-center mb-3 mt-5"><i class="ri-instagram-line align-bottom"></i>
-                #OLDSKOOL
+              <h3 class="title-small text-muted text-center mb-3 mt-5">
+                Karama-SC#
+                <i class="fa-brands fa-facebook"></i>
             </h3>
             <div class="overflow-hidden">
               <div class="swiper-container swiper-overflow-visible"
@@ -506,7 +327,7 @@
                       },
                       "600": {
                         "slidesPerView": 3
-                      },       
+                      },
                       "999": {
                         "slidesPerView": 5
                       },
@@ -515,91 +336,91 @@
                       }
                     }
                   }'>
-                <div class="swiper-wrapper mb-5">
-            
+                <div class="swiper-wrapper  mb-5">
+
                   <!-- Start of instagram slideshow loop for items-->
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1586396874197-b8fc676a5187?ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib&#x3D;rb-1.2.1&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/425257464_251399568014234_9120549982258658918_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TpYJbcCxs8QAX9sqXPo&_nc_ht=scontent.fcai22-4.fna&oh=00_AfAG14vQ4uVgfxq9dPvyJbDKyRexRMqfDdgb3TRslsy_pw&oe=65F83E2C"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib&#x3D;rb-1.2.1&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/385754888_168765576277634_6042439594596598087_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=qIaFGqg53S4AX-7CSem&_nc_ht=scontent.fcai22-1.fna&oh=00_AfCBjkXR8Q_C2PRFwjMFelOIpNZK5s1rj1m3gg7CZDzXfA&oe=65F87CB6"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1503341338985-c0477be52513?ixlib&#x3D;rb-1.2.1&amp;ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/380524442_161747346979457_4719575090658964206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hVa1y7EOlZIAX8Kprch&_nc_ht=scontent.fcai22-1.fna&oh=00_AfDn8TlJ0MIMGklRlLq3JOzvq0p9bqVCiQ-3IwwX0T-wqA&oe=65F6F94D"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1566677914817-56426959ae9c?ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib&#x3D;rb-1.2.1&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/430061800_264625656691625_2773649789593442638_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=jWZvdZCCxnwAX_BYUL3&_nc_ht=scontent.fcai22-2.fna&oh=00_AfAYtZi-BNORR-EE6Dhph0E5U9ToxSn7cNjVbZ8UmGPScw&oe=65F7A02E"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?ixlib&#x3D;rb-1.2.1&amp;ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/424672855_251399841347540_4889760797947981241_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=BdsYq-9MfTMAX-MScOz&_nc_oc=AQlsi4PDAFbb3yqHwmvwgp7643oODy3gu9xdbsE3uJO9qVsQrQEmMmqqLOFNGWYILmU&_nc_ht=scontent.fcai22-4.fna&oh=00_AfCm-pM7wi-IbTuwwYVi-JjeDpjO4TvQEFrP4Xfu1LDBrA&oe=65F6EB2B"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1550246140-5119ae4790b8?ixlib&#x3D;rb-1.2.1&amp;ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/427961275_248481478306043_96700725318700946_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=VZl59_F2Gv4AX81D9EH&_nc_ht=scontent.fcai22-2.fna&oh=00_AfCfu74au6vFzRep6xIqcCjHx10LOSGmzzCakTayvNUbow&oe=65F821BC"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1520048480367-7a6a4b6efb2a?ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib&#x3D;rb-1.2.1&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/380524442_161747346979457_4719575090658964206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hVa1y7EOlZIAX8Kprch&_nc_ht=scontent.fcai22-1.fna&oh=00_AfDn8TlJ0MIMGklRlLq3JOzvq0p9bqVCiQ-3IwwX0T-wqA&oe=65F6F94D"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column">
+                  <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://images.unsplash.com/photo-1550246140-29f40b909e5a?ixlib&#x3D;rb-1.2.1&amp;ixid&#x3D;MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;700&amp;h&#x3D;700"
+                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/380532617_160548627099329_8811326390498668422_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYPqkd4YEcYAX9CHEtK&_nc_ht=scontent.fcai22-2.fna&oh=00_AfB_bB0rgWCXX3Qh7CL9ZLyyYkAYx1bu9pxhxBLrAzNSrg&oe=65F6D763"
                         title=""
                         alt="">
                     </picture>
                   </div>
                   <!-- / end of items loop-->
-            
+
                 </div>
               </div>
             </div>

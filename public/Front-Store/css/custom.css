@@ -1,0 +1,32 @@
+html{
+    direction: rtl;
+}
+
+
+
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+
+
+  background-image: url("/assets/test-01.svg") ;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mainlogo{
+    width: 120px;
+}
+
+
+
+.widget-filter{
+    direction: ltr;
+
+}

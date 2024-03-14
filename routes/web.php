@@ -212,6 +212,7 @@ Route::get('/allNotify', [NotifyController::class,'allNotify'])->name('allNotify
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProductHomeController::class, 'index'])->name('/');
+    Route::get('products', [ProductHomeController::class, 'products'])->name('products');
     Route::get('searchBar', [ProductHomeController::class, 'searchBar']);
     Route::POST('markAllReadedAjax', [NotifyController::class, 'markAllReadedAjax'])->name('markAllReadedAjax');
     Route::get('/myPoints', [PointsController::class, 'myPoints'])->name('myPoints');

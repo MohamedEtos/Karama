@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
 use App\Models\subCat;
+use App\Models\category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic;
 
 class CategoryController extends Controller
 {
 
 
-    
+
     public function __construct()
     {
         $this->middleware('permission:الاقسام', ['only' => ['AllCategory']]);
@@ -85,15 +87,25 @@ class CategoryController extends Controller
     {
 
 
+
         $request->validate([
             'name' => [ 'string', 'required',  'max:255', 'unique:'.category::class],
-            'descrption' => 'nullable|max:200',
             'subCat' => 'required|max:200',
+            'catimg'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+
+        if($request->hasFile('catimg')){
+            $image  = ImageManagerStatic::make($request->file('catimg'))->encode('webp')->resize(600,600);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/catsimg/img/'. $imageName));
+            $catimg = 'upload/catsimg/img/'. $imageName;
+        }
+
 
         $category = category::create([
             'name' =>$request->name,
-            'descrption' => $request->descrption,
+            'catimg' => $catimg,
         ]);
 
         if(! empty($request->subCat)){
