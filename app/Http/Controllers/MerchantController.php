@@ -252,7 +252,7 @@ class MerchantController extends Controller
 
 
         if($request->hasFile('mainImage')){
-            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp')->scale(600);
+            $image  = ImageManagerStatic::make($request->file('mainImage'))->encode('webp');
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $mainImage = 'upload/products/img/'. $imageName;

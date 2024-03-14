@@ -344,7 +344,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/425257464_251399568014234_9120549982258658918_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TpYJbcCxs8QAX9sqXPo&_nc_ht=scontent.fcai22-4.fna&oh=00_AfAG14vQ4uVgfxq9dPvyJbDKyRexRMqfDdgb3TRslsy_pw&oe=65F83E2C"
+                        src="{{asset('Front-Store/images/footerimage/Picture3.jpg')}}"
                         title=""
                         alt="">
                     </picture>
@@ -354,7 +354,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/385754888_168765576277634_6042439594596598087_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=qIaFGqg53S4AX-7CSem&_nc_ht=scontent.fcai22-1.fna&oh=00_AfCBjkXR8Q_C2PRFwjMFelOIpNZK5s1rj1m3gg7CZDzXfA&oe=65F87CB6"
+                        src="{{asset('Front-Store/images/footerimage/Picture4.png')}}"
                         title=""
                         alt="">
                     </picture>
@@ -384,7 +384,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/424672855_251399841347540_4889760797947981241_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=BdsYq-9MfTMAX-MScOz&_nc_oc=AQlsi4PDAFbb3yqHwmvwgp7643oODy3gu9xdbsE3uJO9qVsQrQEmMmqqLOFNGWYILmU&_nc_ht=scontent.fcai22-4.fna&oh=00_AfCm-pM7wi-IbTuwwYVi-JjeDpjO4TvQEFrP4Xfu1LDBrA&oe=65F6EB2B"
+                        src="{{asset('Front-Store/images/footerimage/Picture5.png')}}"
                         title=""
                         alt="">
                     </picture>
