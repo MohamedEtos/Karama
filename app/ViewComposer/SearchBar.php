@@ -52,13 +52,17 @@ Class SearchBar
         }
 
 
-        $mainCat = subCat::get();
+        $mainCat = subCat::inRandomOrder()->get();
 
         $mainCatindex4 = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(4)->get();
+        $mainCatindex6 = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(6)->get();
+
+
 
 
         $view->with('products', $products)
         ->with('mainCat',$mainCat)
+        ->with('mainCatindex6',$mainCatindex6)
         ->with('mainCatindex4',$mainCatindex4);
 
     }

@@ -26,7 +26,7 @@
 
                         <!-- Navbar Search-->
                         <li class="d-none d-sm-block">
-                            <span class="nav-link text-body search-trigger cursor-pointer">Search</span>
+                            <span class="nav-link text-body search-trigger cursor-pointer">بحث</span>
 
                             <!-- Search navbar overlay-->
                             <div class="navbar-search d-none">
@@ -34,7 +34,7 @@
                                     <span class="input-group-text px-4 bg-transparent border-0"><i
                                             class="ri-search-line ri-lg"></i></span>
                                     <input type="text" class="form-control text-body bg-transparent border-0"
-                                        placeholder="Enter your search terms...">
+                                        placeholder="اكتب ما تبحث عنه">
                                     <span
                                         class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent border-0"><i
                                             class="ri-close-circle-line ri-lg"></i></span>
@@ -49,7 +49,7 @@
                         <!-- Navbar Login-->
                         <li class="ms-1 d-none d-lg-inline-block">
                             <a class="nav-link text-body" href="./login.html">
-                                Account
+                                الحساب
                             </a>
                         </li>
                         <!-- /Navbar Login-->
@@ -57,15 +57,25 @@
                         <!-- Navbar Cart Icon-->
                         <li class="ms-1 d-inline-block position-relative dropdown-cart">
                             <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body"
+                            
                                 type="button">
-                                Bag (2)
+                                (<span id="countNotify">{{$notifyCount}}</span>)<i class="fa-regular fa-bell @if ($notifyCount > 0)
+                                    fa-shake
+                                @endif fa-xl"></i>
                             </button>
-                            <div class="cart-dropdown dropdown-menu">
+                            <div class="cart-dropdown dropdown-menu overflow-auto " style="max-height: 500px;">
 
                                 <!-- Cart Header-->
                                 <div class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-4">
-                                    <h6 class="fw-bolder m-0">Cart Summary (2 items)</h6>
-                                    <i class="ri-close-circle-line text-muted ri-lg cursor-pointer btn-close-cart"></i>
+                                    <h6 class="fw-bolder m-0">لديك ({{$notifyCount}}) اشعارات</h6>
+                                    <form class="" id="form">
+                                            @csrf
+                                            @isset($notifyId)
+                                            <input type="hidden" name="uId" value="{{$notifyId->reseverId}}">
+                                            {{-- <button id="submit" type="submit"  class="badge badge-pill badge-warning mr-auto my-auto">ضع علامة  تم القراءة</button> --}}
+                                            <i id="submitform" class="ri-close-line text-muted ri-lg cursor-pointer btn-close-cart"></i>
+                                            @endisset
+                                    </form>
                                 </div>
                                 <!-- / Cart Header-->
 
@@ -73,58 +83,31 @@
                                 <div>
 
                                     <!-- Cart Product-->
+                                    @forelse ( $notify as $NewData )
                                     <div class="row mx-0 py-4 g-0 border-bottom">
                                         <div class="col-2 position-relative">
                                             <picture class="d-block ">
-                                                <img class="img-fluid" src="./Front-Store/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                                <img class="img-fluid w-50" src="{{asset($NewData->notifyMerchant->userToDetalis->ProfileImage)}}" alt="HTML Bootstrap Template by Pixel Rocket">
                                             </picture>
                                         </div>
-                                        <div class="col-9 offset-1">
-                                            <div>
-                                                <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                                    Nike Air VaporMax 2021
-                                                    <i class="ri-close-line ms-3"></i>
+                                        <div class="col-9  offset-1">
+                                            <div style="margin-right: 10px">
+                                                <h6 class="justify-content-between  d-flex align-items-start mb-2" >
+                                                    {{$NewData->notifyMerchant->name}}
+                                                {{-- <i class="ri-close-line ms-3"></i> --}}
                                                 </h6>
-                                                <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: 9 / Qty: 1</span>
+                                                <span class="d-block text-muted fw-bolder text-uppercase fs-9" style="float: right">{{$NewData->messages}}</span>
                                             </div>
-                                            <p class="fw-bolder text-end text-muted m-0">$85.00</p>
+                                            <p class="fs-9 text-end text-muted m-0" style="float: left" >{{$NewData->created_at->diffForHumans()}}</p>
                                         </div>
                                     </div>
-                                    <!-- Cart Product-->
-                                    <div class="row mx-0 py-4 g-0 border-bottom">
-                                        <div class="col-2 position-relative">
-                                            <picture class="d-block ">
-                                                <img class="img-fluid" src="./Front-Store/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                            </picture>
-                                        </div>
-                                        <div class="col-9 offset-1">
-                                            <div>
-                                                <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                                    Nike ZoomX Vaporfly
-                                                    <i class="ri-close-line ms-3"></i>
-                                                </h6>
-                                                <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: 11 / Qty: 1</span>
-                                            </div>
-                                            <p class="fw-bolder text-end text-muted m-0">$125.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Cart Items-->
-
-                                <!-- Cart Summary-->
-                                <div>
-                                    <div class="pt-3">
-                                        <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-start mb-4 mb-md-2">
-                                            <div>
-                                                <p class="m-0 fw-bold fs-5">Grand Total</p>
-                                                <span class="text-muted small">Inc $45.89 sales tax</span>
-                                            </div>
-                                            <p class="m-0 fs-5 fw-bold">$422.99</p>
-                                        </div>
-                                    </div>
-                                    <a href="./cart.html" class="btn btn-outline-dark w-100 text-center mt-4" role="button">View Cart</a>
-                                    <a href="./checkout.html" class="btn btn-dark w-100 text-center mt-2" role="button">Proceed To Checkout</a>
-                                </div>
+    
+                                    @empty
+                                        
+                                    @endforelse
+                                                                        <!-- Cart Product-->
+                                   
+                                
                                 <!-- / Cart Summary-->
                               </div>
 
@@ -132,8 +115,20 @@
                         </li>
                         <!-- /Navbar Cart Icon-->
 
+
+                        <!-- Navbar Login-->
+                        {{-- <li class="ms-1 d-none d-lg-inline-block">
+                            <a class="nav-link text-body" href="./login.html">
+                                Account
+                            </a>
+                        </li> --}}
+                        <!-- /Navbar Login-->
+
+
                     </ul>
                     <!-- Navbar Icons-->
+
+                    
 
                     <!-- Main Navigation-->
                     <div class="flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1 order-2 order-lg-1"
@@ -157,16 +152,9 @@
 
                                                   <!-- menu row-->
                                                   <div class="col">
-                                                      <h6 class="dropdown-heading">{{$mainCats->subCatRelation->name}}</h6>
+                                                      <h6 class="dropdown-heading" style="float: right">{{$mainCats->subCatRelation->name}}</h6>
                                                       <ul class="list-unstyled">
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Waterproof Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Insulated Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Down Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Softshell Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Casual Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Windproof Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Breathable Jackets</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">Cleaning & Proofing</a></li>
+                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">{{$mainCats->name}}</a></li>
                                                           <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="./category.html">View All</a></li>
                                                       </ul>
                                                   </div>
@@ -181,48 +169,17 @@
                                               </div>
 
                                               <div class="align-items-center justify-content-between mt-5 d-none d-lg-flex">
+
+                                                @foreach ($mainCatindex6 as $mainCats )
                                                   <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
+                                                      <a class="d-block" href="{{'products?search='.$mainCats->subCatRelation->name}}">
                                                           <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-1.svg" alt="">
+                                                              <img class="img-fluid d-table mx-auto" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="">
                                                           </picture>
                                                       </a>
                                                   </div>
-                                                  <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
-                                                          <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-2.svg" alt="">
-                                                          </picture>
-                                                      </a>
-                                                  </div>
-                                                  <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
-                                                          <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-3.svg" alt="">
-                                                          </picture>
-                                                      </a>
-                                                  </div>
-                                                  <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
-                                                          <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-4.svg" alt="">
-                                                          </picture>
-                                                      </a>
-                                                  </div>
-                                                  <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
-                                                          <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-5.svg" alt="">
-                                                          </picture>
-                                                      </a>
-                                                  </div>
-                                                  <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="./category.html">
-                                                          <picture>
-                                                              <img class="img-fluid d-table mx-auto" src="./Front-Store/images/logos/logo-6.svg" alt="">
-                                                          </picture>
-                                                      </a>
-                                                  </div>
+                                                  @endforeach
+                                                  
                                               </div>                  </div>
                                           <!-- /Menswear Dropdown Menu Links Section-->
 
@@ -231,38 +188,17 @@
                                               <div class="vw-50 border-start h-100 position-absolute"></div>
                                               <div class="py-lg-5 position-relative z-index-10 px-lg-4">
                                                   <div class="row g-4">
+                                                    @foreach ($mainCatindex4 as $mainCatindex )
                                                       <div class="col-12 col-md-6">
                                                           <div class="card justify-content-center d-flex align-items-center bg-transparent">
                                                               <picture class="w-100 d-block mb-2 mx-auto">
-                                                                  <img class="w-100 rounded" title="" src="./Front-Store/images/banners/banner-12.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                                                  <img class="w-100 rounded" title="" src="{{asset($mainCatindex->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
                                                               </picture>
-                                                              <a class="fw-bolder link-cover" href="./category.html">Latest Arrivals</a>
+                                                              <a class="fw-bolder link-cover" href="{{'products?search='.$mainCatindex->subCatRelation->name}}">{{$mainCatindex->subCatRelation->name}}</a>
                                                           </div>
                                                       </div>
-                                                      <div class="col-12 col-md-6">
-                                                          <div class="card justify-content-center d-flex align-items-center bg-transparent">
-                                                              <picture class="w-100 d-block mb-2 mx-auto">
-                                                                  <img class="w-100 rounded" title="" src="./Front-Store/images/banners/banner-13.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                                              </picture>
-                                                              <a class="fw-bolder link-cover" href="./category.html">Accessories</a>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12 col-md-6">
-                                                          <div class="card justify-content-center d-flex align-items-center bg-transparent">
-                                                              <picture class="w-100 d-block mb-2 mx-auto">
-                                                                  <img class="w-100 rounded" title="" src="./Front-Store/images/banners/banner-14.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                                              </picture>
-                                                              <a class="fw-bolder link-cover" href="./category.html">T-Shirts</a>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12 col-md-6">
-                                                          <div class="card justify-content-center d-flex align-items-center bg-transparent">
-                                                              <picture class="w-100 d-block mb-2 mx-auto">
-                                                                  <img class="w-100 rounded" title="" src="./Front-Store/images/banners/banner-15.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                                              </picture>
-                                                              <a class="fw-bolder link-cover" href="./category.html">Jackets</a>
-                                                          </div>
-                                                      </div>
+                                                      @endforeach
+                                                      
                                                   </div>
                                                   <a href="./category.html" class="btn btn-link p-0 fw-bolder text-link-border mt-5 text-dark mx-auto d-table">Visit Mens Section</a>
                                               </div>
