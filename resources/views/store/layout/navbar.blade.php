@@ -56,12 +56,12 @@
 
                         <!-- Navbar Cart Icon-->
                         <li class="ms-1 d-inline-block position-relative dropdown-cart">
-                            <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body"
+                            <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body"id="bell"
                             
                                 type="button">
-                                (<span id="countNotify">{{$notifyCount}}</span>)<i class="fa-regular fa-bell @if ($notifyCount > 0)
+                                (<span id="countNotify">{{$notifyCount}}</span>)<i  class="fa-regular fa-bell @if ($notifyCount > 0)
                                     fa-shake
-                                @endif fa-xl"></i>
+                                @endif fa-xl" style="--fa-animation-duration: 2.5s;"></i>
                             </button>
                             <div class="cart-dropdown dropdown-menu overflow-auto " style="max-height: 500px;">
 

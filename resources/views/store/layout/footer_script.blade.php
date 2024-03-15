@@ -12,7 +12,7 @@
 
         $(function() {
         
-        $('#submitform').on('click', function(e) {
+        $('#submitform, #bell').on('click', function(e) {
         //remove all old errors
         
             e.preventDefault();
