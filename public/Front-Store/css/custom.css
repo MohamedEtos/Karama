@@ -30,3 +30,24 @@ body {
     direction: ltr;
 
 }
+
+
+.log_out{
+    padding-right: 0px !important;
+}
+
+.profile-user {
+    width: 40px;
+    padding-right: 0px !important;
+}
+
+.username{
+    padding-top: 10px;
+    padding-right: 5px;
+    margin-bottom: 5px;
+}
+
+
+ul.pagination{
+    padding: 0px;
+}

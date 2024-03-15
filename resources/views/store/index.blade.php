@@ -200,20 +200,19 @@
                       <div class="swiper-wrapper">
 
 
-                        @foreach ($mainCatindex as $mainCats)
+                        @foreach ($mainCatindex as $key => $mainCats)
 
                           <div class="swiper-slide align-self-stretch bg-transparent h-auto">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="000">
+                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="{{$key++}}00">
                                 <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
+                                    <img class="w-100" title="" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="Karama-SC">
                                 </picture>
-                                <div class="" style="margin-right: 70px">
                                     <p class="title-small mb-2 text-muted">قسم</p>
                                     <h4 class="lead fw-bold">{{$mainCats->subCatRelation->name}}</h4>
                                     <a href="{{'products?search='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
-                                </div>
                             </div>
                           </div>
+
 
 
                           @endforeach
@@ -252,13 +251,13 @@
                 </div>
                 <div class="col-12 col-md-6 position-relative z-index-20 pe-200 SC_Image" data-aos="fade-left">
                     <picture class="w-50 d-block position-relative z-index-10 border border-white border-4 shadow-lg">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/first.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/first.jpg')}}" alt="Karama-SC">
                     </picture>
                     <picture class="w-60 d-block me-8 mt-n10 shadow-lg border border-white border-4 position-relative z-index-20 ms-auto">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}}" alt="Karama-SC">
                     </picture>
                     <picture class="w-50 d-block me-8 mt-n7 shadow-lg border border-white border-4 position-absolute top-0 end-0 z-index-0 ">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/363744914_125960060558186_7383906757758911412_n.jpg')}}" alt="HTML Bootstrap Template by Pixel Rocket">
+                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/363744914_125960060558186_7383906757758911412_n.jpg')}}" alt="Karama-SC">
                     </picture>
                 </div>
             </div>
@@ -269,7 +268,7 @@
                 <div class="row g-4">
                     <div class="col-12 col-xl-6 position-relative" data-aos="fade-right">
                         <picture class="position-relative z-index-10">
-                            <img class="w-100 rounded" src="./Front-Store/images/banners/banner-sale.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                            <img class="w-100 rounded" src="./Front-Store/images/banners/banner-sale.jpg" alt="Karama-SC">
                         </picture>
                         <div class="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center z-index-20">
                             <div class="py-6 px-5 px-lg-10 text-center w-100">
@@ -282,11 +281,11 @@
                     <div class="col-12 col-xl-6" data-aos="fade-left">
 
                         <div class="row g-4 justify-content-end">
-                        @foreach ($mainCatindex4 as $mainCats4)
+                        @foreach ($mainCatindex->slice(0,4) as $mainCats4)
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="card position-relative overflow-hidden">
                                     <picture class="position-relative z-index-10  d-block bg-light">
-                                        <img class="w-100 rounded" src="{{asset($mainCats4->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="w-100 rounded" src="{{asset($mainCats4->subCatRelation->catimg)}}" alt="Karama-SC">
                                     </picture>
                                     <div class="card-overlay">
                                         <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>

@@ -30,22 +30,22 @@
                     <div class="row g-3" data-aos="fade-right">
                         <div class="col-12">
                             <picture>
-                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-1.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-1.jpeg" alt="Karama-SC">
                             </picture>
                         </div>
                         <div class="col-12">
                             <picture>
-                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-2.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-2.jpeg" alt="Karama-SC">
                             </picture>
                         </div>
                         <div class="col-12">
                             <picture>
-                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-3.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-3.jpeg" alt="Karama-SC">
                             </picture>
                         </div>
                         <div class="col-12">
                             <picture>
-                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-4.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                <img class="img-fluid" data-zoomable src="./Front-store/images/products/product-page-4.jpeg" alt="Karama-SC">
                             </picture>
                         </div>
                     </div>
@@ -160,10 +160,10 @@
                                 </small>
                                 <div class="mt-4 d-flex justify-content-start flex-wrap align-items-start">
                                     <picture class="me-2">
-                                        <img class="f-w-24 p-2 bg-light border-bottom border-dark border-2 cursor-pointer" src="./Front-store/images/products/product-page-thumb-1.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="f-w-24 p-2 bg-light border-bottom border-dark border-2 cursor-pointer" src="./Front-store/images/products/product-page-thumb-1.jpeg" alt="Karama-SC">
                                     </picture>
                                     <picture>
-                                        <img class="f-w-24 p-2 bg-light cursor-pointer" src="./Front-store/images/products/product-page-thumb-2.jpeg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="f-w-24 p-2 bg-light cursor-pointer" src="./Front-store/images/products/product-page-thumb-2.jpeg" alt="Karama-SC">
                                     </picture>
                                 </div>
                             </div>

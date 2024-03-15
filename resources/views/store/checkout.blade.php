@@ -87,7 +87,7 @@
                                   <input type="text" class="form-control" id="firstNameBilling" placeholder="" value="" required="">
                                 </div>
                               </div>
-                            
+
                               <!-- Last Name-->
                               <div class="col-sm-6">
                                 <div class="form-group">
@@ -95,14 +95,14 @@
                                   <input type="text" class="form-control" id="lastNameBilling" placeholder="" value="" required="">
                                 </div>
                               </div>
-                            
+
                               <!-- Email-->
                               <div class="col-12">
                                 <div class="form-group">
                                   <label for="email" class="form-label">Email</label>
                                   <input type="email" class="form-control" id="email" placeholder="you@example.com">
                                 </div>
-                            
+
                                 <!-- Mailing List Signup-->
                                 <div class="form-group form-check m-0">
                                   <input type="checkbox" class="form-check-input" id="add-mailinglist" checked>
@@ -110,7 +110,7 @@
                                 </div>
                               </div>
                             </div>
-                            
+
                             <h3 class="fs-5 mt-5 fw-bolder mb-4 border-bottom pb-4">Shipping Address</h3>
                             <div class="row">
                               <!-- First Name-->
@@ -120,7 +120,7 @@
                                   <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
                                 </div>
                               </div>
-                            
+
                               <!-- Last Name-->
                               <div class="col-sm-6">
                                 <div class="form-group">
@@ -128,7 +128,7 @@
                                   <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
                                 </div>
                               </div>
-                            
+
                               <!-- Address-->
                               <div class="col-12">
                                 <div class="form-group">
@@ -136,7 +136,7 @@
                                   <input type="text" class="form-control" id="address" placeholder="123 Some Street Somewhere" required="">
                                 </div>
                               </div>
-                            
+
                               <!-- Country-->
                               <div class="col-md-12">
                                 <div class="form-group">
@@ -147,7 +147,7 @@
                                   </select>
                                 </div>
                               </div>
-                            
+
                               <!-- State-->
                               <div class="col-md-6">
                                 <div class="form-group">
@@ -158,7 +158,7 @@
                                   </select>
                                 </div>
                               </div>
-                            
+
                               <!-- Post Code-->
                               <div class="col-md-6">
                                 <div class="form-group">
@@ -167,7 +167,7 @@
                                 </div>
                               </div>
                             </div>
-                            
+
                             <div class="pt-4 mt-4 pb-5 border-top d-flex justify-content-between align-items-center">
                               <!-- Shipping Same Checkbox-->
                               <div class="form-group form-check m-0">
@@ -175,7 +175,7 @@
                                 <label class="form-check-label" for="same-address">Use for billing address</label>
                               </div>
                             </div>
-                            
+
                             <!-- Billing Address-->
                             <div class="billing-address d-none">
                               <h3 class="fs-5 fw-bolder mb-4 border-bottom pb-4">Billing Address</h3>
@@ -187,7 +187,7 @@
                                     <input type="text" class="form-control" id="firstNameAddress" placeholder="" value="" required="">
                                   </div>
                                 </div>
-                            
+
                                 <!-- Last Name-->
                                 <div class="col-sm-6">
                                   <div class="form-group">
@@ -195,7 +195,7 @@
                                     <input type="text" class="form-control" id="lastNameAddress" placeholder="" value="" required="">
                                   </div>
                                 </div>
-                            
+
                                 <!-- Address-->
                                 <div class="col-12">
                                   <div class="form-group">
@@ -203,7 +203,7 @@
                                     <input type="text" class="form-control" id="addressAddress" placeholder="123 Some Street Somewhere" required="">
                                   </div>
                                 </div>
-                            
+
                                 <!-- Country-->
                                 <div class="col-md-12">
                                   <div class="form-group">
@@ -214,7 +214,7 @@
                                     </select>
                                   </div>
                                 </div>
-                            
+
                                 <!-- State-->
                                 <div class="col-md-6">
                                   <div class="form-group">
@@ -225,7 +225,7 @@
                                     </select>
                                   </div>
                                 </div>
-                            
+
                                 <!-- Post Code-->
                                 <div class="col-md-6">
                                   <div class="form-group">
@@ -236,7 +236,7 @@
                               </div>
                             </div>
                             <!-- / Billing Address-->
-                            
+
                             <div class="pt-5 mt-5 pb-5 border-top d-flex justify-content-md-end align-items-center">
                               <a href="./checkout-shipping.html" class="btn btn-dark w-100 w-md-auto" role="button">Proceed to shipping</a>
                             </div>                        </div>
@@ -250,7 +250,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -269,7 +269,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -321,7 +321,7 @@
     <!-- Theme JS -->
     <!-- Vendor JS -->
     <script src="./assets/js/vendor.bundle.js"></script>
-    
+
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
 </body>

@@ -17,11 +17,14 @@ Class SearchBar
 
     public function compose($view)
     {
+
+
         $req = $this->request;
 
         $serch = request('search');
         $serchpersent = request('persent');
-        $priceRange = request('priceRange');
+        $startPrice = request('startPrice');
+        $endPrice = request('endPrice');
 
         if (request('search')) {
             $products = merchant::inRandomOrder()->where('append','1')->where(function($query) use ($serch){
@@ -43,10 +46,9 @@ Class SearchBar
             })
                 ->latest()->paginate(16);
 
-        }elseif(request('priceRange')){
-            $substringBefore = explode(';', $priceRange)[0];
-            $substringAfter = explode(';', $priceRange)[1];
-            $products = merchant::inRandomOrder()->where('append','1')->whereBetween('ThePriceAfterDiscount',[$substringBefore,$substringAfter])->latest()->paginate(16);
+        }elseif(request('startPrice')){
+
+            $products = merchant::inRandomOrder()->where('append','1')->whereBetween('ThePriceAfterDiscount',[$startPrice,$endPrice])->latest()->paginate(16);
         }else{
             $products = merchant::with('userToProduct.userToDetalis')->where('append','1')->inRandomOrder()->latest()->paginate(16);
         }
@@ -54,16 +56,12 @@ Class SearchBar
 
         $mainCat = subCat::inRandomOrder()->get();
 
-        $mainCatindex4 = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(4)->get();
-        $mainCatindex6 = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(6)->get();
-
-
+        $mainCatindex = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(20)->get();
 
 
         $view->with('products', $products)
         ->with('mainCat',$mainCat)
-        ->with('mainCatindex6',$mainCatindex6)
-        ->with('mainCatindex4',$mainCatindex4);
+        ->with('mainCatindex',$mainCatindex);
 
     }
 

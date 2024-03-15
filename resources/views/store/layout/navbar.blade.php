@@ -47,17 +47,67 @@
                         <!-- /Navbar Search-->
 
                         <!-- Navbar Login-->
-                        <li class="ms-1 d-none d-lg-inline-block">
+                        {{-- <li class="ms-1 d-none d-lg-inline-block">
                             <a class="nav-link text-body" href="./login.html">
                                 الحساب
                             </a>
-                        </li>
+                        </li> --}}
+
+                        <li class="nav-item dropdown ms-1 d-none d-lg-inline-block">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             الحساب
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="border-bottom">
+                                    <a class="dropdown-item  " href="{{route('profile.edit')}}">
+                                        <img class="profile-user" alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}">
+                                       <h6 class="username">{{ Auth::user()->name }}</h6>
+
+                                    </a>
+                                </li>
+
+                                @if (Auth::User()->subtype == 'admin')
+                                <li>
+                                    <a class="dropdown-item" href="{{route('admin.dashboard')}}"><i class="fa-solid fa-arrows-rotate pl-2" style="padding-left: 5px"></i>لوحه التحكم</a>
+                                </li>
+                                @endif
+                                @if (Auth::User()->subtype == 'merchant')
+                                <li>
+                                    <a class="dropdown-item" href="{{route('merchant')}}"><i class="fa-solid fa-arrows-rotate pr-2" style="padding-left: 5px"></i>لوحه التحكم</a>
+                                </li>
+                                @endif
+
+                                <li>
+                                    <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-user pl-2" style="padding-left: 5px"></i>الملف الشخصي</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item " href="{{Route('myPoints')}}"><i class="fa-solid fa-star pl-2" style="padding-left: 5px"></i> نقاطي</a>
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <x-dropdown-link class="dropdown-item log_out" :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                                            <i class="fa-solid fa-right-from-bracket pl-2" style="padding-left: 5px"></i>
+                                            {{ __('تسجيل خروج') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </li>
+                            </ul>
+                          </li>
+
+
+
+
                         <!-- /Navbar Login-->
 
                         <!-- Navbar Cart Icon-->
                         <li class="ms-1 d-inline-block position-relative dropdown-cart">
                             <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body"id="bell"
-                            
+
                                 type="button">
                                 (<span id="countNotify">{{$notifyCount}}</span>)<i  class="fa-regular fa-bell @if ($notifyCount > 0)
                                     fa-shake
@@ -66,7 +116,7 @@
                             <div class="cart-dropdown dropdown-menu overflow-auto " style="max-height: 500px;">
 
                                 <!-- Cart Header-->
-                                <div class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-4">
+                                <div class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-4" >
                                     <h6 class="fw-bolder m-0">لديك ({{$notifyCount}}) اشعارات</h6>
                                     <form class="" id="form">
                                             @csrf
@@ -80,7 +130,7 @@
                                 <!-- / Cart Header-->
 
                                 <!-- Cart Items-->
-                                <div>
+                                <div class="storeNotify">
 
                                     <!-- Cart Product-->
                                     @forelse ( $notify as $NewData )
@@ -101,13 +151,13 @@
                                             <p class="fs-9 text-end text-muted m-0" style="float: left" >{{$NewData->created_at->diffForHumans()}}</p>
                                         </div>
                                     </div>
-    
+
                                     @empty
-                                        
+
                                     @endforelse
-                                                                        <!-- Cart Product-->
-                                   
-                                
+                                    <!-- Cart Product-->
+
+
                                 <!-- / Cart Summary-->
                               </div>
 
@@ -128,7 +178,7 @@
                     </ul>
                     <!-- Navbar Icons-->
 
-                    
+
 
                     <!-- Main Navigation-->
                     <div class="flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1 order-2 order-lg-1"
@@ -148,21 +198,71 @@
                                           <div class="col col-lg-8 py-lg-5">
                                               <div class="row py-3 py-lg-0 flex-wrap gx-4 gy-6">
 
-                                                @foreach ($mainCatindex4 as $mainCats)
 
                                                   <!-- menu row-->
                                                   <div class="col">
-                                                      <h6 class="dropdown-heading" style="float: right">{{$mainCats->subCatRelation->name}}</h6>
+                                                      <h4 class="dropdown-heading" style="float: right">
+                                                        {{-- {{$mainCats->subCatRelation->name}} --}}
+                                                    </h4>
                                                       <ul class="list-unstyled">
-                                                          <li class="dropdown-list-item"><a class="dropdown-item" href="./category.html">{{$mainCats->name}}</a></li>
-                                                          <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="./category.html">View All</a></li>
+                                                        @foreach ($mainCat->slice(0,12) as $mainCats )
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                                {{$mainCats->name}}
+                                                            </a></li>
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                        @endforeach
+
                                                       </ul>
                                                   </div>
                                                   <!-- / menu row-->
+                                                  <!-- menu row-->
+                                                  <div class="col">
+                                                      <h4 class="dropdown-heading" style="float: right">
+                                                        {{-- {{$mainCats->subCatRelation->name}} --}}
+                                                    </h4>
+                                                      <ul class="list-unstyled">
+                                                        @foreach ($mainCat->slice(12,24) as $mainCats )
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                                {{$mainCats->name}}
+                                                            </a></li>
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                        @endforeach
 
-                                                  @endforeach
+                                                      </ul>
+                                                  </div>
+                                                  <!-- / menu row-->
+                                                  <!-- menu row-->
+                                                  <div class="col">
+                                                      <h4 class="dropdown-heading" style="float: right">
+                                                        {{-- {{$mainCats->subCatRelation->name}} --}}
+                                                    </h4>
+                                                      <ul class="list-unstyled">
+                                                        @foreach ($mainCat->slice(36,48) as $mainCats )
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                                {{$mainCats->name}}
+                                                            </a></li>
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                        @endforeach
 
+                                                      </ul>
+                                                  </div>
+                                                  <!-- / menu row-->
+                                                  <!-- menu row-->
+                                                  <div class="col">
+                                                      <h4 class="dropdown-heading" style="float: right">
+                                                        {{-- {{$mainCats->subCatRelation->name}} --}}
+                                                    </h4>
+                                                      <ul class="list-unstyled">
+                                                        @foreach ($mainCat->slice(60,72) as $mainCats )
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                                {{$mainCats->name}}
+                                                            </a></li>
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                        @endforeach
 
+                                                      </ul>
+                                                  </div>
+                                                  <!-- / menu row-->
 
 
 
@@ -170,7 +270,7 @@
 
                                               <div class="align-items-center justify-content-between mt-5 d-none d-lg-flex">
 
-                                                @foreach ($mainCatindex6 as $mainCats )
+                                                @foreach ($mainCatindex->slice(0, 6) as $mainCats )
                                                   <div class="me-5 f-w-20">
                                                       <a class="d-block" href="{{'products?search='.$mainCats->subCatRelation->name}}">
                                                           <picture>
@@ -179,7 +279,7 @@
                                                       </a>
                                                   </div>
                                                   @endforeach
-                                                  
+
                                               </div>                  </div>
                                           <!-- /Menswear Dropdown Menu Links Section-->
 
@@ -188,7 +288,7 @@
                                               <div class="vw-50 border-start h-100 position-absolute"></div>
                                               <div class="py-lg-5 position-relative z-index-10 px-lg-4">
                                                   <div class="row g-4">
-                                                    @foreach ($mainCatindex4 as $mainCatindex )
+                                                    @foreach ($mainCatindex->slice(0, 4) as $mainCatindex )
                                                       <div class="col-12 col-md-6">
                                                           <div class="card justify-content-center d-flex align-items-center bg-transparent">
                                                               <picture class="w-100 d-block mb-2 mx-auto">
@@ -198,9 +298,9 @@
                                                           </div>
                                                       </div>
                                                       @endforeach
-                                                      
+
                                                   </div>
-                                                  <a href="./category.html" class="btn btn-link p-0 fw-bolder text-link-border mt-5 text-dark mx-auto d-table">Visit Mens Section</a>
+                                                  <a href="products" class="btn btn-link p-0 fw-bolder text-link-border mt-5 text-dark mx-auto d-table">كل الاقسام</a>
                                               </div>
                                           </div>
                                           <!-- Menswear Dropdown Menu Images Section-->
@@ -214,7 +314,7 @@
                                   علامات تجاريه
                                 </a>
                                 <ul class="dropdown-menu">
-                                  @foreach ($merchants as $merchant )
+                                  @foreach ($merchants->take(6) as $merchant )
                                     <li><a class="dropdown-item" href="{{'products?search='.$merchant->name}}">{{$merchant->name}}</a></li>
                                   @endforeach
                                 </ul>

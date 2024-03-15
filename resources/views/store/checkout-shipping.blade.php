@@ -84,10 +84,10 @@
                                     <a href="./checkout.html" class="text-muted small" role="button">Change</a>
                                 </li>
                             </ul><!-- / Checkout Information Summary-->
-                            
+
                             <!-- Checkout Panel Information-->
                             <h3 class="fs-5 fw-bolder mb-4 border-bottom pb-4">Shipping Method</h3>
-                            
+
                             <!-- Shipping Option-->
                             <div class="form-check form-group form-check-custom form-radio-custom form-radio-highlight mb-3">
                               <input class="form-check-input" type="radio" name="checkoutShippingMethod" id="checkoutShippingMethodOne" checked>
@@ -101,7 +101,7 @@
                                 </span>
                               </label>
                             </div>
-                            
+
                             <!-- Shipping Option-->
                             <div class="form-check form-group form-check-custom form-radio-custom form-radio-highlight mb-3">
                               <input class="form-check-input" type="radio" name="checkoutShippingMethod" id="checkoutShippingMethodTwo">
@@ -115,7 +115,7 @@
                                 </span>
                               </label>
                             </div>
-                            
+
                             <!-- Shipping Option-->
                             <div class="form-check form-group form-check-custom form-radio-custom form-radio-highlight mb-3">
                               <input class="form-check-input" type="radio" name="checkoutShippingMethod" id="checkoutShippingMethodThree">
@@ -129,7 +129,7 @@
                                 </span>
                               </label>
                             </div>
-                            
+
                             <div class="pt-5 mt-5 pb-5 border-top d-flex flex-column flex-md-row justify-content-between align-items-center">
                               <a href="./checkout.html" class="btn ps-md-0 btn-link fw-bolder w-100 w-md-auto mb-2 mb-md-0" role="button">Back to information</a>
                               <a href="./checkout-payment.html" class="btn btn-dark w-100 w-md-auto" role="button">Proceed to payment</a>
@@ -145,7 +145,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -164,7 +164,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -216,7 +216,7 @@
     <!-- Theme JS -->
     <!-- Vendor JS -->
     <script src="./assets/js/vendor.bundle.js"></script>
-    
+
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
 </body>

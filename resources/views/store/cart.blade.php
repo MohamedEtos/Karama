@@ -82,7 +82,7 @@
                                         <div class="row mx-0 py-4 g-0 border-bottom">
                                             <div class="col-2 position-relative">
                                                 <picture class="d-block border">
-                                                    <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                                    <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="Karama-SC">
                                                 </picture>
                                             </div>
                                             <div class="col-9 offset-1">
@@ -100,7 +100,7 @@
                                         <div class="row mx-0 py-4 g-0 border-bottom">
                                             <div class="col-2 position-relative">
                                                 <picture class="d-block border">
-                                                    <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                                    <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="Karama-SC">
                                                 </picture>
                                             </div>
                                             <div class="col-9 offset-1">
@@ -148,7 +148,7 @@
     <!-- Theme JS -->
     <!-- Vendor JS -->
     <script src="./assets/js/vendor.bundle.js"></script>
-    
+
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
 </body>

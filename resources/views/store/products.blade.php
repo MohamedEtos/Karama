@@ -10,10 +10,10 @@
         <div class="py-10 bg-img-cover bg-overlay-dark position-relative overflow-hidden bg-pos-center-center rounded-0"
             style="background-image: url(./Front-store/images/banners/banner-category-top.jpg);">
             <div class="container-fluid position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
-                <h1 class="fw-bold display-6 mb-4 text-white">Latest Arrivals</h1>
+                <h1 class="fw-bold display-6 mb-4 text-white">منتجات نادي الكرامه </h1>
                 <div class="col-12 col-md-6">
                     <p class="text-white mb-0 fs-5">
-                        When it's time to head out and get your Kicks on, have a look at our latest arrivals. Whether you're into Nike, Adidas, Dunks or New Balance, we really have something for everyone!
+                        يؤمن نادي الكرامة بضرورة الشراكة في تحقيق اهداف النادي، وعليه فان نادي الكرامة قد حقق عدة شراكات استراتيجية بهدف سرعة التطوير والنمو .
                     </p>
                 </div>
             </div>
@@ -26,12 +26,12 @@
                     <div>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Home</a></li>
-                              <li class="breadcrumb-item"><a href="#">Sneakers</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">New Releases</li>
+                              <li class="breadcrumb-item"><a href="/">الرئيسية</a></li>
+                              <li class="breadcrumb-item"><a href="#"></a></li>
+                              <li class="breadcrumb-item active" aria-current="page">المنتجات</li>
                             </ol>
-                        </nav>        <h1 class="fw-bold fs-3 mb-2">New Releases (121)</h1>
-                        <p class="m-0 text-muted small">Showing 1 - 9 of 121</p>
+                        </nav>        <h1 class="fw-bold fs-3 mb-2">تم العثور علي ({{count($products)}})</h1>
+                        <p class="m-0 text-muted small">Showing 1 - 9 of {{count($products)}}</p>
                     </div>
                     <div class="d-flex justify-content-end align-items-center mt-4 mt-lg-0 flex-column flex-md-row">
 
@@ -69,13 +69,16 @@
                                     <img class="w-100 img-fluid position-relative z-index-10" title="" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
                                 </picture>
                                     <div class="position-absolute start-0 bottom-0 end-0 z-index-20 p-2">
-                                        <button class="btn btn-quick-add"><i class="ri-add-line me-2"></i> Quick Add</button>
+                                        <button class="btn btn-quick-add">
+                                            <img class="profile-user" alt="" src="{{$product->userToProduct->userToDetalis->ProfileImage}}">
+                                            <span class="username">{{ $product->userToProduct->name }}</span>
+                                        </button>
                                     </div>
                             </div>
                             <div class="card-body px-0">
                                 <a class="text-decoration-none link-cover" href="./product.html">{{$product->name}}</a>
-                                <small class="text-muted d-block">4 colours, 10 sizes</small>
-                                        <p class="mt-2 mb-0 small"><s class="text-muted">$329.99</s> <span class="text-danger">$198.66</span></p>
+                                <small class="text-muted d-block">{{$product->productDescription}}</small>
+                                        <p class="mt-2 mb-0 small"><s class="text-muted">₪{{$product->price}}</s> <span class="text-danger">₪{{$product->ThePriceAfterDiscount}}</span></p>
                             </div>
                         </div>
                         <!--/ Card Product-->
@@ -87,12 +90,16 @@
             <!-- / Products-->
 
             <!-- Pagination-->
-            <div class="d-flex flex-column f-w-44 mx-auto my-5 text-center">
-                <small class="text-muted">Showing 9 of 121 products</small>
+            <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
+                <small class="text-muted">Showing 12 of {{count($products)}} products</small>
                 <div class="progress f-h-1 mt-3">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a>
+                {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
+                <div style="margin-top: 20px; padding-right:0px">
+                    {{$products->links()}}
+                </div>
+
             </div>            <!-- / Pagination-->
         </div>
 
@@ -113,27 +120,30 @@
         <div class="d-flex flex-column justify-content-between w-100 h-100">
 
           <!-- Filters-->
-          <div>
+        <div>
 
+            <form action="{{url('products/')}}" method="GET">
             <!-- Price Filter -->
             <div class="py-4 widget-filter widget-filter-price border-top">
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                 data-bs-toggle="collapse" href="#filter-modal-price" role="button" aria-expanded="true"
                 aria-controls="filter-modal-price">
-                Price
+                السعر
               </a>
               <div id="filter-modal-price" class="collapse show">
                 <div class="filter-price mt-6"></div>
                 <div class="d-flex justify-content-between align-items-center mt-7">
                     <div class="input-group mb-0 me-2 border">
-                        <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">$</span>
-                        <input type="number" min="00" max="1000" step="1" class="filter-min form-control-sm border flex-grow-1 text-muted border-0">
+                        <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">₪</span>
+                        <input type="number" name="startPrice" min="00" max="10000" step="any" class="filter-min form-control-sm border flex-grow-1 text-muted border-0">
                     </div>
                     <div class="input-group mb-0 ms-2 border">
-                        <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">$</span>
-                        <input type="number" min="00" max="1000" step="1" class="filter-max form-control-sm flex-grow-1 text-muted border-0">
+                        <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">₪</span>
+                        <input type="number" name="endPrice" min="00" max="10000" step="any" class="filter-max form-control-sm flex-grow-1 text-muted border-0">
                     </div>
-                </div>          </div>
+                </div>
+
+            </div>
             </div>
             <!-- / Price Filter -->
 
@@ -153,63 +163,28 @@
                 </div>
                 <div class="simplebar-wrapper">
                   <div class="filter-options" data-pixr-simplebar>
+
+                    @foreach ($merchants as $i => $merchantsBrands )
+
+
                     <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-0">
+                        <input type="checkbox" name="brandName[]" value="{{$merchantsBrands->id}}" class="form-check-input" id="filter-brands-modal-{{$i}}">
                         <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-0">Adidas  <span
-                                class="text-muted ms-1 fs-9">(21)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-1">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-1">Asics  <span
-                                class="text-muted ms-1 fs-9">(13)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-2">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-2">Canterbury  <span
-                                class="text-muted ms-1 fs-9">(18)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-3">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-3">Converse  <span
-                                class="text-muted ms-1 fs-9">(25)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-4">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-4">Donnay  <span
-                                class="text-muted ms-1 fs-9">(11)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-5">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-5">Nike  <span
-                                class="text-muted ms-1 fs-9">(19)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-6">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-6">Millet  <span
-                                class="text-muted ms-1 fs-9">(24)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-7">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-7">Puma  <span
-                                class="text-muted ms-1 fs-9">(11)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-8">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-8">Reebok  <span
-                                class="text-muted ms-1 fs-9">(19)</span></label>
-                    </div>                <div class="form-group form-check-custom mb-1">
-                        <input type="checkbox" class="form-check-input" id="filter-brands-modal-9">
-                        <label class="form-check-label fw-normal text-body flex-grow-1 d-flex align-items-center"
-                            for="filter-brands-modal-9">Under Armour  <span
-                                class="text-muted ms-1 fs-9">(24)</span></label>
-                    </div>              </div>
+                            for="filter-brands-modal-{{$i}}">{{$merchantsBrands->name}}  <span
+                                class="text-muted ms-1 fs-9">
+                                {{-- ({{count($merchants)}}) --}}
+                            </span></label>
+                    </div>
+                    @endforeach
+
+
+                    </div>
                 </div>
               </div>
             </div>
             <!-- / Brands Filter -->
 
-            <!-- Sizes Filter -->
+            {{-- <!-- Sizes Filter -->
             <div class="py-4 widget-filter border-top">
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                 data-bs-toggle="collapse" href="#filter-modal-sizes" role="button" aria-expanded="true"
@@ -254,10 +229,10 @@
                   </div>            </div>
               </div>
             </div>
-            <!-- / Sizes Filter -->
+            <!-- / Sizes Filter --> --}}
 
             <!-- Colour Filter -->
-            <div class="py-4 widget-filter border-top">
+            {{-- <div class="py-4 widget-filter border-top">
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                 data-bs-toggle="collapse" href="#filter-modal-colour" role="button" aria-expanded="true"
                 aria-controls="filter-modal-colour">
@@ -288,16 +263,17 @@
                       <label class="form-check-label" for="filter-colours-modal-6"></label>
                   </div>            </div>
               </div>
-            </div>
+            </div> --}}
             <!-- / Colour Filter -->
           </div>
           <!-- / Filters-->
 
           <!-- Filter Button-->
           <div class="border-top pt-3">
-            <a href="#" class="btn btn-dark mt-2 d-block hover-lift-sm hover-boxshadow" data-bs-dismiss="offcanvas" aria-label="Close">Done</a>
+            <button href="#" type="submit" class="btn w-100 btn-dark mt-2 d-block hover-lift-sm hover-boxshadow" data-bs-dismiss="offcanvas" aria-label="Close">بحث</button>
           </div>
           <!-- /Filter Button-->
+        </form>
         </div>
       </div>
     </div>

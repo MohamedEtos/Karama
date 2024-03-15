@@ -98,12 +98,12 @@
                                     <a href="./checkout-shipping.html" class="text-muted small" role="button">Change</a>
                                 </li>
                             </ul><!-- / Checkout Information Summary-->
-                            
+
                             <!-- Checkout Panel Information-->
                             <h3 class="fs-5 fw-bolder mb-4 border-bottom pb-4">Payment Information</h3>
-                            
+
                             <div class="row">
-                            
+
                               <!-- Payment Option-->
                               <div class="col-12">
                                 <div class="form-check form-group form-check-custom form-radio-custom mb-3">
@@ -118,7 +118,7 @@
                                   </label>
                                 </div>
                               </div>
-                            
+
                               <!-- Payment Option-->
                               <div class="col-12">
                                 <div class="form-check form-group form-check-custom form-radio-custom mb-3">
@@ -133,9 +133,9 @@
                                   </label>
                                 </div>
                               </div>
-                            
+
                             </div>
-                            
+
                             <!-- Payment Details-->
                             <div class="card-details">
                               <div class="row pt-3">
@@ -146,21 +146,21 @@
                                     <small class="text-muted">Full name as displayed on card</small>
                                   </div>
                                 </div>
-                            
+
                                 <div class="col-md-12">
                                   <div class="form-group">
                                     <label for="cc-number" class="form-label">Credit card number</label>
                                     <input type="text" class="form-control" id="cc-number" placeholder="" required="">
                                   </div>
                                 </div>
-                            
+
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="cc-expiration" class="form-label">Expiration</label>
                                     <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
                                   </div>
                                 </div>
-                            
+
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <div class="d-flex">
@@ -177,20 +177,20 @@
                               </div>
                             </div>
                             <!-- / Payment Details-->
-                            
+
                             <!-- Paypal Info-->
                             <div class="paypal-details bg-light p-4 d-none my-3 fw-bolder">
                               Please click on complete order. You will then be transferred to Paypal to enter your payment details.
                             </div>
                             <!-- /Paypal Info-->
-                            
+
                             <!-- Accept Terms Checkbox-->
                             <div class="form-group form-check m-0">
                               <input type="checkbox" class="form-check-input" id="accept-terms" checked>
                               <label class="form-check-label fw-bolder" for="accept-terms">I agree to OldSkool's <a href="#">terms &
                                   conditions</a></label>
                             </div>
-                            
+
                             <div class="pt-5 mt-5 pb-5 border-top d-flex flex-column flex-md-row justify-content-between align-items-center">
                               <a href="./checkout-shipping.html" class="btn ps-md-0 btn-link fw-bolder w-100 w-md-auto mb-2 mb-md-0" role="button">Back to
                                 shipping</a>
@@ -207,7 +207,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -226,7 +226,7 @@
                                 <div class="col-2 position-relative">
                                         <span class="checkout-item-qty">3</span>
                                     <picture class="d-block border">
-                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                                        <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="Karama-SC">
                                     </picture>
                                 </div>
                                 <div class="col-9 offset-1">
@@ -278,7 +278,7 @@
     <!-- Theme JS -->
     <!-- Vendor JS -->
     <script src="./assets/js/vendor.bundle.js"></script>
-    
+
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
 </body>

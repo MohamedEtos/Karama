@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         // view serch merchant and category
         View::composer('*', function ($view) {
             if (!request()->is('login')) {
-                $merchants = User::where('subtype','merchant')->get('name');
+                $merchants = User::where('subtype','merchant')->inRandomOrder()->get();
                 $category = category::get('name');
                 $view->with('merchants', $merchants);
                 $view->with('category', $category);
