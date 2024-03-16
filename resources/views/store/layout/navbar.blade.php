@@ -29,17 +29,19 @@
                             <span class="nav-link text-body search-trigger cursor-pointer">بحث</span>
 
                             <!-- Search navbar overlay-->
+                            <form action="{{url('products/')}}" method="GET">
                             <div class="navbar-search d-none">
                                 <div class="input-group mb-3 h-100">
                                     <span class="input-group-text px-4 bg-transparent border-0"><i
                                             class="ri-search-line ri-lg"></i></span>
-                                    <input type="text" class="form-control text-body bg-transparent border-0"
+                                    <input type="text" name="title" class="form-control text-body bg-transparent border-0"
                                         placeholder="اكتب ما تبحث عنه">
                                     <span
                                         class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent border-0"><i
                                             class="ri-close-circle-line ri-lg"></i></span>
                                 </div>
                             </div>
+                            </form>
                             <div class="search-overlay"></div>
                             <!-- / Search navbar overlay-->
 
@@ -60,7 +62,7 @@
                             <ul class="dropdown-menu">
                                 <li class="border-bottom">
                                     <a class="dropdown-item  " href="{{route('profile.edit')}}">
-                                        <img class="profile-user" alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}">
+                                        <img class="profile-user" style="width: 40px" alt="" src="{{URL::asset(Auth::User()->userToDetalis->ProfileImage)}}">
                                        <h6 class="username">{{ Auth::user()->name }}</h6>
 
                                     </a>

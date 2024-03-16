@@ -350,7 +350,9 @@ class MerchantController extends Controller
         ));
     }
 
-    public function ProductDetails(Request $request ,$id){
+    public function ProductDetails(Request $request ,$Cid){
+
+        $id = Crypt::decrypt($Cid);
 
 
         // get id user
@@ -396,7 +398,7 @@ class MerchantController extends Controller
         $merchantData = User::where('id',$merchantId)->first();
 
 
-        return view('product-details',compact(
+        return view('store.product-details',compact(
             'product_details',
             'related_products',
             'productRevew',

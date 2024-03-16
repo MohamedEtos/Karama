@@ -8,7 +8,7 @@
 
         <!-- Category Top Banner -->
         <div class="py-10 bg-img-cover bg-overlay-dark position-relative overflow-hidden bg-pos-center-center rounded-0"
-            style="background-image: url(./Front-store/images/banners/banner-category-top.jpg);">
+            style="background-image: url({{asset('Front-store/images/banners/banner-category-top.jpg')}});">
             <div class="container-fluid position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
                 <h1 class="fw-bold display-6 mb-4 text-white">منتجات نادي الكرامه </h1>
                 <div class="col-12 col-md-6">
@@ -57,7 +57,7 @@
 
                 @foreach ($products as $product)
 
-                    <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <!-- Card Product-->
                         <div class="card border border-transparent position-relative overflow-hidden h-100 transparent">
                             <div class="card-img position-relative">
@@ -65,8 +65,8 @@
                                         <span class="badge badge-card"><span class="f-w-2  bg-danger rounded-circle d-block me-1"></span> عرض</span>
                                 </div>
                                 <span class="position-absolute top-0 end-0 p-2 z-index-20 text-muted"><i class="ri-heart-line"></i></span>
-                                <picture class="position-relative overflow-hidden d-block bg-light">
-                                    <img class="w-100 img-fluid position-relative z-index-10" title="" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
+                                <picture class="position-relative overflow-hidden d-block bg-light text-center">
+                                    <img class=" img-fluid position-relative z-index-10" title="" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
                                 </picture>
                                     <div class="position-absolute start-0 bottom-0 end-0 z-index-20 p-2">
                                         <button class="btn btn-quick-add">
@@ -76,7 +76,7 @@
                                     </div>
                             </div>
                             <div class="card-body px-0">
-                                <a class="text-decoration-none link-cover" href="./product.html">{{$product->name}}</a>
+                                <a class="text-decoration-none link-cover" href="{{url('product-details/'.Crypt::encrypt($product->id))}}">{{$product->name}}</a>
                                 <small class="text-muted d-block">{{$product->productDescription}}</small>
                                         <p class="mt-2 mb-0 small"><s class="text-muted">₪{{$product->price}}</s> <span class="text-danger">₪{{$product->ThePriceAfterDiscount}}</span></p>
                             </div>
@@ -98,6 +98,9 @@
                 {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
                 <div style="margin-top: 20px; padding-right:0px">
                     {{$products->links()}}
+                    @if (count($products) > 16)
+                    <a href="/products">كل المنتجات</a>
+                    @endif
                 </div>
 
             </div>            <!-- / Pagination-->
@@ -128,6 +131,24 @@
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                 data-bs-toggle="collapse" href="#filter-modal-price" role="button" aria-expanded="true"
                 aria-controls="filter-modal-price">
+                بحث
+              </a>
+              <div id="filter-modal-price" class="collapse show">
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="input-group mb-0 ms-2 border">
+                        <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control flex-grow-1 text-muted border-0">
+                    </div>
+                </div>
+
+            </div>
+            </div>
+            <!-- / Price Filter -->
+
+            <!-- Price Filter -->
+            <div class="py-4 widget-filter widget-filter-price border-top">
+              <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
+                data-bs-toggle="collapse" href="#filter-modal-price" role="button" aria-expanded="true"
+                aria-controls="filter-modal-price">
                 السعر
               </a>
               <div id="filter-modal-price" class="collapse show">
@@ -152,7 +173,7 @@
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                 data-bs-toggle="collapse" href="#filter-modal-brands" role="button" aria-expanded="true"
                 aria-controls="filter-modal-brands">
-                Brands
+                علامات تجاريه
               </a>
               <div id="filter-modal-brands" class="collapse show">
                 <div class="input-group my-3 py-1">

@@ -12,9 +12,9 @@
             <div class="container-fluid">
                 <nav class="m-0" aria-label="breadcrumb">
                     <ol class="breadcrumb m-0">
-                      <li class="breadcrumb-item breadcrumb-light"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item breadcrumb-light"><a href="#">T-Shirts</a></li>
-                      <li class="breadcrumb-item  breadcrumb-light active" aria-current="page">Osaka Japan Mens T-Shirt</li>
+                      <li class="breadcrumb-item breadcrumb-light"><a href="#"> الرئيسية </a></li>
+                      <li class="breadcrumb-item breadcrumb-light"><a href="#">/ المنتجات</a></li>
+                      <li class="breadcrumb-item  breadcrumb-light active" aria-current="page"></li>
                     </ol>
                 </nav>            </div>
         </div>

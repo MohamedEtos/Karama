@@ -202,7 +202,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
 
 
     // X Routes
-Route::get('/product-details/{id}',[MerchantController::class,'ProductDetails']);
+Route::get('/product-details/{Cid}',[MerchantController::class,'ProductDetails']);
 Route::get('MarketProfile/{id}',[MarketProfileController::class,'index'])->name('MarketProfile');
 Route::get('/allNotify', [NotifyController::class,'allNotify'])->name('allNotify');
 
