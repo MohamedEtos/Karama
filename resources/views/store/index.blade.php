@@ -209,17 +209,13 @@
                                 </picture>
                                     <p class="title-small mb-2 text-muted">قسم</p>
                                     <h4 class="lead fw-bold">{{$mainCats->subCatRelation->name}}</h4>
-                                    <a href="{{'products?search='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
+                                    <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
                             </div>
                           </div>
 
 
 
                           @endforeach
-
-
-
-
 
                       </div>
 
@@ -274,7 +270,7 @@
                             <div class="py-6 px-5 px-lg-10 text-center w-100">
                                 <h2 class="display-1 mb-3 fw-bold text-white"><span class="text-outline-light">%</span> خصومات</h2>
                                 <p class="fs-5 fw-light text-white d-none d-md-block">استمتع بتخفيضات ومميزات بطاقه الكرامه ونظام النقاط الاول في فلسطين .</p>
-                                <a href="" class="btn btn-psuedo text-white" role="button">تسوق الان</a>
+                                <a href="/products?persent=10" class="btn btn-psuedo text-white" role="button">تسوق الان</a>
                             </div>
                         </div>
                     </div>
@@ -289,7 +285,7 @@
                                     </picture>
                                     <div class="card-overlay">
                                         <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>
-                                        <a href="{{'products?search='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
+                                        <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
                                     </div>
                                 </div>
                             </div>

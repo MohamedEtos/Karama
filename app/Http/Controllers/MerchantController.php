@@ -220,9 +220,9 @@ class MerchantController extends Controller
             'price'=>'required|numeric',
             'discount'=>'required|numeric',
             'ThePriceAfterDiscount'=>'required| numeric',
-            'mainImage'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
-            'img2'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
-            'img3'=>'required|mimes:jpeg,png,jpg,gif,webp|max:1024',
+            'mainImage'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'img2'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'img3'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
@@ -239,13 +239,13 @@ class MerchantController extends Controller
             'ThePriceAfterDiscount.required'=>'يجب ادخال سعر مناسب',
             'mainImage.required'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
-            'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
             'img2.required'=>'ضع صوره للمنتج',
             'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
-            'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
             'img3.required'=>'ضع صوره للمنتج',
             'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
-            'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 1024 MB',
+            'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
             ]);
 
 
@@ -382,7 +382,7 @@ class MerchantController extends Controller
         // get merchant id
 
 
-        $product_details = merchant::where('id',$id)->get();
+        $product_details = merchant::where('id',$id)->first();
         $product = merchant::findorfail($id);
         $product_cat = $product->categoryId;
 

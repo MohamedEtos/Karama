@@ -30,8 +30,8 @@
                               <li class="breadcrumb-item"><a href="#"></a></li>
                               <li class="breadcrumb-item active" aria-current="page">المنتجات</li>
                             </ol>
-                        </nav>        <h1 class="fw-bold fs-3 mb-2">تم العثور علي ({{count($products)}})</h1>
-                        <p class="m-0 text-muted small">Showing 1 - 9 of {{count($products)}}</p>
+                        </nav>        <h1 class="fw-bold fs-3 mb-2">تم العثور علي ({{$products->total()}})</h1>
+                        <p class="m-0 text-muted small">عرض {{$products->count()}} من {{$products->total()}} منتج</p>
                     </div>
                     <div class="d-flex justify-content-end align-items-center mt-4 mt-lg-0 flex-column flex-md-row">
 
@@ -59,14 +59,22 @@
 
                     <div class="col-12 col-sm-6 col-lg-3">
                         <!-- Card Product-->
-                        <div class="card border border-transparent position-relative overflow-hidden h-100 transparent">
+                        <div class="card border border-transparent position-relative overflow-hidden h-auto  transparent">
                             <div class="card-img position-relative">
-                                <div class="card-badges">
-                                        <span class="badge badge-card"><span class="f-w-2  bg-danger rounded-circle d-block me-1"></span> عرض</span>
-                                </div>
-                                <span class="position-absolute top-0 end-0 p-2 z-index-20 text-muted"><i class="ri-heart-line"></i></span>
+
+                                @if($product->discount > 0)
+                                    <div class="card-badges  ">
+                                        <span class="badge badge-card  "><span class="f-w-2  bg-danger rounded-circle  d-block me-1 "></span> 
+                                            {{$product->discount}}
+                                        </span>
+                                    </div>
+                                    <span class="position-absolute top-0 end-0 p-2 z-index-20 text-muted">
+                                        <i class="fa-solid fa-percent "></i>
+                                    </span>
+                                @endif
+
                                 <picture class="position-relative overflow-hidden d-block bg-light text-center">
-                                    <img class=" img-fluid position-relative z-index-10" title="" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
+                                    <img class="max-hight-image img-fluid position-relative z-index-10" title="" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
                                 </picture>
                                     <div class="position-absolute start-0 bottom-0 end-0 z-index-20 p-2">
                                         <button class="btn btn-quick-add">
@@ -78,7 +86,12 @@
                             <div class="card-body px-0">
                                 <a class="text-decoration-none link-cover" href="{{url('product-details/'.Crypt::encrypt($product->id))}}">{{$product->name}}</a>
                                 <small class="text-muted d-block">{{$product->productDescription}}</small>
-                                        <p class="mt-2 mb-0 small"><s class="text-muted">₪{{$product->price}}</s> <span class="text-danger">₪{{$product->ThePriceAfterDiscount}}</span></p>
+                                        <p class="mt-2 mb-0 ">
+                                            @if ($product->discount > 0)
+                                            <s class="text-muted">₪{{$product->price}}</s>
+                                            @endif
+                                            <span class="">₪{{$product->ThePriceAfterDiscount}}</span>
+                                        </p>
                             </div>
                         </div>
                         <!--/ Card Product-->
@@ -91,13 +104,16 @@
 
             <!-- Pagination-->
             <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
-                <small class="text-muted">Showing 12 of {{count($products)}} products</small>
+                <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
                 <div class="progress f-h-1 mt-3">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{$products->currentPage()/$products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
                 <div style="margin-top: 20px; padding-right:0px">
+                    {{-- {{ $products->total() }} --}}
+                    
                     {{$products->links()}}
+                    
                     @if (count($products) > 16)
                     <a href="/products">كل المنتجات</a>
                     @endif
@@ -116,8 +132,8 @@
     <!-- Filters Offcanvas-->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilters" aria-labelledby="offcanvasFiltersLabel">
       <div class="offcanvas-header pb-0 d-flex align-items-center">
-        <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Category Filters</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="offcanvas-title" id="offcanvasFiltersLabel">فلاتر البحث</h5>
+        <button type="button" class="btn-close text-reset"  data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <div class="d-flex flex-column justify-content-between w-100 h-100">
@@ -126,17 +142,22 @@
         <div>
 
             <form action="{{url('products/')}}" method="GET">
+
             <!-- Price Filter -->
             <div class="py-4 widget-filter widget-filter-price border-top">
               <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
-                data-bs-toggle="collapse" href="#filter-modal-price" role="button" aria-expanded="true"
+                data-bs-toggle="collapse" href="#filter-modal-title" role="button" aria-expanded="true"
                 aria-controls="filter-modal-price">
                 بحث
               </a>
-              <div id="filter-modal-price" class="collapse show">
+              <div id="filter-modal-title" class="collapse show">
                 <div class="d-flex justify-content-between align-items-center mt-3">
                     <div class="input-group mb-0 ms-2 border">
-                        <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control flex-grow-1 text-muted border-0">
+                        {{-- <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control filter-search rounded" aria-label="Search"> --}}
+                            <input type="text" name="title" class="form-control py-2 filter-search rounded" placeholder=" ... اكتب ما تبحث عنه"
+                            aria-label="Search">
+                            <span class="input-group-text bg-transparent p-2 position-absolute top-10 end-0 border-0 z-index-20"><i
+                            class="ri-search-2-line text-muted"></i></span>
                     </div>
                 </div>
 
@@ -177,7 +198,7 @@
               </a>
               <div id="filter-modal-brands" class="collapse show">
                 <div class="input-group my-3 py-1">
-                  <input type="text" class="form-control py-2 filter-search rounded" placeholder="Search"
+                  <input type="text" class="form-control py-2 filter-search rounded" placeholder=" ... بحث"
                     aria-label="Search">
                   <span class="input-group-text bg-transparent p-2 position-absolute top-10 end-0 border-0 z-index-20"><i
                       class="ri-search-2-line text-muted"></i></span>
@@ -286,6 +307,36 @@
               </div>
             </div> --}}
             <!-- / Colour Filter -->
+                        <!-- discound Filter -->
+                        <div class="py-4 widget-filter widget-filter-discound border-top">
+                            <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
+                              data-bs-toggle="collapse" href="#filter-modal-discound" role="button" aria-expanded="true"
+                              aria-controls="filter-modal-price">
+                              خصومات
+                            </a>
+                            <div id="filter-modal-discound" class="collapse show">
+                              <div class="d-flex justify-content-between align-items-center mt-3">
+                                      {{-- <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control filter-search rounded" aria-label="Search"> --}}
+                                          {{-- <input type="text" name="title" class="form-control py-2 filter-search rounded" placeholder=" ... اكتب ما تبحث عنه"> --}}
+              
+                                          <select name="persent"  class="form-control persent form-control-sm" id="">
+                                              <option value="">حدد نسبه خصم %</option>
+                                              <option value="10">10%</option>
+                                              <option value="20">20%</option>
+                                              <option value="30">30%</option>
+                                              <option value="40">40%</option>
+                                              <option value="50">50%</option>
+                                              <option value="60">60%</option>
+                                              <option value="70">70%</option>
+                                              <option value="80">80%</option>
+                                              <option value="90">90%</option>
+                                          </select>
+                              </div>
+              
+                          </div>
+                        </div>
+              
+                          <!-- / discound Filter -->
           </div>
           <!-- / Filters-->
 

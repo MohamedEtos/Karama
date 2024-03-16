@@ -3,8 +3,6 @@ html{
 }
 
 
-
-
 body {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
@@ -50,4 +48,16 @@ body {
 
 ul.pagination{
     padding: 0px;
+}
+
+
+
+.max-hight-image{
+    max-height: 300px;
+}
+
+.persent
+{
+    text-align: right;
+
 }

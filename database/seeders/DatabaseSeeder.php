@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             CreateAdminUserSeeder::class,
         ]);
 
+        $this->call([
+            CategorySeeder::class,
+        ]);
+
 
     }
 }

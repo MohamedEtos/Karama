@@ -27,6 +27,7 @@ Class SearchBar
         $brandName = request('brandName');
         $startPrice = request('startPrice');
         $endPrice = request('endPrice');
+        $persent = request('persent');
 
         $category = category::get();
 
@@ -56,6 +57,11 @@ Class SearchBar
 
 
 
+        if(isset($persent) && ($persent != null))
+        {
+            $query->where('discount','>=' ,$persent );
+        }
+
         if(isset($startPrice) && ($startPrice != null))
         {
             $query->where('ThePriceAfterDiscount','>=' ,$startPrice );
@@ -74,7 +80,7 @@ Class SearchBar
         }
 
 
-        $products = $query->inRandomOrder()->where('append','1')->paginate(16);
+        $products = $query->inRandomOrder()->where('append','1')->paginate(16)->withQueryString();
 
 
         // $serch = request('search');
