@@ -390,7 +390,7 @@ class MerchantController extends Controller
         ->where('id','!=',$id)
         ->where('append','1')
         ->inRandomOrder()
-        ->limit(4)
+        ->limit(10)
         ->get();
 
         $merchantId = merchant::where('id',$id)->first()->userId;

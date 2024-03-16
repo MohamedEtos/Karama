@@ -64,12 +64,12 @@
 
                                 @if($product->discount > 0)
                                     <div class="card-badges  ">
-                                        <span class="badge badge-card  "><span class="f-w-2  bg-danger rounded-circle  d-block me-1 "></span> 
+                                        <span class="badge badge-card  text-success"><span class="f-w-2  bg-danger rounded-circle  d-block me-1 "></span>
                                             {{$product->discount}}
                                         </span>
                                     </div>
                                     <span class="position-absolute top-0 end-0 p-2 z-index-20 text-muted">
-                                        <i class="fa-solid fa-percent "></i>
+                                        <i class="fa-solid fa-percent  percent_cus text-success"></i>
                                     </span>
                                 @endif
 
@@ -90,7 +90,7 @@
                                             @if ($product->discount > 0)
                                             <s class="text-muted">₪{{$product->price}}</s>
                                             @endif
-                                            <span class="">₪{{$product->ThePriceAfterDiscount}}</span>
+                                            <span class="text-danger m-2">₪{{$product->ThePriceAfterDiscount}}</span>
                                         </p>
                             </div>
                         </div>
@@ -111,12 +111,10 @@
                 {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
                 <div style="margin-top: 20px; padding-right:0px">
                     {{-- {{ $products->total() }} --}}
-                    
+
                     {{$products->links()}}
-                    
-                    @if (count($products) > 16)
+
                     <a href="/products">كل المنتجات</a>
-                    @endif
                 </div>
 
             </div>            <!-- / Pagination-->
@@ -318,7 +316,7 @@
                               <div class="d-flex justify-content-between align-items-center mt-3">
                                       {{-- <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control filter-search rounded" aria-label="Search"> --}}
                                           {{-- <input type="text" name="title" class="form-control py-2 filter-search rounded" placeholder=" ... اكتب ما تبحث عنه"> --}}
-              
+
                                           <select name="persent"  class="form-control persent form-control-sm" id="">
                                               <option value="">حدد نسبه خصم %</option>
                                               <option value="10">10%</option>
@@ -332,10 +330,10 @@
                                               <option value="90">90%</option>
                                           </select>
                               </div>
-              
+
                           </div>
                         </div>
-              
+
                           <!-- / discound Filter -->
           </div>
           <!-- / Filters-->

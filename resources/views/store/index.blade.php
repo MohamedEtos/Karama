@@ -129,7 +129,7 @@
                             @foreach ($products as $product)
 
                             <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="./category.html">
+                                <a class="d-block" href="{{'products?title='.$product->name}}">
                                     <picture>
                                         <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
                                     </picture>
@@ -145,7 +145,7 @@
                             @foreach ($products as $product)
 
                             <div class="mx-5 f-w-24">
-                                <a class="d-block" href="./category.html">
+                                <a class="d-block" href="{{'products?title='.$product->name}}">
                                     <picture>
                                         <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
                                     </picture>
@@ -203,6 +203,7 @@
                         @foreach ($mainCatindex as $key => $mainCats)
 
                           <div class="swiper-slide align-self-stretch bg-transparent h-auto">
+                            <a href="{{'products?title='.$mainCats->subCatRelation->name}}">
                             <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="{{$key++}}00">
                                 <picture class="d-block mb-4 img-clip-shape-one">
                                     <img class="w-100" title="" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="Karama-SC">
@@ -211,6 +212,7 @@
                                     <h4 class="lead fw-bold">{{$mainCats->subCatRelation->name}}</h4>
                                     <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
                             </div>
+                        </a>
                           </div>
 
 
@@ -266,13 +268,16 @@
                         <picture class="position-relative z-index-10">
                             <img class="w-100 rounded" src="./Front-Store/images/banners/banner-sale.jpg" alt="Karama-SC">
                         </picture>
+                        <a href="/products?persent=10" class=" text-decoration-none">
                         <div class="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center z-index-20">
-                            <div class="py-6 px-5 px-lg-10 text-center w-100">
-                                <h2 class="display-1 mb-3 fw-bold text-white"><span class="text-outline-light">%</span> خصومات</h2>
-                                <p class="fs-5 fw-light text-white d-none d-md-block">استمتع بتخفيضات ومميزات بطاقه الكرامه ونظام النقاط الاول في فلسطين .</p>
-                                <a href="/products?persent=10" class="btn btn-psuedo text-white" role="button">تسوق الان</a>
+                                <div class="py-6 px-5 px-lg-10 text-center w-100">
+                                    <h2 class="display-1 mb-3 fw-bold text-white"><span class="text-outline-light">%</span> خصومات</h2>
+                                    <p class="fs-5 fw-light text-white d-none d-md-block">استمتع بتخفيضات ومميزات بطاقه الكرامه ونظام النقاط الاول في فلسطين .</p>
+                                    <a href="/products?persent=10" class="btn btn-psuedo text-white" role="button">تسوق الان</a>
+                                </div>
+
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-12 col-xl-6" data-aos="fade-left">
 
@@ -285,7 +290,7 @@
                                     </picture>
                                     <div class="card-overlay">
                                         <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>
-                                        <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
+                                        <a href="{{'products?title='.$mainCats4->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
                                     </div>
                                 </div>
                             </div>
