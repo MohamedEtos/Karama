@@ -6,6 +6,7 @@
 <link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.css')}}">
 <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/imageUploader/imageUploader.css')}}">
 
 @endsection
 @section('page-header')
@@ -41,7 +42,7 @@
 										<thead>
 											<tr class="text-center">
 												<th class="wd-15p border-bottom-0 ">القسم</th>
-												<th class="wd-15p border-bottom-0 ">الاقسام الفرعيه</th>
+												{{-- <th class="wd-15p border-bottom-0 ">الاقسام الفرعيه</th> --}}
 												<th class="wd-15p border-bottom-0 ">الوصف</th>
 												<th class="wd-15p border-bottom-0 ">تحكم</th>
 											</tr>
@@ -50,7 +51,7 @@
 											@forelse ($categories as $category )
 												<tr class="text-center">
 													<td>{{$category->name}}</td>
-													<td>سسس</td>
+													{{-- <td>سسس</td> --}}
 													<td>{{$category->descrption}}</td>
                                                     <td class="text-center ">
                                                         @can('تعديل قسم')
@@ -228,12 +229,9 @@
               </button>
             </div>
             <div class="modal-body">
-                <form method="post" id="editCategory">
+                <form method="post" id="editCategory"  enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id" id="id" value="
-                    @isset($category->id)
-                    {{$category->id}}
-                    @endisset">
+                    <input type="hidden" name="idCat" id="idcat" value="">
                 <div class="mb-3">
                     <label for="name">اسم القسم</label>
                     <input name="name" id="edit_name" type="text" autofocus class="form-control @error('name') is-invalid @enderror">
@@ -245,8 +243,16 @@
                 </div>
                 <div class="mb-3">
                     <label for="name">وصف القسم</label>
-                    <input name="descrption" id="edit_descrption" type="text" autofocus class="form-control @error('descrption') is-invalid @enderror">
-                    @error('descrption')
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' name="catimg" id="imageUpload3" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload3"></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview3" >
+                            </div>
+                        </div>
+                    </div>                    @error('descrption')
                     <div class="text-danger">
                         {{$message}}
                     </div>
@@ -256,8 +262,9 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
 
+
                 @isset($category->id)
-                    <button type="submit" class="btn btn-danger" form="editCategory" formaction="{{route('update.category',$category->id)}}">حفظ التعديل</button>
+                    <button type="submit" class="btn btn-danger" form="editCategory" formaction="{{route('update.category')}}">حفظ التعديل</button>
                 @endisset
             </div>
         </form>
@@ -283,6 +290,7 @@
 <script src="{{URL::asset('assets/js/modal.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+<script src="{{asset('assets/plugins/imageUploader/imageUploader.js')}}"></script>
 
 
 <!--Internal  Datatable js -->
@@ -301,7 +309,8 @@ $('body').on('click','.edit-button',function(event){
   .done(function(response){
     console.log("response");
     $('#editCategory').find('#edit_name').val(response.data.name);
-    $('#editCategory').find('#edit_descrption').val(response.data.descrption);
+    $('#editCategory').find('#idcat').val(response.data.id);
+    $('#editCategory').find('#imagePreview3').attr('style','background-image: url('+window.location.origin+'/'+response.data.catimg+')');
     $('#edit').modal('show');
   })
   .fail(function(){

@@ -174,7 +174,9 @@
                         @endforeach
 
                     </tbody>
+
                 </table>
+                {{$allMerchants->links()}}
             </div>
             {{-- <ul class="pagination mt-4 mb-0 float-left">
                 <li class="page-item page-prev disabled">

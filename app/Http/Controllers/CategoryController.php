@@ -6,6 +6,8 @@ use App\Models\subCat;
 use App\Models\category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 use Intervention\Image\ImageManagerStatic;
 
 class CategoryController extends Controller
@@ -87,7 +89,6 @@ class CategoryController extends Controller
     {
 
 
-
         $request->validate([
             'name' => [ 'string', 'required',  'max:255', 'unique:'.category::class],
             'subCat' => 'required|max:200',
@@ -126,11 +127,37 @@ class CategoryController extends Controller
         return response()->json(['status' => true,'message'=>'','data'=>$data]);
     }
 
-    public function UpdateCategory(request $request, $id){
-        category::where('id',$id)->update([
-            'name' =>$request->name,
-            'descrption' =>$request->descrption,
+    public function UpdateCategory(request $request){
+
+        // dd($request->all());
+        $request->validate([
+            'name' => ['required','string', 'max:30', Rule::unique('categories')->ignore($request->idCat)],
         ]);
+
+
+        if($request->hasFile('catimg')){
+            $image  = ImageManagerStatic::make($request->file('catimg'))->encode('webp')->resize(600,600);
+            $imageName = Str::random().'.webp';
+            $image->save(public_path('upload/catsimg/img/'. $imageName));
+            $catimg = 'upload/catsimg/img/'. $imageName;
+
+            category::where('id',$request->idCat)->update([
+                'name' =>$request->name,
+                'catimg' =>$catimg,
+            ]);
+
+        }else{
+
+            category::where('id',$request->idCat)->update([
+                'name' =>$request->name,
+            ]);
+
+        }
+
+
+
+
+
         return to_route('all.category');
     }
     public function DeleteCategory($id){

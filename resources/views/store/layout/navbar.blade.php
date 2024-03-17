@@ -24,7 +24,7 @@
 
                             <!-- Search navbar overlay-->
                             <form action="{{url('products/')}}" method="GET">
-                            <div class="navbar-search d-none">
+                            <div class="navbar-search d-none d-sm-block">
                                 <div class="input-group mb-3 h-100">
                                     <span class="input-group-text px-4 bg-transparent border-0"><i
                                             class="ri-search-line ri-lg"></i></span>
@@ -192,7 +192,7 @@
                         <!-- Menu-->
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
-                            <li class="nav-item py-3">
+                            <li class="nav-item py-3 d-none d-sm">
                                 {{-- <span class="nav-link text-body search-trigger cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></span> --}}
 
                                 <!-- Search navbar overlay-->
@@ -252,7 +252,7 @@
                                                         {{-- {{$mainCats->subCatRelation->name}} --}}
                                                     </h4>
                                                       <ul class="list-unstyled">
-                                                        @foreach ($mainCat->slice(12,24) as $mainCats )
+                                                        @foreach ($mainCat->slice(12,12) as $mainCats )
                                                             <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
@@ -268,7 +268,7 @@
                                                         {{-- {{$mainCats->subCatRelation->name}} --}}
                                                     </h4>
                                                       <ul class="list-unstyled">
-                                                        @foreach ($mainCat->slice(36,48) as $mainCats )
+                                                        @foreach ($mainCat->slice(24,12) as $mainCats )
                                                             <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
@@ -284,7 +284,7 @@
                                                         {{-- {{$mainCats->subCatRelation->name}} --}}
                                                     </h4>
                                                       <ul class="list-unstyled">
-                                                        @foreach ($mainCat->slice(60,72) as $mainCats )
+                                                        @foreach ($mainCat->slice(36,12) as $mainCats )
                                                             <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>

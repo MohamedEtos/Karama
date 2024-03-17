@@ -117,7 +117,6 @@
             </div>
             <!-- / Swiper Info-->        </section>
         <!--/ Top Banner-->
-
         <!-- Featured Brands-->
         <div class="brand-section container-fluid" data-aos="fade-in">
             <div class="bg-overlay-sides-white-to-transparent bg-white py-5 py-md-7">
@@ -125,37 +124,30 @@
                     <div class="marquee-body">
                         <div class="marquee-section animation-marquee-50">
 
-
                             @foreach ($products as $product)
-
-                            <div class="mx-3 mx-lg-5 f-w-24">
-                                <a class="d-block" href="{{'products?title='.$product->name}}">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-
-
+                                <div class="mx-3 mx-lg-5 f-w-24">
+                                    <a class="d-block" href="{{'products?title='.$product->name}}">
+                                        <picture>
+                                            <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
+                                        </picture>
+                                    </a>
+                                </div>
                             @endforeach
 
                         </div>
+
                         <div class="marquee-section animation-marquee-50">
-
                             @foreach ($products as $product)
-
-                            <div class="mx-5 f-w-24">
-                                <a class="d-block" href="{{'products?title='.$product->name}}">
-                                    <picture>
-                                        <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
-                                    </picture>
-                                </a>
-                            </div>
-
-
+                                <div class="mx-5 f-w-24">
+                                    <a class="d-block" href="{{'products?title='.$product->name}}">
+                                        <picture>
+                                            <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
+                                        </picture>
+                                    </a>
+                                </div>
                             @endforeach
-
                         </div>
+
                     </div>
                 </section>
             </div>
@@ -202,18 +194,18 @@
 
                         @foreach ($mainCatindex as $key => $mainCats)
 
-                          <div class="swiper-slide align-self-stretch bg-transparent h-auto">
+                        <div class="swiper-slide align-self-stretch bg-transparent h-auto">
                             <a href="{{'products?title='.$mainCats->subCatRelation->name}}">
-                            <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="{{$key++}}00">
-                                <picture class="d-block mb-4 img-clip-shape-one">
-                                    <img class="w-100" title="" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="Karama-SC">
-                                </picture>
-                                    <p class="title-small mb-2 text-muted">قسم</p>
-                                    <h4 class="lead fw-bold">{{$mainCats->subCatRelation->name}}</h4>
-                                    <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start">تسوق الان</a>
-                            </div>
-                        </a>
-                          </div>
+                                <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="{{$key++}}00">
+                                    <picture class="d-block mb-4 img-clip-shape-one">
+                                        <img class="w-100" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="{{$mainCats->subCatRelation->name}}">
+                                    </picture>
+                                        <p class="title-small index-cat mb-2 text-muted">قسم</p>
+                                        <h4 class="lead fw-bold index-cat">{{$mainCats->subCatRelation->name}}</h4>
+                                        <a href="{{'products?title='.$mainCats->subCatRelation->name}}" class="btn btn-psuedo align-self-start index-cat">تسوق الان</a>
+                                </div>
+                            </a>
+                        </div>
 
 
 

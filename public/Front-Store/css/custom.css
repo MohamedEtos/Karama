@@ -9,7 +9,9 @@ body {
   font-weight: 400;
   font-style: normal;
 
-
+.pagination{
+    justify-content: center;
+}
 
   background-image: url("/assets/test-01.svg") ;
   background-attachment: fixed;
@@ -103,3 +105,6 @@ ul.pagination{
   }
 
 
+.index-cat{
+    margin-right: 50px;
+}

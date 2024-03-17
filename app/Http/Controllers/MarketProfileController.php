@@ -14,6 +14,7 @@ class MarketProfileController extends Controller
     public function index(Request $request  ,$id)
     {
 
+        
         $marketData = User::where('id',$id)->first();
         $productt = merchant::where('userId',$id)->latest()->where('append',1)->paginate(15);
         $productsCounter = merchant::where('userId',$id)->count();

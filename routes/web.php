@@ -90,7 +90,7 @@ Route::controller(CategoryController::class)->middleware('auth')->group(function
     Route::post('all/subCatUpdate', 'subCatUpdate')->name('subCatUpdate');
     Route::post('/store/category', 'StoreCategory')->name('store.category');
     Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
-    Route::post('/update/category/{id}', 'UpdateCategory')->name('update.category');
+    Route::post('/update/category', 'UpdateCategory')->name('update.category');
     Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
 
 });
