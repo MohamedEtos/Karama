@@ -151,7 +151,7 @@
 
                         </div>
                         <div class="text-center dropdown-footer">
-                            <a href="{{'/?search='}}">جميع الخصومات</a>
+                            <a href="{{'/?title='}}">جميع الخصومات</a>
                         </div>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
 
                             @foreach ($merchants as $merchant )
 
-                            <a href="{{'/?search='.$merchant->name}}" class="p-2 d-flex border-bottom">
+                            <a href="{{'/?title='.$merchant->name}}" class="p-2 d-flex border-bottom">
                                 <div class="  cover-image  ">
                                 </div>
                                 <div class="wd-90p">
@@ -190,7 +190,7 @@
 
                         </div>
                         <div class="text-center dropdown-footer">
-                            <a href="{{'/?search='}}">كل العلامات التجاريه</a>
+                            <a href="{{'/?title='}}">كل العلامات التجاريه</a>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
 
                         </div>
                         <div class="text-center dropdown-footer">
-                            <a href="{{'/?search='}}">كل الاقسام</a>
+                            <a href="{{'/?title='}}">كل الاقسام</a>
                         </div>
                     </div>
                 </div>

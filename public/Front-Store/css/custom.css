@@ -13,7 +13,7 @@ body {
 
   background-image: url("/assets/test-01.svg") ;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -101,3 +101,5 @@ ul.pagination{
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+

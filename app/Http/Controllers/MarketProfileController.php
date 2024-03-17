@@ -22,7 +22,7 @@ class MarketProfileController extends Controller
         $usersPoints = points::where('merchantId',$id)->sum('points');;
 
 
-        return view('merchant.marketProfile',compact([
+        return view('store.marketProfile',compact([
             'productt',
             'marketData',
             'productsCounter',

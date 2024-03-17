@@ -51,6 +51,12 @@ Class SearchBar
 				'productionToCategoryRealtions',
 				function (Builder $query) use ($title) {
 					$query->where('name', 'like', '%'.$title.'%');
+            })
+
+            ->orWhereHas(
+				'userToProduct',
+				function (Builder $query) use ($title) {
+					$query->where('name', 'like', '%'.$title.'%');
             });
 
         }

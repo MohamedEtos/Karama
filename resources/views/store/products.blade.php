@@ -8,7 +8,7 @@
 
         <!-- Category Top Banner -->
         <div class="py-10 bg-img-cover bg-overlay-dark position-relative overflow-hidden bg-pos-center-center rounded-0"
-            style="background-image: url({{asset('Front-store/images/banners/banner-category-top.jpg')}});">
+            style="background-image: url({{asset('Front-store/images/banners/banner-category-top.jpg');}});">
             <div class="container-fluid position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
                 <h1 class="fw-bold display-6 mb-4 text-white">منتجات نادي الكرامه </h1>
                 <div class="col-12 col-md-6">
@@ -42,7 +42,7 @@
                         <!-- / Filter Trigger-->
 
                         <!-- Sort Options-->
-                            <select class="form-select form-select-sm border-0 bg-light p-3 pe-5 lh-1 fs-7">
+                            <select class="form-select form-select-sm border-0 bg-light p-3 m-3 pe-5 lh-1 fs-7">
                                 <option selected>Sort By</option>
                                 <option value="1">Hi Low</option>
                                 <option value="2">Low Hi</option>

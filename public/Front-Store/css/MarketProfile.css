@@ -1,0 +1,28 @@
+.coverImage{
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat; background-size: cover;
+}
+
+.profile_image{
+    margin-right: 100px;
+    margin-top: 170px !important;
+}
+
+@media (max-width: 605px) {
+    .profile_image{
+        margin-right: 40px !important;
+        margin-top: 170px !important;
+        width: 100px !important;
+    }
+
+
+}
+.profile_image{
+    margin-right: 100px;
+    margin-top: 170px !important;
+}
+
+.profileName{
+    background-color: #;
+}

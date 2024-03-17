@@ -16,17 +16,11 @@
                     <!-- Navbar Icons-->
                     <ul class="list-unstyled mb-0 d-flex align-items-center order-1 order-lg-2 nav-sidelinks">
 
-                        <!-- Mobile Nav Toggler-->
-                        <li class="d-lg-none">
-                            <span class="nav-link text-body d-flex align-items-center cursor-pointer" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                                aria-label="Toggle navigation"><i class="ri-menu-line ri-lg me-1"></i> Menu</span>
-                        </li>
-                        <!-- /Mobile Nav Toggler-->
+
 
                         <!-- Navbar Search-->
                         <li class="d-none d-sm-block">
-                            <span class="nav-link text-body search-trigger cursor-pointer">بحث</span>
+                            <span class="nav-link text-body search-trigger cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></span>
 
                             <!-- Search navbar overlay-->
                             <form action="{{url('products/')}}" method="GET">
@@ -55,7 +49,7 @@
                             </a>
                         </li> --}}
 
-                        <li class="nav-item dropdown ms-1 d-none d-lg-inline-block">
+                        <li class="nav-item dropdown ms-1 ">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                              الحساب
                             </a>
@@ -165,6 +159,15 @@
 
 
                         </li>
+
+                        <!-- Mobile Nav Toggler-->
+                        <li class="d-lg-none">
+                            <span class="nav-link text-body d-flex align-items-center cursor-pointer" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                                aria-label="Toggle navigation"><i class="ri-menu-line ri-lg me-1"></i> </span>
+                        </li>
+                        <!-- /Mobile Nav Toggler-->
+
                         <!-- /Navbar Cart Icon-->
 
 
@@ -188,6 +191,32 @@
 
                         <!-- Menu-->
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item py-3">
+                                {{-- <span class="nav-link text-body search-trigger cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></span> --}}
+
+                                <!-- Search navbar overlay-->
+                                <form action="{{url('products/')}}" method="GET">
+                                    <div id="filter-modal-title p2" class="collapse show">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="input-group mb-0 ms-2 border">
+                                                {{-- <input type="text" placeholder=" ... اكتب ما تبحث عنه" name="title" min="00" max="10000" step="any" class="filter-max form-control filter-search rounded" aria-label="Search"> --}}
+                                                <span class="input-group-text bg-transparent p-2 position-absolute top-10 start-0 border-0 z-index-20">
+                                                    <i class="ri-search-2-line text-muted"></i></span>
+                                                    <input type="text" name="title" class="form-control py-2 filter-search rounded" placeholder=" ... اكتب ما تبحث عنه"
+                                                    aria-label="Search">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <div class="search-overlay"></div>
+                                <!-- / Search navbar overlay-->
+
+                            </li>
+
+
                             <li class="nav-item dropdown dropdown position-static">
                               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 الاقسام
@@ -208,10 +237,10 @@
                                                     </h4>
                                                       <ul class="list-unstyled">
                                                         @foreach ($mainCat->slice(0,12) as $mainCats )
-                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
-                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'/products?title='.$mainCats->name}}">View All</a></li> --}}
                                                         @endforeach
 
                                                       </ul>
@@ -224,10 +253,10 @@
                                                     </h4>
                                                       <ul class="list-unstyled">
                                                         @foreach ($mainCat->slice(12,24) as $mainCats )
-                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
-                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'/products?title='.$mainCats->name}}">View All</a></li> --}}
                                                         @endforeach
 
                                                       </ul>
@@ -240,10 +269,10 @@
                                                     </h4>
                                                       <ul class="list-unstyled">
                                                         @foreach ($mainCat->slice(36,48) as $mainCats )
-                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
-                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'/products?title='.$mainCats->name}}">View All</a></li> --}}
                                                         @endforeach
 
                                                       </ul>
@@ -256,10 +285,10 @@
                                                     </h4>
                                                       <ul class="list-unstyled">
                                                         @foreach ($mainCat->slice(60,72) as $mainCats )
-                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'products?search='.$mainCats->name}}">
+                                                            <li class="dropdown-list-item"><a class="dropdown-item" href="{{'/products?title='.$mainCats->name}}">
                                                                 {{$mainCats->name}}
                                                             </a></li>
-                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'products?search='.$mainCats->name}}">View All</a></li> --}}
+                                                          {{-- <li class="dropdown-list-item"><a class="dropdown-item dropdown-link-all" href="{{'/products?title='.$mainCats->name}}">View All</a></li> --}}
                                                         @endforeach
 
                                                       </ul>
@@ -274,7 +303,7 @@
 
                                                 @foreach ($mainCatindex->slice(0, 6) as $mainCats )
                                                   <div class="me-5 f-w-20">
-                                                      <a class="d-block" href="{{'products?search='.$mainCats->subCatRelation->name}}">
+                                                      <a class="d-block" href="{{'/products?title='.$mainCats->subCatRelation->name}}">
                                                           <picture>
                                                               <img class="img-fluid d-table mx-auto" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="">
                                                           </picture>
@@ -296,7 +325,7 @@
                                                               <picture class="w-100 d-block mb-2 mx-auto">
                                                                   <img class="w-100 rounded" title="" src="{{asset($mainCatindex->subCatRelation->catimg)}}" alt="HTML Bootstrap Template by Pixel Rocket">
                                                               </picture>
-                                                              <a class="fw-bolder link-cover" href="{{'products?search='.$mainCatindex->subCatRelation->name}}">{{$mainCatindex->subCatRelation->name}}</a>
+                                                              <a class="fw-bolder link-cover" href="{{'/products?title='.$mainCatindex->subCatRelation->name}}">{{$mainCatindex->subCatRelation->name}}</a>
                                                           </div>
                                                       </div>
                                                       @endforeach
@@ -317,7 +346,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                   @foreach ($merchants->take(6) as $merchant )
-                                    <li><a class="dropdown-item" href="{{'products?search='.$merchant->name}}">{{$merchant->name}}</a></li>
+                                    <li><a class="dropdown-item" href="{{'/products?title='.$merchant->name}}">{{$merchant->name}}</a></li>
                                   @endforeach
                                 </ul>
                               </li>
@@ -331,6 +360,11 @@
                                   خصومات %
                                 </a>
                               </li>
+
+                                                      <!-- Navbar Search-->
+
+                        <!-- /Navbar Search-->
+
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   Pages

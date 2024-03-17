@@ -37,7 +37,6 @@
 			<div class=" markit-image">
 				<div class="demo-avatar-group">
 					<img alt="Responsive image" class="img-thumbnail wd-xs-100  wd-sm-100 wd-md-150 wd-lg-200  wd-xl-270  wd-30p " src="{{asset($marketData->userToDetalis->ProfileImage)}}">
-
 				</div>
 			</div>
 		</div>
