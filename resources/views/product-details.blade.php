@@ -147,9 +147,9 @@
 											</div>
 											<div class="market-data col-9 m-auto">
 												<h6 class="tx-12 mb-0 mt-2 font-weight-bold text-uppercase">{{$item->name}}</h6>
-												<span class=" tx-12 ml-auto">
+												<h3 class="  ml-auto">
 													 خصم % <b>{{$item->discount}}</b>
-													</span>
+                                                </h3>
 													<h4 class="tx-12 mb-0 mt-1   font-weight-bold  text-danger">₪{{$item->ThePriceAfterDiscount}}<span class="text-secondary font-weight-normal tx-13 ml-1 prev-price">₪{{$item->price}}</span></h4>
 											</div>
 										</div>

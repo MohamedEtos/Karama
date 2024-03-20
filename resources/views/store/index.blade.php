@@ -356,7 +356,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/380524442_161747346979457_4719575090658964206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hVa1y7EOlZIAX8Kprch&_nc_ht=scontent.fcai22-1.fna&oh=00_AfDn8TlJ0MIMGklRlLq3JOzvq0p9bqVCiQ-3IwwX0T-wqA&oe=65F6F94D"
+                        src="{{asset('Front-Store/images/footerimage/370535814_145500201937505_1366347796724185244_n.jpg')}}"
                         title=""
                         alt="">
                     </picture>
@@ -366,7 +366,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/430061800_264625656691625_2773649789593442638_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=jWZvdZCCxnwAX_BYUL3&_nc_ht=scontent.fcai22-2.fna&oh=00_AfAYtZi-BNORR-EE6Dhph0E5U9ToxSn7cNjVbZ8UmGPScw&oe=65F7A02E"
+                        src="{{asset('Front-Store/images/footerimage/368186172_140638125757046_7431452159997000191_n.jpg')}}"
                         title=""
                         alt="">
                     </picture>
@@ -386,7 +386,7 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/427961275_248481478306043_96700725318700946_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=VZl59_F2Gv4AX81D9EH&_nc_ht=scontent.fcai22-2.fna&oh=00_AfCfu74au6vFzRep6xIqcCjHx10LOSGmzzCakTayvNUbow&oe=65F821BC"
+                        src="{{asset('Front-Store/images/footerimage/376845284_154319064388952_4265585874842819422_n.jpg')}}"
                         title=""
                         alt="">
                     </picture>
@@ -396,21 +396,12 @@
                       <img
                         class="rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/380524442_161747346979457_4719575090658964206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hVa1y7EOlZIAX8Kprch&_nc_ht=scontent.fcai22-1.fna&oh=00_AfDn8TlJ0MIMGklRlLq3JOzvq0p9bqVCiQ-3IwwX0T-wqA&oe=65F6F94D"
+                        src="{{asset('Front-Store/images/footerimage/428523398_259891790498345_41232519870495654_n.jpg')}}"
                         title=""
                         alt="">
                     </picture>
                   </div>
-                  <div class="swiper-slide flex-column align-self-center">
-                    <picture>
-                      <img
-                        class="rounded shadow-sm img-fluid"
-                        data-zoomable
-                        src="https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/380532617_160548627099329_8811326390498668422_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYPqkd4YEcYAX9CHEtK&_nc_ht=scontent.fcai22-2.fna&oh=00_AfB_bB0rgWCXX3Qh7CL9ZLyyYkAYx1bu9pxhxBLrAzNSrg&oe=65F6D763"
-                        title=""
-                        alt="">
-                    </picture>
-                  </div>
+
                   <!-- / end of items loop-->
 
                 </div>

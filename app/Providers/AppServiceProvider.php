@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
-use App\ViewComposer\SearchBar;
 use App\Models\User;
-
 use App\Models\notify;
+
+use App\Models\AdsStore;
 use App\Models\category;
 use App\Models\merchant;
 use App\Models\OTPPoints;
 use Illuminate\Support\Carbon;
+use App\ViewComposer\SearchBar;
 use Illuminate\pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -41,6 +42,20 @@ class AppServiceProvider extends ServiceProvider
         //this line for delete all otp after 5 mints
         $minutes  = Carbon::now()->subMinutes( 10 );
         OTPPoints::where('created_at', '<=', $minutes)->delete();
+
+
+        $time  = Carbon::now();
+        AdsStore::
+        where('status', 'activeAT')->
+        where('startAds', '<=', $time)  
+        ->update([
+            'status'=>'active'
+        ]);
+
+        $time  = Carbon::now();
+        AdsStore::where('endAds', '<=', $time)->update([
+            'status'=>'انتهي'
+        ]);
 
 
         Paginator::useBootstrap();

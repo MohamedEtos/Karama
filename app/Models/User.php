@@ -54,6 +54,13 @@ class User extends Authenticatable
     }
 
 
+
+    public function AdsStoreUser()
+    {
+        return $this->hasOne(AdsStore::class);
+    }
+
+
     // public function userDetalis()
     // {
     //     return $this->hasOne(userDetalis::class);

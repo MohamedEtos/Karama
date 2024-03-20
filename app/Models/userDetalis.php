@@ -26,4 +26,5 @@ class userDetalis extends Model
 
 
 
+
 }

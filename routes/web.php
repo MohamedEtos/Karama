@@ -29,8 +29,7 @@ use App\Http\Controllers\ProfileMerchantController;
 use App\Http\Controllers\Admin\PointsAdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\UserDetalisAdminController;
-
-
+use App\Http\Controllers\Admin\AdsStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +59,16 @@ Route::controller(ManagersControllers::class)->middleware('auth')->prefix('admin
     Route::post('removeManger',  'removeManger')->name('removeManger');
 
 });
+
+Route::controller(AdsStoreController::class)->middleware('auth')->prefix('admin')->group(function(){
+    Route::get('AdsView',  'AdsView')->name('AdsView');
+    Route::post('resumeAds',  'resumeAds')->name('resumeAds');
+    Route::post('deleteAds',  'deleteAds')->name('deleteAds');
+    Route::get('StoreAdsView',  'StoreAdsView')->name('StoreAdsView');
+    Route::get('StopAds/{id}',  'StopAds');
+});
+
+
 
 
 

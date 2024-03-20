@@ -88,9 +88,9 @@
 
                             <h1 class="mb-1 fs-2 fw-bold">{{$product_details->name}}</h1>
                             <div class="d-flex justify-content-start align-items-center">
-                                <p class="fs-4 m-0 ">₪{{$product_details->ThePriceAfterDiscount}}</p>
+                                <h4 class="fs-4 m-0 ">₪{{$product_details->ThePriceAfterDiscount}}</h4>
                                 <s class="text-muted" style="padding-right: 20px">₪{{$product_details->price}}</s>
-                                <span class="text-muted" style="padding-right: 20px">% {{$product_details->discount}} خصم</span>
+                                <span class="text-muted h4" style="padding-right: 20px">% {{$product_details->discount}} خصم</span>
                             </div>
                             <div class="border-top mt-4 mb-3 product-option">
                                 <small class="text-uppercase pt-4 d-block fw-bolder">

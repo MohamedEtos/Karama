@@ -46,7 +46,7 @@
 									</div>
 									<div class="col-md-6">
 									  <label for="validationCustom01" class="form-label">اسم المنتج</label>
-									  <input type="text" minlength="3" name="name" maxlength="15" class="form-control"  placeholder="قم بكتابه اسم للمنتج بشكل واضح" id="validationCustom01" required>
+									  <input type="text" minlength="3" name="name" maxlength="50" class="form-control"  placeholder="قم بكتابه اسم للمنتج بشكل واضح" id="validationCustom01" required>
 									  <div class="valid-feedback">
 										ممتاز !
 									  </div>

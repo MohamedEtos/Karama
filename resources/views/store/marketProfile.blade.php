@@ -141,7 +141,7 @@
 
             {{$productt->links()}}
 
-            <a href="/product">كل المنتجات</a>
+            <a href="/products">كل المنتجات</a>
         </div>
 
     </div>            <!-- / Pagination-->
