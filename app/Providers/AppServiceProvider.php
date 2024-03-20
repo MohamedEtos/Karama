@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $time  = Carbon::now();
         AdsStore::
         where('status', 'activeAT')->
-        where('startAds', '<=', $time)  
+        where('startAds', '<=', $time)
         ->update([
             'status'=>'active'
         ]);
@@ -92,6 +92,14 @@ class AppServiceProvider extends ServiceProvider
                 $category = category::get('name');
                 $view->with('merchants', $merchants);
                 $view->with('category', $category);
+            }
+
+        });
+
+        View::composer('store.index', function ($view) {
+            if (!request()->is('login')) {
+                $bigSale = merchant::where('discount','>=','30')->inRandomOrder()->get();
+                $view->with('bigSale', $bigSale);
             }
 
         });

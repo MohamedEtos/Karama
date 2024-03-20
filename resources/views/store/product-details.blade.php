@@ -182,7 +182,7 @@
 
                                 </div>
                             </div>
-                            <a href="https://wa.me/{{$merchantData->userToDetalis->whatsapp}}" class="btn btn-dark w-100 mt-4 mb-0 hover-lift-sm hover-boxshadow">مراسله المتجر</a>
+                            <a target="_blank" href="https://wa.me/{{$merchantData->userToDetalis->whatsapp}}" class="btn btn-dark w-100 mt-4 mb-0 hover-lift-sm hover-boxshadow">مراسله المتجر</a>
 
                             <!-- Product Highlights-->
                                 <div class="my-5">
@@ -266,7 +266,7 @@
 
                 <!-- Related Products-->
                 <div class="col-12" data-aos="fade-up">
-                    <h3 class="fs-4 fw-bolder mt-7 mb-4">منتجات ذات صله</h3>
+                    <h3 class="fs-4 fw-bolder mt-7 mb-4">ذ ذات صله</h3>
                     <!-- Swiper Latest -->
                     <div class="swiper-container" data-swiper data-options='{
                         "spaceBetween": 10,

@@ -128,7 +128,7 @@
                                 <div class="mx-3 mx-lg-5 f-w-24">
                                     <a class="d-block" href="{{'products?title='.$product->name}}">
                                         <picture>
-                                            <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
+                                            <img class=" lazy img-fluid d-table mx-auto" data-src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}"  alt="">
                                         </picture>
                                     </a>
                                 </div>
@@ -141,7 +141,7 @@
                                 <div class="mx-5 f-w-24">
                                     <a class="d-block" href="{{'products?title='.$product->name}}">
                                         <picture>
-                                            <img class="img-fluid d-table mx-auto" src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
+                                            <img class=" lazy img-fluid d-table mx-auto" data-src="{{URL::asset($product->userToProduct->userToDetalis->ProfileImage)}}" alt="">
                                         </picture>
                                     </a>
                                 </div>
@@ -198,7 +198,7 @@
                             <a href="{{'products?title='.$mainCats->subCatRelation->name}}">
                                 <div class="me-xl-n4 me-xxl-n5" data-aos="fade-up" data-aos-delay="{{$key++}}00">
                                     <picture class="d-block mb-4 img-clip-shape-one">
-                                        <img class="w-100" src="{{asset($mainCats->subCatRelation->catimg)}}" alt="{{$mainCats->subCatRelation->name}}">
+                                        <img class=" lazy w-100" data-src="{{asset($mainCats->subCatRelation->catimg)}}"  alt="{{$mainCats->subCatRelation->name}}">
                                     </picture>
                                         <p class="title-small index-cat mb-2 text-muted">قسم</p>
                                         <h4 class="lead fw-bold index-cat">{{$mainCats->subCatRelation->name}}</h4>
@@ -241,24 +241,136 @@
                 </div>
                 <div class="col-12 col-md-6 position-relative z-index-20 pe-200 SC_Image" data-aos="fade-left">
                     <picture class="w-50 d-block position-relative z-index-10 border border-white border-4 shadow-lg">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/first.jpg')}}" alt="Karama-SC">
+                        <img class="lazy img-fluid" data-src="{{asset('Front-Store/images/front-image/first.jpg')}}" src="" alt="Karama-SC">
                     </picture>
                     <picture class="w-60 d-block me-8 mt-n10 shadow-lg border border-white border-4 position-relative z-index-20 ms-auto">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}}" alt="Karama-SC">
+                        <img class="lazy img-fluid" data-src="{{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}}" src="" alt="Karama-SC">
                     </picture>
                     <picture class="w-50 d-block me-8 mt-n7 shadow-lg border border-white border-4 position-absolute top-0 end-0 z-index-0 ">
-                        <img class="img-fluid" src="{{asset('Front-Store/images/front-image/363744914_125960060558186_7383906757758911412_n.jpg')}}" alt="Karama-SC">
+                        <img class="lazy img-fluid" data-src="{{asset('Front-Store/images/front-image/363744914_125960060558186_7383906757758911412_n.jpg')}}" src="" alt="Karama-SC">
                     </picture>
                 </div>
             </div>
             <!-- / Homepage Intro-->
+
+            <!-- bigsale Products-->
+
+            <div class="row g-0">
+                <div class="col-12" data-aos="fade-up">
+                    <h1 data-aos="fade-right" data-aos-delay="300" class="fw-bolder mt-7 mb-4 text-center ">اكبر الخصومات <b>%</b></h1>
+                    <!-- Swiper Latest -->
+                    <div class="swiper-container" data-swiper data-options='{
+                        "spaceBetween": 10,
+                        "loop": true,
+                        "autoplay": {
+                          "delay": 5000,
+                          "disableOnInteraction": false
+                        },
+                        "navigation": {
+                          "nextEl": ".swiper-next",
+                          "prevEl": ".swiper-prev"
+                        },
+                        "breakpoints": {
+                          "600": {
+                            "slidesPerView": 2
+                          },
+                          "1024": {
+                            "slidesPerView": 3
+                          },
+                          "1400": {
+                            "slidesPerView": 4
+                          }
+                        }
+                      }'>
+                      <div class="swiper-wrapper">
+
+                        @foreach ($bigSale->take(15) as $product )
+
+
+                            <div class="swiper-slide">
+                              <!-- Card Product-->
+                              <div class="card border border-transparent position-relative overflow-hidden h-100 transparent">
+                                  <div class="card-img position-relative">
+
+                                    @if($product->discount > 0)
+                                    <div class="card-badges  ">
+                                        <span class="badge badge-card text-success "><span class="f-w-2  bg-danger rounded-circle  d-block me-1 "></span>
+                                            {{$product->discount}}
+                                        </span>
+                                    </div>
+                                    <span class="position-absolute top-0 end-0 p-2 z-index-20 text-muted ">
+                                        <i class="fa-solid fa-percent percent_cus text-success"></i>
+                                    </span>
+                                @endif
+                                      <picture class="position-relative overflow-hidden d-block bg-light text-center">
+                                          <img class=" lazy max-hight-image img-fluid position-relative z-index-10" title=""data-src="{{asset($product->productionToImgRealtions->mainImage)}}" src="" alt="">
+                                      </picture>
+                                          <div class="position-absolute start-0 bottom-0 end-0 z-index-20 p-2">
+                                            <button class="btn btn-quick-add">
+                                                <img class=" lazy profile-user" alt="" data-src="{{asset($product->userToProduct->userToDetalis->ProfileImage  )}}" src="">
+                                                <span class="username">{{ $product->userToProduct->name }}</span>
+                                            </button>
+                                          </div>
+
+                                  </div>
+                                  <div class="card-body px-0">
+                                      <a class="text-decoration-none link-cover" href="{{url('product-details/'.Crypt::encrypt($product->id))}}">{{$product->name}}</a>
+                                       <small class="text-muted d-block">{{$product->productDescription}}</small>
+
+                                        <p class="mt-2 mb-0 ">
+                                            @if ($product->discount > 0)
+                                            <s class="text-muted">₪{{$product->price}}</s>
+                                            @endif
+                                            <span class="text-danger">₪{{$product->ThePriceAfterDiscount}}</span>
+                                        </p>
+                                  </div>
+                              </div>
+                              <!--/ Card Product-->
+                            </div>
+
+                        @endforeach
+
+                      </div>
+
+                      <!-- Add Arrows -->
+                      <div
+                        class="swiper-next top-50  start-0 z-index-30 cursor-pointer transition-all bg-white px-3 py-4 position-absolute z-index-30 top-50 start-0 mt-n8 d-flex justify-content-center align-items-center opacity-50-hover">
+                        <i class="ri-arrow-left-s-line ri-lg"></i></div>
+                      <div
+                        class="swiper-prev top-50 end-0 z-index-30 cursor-pointer transition-all bg-white px-3 py-4 position-absolute z-index-30 top-50 end-0 mt-n8 d-flex justify-content-center align-items-center opacity-50-hover">
+                        <i class="ri-arrow-right-s-line ri-lg"></i></div>
+
+
+                    </div>
+                    <!-- / Swiper Latest-->
+                </div>
+
+                <!-- Pagination-->
+                <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
+                    {{-- <small class="text-muted">عرض {{$related_products->count()}} من {{$related_products->total()}} منتج</small> --}}
+                    <div class="progress f-h-1 mt-3">
+                        {{-- <div class="progress-bar bg-dark" role="progressbar" style="width: {{$related_products->currentPage()/$related_products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> --}}
+                    </div>
+                    {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
+                    <div style="margin-top: 20px; padding-right:0px">
+                        {{-- {{$related_products->links()}} --}}
+                        <a href="/products">كل المنتجات</a>
+                    </div>
+                </div>
+                <!-- / Pagination-->
+            </div>
+
+
+
+
+
 
             <!-- Homepage Banners-->
             <div class="pt-7 mb-5 mb-lg-10">
                 <div class="row g-4">
                     <div class="col-12 col-xl-6 position-relative" data-aos="fade-right">
                         <picture class="position-relative z-index-10">
-                            <img class="w-100 rounded" src="./Front-Store/images/banners/banner-sale.jpg" alt="Karama-SC">
+                            <img class="lazy w-100 rounded"  src="./Front-Store/images/banners/banner-sale.jpg" alt="Karama-SC">
                         </picture>
                         <a href="/products?persent=10" class=" text-decoration-none">
                         <div class="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center z-index-20">
@@ -278,7 +390,7 @@
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="card position-relative overflow-hidden">
                                     <picture class="position-relative z-index-10  d-block bg-light">
-                                        <img class="w-100 rounded" src="{{asset($mainCats4->subCatRelation->catimg)}}" alt="Karama-SC">
+                                        <img class=" lazy w-100 rounded" data-src="{{asset($mainCats4->subCatRelation->catimg)}}" src="" alt="Karama-SC">
                                     </picture>
                                     <div class="card-overlay">
                                         <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>
@@ -334,9 +446,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/Picture3.jpg')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/Picture3.jpg')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -344,9 +457,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/Picture4.png')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/Picture4.png')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -354,9 +468,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/370535814_145500201937505_1366347796724185244_n.jpg')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/370535814_145500201937505_1366347796724185244_n.jpg')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -364,9 +479,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/368186172_140638125757046_7431452159997000191_n.jpg')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/368186172_140638125757046_7431452159997000191_n.jpg')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -374,9 +490,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/Picture5.png')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/Picture5.png')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -384,9 +501,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/376845284_154319064388952_4265585874842819422_n.jpg')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/376845284_154319064388952_4265585874842819422_n.jpg')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>
@@ -394,9 +512,10 @@
                   <div class="swiper-slide flex-column align-self-center">
                     <picture>
                       <img
-                        class="rounded shadow-sm img-fluid"
+                        class="lazy rounded shadow-sm img-fluid"
                         data-zoomable
-                        src="{{asset('Front-Store/images/footerimage/428523398_259891790498345_41232519870495654_n.jpg')}}"
+                        data-src="{{asset('Front-Store/images/footerimage/428523398_259891790498345_41232519870495654_n.jpg')}}"
+                        src=""
                         title=""
                         alt="">
                     </picture>

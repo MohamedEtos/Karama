@@ -10,7 +10,14 @@
 
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
 
+    <script>
+            $(function() {
+                $('.lazy').Lazy();
+            });
+    </script>
 
     <script>
         // Pusher.logToConsole = true;

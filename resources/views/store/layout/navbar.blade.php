@@ -73,13 +73,31 @@
                                 </li>
                                 @endif
 
+
+                                @if (Auth::User()->subtype == 'admin')
                                 <li>
-                                    <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-user pl-2" style="padding-left: 5px"></i>الملف الشخصي</a>
+                                    <a class="dropdown-item" href="{{url('admin/profileDetialsAdmin')}}"><i class="fa-solid fa-user pl-2" style="padding-left: 5px"></i>الملف الشخصي</a>
                                 </li>
 
+                                @elseif(Auth::User()->subtype == 'merchant')
+                                <li>
+                                    <a class="dropdown-item" href="{{url('merchant/profileDetials')}}"><i class="fa-solid fa-user pl-2" style="padding-left: 5px"></i>الملف الشخصي</a>
+                                </li>
+
+                                @else
+                                <li>
+                                    <a class="dropdown-item" href="{{url('/profile')}}"><i class="fa-solid fa-user pl-2" style="padding-left: 5px"></i>الملف الشخصي</a>
+                                </li>
+                                @endif
+
+
+
+                                @if (Auth::User()->subtype == 'user')
                                 <li>
                                     <a class="dropdown-item " href="{{Route('myPoints')}}"><i class="fa-solid fa-star pl-2" style="padding-left: 5px"></i> نقاطي</a>
                                 </li>
+                                @endif
+
 
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">

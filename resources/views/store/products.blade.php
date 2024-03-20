@@ -74,11 +74,11 @@
                                 @endif
 
                                 <picture class="position-relative overflow-hidden d-block bg-light text-center">
-                                    <img class="max-hight-image img-fluid position-relative z-index-10" title="" loading="lazy" src="{{asset($product->productionToImgRealtions->mainImage)}}" alt="">
+                                    <img class=" lazy max-hight-image img-fluid position-relative z-index-10" title="" data-src="{{asset($product->productionToImgRealtions->mainImage)}}"  alt="">
                                 </picture>
                                     <div class="position-absolute start-0 bottom-0 end-0 z-index-20 p-2">
                                         <button class="btn btn-quick-add">
-                                            <img class="profile-user"  alt=""  src="{{$product->userToProduct->userToDetalis->ProfileImage}}">
+                                            <img class="lazy profile-user"  alt="" data-src="{{$product->userToProduct->userToDetalis->ProfileImage}}"  >
                                             <span class="username">{{ $product->userToProduct->name }}</span>
                                         </button>
                                     </div>
