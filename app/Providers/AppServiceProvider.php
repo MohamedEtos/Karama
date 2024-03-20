@@ -98,7 +98,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('store.index', function ($view) {
             if (!request()->is('login')) {
-                $bigSale = merchant::where('discount','>=','30')->inRandomOrder()->get();
+                $bigSale = merchant::whereBetween('discount', [30, 100])->inRandomOrder()->get();
                 $view->with('bigSale', $bigSale);
             }
 

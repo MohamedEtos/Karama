@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdsStore;
 use App\Models\User;
 use App\Models\notify;
 use App\Models\subCat;
@@ -21,11 +22,12 @@ class ProductHomeController extends Controller
         // get notifactions
 
         $mainCatindex = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(20)->get();
-
+        $adsStore = AdsStore::where('status','active')->get();
 
 
         return view('store.index',compact(
             'mainCatindex',
+            'adsStore',
         ));
     }
 

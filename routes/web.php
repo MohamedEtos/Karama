@@ -62,6 +62,7 @@ Route::controller(ManagersControllers::class)->middleware('auth')->prefix('admin
 
 Route::controller(AdsStoreController::class)->middleware('auth')->prefix('admin')->group(function(){
     Route::get('AdsView',  'AdsView')->name('AdsView');
+    Route::post('storeAds',  'storeAds')->name('storeAds');
     Route::post('resumeAds',  'resumeAds')->name('resumeAds');
     Route::post('deleteAds',  'deleteAds')->name('deleteAds');
     Route::get('StoreAdsView',  'StoreAdsView')->name('StoreAdsView');

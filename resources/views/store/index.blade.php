@@ -34,81 +34,44 @@
               }'>
               <div class="swiper-wrapper">
 
-                <!-- Slide-->
-                <div class="swiper-slide position-relative h-100 w-100">
-                  <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                    <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
-                      style=" will-change: transform; background-image: url(./Front-Store/images/banners/banner-1.jpg)">
+                @forelse ($adsStore as $adsStores )
+                    <!--Slide-->
+                    <div class="swiper-slide position-relative h-100 w-100">
+                        <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
+                        <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
+                            style=" will-change: transform; background-image: url({{asset($adsStores->img1)}})">
+                        </div>
+                        </div>
+                        <div
+                        class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
+                        <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">{{$adsStores->text1}}</p>
+                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">{{$adsStores->text2}}</h2>
+                        <div data-swiper-parallax-y="-25">
+                            <a href="{{$adsStores->link}}" class="btn btn-psuedo text-white" role="button">{{$adsStores->text3}}</a>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                  <div
-                    class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                    <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">Everything You Need</p>
-                    <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">
-                      <span class="text-outline-light">Summer</span> Essentials</h2>
-                    <div data-swiper-parallax-y="-25">
-                      <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop New Arrivals</a>
+                    <!--/Slide-->
+                @empty
+                    <!--Slide-->
+                    <div class="swiper-slide position-relative h-100 w-100">
+                        <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
+                        <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
+                            style=" will-change: transform; background-image: url({{asset('Front-Store/images/front-image/357816973_114855631662728_4202261067649436702_n.jpg')}})">
+                        </div>
+                        </div>
+                        <div
+                        class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
+                        <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">نادي الكرامه الرياضي </p>
+                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">يرحب بكم </h2>
+                        <div data-swiper-parallax-y="-25">
+                            <a href="https://www.facebook.com/karamacsclube?locale=ar_AR" class="btn btn-psuedo text-white" role="button">زورو موقعنا الان</a>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <!-- /Slide-->
+                    <!--/Slide-->
+                @endforelse
 
-                <!-- Slide-->
-                <div class="swiper-slide position-relative h-100 w-100">
-                  <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                    <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
-                      style=" will-change: transform; background-image: url(./Front-Store/images/banners/banner-2.jpg)">
-                    </div>
-                  </div>
-                  <div
-                    class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                    <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">Spring Collection</p>
-                    <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">
-                      Adidas <span class="text-outline-light">SS21</span></h2>
-                    <div data-swiper-parallax-y="-25">
-                      <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop Latest Adidas</a>
-                    </div>
-                  </div>
-                </div>
-                <!--/Slide-->
-
-                <!-- Slide-->
-                <div class="swiper-slide position-relative h-100 w-100">
-                  <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                    <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
-                      style=" will-change: transform; background-image: url(./Front-Store/images/banners/banner-4.jpg)">
-                    </div>
-                  </div>
-                  <div
-                    class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                    <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">Just Do it</p>
-                    <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">
-                      Nike <span class="text-outline-light">SS21</span></h2>
-                    <div data-swiper-parallax-y="-25">
-                      <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop Latest Nike</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- /Slide-->
-
-                <!--Slide-->
-                <div class="swiper-slide position-relative h-100 w-100">
-                  <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                    <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
-                      style=" will-change: transform; background-image: url(./Front-Store/images/banners/banner-3.jpg)">
-                    </div>
-                  </div>
-                  <div
-                    class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                    <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">Look Good Feel Good</p>
-                    <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">
-                      <span class="text-outline-light">Sustainable</span> Fashion</h2>
-                    <div data-swiper-parallax-y="-25">
-                      <a href="./category.html" class="btn btn-psuedo text-white" role="button">Why We Are Different</a>
-                    </div>
-                  </div>
-                </div>
-                <!--/Slide-->
 
               </div>
 

@@ -112,7 +112,7 @@
                                     </a>
                                     <!-- Large Modal -->
                                     <div class="modal" id="modaldemosPlay{{$AdsStores->id}}">
-                                        <form action="{{route('resumeAds')}}" id="resumeAds" method="post">
+                                        <form action="{{route('resumeAds')}}" id="resumeAds{{$AdsStores->id}}" method="post">
 
                                         <div class="modal-dialog modal-md" role="document">
                                             <div class="modal-content modal-content-demo">
@@ -169,7 +169,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     {{-- <button class="btn ripple btn-danger btn-block " type="button">تم</button> --}}
-                                                    <button class="btn ripple btn-danger btn-block" form="resumeAds"  type="submit">تم</button>
+                                                    <button class="btn ripple btn-danger btn-block" form="resumeAds{{$AdsStores->id}}"  type="submit">تم</button>
                                                 </div>
                                             </div>
                                         </div>
