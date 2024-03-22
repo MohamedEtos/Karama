@@ -46,6 +46,15 @@ class PointsController extends Controller
      */
     public function UserPoints()
     {
+
+        $exchangeLimit = pointRules::where('merchantId',Auth::User()->id)->first();
+
+        // dd($exchangeLimit);
+
+        if($exchangeLimit->exchangeLimit == 0 && $exchangeLimit->transferPoints == 0){
+            return redirect()->back()->with('error','حسابك لا يدعم استبدال النقاط');
+        }
+
         return view('merchant.points.addUserPoints');
     }
 
@@ -55,13 +64,16 @@ class PointsController extends Controller
 
         // 'param' => 'integer','min:8','max:8','exists:App\Models\User,usercode', // Validation rule for the 'param' parameter
 
-        $userdata = User::select('name', 'id')
+        $userdata = User::select('name', 'id','status')
         ->where('usercode', $request->usercode)
         ->where('subtype', 'user')
+        ->where('status','active')
+
         ->first();
 
 
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
+
 
         if (!$userdata) {
             $userdata = 'nodata';
@@ -84,12 +96,18 @@ class PointsController extends Controller
 
         // 'param' => 'integer','min:8','max:8','exists:App\Models\User,usercode', // Validation rule for the 'param' parameter
 
-        $userdata = User::select('name', 'id')
+
+
+        $userdata = User::select('name', 'id','status')
         ->where('usercode', $request->usercode)
         ->where('subtype', 'user')
+        ->where('status','active')
         ->first();
 
         $oldPoints = points::select('points')->where('userId', $userdata->id)->where('merchantId', Auth::User()->id)->first();
+
+
+
 
         if (!$oldPoints ) {
             $oldPoints = 'nodata';
@@ -169,6 +187,9 @@ class PointsController extends Controller
 
         $pointRules = pointRules::where('merchantId',$request->merchantId)->first()->transferPoints;
 
+        if($pointRules == 0){
+            return redirect()->back()->with('error','حسابك لا يدعم استبدال النقاط');
+        }
 
          points::updateOrCreate([
             //Add unique field combo to match here
@@ -237,6 +258,11 @@ class PointsController extends Controller
     public function exchangePointsView()
     {
         $exchangeLimit = pointRules::where('merchantId',Auth::User()->id)->first();
+
+        if($exchangeLimit->exchangeLimit == 0 && $exchangeLimit->transferPoints == 0){
+            return redirect()->back()->with('error','حسابك لا يدعم استبدال النقاط');
+        }
+
         return view('merchant.points.exchangepoints ',compact(
             'exchangeLimit'
         ));
@@ -350,10 +376,12 @@ class PointsController extends Controller
 
     public function myPoints(Request $request)
     {
-        $mypoints = points::where('userId',Auth::User()->id)->inRandomOrder()->get();
+        $mypoints = points::where('userId',Auth::User()->id)->inRandomOrder()->find(1);
 
 
-        return view('myPoints',compact([
+        return $mypoints->pointTomerchant->ToPointRules;
+
+        return view('store.myPoints',compact([
             'mypoints'
         ]));
     }

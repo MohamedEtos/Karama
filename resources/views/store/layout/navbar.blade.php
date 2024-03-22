@@ -382,7 +382,7 @@
                                                       <!-- Navbar Search-->
 
                         <!-- /Navbar Search-->
-
+{{--
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   Pages
@@ -397,7 +397,7 @@
                                   <li><a class="dropdown-item" href="./register.html">Register</a></li>
                                   <li><a class="dropdown-item" href="./forgotten-password.html">Forgotten Password</a></li>
                                 </ul>
-                              </li>
+                              </li> --}}
                           </ul>                    <!-- / Menu-->
 
                     </div>

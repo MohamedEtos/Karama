@@ -16,12 +16,15 @@ class PermissionTableSeeder extends Seeder
             'مستخدم',
             'تاجر',
 
+
+
+
             'المديرين',
             'عرض المديرين',
             'اضافه مدير',
 			'حذف مدير',
 			'تعديل مدير',
-            
+
 			'رئيسيه المدير',
 			'رئيسيه التجار',
 
@@ -70,6 +73,13 @@ class PermissionTableSeeder extends Seeder
 
             'OTP',
             'عرض رموز OTP ',
+
+            'عرض الاعلانات',
+            'اضافه اعلان',
+            'ايقاف اعلان',
+            'تجديد اعلان',
+            'حذف اعلان',
+
 
         ];
         foreach ($permissions as $permission) {

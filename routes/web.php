@@ -192,6 +192,7 @@ Route::prefix('merchant')->middleware('auth')->group(function () {
     // points
     Route::get('UserPoints',[PointsController::class,'UserPoints'])->name('UserPoints');
     Route::get('checkUserCodeAddPoints/{usercode}',[PointsController::class,'checkUserCodeAddPoints'])->name('checkUserCodeAddPoints');
+    Route::get('checkUserCodeMerchantDashboard/{usercode}',[MerchantController::class,'checkUserCodeMerchantDashboard'])->name('checkUserCodeMerchantDashboard');
     Route::get('checkUserCode/{usercode}',[PointsController::class,'checkUserCode'])->name('checkUserCode');
     Route::post('addUserPoints',[PointsController::class,'addUserPoints'])->name('addUserPoints');
     Route::get('exchangePointsView',[PointsController::class,'exchangePointsView'])->name('exchangePointsView');

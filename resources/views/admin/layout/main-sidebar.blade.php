@@ -45,16 +45,17 @@
                         </li>
                     @endcan
 
-                        {{-- <li class="side-item side-item-category">الاقسام</li> --}}
                         <li class="slide">
-                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp;  الاعلانات</span><i class="angle fe fe-chevron-down"></i></a>
+                            <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label"> <i class="fa-solid fa-headset fa-xl"></i> &nbsp;  الاعلانات</span><i class="angle fe fe-chevron-down"></i></a>
                             <ul class="slide-menu">
-                                @can('اضافة قسم')
+                                @can('اضافه اعلان')
+                                    <li><a class="slide-item" href="{{ route('StoreAdsView') }}">اضافه اعلانات </a></li>
+                                @endcan
+                                @can('عرض الاعلانات')
                                     <li><a class="slide-item" href="{{ route('AdsView') }}">قائمه الاعلانات</a></li>
                                 @endcan
                             </ul>
                         </li>
-
 
                     @can('عرض صلاحية')
                         <li class="slide">

@@ -90,7 +90,7 @@
                             <div class="d-flex justify-content-start align-items-center">
                                 <h4 class="fs-4 m-0 ">₪{{$product_details->ThePriceAfterDiscount}}</h4>
                                 <s class="text-muted" style="padding-right: 20px">₪{{$product_details->price}}</s>
-                                <span class="text-muted h4" style="padding-right: 20px">% {{$product_details->discount}} خصم</span>
+                                <span class=" h4 text-danger" style="padding-right: 20px">% {{$product_details->discount}} خصم</span>
                             </div>
                             <div class="border-top mt-4 mb-3 product-option">
                                 <small class="text-uppercase pt-4 d-block fw-bolder">
@@ -266,7 +266,7 @@
 
                 <!-- Related Products-->
                 <div class="col-12" data-aos="fade-up">
-                    <h3 class="fs-4 fw-bolder mt-7 mb-4">ذ ذات صله</h3>
+                    <h3 class="fs-4 fw-bolder mt-7 mb-4 text-center"> منتجات ذات صله</h3>
                     <!-- Swiper Latest -->
                     <div class="swiper-container" data-swiper data-options='{
                         "spaceBetween": 10,

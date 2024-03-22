@@ -43,7 +43,9 @@
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
                 <h3 class="card-title mg-b-0">جدول الاعلانات</h3>
-                <a href="{{route('StoreAdsView')}}" class="mdi mdi-dots-horizontal h3 text-gray"> اضافه اعلات</a>
+                @can('اضافه اعلان')
+                    <a href="{{route('StoreAdsView')}}" class="mdi mdi-dots-horizontal h3 text-gray"> اضافه اعلات</a>
+                @endcan
             </div>
             {{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
         </div>
@@ -107,9 +109,12 @@
 
 
                                     @if ($AdsStores->status == 'Stop' || $AdsStores->status == 'انتهي')
-                                    <a href="#" class="btn ripple btn-sm btn-success" data-target="#modaldemosPlay{{$AdsStores->id}}" data-toggle="modal" href="">
-                                        <i class="fa-solid fa-play"></i>
-                                    </a>
+                                    @can('تجديد اعلان')
+                                        <a href="#" class="btn ripple btn-sm btn-success" data-target="#modaldemosPlay{{$AdsStores->id}}" data-toggle="modal" href="">
+                                            <i class="fa-solid fa-play"></i>
+                                        </a>
+                                    @endcan
+
                                     <!-- Large Modal -->
                                     <div class="modal" id="modaldemosPlay{{$AdsStores->id}}">
                                         <form action="{{route('resumeAds')}}" id="resumeAds{{$AdsStores->id}}" method="post">
@@ -125,7 +130,7 @@
 
                                                     <div class="col-12 mt-4 ">
                                                         <label for="startAds" class="form-label">تاريخ البدايه</label>
-                                                        <input name="startAds" class="form-control " id="startAds"
+                                                        <input name="startAds" class="form-control startAds " id="startAds"
                                                         onchange="setDate()"
                                                         value=""
                                                         min="10000000"
@@ -180,98 +185,33 @@
 
 
                                     @if ($AdsStores->status != 'Stop')
+                                        @can('ايقاف اعلان')
                                         <a  class="btn ripple btn-sm btn-warning text-center"  href="{{url('admin/StopAds/'.Crypt::encrypt($AdsStores->id))}}">
                                             <i class="fa-solid fa-stop"></i>
                                         </a>
+                                        @endcan
+
                                     @endif
 
 
-                                    <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$AdsStores->id}}" data-toggle="modal" href="">
+                                    {{-- <a href="#" class="btn ripple btn-sm btn-primary" data-target="#modaldemos{{$AdsStores->id}}" data-toggle="modal" href="">
                                         <i class="fa-brands fa-searchengin"></i>
-                                    </a>
+                                    </a> --}}
 
 
 
                                     <!-- Large Modal -->
-                                    <div class="modal" id="modaldemos{{$AdsStores->id}}">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content modal-content-demo">
-                                                <div class="modal-header">
-                                                    <h6 class="modal-title">عرض الاعلان </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
 
-                                                <!-- / Top banner -->
-                                                <section class="vh-75 vh-lg-60 container-fluid rounded overflow-hidden" data-aos="fade-in">
-                                                    <!-- Swiper Info -->
-                                                    <div class="swiper-container overflow-hidden rounded h-100 bg-light" data-swiper data-options='{
-                                                    "spaceBetween": 0,
-                                                    "slidesPerView": 1,
-                                                    "effect": "fade",
-                                                    "speed": 1000,
-                                                    "loop": true,
-                                                    "parallax": true,
-                                                    "observer": true,
-                                                    "observeParents": true,
-                                                    "lazy": {
-                                                        "loadPrevNext": true
-                                                        },
-                                                        "autoplay": {
-                                                        "delay": 5000,
-                                                        "disableOnInteraction": false
-                                                    },
-                                                    "pagination": {
-                                                        "el": ".swiper-pagination",
-                                                        "clickable": true
-                                                        }
-                                                    }'>
-                                                    <div class="swiper-wrapper">
-
-
-                                                        <!--Slide-->
-                                                        <div class="swiper-slide position-relative h-100 w-100">
-                                                        <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                                                            <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100"
-                                                            style=" will-change: transform; background-image: url(/Front-Store/images/banners/banner-3.jpg)">
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                                                            <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">Look Good Feel Good</p>
-                                                            <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">
-                                                            <span class="text-outline-light">Sustainable</span> Fashion</h2>
-                                                            <div data-swiper-parallax-y="-25">
-                                                            <a href="./category.html" class="btn btn-psuedo text-white" role="button">Why We Are Different</a>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                        <!--/Slide-->
-
-                                                    </div>
-
-                                                    <div class="swiper-pagination swiper-pagination-bullet-light"></div>
-
-                                                    </div>
-                                                    <!-- / Swiper Info-->        </section>
-                                                <!--/ Top Banner-->
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    {{-- <button class="btn ripple btn-danger btn-block " type="button">تم</button> --}}
-                                                    <button class="btn ripple btn-danger btn-block" data-dismiss="modal" type="button">تم</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!--End Large Modal -->
 
 
 
+                                    @can('حذف اعلان')
+                                        <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$AdsStores->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$AdsStores->id}}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    @endcan
 
-                                    <a class="btn btn-sm btn-danger modal-effect" data-target="#modaldemo{{$AdsStores->id}}" data-effect="effect-rotate-left" data-toggle="modal" href="#modaldemo{{$AdsStores->id}}">
-                                        {{-- <input type="hidden" name="userId"  value="{{$AdsStores->userToDetalis->id}}"> --}}
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
 
                                     <form action="{{route('deleteAds')}}" method="post">
                                         @csrf
@@ -379,7 +319,7 @@
 
 var now = new Date();
 now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-document.getElementById('startAds').value = now.toISOString().slice(0,16);
+$('.startAds').value = now.toISOString().slice(0,16);
 
 </script>
 

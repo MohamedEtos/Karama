@@ -22,8 +22,7 @@ class ProductHomeController extends Controller
         // get notifactions
 
         $mainCatindex = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(20)->get();
-        $adsStore = AdsStore::where('status','active')->get();
-
+        $adsStore = AdsStore::where('status','active')->inRandomOrder()->get();
 
         return view('store.index',compact(
             'mainCatindex',

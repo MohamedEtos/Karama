@@ -26,8 +26,8 @@
                             <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
                             <div class="msg">OH!<span class="triangle"></span></div>
                         </div>
-                        <h2 class="h1">@yield('message')</h2>       
-                            <button onclick="history.back()" class="btn btn-block btn-danger">Back To Home</button>
+                        <h2 class="h1">@yield('message')</h2>
+                            <a href="{{url('/')}}"  class="btn btn-block btn-danger"><b>الصفحه الرئيسية</b></a>
                     </div>
                 </div>
             </div>
@@ -36,4 +36,4 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="{{asset('assets/js/404.js')}}"></script>
-</html>	
+</html>

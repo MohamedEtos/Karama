@@ -16,9 +16,12 @@
                 <div class="col-12 mt-2 mb-2">
                     <h2 class="   ">مرحبا بك  <b>{{Auth::User()->name}}</b></h2>
                     <p class="pt-0 pb-0 mb-1">انت الان في لوحه التحكم </p>
-                    <p class="pt-0 mt-1 ">يوجد في المتجر <b>{{$countUsers}}</b> عضو فعال</p>
+                    <h5 class="pt-0 mt-1 ">يوجد في المتجر <b class="text-danger h5">{{$countUsers}}</b> عضو فعال</h5>
+                    <h5 class="pt-0 mt-1 ">عدد الزاو للمتجر<b class="h5 mr-1">{{$storeViews}}</b>  </h5>
 
                 </div>
+
+
 
 				<!-- /breadcrumb -->
 @endsection
@@ -54,15 +57,15 @@
 						<div class="card">
 							<div class="card-body iconfont text-right">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-3">عدد الزوار لمتجرك</h4>
+									<h4 class="card-title mb-3">التحقق من بطاقه العميل</h4>
 									<i class="mdi mdi-dots-vertical"></i>
 								</div>
 								<div class="d-flex mb-0">
-									<div class="">
-										<h4 class="mb-1 font-weight-bold">
-											{{$storeViews}}
-                                            <span class="text-danger tx-13 ml-2"></span></h4>
-										<p class="mb-2 tx-12 text-muted">تاجر مميز</p>
+									<div class="w-75">
+										<h4 class=" font-weight-bold ">
+                                            <input type="text" minlength="8" name="usercode"    class="form-control form-control form-control-sm w-100 usercode" placeholder=" رقم العميل المكتوب علي الكارت" id="usercode" required>
+                                            </h4>
+										<p class="mb-0 tx-12 " id="Rname"></p>
 									</div>
 									<div class="card-chart bg-pink-transparent brround mr-auto mt-0">
 										<i class="typcn typcn-chart-line-outline text-pink tx-24 fa-solid fa-users"></i>
@@ -71,9 +74,9 @@
 								</div>
 
 								<div class="progress progress-sm mt-2">
-									<div  style="width: {{$storeViews}}%" aria-valuenow="{{$storeViews}}" aria-valuemin="0" aria-valuemax="100"  class="progress-bar bg-pink " role="progressbar"></div>
+									<div id="progress"  style="width: 0%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"  class="progress-bar  " role="progressbar"></div>
 								</div>
-								<small class="mb-0  text-muted">استمر لتحصل علي مميزات اكثر<small class="float-left text-muted">{{$storeViews}}%</small></small>
+								<small  class="mb-0   text-muted">تحقق من الاشتراك قبل اجراء عمليات  <small id="progress_pres" class="float-left text-muted">0%</small></small>
 							</div>
 						</div>
 					</div>
@@ -424,4 +427,100 @@
 <script src="{{URL::asset('https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/dataTables.buttons.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+
+
+
+<script>
+$('#usercode').on('input paste', function() {
+
+var Rname = document.getElementById('Rname');
+var usercode = document.getElementById('usercode');
+var value = document.getElementById('usercode').value;
+var progress = document.getElementById('progress');
+
+
+
+    if (value.length == 8 ) { //check if value == 8
+
+               $.ajax({
+                   type: "GET",
+                   url: 'checkUserCodeMerchantDashboard/'+value,
+                   dataType: 'json',
+                   beforeSend: function() {
+                    $('.loading').css('display','flex');
+                    $('.loader_cu').css('display','flex');
+                   },
+                    success: function(data){
+                       usercode.classList.remove("border","border-warning");
+                       usercode.classList.remove("border","border-danger");
+                       usercode.classList.add("border", "border-success");
+
+
+
+
+
+                       if(data.MSG == 'nodata'  ){
+                            Rname.textContent = 'الحساب معطل او رقم المستخدم خطا' ;
+                            usercode.classList.remove( "text-success");
+                            usercode.classList.add( "text-danger");
+                            Rname.classList.remove( "text-success");
+                            $('#progress').css('width','0%');
+                            $('#progress').removeClass('bg-success');
+                            $('#progress').addClass('bg-pink');
+                            $('#progress_pres').text('0%');
+                            Rname.classList.add( "text-danger");
+                            usercode.classList.remove("border","border-warning");
+                            usercode.classList.remove("border", "border-success");
+                            usercode.classList.add("border","border-danger");
+                            $('.loading').css('display','none');
+                            $('.loader_cu').css('display','none');
+                            // finish.classList.add('disabled');
+
+                        }else{
+                            Rname.textContent = ' المشترك مفعل' ;
+                            Rname.classList.remove( "text-danger");
+                            $('#progress').css('width','100%');
+                            $('#progress_pres').text('100%');
+                            $('#progress').removeClass('bg-pink');
+                            $('#progress').addClass('bg-success');
+
+                            Rname.classList.add( "text-success");
+                            usercode.classList.remove( "text-danger");
+                            usercode.classList.add( "text-success");
+
+                        }
+
+                        $('.loading').css('display','none');
+                        $('.loader_cu').css('display','none');
+                    },complete: function(){
+                        $('.loading').css('display','none');
+                        $('.loader_cu').css('display','none');
+
+                    },error: function(reject){
+                        Rname.value = 'لا يوجد بيانات  ' ;
+                        $('#progress').css('width','0%');
+
+                        usercode.classList.remove("border","border-warning");
+                        usercode.classList.remove("border", "border-success");
+                        usercode.classList.add("border","border-danger");
+                        $('.loading').css('display','none');
+                        $('.loader_cu').css('display','none');
+
+                    },
+
+                 });
+    }else if(usercode.value.length < 8){
+        usercode.classList.remove("border","border-success");
+        usercode.classList.add("border","border-warning");
+        document.getElementById('Rname').value = '' ;
+
+    }
+
+
+
+
+});
+</script>
+
+
 @endsection

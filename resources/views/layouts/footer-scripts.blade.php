@@ -91,6 +91,30 @@
 
 <script src="{{URL::asset('assets/js/notifyPosher.js')}}"></script>
 
+@if(Session::has('success'))
+<input id="nofic" type="hidden" value="{{Session::get('success')}}">
+<script>
+    window.onload = function not7() {
+    notif({
+        msg: $('#nofic').val(),
+        type: "success"
+    });
+}
+</script>
+@endif
+
+@if(Session::has('error'))
+<input id="error" type="hidden" value="{{Session::get('error')}}">
+<script>
+    window.onload = function not7() {
+        notif({
+            msg: $('#error').val(),
+            type: "error"
+        });
+    }
+    </script>
+@endif
+
 
 <script>
 

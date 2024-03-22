@@ -598,4 +598,28 @@ class MerchantController extends Controller
             'userDetails',
         ]));
     }
+
+
+    public function checkUserCodeMerchantDashboard(Request $request)
+    {
+
+        // 'param' => 'integer','min:8','max:8','exists:App\Models\User,usercode', // Validation rule for the 'param' parameter
+
+        $userdata = User::select('name', 'id','status')
+        ->where('usercode', $request->usercode)
+        ->where('subtype', 'user')
+        ->where('status','active')
+        ->first();
+
+
+
+        if (!$userdata) {
+            $userdata = 'nodata';
+            return response()->json(array("MSG" => $userdata));
+        }
+
+
+        return response()->json(array("MSG" => $userdata,));
+
+    }
 }

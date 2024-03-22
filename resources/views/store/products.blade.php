@@ -20,7 +20,7 @@
         </div>
         <!-- Category Top Banner -->
 
-        <div class="container-fluid" data-aos="fade-in">
+        <div class="container-fluid" style="overflow-y: hidden" data-aos="fade-in">
             <!-- Category Toolbar-->
                 <div class="d-flex justify-content-between items-center pt-5 pb-4 flex-column flex-lg-row">
                     <div>
@@ -42,12 +42,12 @@
                         <!-- / Filter Trigger-->
 
                         <!-- Sort Options-->
-                            <select class="form-select form-select-sm border-0 bg-light p-3 m-3 pe-5 lh-1 fs-7">
+                            {{-- <select class="form-select form-select-sm border-0 bg-light p-3 m-3 pe-5 lh-1 fs-7">
                                 <option selected>Sort By</option>
                                 <option value="1">Hi Low</option>
                                 <option value="2">Low Hi</option>
                                 <option value="3">Name</option>
-                            </select>
+                            </select> --}}
                         <!-- / Sort Options-->
                     </div>
                 </div>            <!-- /Category Toolbar-->
@@ -83,7 +83,7 @@
                                         </button>
                                     </div>
                             </div>
-                            <div class="card-body px-0">
+                            <div class="card-body px-4">
                                 <a class="text-decoration-none link-cover" href="{{url('product-details/'.Crypt::encrypt($product->id))}}">{{$product->name}}</a>
                                 <small class="text-muted d-block">{{$product->productDescription}}</small>
                                         <p class="mt-2 mb-0 ">
@@ -103,22 +103,22 @@
             <!-- / Products-->
 
             <!-- Pagination-->
-            <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
-                <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
-                <div class="progress f-h-1 mt-3">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{$products->currentPage()/$products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="row">
+                <div class="d-flex flex-column col-12 justify-content-center f-w-44 mx-auto my-5 text-center">
+                    <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
+                    <div class="progress f-h-1 mt-3">
+                        <div class="progress-bar bg-dark" role="progressbar" style="width: {{$products->currentPage()/$products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
+                    <div style="margin-top:  20px; padding-right:0px" class="col-12">
+                        {{$products->links()}}
+                        <a href="/products">كل المنتجات</a>
+                    </div>
+
                 </div>
-                {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
-                <div style="margin-top: 20px; padding-right:0px">
-                    {{-- {{ $products->total() }} --}}
-
-                    {{$products->links()}}
-
-                    <a href="/products">كل المنتجات</a>
-                </div>
-
-            </div>            <!-- / Pagination-->
-        </div>
+            </div>
+            </div>
+        <!-- / Pagination-->
 
         <!-- /Page Content -->
     </section>

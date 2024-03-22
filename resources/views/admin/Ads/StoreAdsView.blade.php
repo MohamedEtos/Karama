@@ -54,7 +54,7 @@
 										<div class="col-md-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">رقم التاجر: </label>
-												<input class="form-control" name="usercode" placeholder="لا يمكنك ترك الرقم فارغ" required="" value="" type="text">
+												<input  class="form-control" name="usercode" placeholder="لا يمكنك ترك الرقم فارغ" required="" value="{{ old('usercode') }}" type="text">
                                                 <div class="valid-feedback">
                                                     ممتاز !
                                                 </div>
@@ -68,9 +68,9 @@
                                             <label for="startAds" class="form-label">تاريخ البدايه</label>
                                             <input name="startAds" class="form-control " id="startAds"
                                             onchange="setDate()"
-                                            value=""
+                                            value="{{ old('startAds') }}"
                                             min="10000000"
-                                            minlength="8" maxlength="8"  type="datetime-local"   required >
+                                             type="datetime-local"   required >
                                             <div class="valid-feedback">
                                                 ممتاز !
                                             </div>
@@ -88,10 +88,9 @@
                                         <div class="col-md-4 ">
                                             <label for="endAds" class="form-label">تاريخ الانتهاء</label>
                                             <input name="endAds" class="form-control " id="endAds"
-                                            value=""
-
+                                            value="{{ old('endAds') }}"
                                             min="10000000"
-                                            minlength="8" maxlength="8"  type="datetime-local"   required >
+                                             type="datetime-local"   required >
                                             <div class="valid-feedback">
                                                 ممتاز !
                                             </div>
@@ -110,8 +109,13 @@
 										<div class="col-md-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">الجمله الاولي في الاعلان :  </label>
-												<input name="text1" class="form-control"
-												minlength="1" maxlength="30" max="9999"  type="text"   id="text1INP" placeholder="الحمله الاولي"  required>
+												<input name="text1"  class="form-control"
+												minlength="1"
+                                                value="{{ old('text1') }}"
+                                                type="text"
+                                                id="text1INP"
+                                                placeholder="الحمله الاولي"
+                                                required>
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
@@ -126,12 +130,12 @@
 												<label class="form-label">الجمله الثانيه: </label>
 												<input class="form-control" name="text2" minlength="1"
 
-												type="text" max="100"   id="text2INP" maxlength="20" max="100" value="" placeholder="الجمله الثانيه" required >
+												type="text"    id="text2INP"  value="{{ old('text2') }}" placeholder="الجمله الثانيه" required >
 											  <div class="valid-feedback">
 												ممتاز !
 											</div>
-											<div class="invalid-feedback" id="discount_error">
-												حدد نسبه خصم بين 1% % الي 100 %
+											<div class="invalid-feedback" id="text2INP">
+                                                لايمكن ترك الجمله فارغه
 											</div>
 											</div>
 										</div>
@@ -140,11 +144,13 @@
 											<div class="form-group mg-b-0">
 												<label class="form-label"> الجمله الثالثه: </label>
 												<input name="text3" class="form-control" minlength="1"
-												 step="any" min="1" maxlength="20" max="9999"   type="text" value=""   id="text3INP" placeholder="الجمله الثالثه في الاعلان"  >
+												  type="text" value="{{ old('text3') }}"   id="text3INP" placeholder="الجمله الثالثه في الاعلان"  >
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
-												<div class="invalid-feedback" id="ThePriceAfterDiscount_error">
+												<div class="invalid-feedback" id="text3INP">
+													لايمكن ترك الجمله فارغه
+
 												</div>
 											</div>
 										</div>
@@ -158,31 +164,44 @@
 
 
 
-										<div class="col-md-8">
+										<div class="col-md-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">  لينك الاعلان: </label>
 												<input name="adsLink" class="form-control" minlength="1"
                                                 max="9999"
                                                 type="text"
-                                                value=""
+                                                value="{{ old('adsLink') }}"
                                                 id="adsLinkINP"
                                                 placeholder="رابط الاعلان"  >
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
-												<div class="invalid-feedback" id="ThePriceAfterDiscount_error">
+												<div class="invalid-feedback" id="adsLinkINP">
 												</div>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">تكلفه اليوم: </label>
-												<input name="adsLink" class="form-control" minlength="1"
-												 step="any" min="1" maxlength="5" max="9999"   type="text" value=""   id="adsPrice" placeholder="اخياري"  >
+												<input name="adsPrice" class="form-control" minlength="1"
+												 step="any" min="1" maxlength="5" max="9999"   type="text" value="{{ old('adsPrice') }}"   id="adsPrice" placeholder="اخياري"  >
 												<div class="valid-feedback">
 													ممتاز !
 												</div>
-												<div class="invalid-feedback" id="ThePriceAfterDiscount_error">
+												<div class="invalid-feedback" id="adsPrice">
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">لون الكتابه: </label>
+												<input name="color" class="form-control"
+												  type="color" value="{{ old('color') }}"   id="color"   >
+												<div class="valid-feedback">
+													ممتاز !
+												</div>
+												<div class="invalid-feedback" id="color">
 												</div>
 											</div>
 										</div>
@@ -194,7 +213,7 @@
 										<div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
 											<div class="mx-auto  avatar-upload" style="width:100%">
 												<div class="avatar-edit">
-													<input type='file' id="imageUpload1" name="mainImage" accept=".png, .jpg, .jpeg" />
+													<input type='file' value="{{ old('mainImage') }}" id="imageUpload1" name="mainImage" accept=".png, .jpg, .jpeg" />
 													<label for="imageUpload1"></label>
 												</div>
 												<div class="avatar-preview">
@@ -283,23 +302,23 @@
                                         <div class="swiper-wrapper">
 
 
-                                                        <!--Slide-->
-                                                        <div class="swiper-slide position-relative h-100 w-100">
-                                                            <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                                                                <div id="adsImage" class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden"
-                                                                style=" will-change: transform; ">
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                                                                <p id="text1" class="title-small text-white opacity-75 mb-0" ></p>
-                                                                <h2 id="text2" class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" > </h2>
-                                                                <div data-swiper-parallax-y="-25">
-                                                                <a id="adsLink" href="./category.html" class="btn  text-white" role="button"></a>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                            <!--/Slide-->
+                                            <!--Slide-->
+                                            <div class="swiper-slide position-relative h-100 w-100">
+                                                <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
+                                                    <div id="adsImage" class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden"
+                                                    style=" will-change: transform; ">
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
+                                                    <p id="text1" class="title-small  opacity-75 mb-0" ></p>
+                                                    <h2 id="text2" class="display-3 tracking-wide fw-bold text-uppercase tracking-wide " > </h2>
+                                                    <div data-swiper-parallax-y="-25">
+                                                    <a id="adsLink" href="./category.html" class="btn  " role="button"></a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <!--/Slide-->
 
                                         </div>
 
@@ -332,6 +351,12 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 <script src="{{URL::asset('Front-Store/js/vendor.bundle.js')}}"></script>
 <script src="{{URL::asset('Front-Store/js/theme.bundle.js')}}"></script>
+
+<script>
+        $(function() {
+        $('.colorpicker').colorpicker();
+    });
+</script>
 
 
  {{-- image uploader  --}}
@@ -369,6 +394,12 @@
         $('#text3INP').on('keyup', function() {
                 var input1Value = $(this).val();
                 $('#adsLink').html(input1Value);
+        });
+        $('#color').on('change', function() {
+                var input1Value = $(this).val();
+                $('#text1').css('color',input1Value);
+                $('#text2').css('color',input1Value);
+                $('#adsLink').css('color',input1Value);
         });
 
 

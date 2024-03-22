@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('linkText')->nullable();
             $table->string('link')->nullable();
             $table->string('img1')->nullable();
+            $table->string('textColor')->nullable();
             $table->string('status')->default('active');
             $table->decimal('price',9,2)->nullable();
             $table->timestamp('startAds')->nullable();

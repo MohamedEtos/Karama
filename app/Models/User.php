@@ -61,6 +61,12 @@ class User extends Authenticatable
     }
 
 
+    public function ToPointRules(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
     // public function userDetalis()
     // {
     //     return $this->hasOne(userDetalis::class);

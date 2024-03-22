@@ -15,8 +15,12 @@ class pointRules extends Model
         'transferPoints',
         'exchangeLimit',
     ];
-    public function pointRules(): BelongsTo
+
+
+    public function UsetToRulesPooints()
     {
-        return $this->belongsTo(User::class,'merchantId');
+        return $this->hasMany(pointRules::class,'merchantId');
     }
+
+
 }

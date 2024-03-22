@@ -44,10 +44,10 @@
                         </div>
                         <div
                         class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                        <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">{{$adsStores->text1}}</p>
-                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">{{$adsStores->text2}}</h2>
+                        <p class="title-small  opacity-75 mb-0" style="color:{{$adsStores->textColor}};"  data-swiper-parallax="-100">{{$adsStores->text1}}</p>
+                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide " style="color:{{$adsStores->textColor}};"  data-swiper-parallax="100">{{$adsStores->text2}}</h2>
                         <div data-swiper-parallax-y="-25">
-                            <a href="{{$adsStores->link}}" class="btn btn-psuedo text-white" role="button">{{$adsStores->text3}}</a>
+                            <a target="_blank" href="{{$adsStores->link}}" class="btn btn-psuedo "  style="color:{{$adsStores->textColor}};" role="button">{{$adsStores->text3}}</a>
                         </div>
                         </div>
                     </div>
@@ -355,10 +355,12 @@
                                     <picture class="position-relative z-index-10  d-block bg-light">
                                         <img class=" lazy w-100 rounded" data-src="{{asset($mainCats4->subCatRelation->catimg)}}" src="" alt="Karama-SC">
                                     </picture>
+                                    <a href="{{'products?title='.$mainCats4->subCatRelation->name}}">
                                     <div class="card-overlay">
-                                        <p class="lead fw-bolder mb-2">{{$mainCats4->subCatRelation->name}}</p>
+                                        <p class="lead fw-bolder mb-2 text-white">{{$mainCats4->subCatRelation->name}}</p>
                                         <a href="{{'products?title='.$mainCats4->subCatRelation->name}}" class="btn btn-psuedo text-white py-2" role="button">تسوق الان</a>
                                     </div>
+                                </a>
                                 </div>
                             </div>
 
