@@ -477,7 +477,7 @@ var progress = document.getElementById('progress');
                             // finish.classList.add('disabled');
 
                         }else{
-                            Rname.textContent = ' المشترك مفعل' ;
+                            Rname.textContent = ' المشترك مفعل باسم : ' + data.MSG.name ;
                             Rname.classList.remove( "text-danger");
                             $('#progress').css('width','100%');
                             $('#progress_pres').text('100%');
