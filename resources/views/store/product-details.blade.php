@@ -29,7 +29,7 @@
         </div>
         <!-- / Breadcrumbs-->
 
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5 overflow-hidden">
 
             <!-- Product Top Section-->
             <div class="row g-9" data-sticky-container>
@@ -422,21 +422,25 @@
 
             </div>
             <!-- / Products-->
+
+                                    <!-- Pagination-->
+                                    <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
+                                        <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
+                                        <div class="progress f-h-1 mt-3">
+                                            <div class="progress-bar bg-dark" role="progressbar" style="width: {{$products->currentPage()/$products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
+                                        <div style="margin-top: 20px; padding-right:0px">
+                                            {{$products->links()}}
+                                            {{-- <a href="/products">كل المنتجات</a> --}}
+                                        </div>
+                                    </div>
+                                    <!-- / Pagination-->
+
+
         </div>
 
-                        <!-- Pagination-->
-                        <div class="d-flex flex-column justify-content-center f-w-44 mx-auto my-5 text-center">
-                            <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
-                            <div class="progress f-h-1 mt-3">
-                                <div class="progress-bar bg-dark" role="progressbar" style="width: {{$products->currentPage()/$products->lastPage()*100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            {{-- <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a> --}}
-                            <div style="margin-top: 20px; padding-right:0px">
-                                {{$products->links()}}
-                                {{-- <a href="/products">كل المنتجات</a> --}}
-                            </div>
-                        </div>
-                        <!-- / Pagination-->
+
 
 
 

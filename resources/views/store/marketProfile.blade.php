@@ -94,7 +94,7 @@
                                 </button>
                             </div>
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body px-3">
                         <a class="text-decoration-none link-cover" href="{{url('product-details/'.Crypt::encrypt($product->id))}}">{{$product->name}}</a>
                         <small class="text-muted d-block">{{$product->productDescription}}</small>
                                 <p class="mt-2 mb-0 ">

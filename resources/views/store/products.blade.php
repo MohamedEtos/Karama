@@ -103,7 +103,7 @@
             <!-- / Products-->
 
             <!-- Pagination-->
-            <div class="row">
+            <div class="row overflow-hidden">
                 <div class="d-flex flex-column col-12 justify-content-center f-w-44 mx-auto my-5 text-center">
                     <small class="text-muted">عرض {{$products->count()}} من {{$products->total()}} منتج</small>
                     <div class="progress f-h-1 mt-3">

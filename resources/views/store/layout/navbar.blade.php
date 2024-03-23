@@ -8,7 +8,8 @@
                     <!-- Logo-->
                     <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0 order-0" href="{{url('/')}}">
                         <div class="d-flex align-items-center ">
-                            <img class="mainlogo" src="{{asset('assets/img/brand/logos-06.svg')}}" alt="">
+                            <img class="mainlogo d-none d-lg-block " src="{{asset('assets/img/brand/logos-06.svg')}}" alt="">
+                            <img class="mainlogo d-sm-block d-lg-none sm-logo"  src="{{asset('assets/img/brand/logos-07-01.svg')}}" alt="">
                         </div>
                     </a>
                     <!-- / Logo-->
