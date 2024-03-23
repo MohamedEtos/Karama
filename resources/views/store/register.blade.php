@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
+  {{-- <meta name="description" content=""> --}}
   <meta name="author" content="">
   <meta name="keywords" content="">
 
@@ -102,7 +102,7 @@
     <!-- Theme JS -->
     <!-- Vendor JS -->
     <script src="./assets/js/vendor.bundle.js"></script>
-    
+
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
 </body>

@@ -1,5 +1,10 @@
 @extends('store.layout.master')
-
+@section('title')
+<title>{{$marketData->name}}</title>
+@endsection
+@section('metaGoogle')
+<meta name="description" content="{{$marketData->userToDetalis->bio}}">
+@endsection
 @section('navbar')
 @section('content')
 <div class="container-fulid  h-100">
