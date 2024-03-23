@@ -8,6 +8,8 @@
     <meta name="keywords" content="">
     <meta name="google-site-verification" content="BWfA1XxsiZ39CSSqPSFFBiWF-DHAiPE_UjyyMFw-PkM" />
     <meta name="msvalidate.01" content="10C89CB6FF3D7A06BD24B73D0D35F5AA" />
+<link rel="icon" href="{{asset('assets/img/brand/logos-07-01.svg')}}">
+
     @yield('metaGoogle')
 
     <!-- Custom Google Fonts-->

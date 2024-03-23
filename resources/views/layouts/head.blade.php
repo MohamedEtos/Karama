@@ -1,7 +1,9 @@
 <!-- Title -->
 <title> نادي الكرامة - Karama-SC </title>
 <!-- Favicon -->
-<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
+{{-- <link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/> --}}
+<link rel="icon" href="{{asset('assets/img/brand/logos-07-01.svg')}}">
+
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css-rtl/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->

@@ -31,7 +31,6 @@
                 </nav>            </div>
         </div>
         <!-- / Breadcrumbs-->
-
         <div class="container-fluid mt-5 overflow-hidden">
 
             <!-- Product Top Section-->

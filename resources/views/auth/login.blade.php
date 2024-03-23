@@ -52,6 +52,8 @@
 <link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
 <!-- Internal Spectrum-colorpicker css -->
 <link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+<link rel="icon" href="{{asset('assets/img/brand/logos-07-01.svg')}}">
+
 @endsection
 
 @section('metaGoogle')
