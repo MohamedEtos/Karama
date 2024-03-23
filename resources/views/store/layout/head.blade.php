@@ -7,6 +7,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="google-site-verification" content="BWfA1XxsiZ39CSSqPSFFBiWF-DHAiPE_UjyyMFw-PkM" />
+    <meta name="msvalidate.01" content="10C89CB6FF3D7A06BD24B73D0D35F5AA" />
 
     <!-- Custom Google Fonts-->
 
