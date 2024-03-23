@@ -44,10 +44,10 @@
                         </div>
                         <div
                         class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                        <p class="title-small  opacity-75 mb-0" style="color:{{$adsStores->textColor}};"  data-swiper-parallax="-100">{{$adsStores->text1}}</p>
-                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide " style="color:{{$adsStores->textColor}};"  data-swiper-parallax="100">{{$adsStores->text2}}</h2>
+                        <p class="  opacity-75 ads_small_text mb-0" style="color:{{$adsStores->textColor}};"  data-swiper-parallax="-100">{{$adsStores->text1}}</p>
+                        <p class="display-3  tracking-wide ads_large_text  text-uppercase tracking-wide " style="color:{{$adsStores->textColor}}; "  data-swiper-parallax="100">{{$adsStores->text2}}</p>
                         <div data-swiper-parallax-y="-25">
-                            <a target="_blank" href="{{$adsStores->link}}" class="btn btn-psuedo "  style="color:{{$adsStores->textColor}};" role="button">{{$adsStores->text3}}</a>
+                            <a target="_blank" href="{{$adsStores->link}}" class="btn btn-psuedo ads_link"  style="color:{{$adsStores->textColor}};" role="button">{{$adsStores->text3}}</a>
                         </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div
                         class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
                         <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100">نادي الكرامه الرياضي </p>
-                        <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100">يرحب بكم </h2>
+                        <h2 class="display-3 tracking-wide  text-uppercase tracking-wide text-white" data-swiper-parallax="100">يرحب بكم </h2>
                         <div data-swiper-parallax-y="-25">
                             <a href="https://www.facebook.com/karamacsclube?locale=ar_AR" class="btn btn-psuedo text-white" role="button">زورو موقعنا الان</a>
                         </div>
