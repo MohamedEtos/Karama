@@ -43,6 +43,7 @@
 
 @extends('layouts.master3')
 @section('css')
+
 <!-- Internal Select2 css -->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <!--Internal  Datetimepicker-slider css -->
@@ -51,6 +52,12 @@
 <link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
 <!-- Internal Spectrum-colorpicker css -->
 <link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+@endsection
+
+@section('metaGoogle')
+<meta name="description" content="نادي الكرامه - نادي نابلسي حديث التأسيس بأيدي شبابية
+يهدف لنشر الوعي والتثقيف الرياضي والوطني وتعزيز روح الانتماء والعمل التطوعي من خلال تقديم الأنشطة.
+الثقافية والرياضية والمجتمعية بجودة عالية وبالتعاون مع كوادر مؤهلة، وبهمة شباب متطوعين">
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->

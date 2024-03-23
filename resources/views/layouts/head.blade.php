@@ -37,6 +37,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
 <meta name="google-site-verification" content="BWfA1XxsiZ39CSSqPSFFBiWF-DHAiPE_UjyyMFw-PkM" />
 <meta name="msvalidate.01" content="10C89CB6FF3D7A06BD24B73D0D35F5AA" />
+@yield('metaGoogle')
+
 <!-- Internal Ion.rangeSlider css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MohamedEtos/CDN@main/rangeSlider.css">
 {{-- <link href="{{URL::asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet"> --}}

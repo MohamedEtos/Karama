@@ -1,6 +1,9 @@
 @extends('store.layout.master')
 
 @section('navbar')
+@section('metaGoogle')
+<meta name="description" content="{{$product_details->productDescription}}">
+@endsection
 @section('content')
 
     <!-- Main Section-->
