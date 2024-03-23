@@ -17,10 +17,12 @@ class pointRules extends Model
     ];
 
 
-    public function UsetToRulesPooints()
+
+    public function ToPointRules(): BelongsTo
     {
-        return $this->hasMany(pointRules::class,'merchantId');
+        return $this->belongsTo(User::class,'merchantId');
     }
+
 
 
 }

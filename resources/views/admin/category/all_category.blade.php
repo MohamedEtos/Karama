@@ -31,7 +31,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h3 class="card-title mg-b-0">جدول المنتجات</h3>
+									<h3 class="card-title mg-b-0">جدول الاقسام</h3>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 								{{-- <p class="tx-12 tx-gray-500 mb-2">Example of Karama SC  Simple Table. <a href="">Learn more</a></p> --}}
@@ -113,57 +113,54 @@
 <!-- Button trigger modal -->
 <div class="modal" id="modaldemo3x">
     <div class="modal-dialog" role="document">
-<div class="modal-content modal-content-demo">
-    <div class="modal-header">
-        <h6 class="modal-title"> الاقسام الفرعيه </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
-    </div>
-    <div class="modal-body">
-        <form method="post" action="{{route('subCatUpdate')}}" id="subCat">
-            @csrf
-            {{-- <input type="hidden" name="categoryId" value=""> --}}
-
-        <div class="mb-3">
-            <label for="name">اختار القسم</label>
-            <select name="category"  class="form-control" id="allCategory">
-                @forelse ($categoriesSelect as $data)
-                <option value="{{$data->id}}">{{$data->name}}</option>
-                @empty
-                <option disabled value="">لا يوجد اقسام</option>
-                @endforelse
-            </select>
-            @error('category')
-            <div class="text-danger">
-                {{$message}}
+        <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+                <h6 class="modal-title"> الاقسام الفرعيه </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
             </div>
-           @enderror
-        </div>
+            <div class="modal-body">
+                <form method="post" action="{{route('subCatUpdate')}}" id="subCat">
+                    @csrf
+                    {{-- <input type="hidden" name="categoryId" value=""> --}}
 
-        <div class="mb-3">
-            <label for="name">الاقسام الفرعيه</label>
-            <input id="ajaxTags" type="text" style="width: 100%"   value="" name="subCat"    class="form-control"  placeholder=" اكتب التخصص ثم Enter"  >
-            @error('Ajax')
-            <div class="text-danger">
-                {{$message}}
+                <div class="mb-3">
+                    <label for="name">اختار القسم</label>
+                    <select name="category"  class="form-control" id="allCategory">
+                        @forelse ($categoriesSelect as $data)
+                        <option value="{{$data->id}}">{{$data->name}}</option>
+                        @empty
+                        <option disabled value="">لا يوجد اقسام</option>
+                        @endforelse
+                    </select>
+                    @error('category')
+                    <div class="text-danger">
+                        {{$message}}
+                    </div>
+                @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="name">الاقسام الفرعيه</label>
+                    <input id="ajaxTags" type="text" style="width: 100%"   value="" name="subCat"    class="form-control"  placeholder=" اكتب التخصص ثم Enter"  >
+                    @error('Ajax')
+                    <div class="text-danger">
+                        {{$message}}
+                    </div>
+                @enderror
+                </div>
+
+
             </div>
-           @enderror
+            <div class="modal-footer">
+                <button class="btn ripple btn-danger" type="submit" form="subCat" >حفظ</button>
+                <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
+            </div>
+            </form>
         </div>
-
-
     </div>
-    <div class="modal-footer">
-        <button class="btn ripple btn-danger" type="submit" form="subCat" >حفظ</button>
-        <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">الغاء</button>
-    </div>
-    </form>
 </div>
-</div>
-</div>
-
-
-
-
-
 <!-- Button trigger modal -->
+
+
 <div class="modal" id="modaldemo1x">
     <div class="modal-dialog" role="document">
 <div class="modal-content modal-content-demo">

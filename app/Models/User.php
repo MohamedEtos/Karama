@@ -59,12 +59,17 @@ class User extends Authenticatable
     {
         return $this->hasOne(AdsStore::class);
     }
-
-
-    public function ToPointRules(): BelongsTo
+    
+    public function merchantToRulesPoints()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(pointRules::class,'merchantId');
     }
+
+    public function UsetToRulesPoints()
+    {
+        return $this->hasOne(pointRules::class,'userId');
+    }
+
 
 
     // public function userDetalis()

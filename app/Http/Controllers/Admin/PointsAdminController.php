@@ -165,4 +165,15 @@ class PointsAdminController extends Controller
         ));
     }
 
+    public function updatePointRules(Request $request)
+    {
+
+        $allMerchant =  pointRules::where('merchantId',$request->MID)->update([
+            'exchangeLimit'=>$request->exchangeLimit,
+            'transferPoints'=>$request->transferPoints,
+        ]);
+
+        return redirect()->back()->with('success','تم تعديل النقاط');
+    }
+
 }

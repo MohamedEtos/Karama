@@ -378,6 +378,11 @@
                                   خصومات %
                                 </a>
                               </li>
+                              <li class="nav-item">
+                                <a class="nav-link" target="_black" href="https://www.m.me/111740458640912" role="button">
+                                  تواصل معي الادارة
+                                </a>
+                              </li>
 
                                                       <!-- Navbar Search-->
 

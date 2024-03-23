@@ -117,8 +117,8 @@
 
                 </div>
             </div>
-            </div>
-        <!-- / Pagination-->
+            <!-- / Pagination-->
+        </div>
 
         <!-- /Page Content -->
     </section>

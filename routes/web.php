@@ -160,6 +160,7 @@ Route::controller(PointsAdminController::class)->middleware('auth')->prefix('adm
     Route::get('checkUserCode/{usercode}/{merchantId}', 'checkUserCode')->name('checkUserCode');
     Route::post('addUserPoints', 'addUserPoints')->name('addUserPoints');
     Route::get('pointSetting', 'pointSetting')->name('pointSetting');
+    Route::post('updatePointRules', 'updatePointRules')->name('updatePointRules');
 
 });
 

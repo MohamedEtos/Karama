@@ -376,10 +376,10 @@ class PointsController extends Controller
 
     public function myPoints(Request $request)
     {
-        $mypoints = points::where('userId',Auth::User()->id)->inRandomOrder()->find(1);
+        $mypoints = points::with('pointTomerchant')->where('userId',Auth::User()->id)->inRandomOrder()->get();
 
 
-        return $mypoints->pointTomerchant->ToPointRules;
+        // return $mypoints->point_tomerchant;
 
         return view('store.myPoints',compact([
             'mypoints'

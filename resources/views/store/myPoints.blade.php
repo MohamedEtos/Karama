@@ -43,7 +43,7 @@
                     <!-- Swiper Latest -->
                     <div class="swiper-container" data-swiper data-options='{
                         "spaceBetween": 10,
-                        "loop": true,
+                        "loop": false,
                         "autoplay": {
                           "delay": 5000,
                           "disableOnInteraction": false
@@ -127,7 +127,7 @@
                     <h3 class="fs-4 fw-bolder mt-7 mb-4 reviews">استبدال النقاط</h3>
 
                     <!-- Review Summary-->
-                    <div class="bg-light p-5 justify-content-between d-flex flex-column flex-lg-row ">
+                    <div class="bg-light p-3 py-5 justify-content-between d-flex flex-column flex-lg-row ">
                         <div class="d-flex flex-column align-items-center mb-4 mb-lg-0">
                             <!-- Review Stars Medium-->
                             <div class="rating position-relative d-table">
@@ -144,10 +144,10 @@
                                         </div>
                                     </div>
                                     <div class="progress d-flex flex-grow-1 mx-4 f-h-1">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                        <div class="progress-bar bg-dark" role="progressbar" style="width: {{($mypoint->points / $mypoint->pointTomerchant->merchantToRulesPoints->exchangeLimit) * 100}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    {{-- <span class="fw-bold small d-block f-w-4 text-end">{{$mypoint->pointTomerchant->pointRulesRelation->transferPoints}}</span> --}}
-                                    <span class="fw-bold small d-block f-w-4 text-end">0</span>
+                                    <span class="fw-bold small d-block f-w-4 text-end">{{$mypoint->pointTomerchant->merchantToRulesPoints->exchangeLimit}} </span>
                                 </div>
                             @empty
 

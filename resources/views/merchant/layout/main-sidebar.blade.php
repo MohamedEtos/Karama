@@ -35,23 +35,33 @@
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('MarketProfile/'.Auth::User()->id) }}"><span class="side-menu__label"> <i class="fa-solid fa-pager fa-xl"></i> &nbsp; صفحه المتجر</span><span class="badge badge-success side-badge"></span></a>
 					</li>
-					<li class="side-item side-item-category">المنتجات</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/new-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-plus  fa-xl"></i> &nbsp; اضافه منتج</span><span class="badge badge-danger side-badge"></span></a>
+
+
+
+                    <li class="side-item side-item-category">المنتجات </li>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label">  <i class="fa-solid fa-box fa-xl"></i> &nbsp;  المنتجات</span><i class="angle fe fe-chevron-down"> </i><span class="badge badge-success side-badge">1</span></a>
+						<ul class="slide-menu">
+                            <li><a class="slide-item" href="{{ url('merchant/new-product') }}">اضافه منتج</a></li>
+                            <li> <a class="slide-item" href="{{ url('merchant/list-product') }}">تعديل المنتجات</a> </li>
+
+
+						</ul>
 					</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/list-product') }}"><span class="side-menu__label"> <i class="fa-solid fa-pen-to-square  fa-xl"></i> &nbsp; تعديل المنتجات</span><span class="badge badge-danger side-badge"></span></a>
+
+                    <li class="side-item side-item-category">النقاط </li>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><span class="side-menu__label">  <i class="fa fa-arrow-right-arrow-left  fa-xl"></i> &nbsp;  النقاط</span><i class="angle fe fe-chevron-down"> </i><span class="badge badge-success side-badge">1</span></a>
+						<ul class="slide-menu">
+                            <li><a class="slide-item" href="{{ url('merchant/UserPoints') }}">عمليه شراء</a></li>
+                            <li> <a class="slide-item" href="{{ url('merchant/exchangePointsView') }}">استبدال نقاط</a> </li>
+                            <li> <a class="slide-item" href="{{ url('merchant/settingPoints') }}"> اعدادات النقاط</a> </li>
+
+
+						</ul>
 					</li>
-					<li class="side-item side-item-category">النقاط</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/UserPoints') }}"><span class="side-menu__label"> <i class="fa fa-cart-shopping  fa-xl"></i> &nbsp; عمليه شراء</span><span class="badge badge-danger side-badge"></span></a>
-					</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/exchangePointsView') }}"><span class="side-menu__label"> <i class="fa fa-arrow-right-arrow-left  fa-xl"></i> &nbsp; استبدال نقاط </span><span class="badge badge-danger side-badge"></span></a>
-					</li>
-					<li class="slide">
-						<a class="side-menu__item" href="{{ url('merchant/settingPoints') }}"><span class="side-menu__label"> <i class="fa-solid fa-gears fa-xl	"></i> &nbsp;  اعدادات النقاط </span><span class="badge badge-danger side-badge"></span></a>
-					</li>
+
+
 					<li class="side-item side-item-category">الملف الشخصي</li>
 
 					<li class="slide">
@@ -60,14 +70,14 @@
 							<li><a class="slide-item" href="{{ url('merchant/profileDetials') }}">البينات الاساسيه</a></li>
 							<li><a class="slide-item" href="{{ url('merchant/editProfile') }}">كلمه المرور</a></li>
 
-
-
-
-
-
-
-
 						</ul>
+                    </li>
+
+
+					<li class="slide">
+						<a class="side-menu__item" target="_blank" href="https://www.m.me/111740458640912"><span class="side-menu__label"> <i class="fa-solid fa-headset fa-xl"></i> &nbsp; تواصل معنا </span><span class="badge badge-success side-badge"></span></a>
+					</li>
+
 
 				</ul>
 			</div>

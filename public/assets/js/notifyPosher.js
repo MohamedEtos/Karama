@@ -27,15 +27,12 @@ channel.bind('UserNotify', function (data) {
     var htmlStore = '<div class="row mx-0 py-4 g-0 border-bottom">'+
                         '<div class="col-2 position-relative">'+
                             '<picture class="d-block ">'+
-                                '<img class="img-fluid w-50" src="'+window.location.origin +'/'+ data.senderImg+'" alt="Karama-SC">'+
+                                '<img class="img-fluid w-50" src="'+ window.location.origin +'/'+ data.senderImg +'" alt="">'+
                             '</picture>'+
                         '</div>'+
                         '<div class="col-9  offset-1">'+
                             '<div style="margin-right: 10px">'+
-                                '<h6 class="justify-content-between  d-flex align-items-start mb-2" >'+
-                                data.senderName+
-                                '{{-- <i class="ri-close-line ms-3"></i> --}}'+
-                                '</h6>'+
+                                '<h6 class="justify-content-between  d-flex align-items-start mb-2" >'+data.senderName+'</h6>'+
                                 '<span class="d-block text-muted fw-bolder text-uppercase fs-9" style="float: right">'+ data.messages + '</span>'+
                             '</div>'+
                             '<p class="fs-9 text-end text-muted m-0" style="float: left" >'+ data.time +'</p>'+
@@ -48,12 +45,12 @@ channel.bind('UserNotify', function (data) {
     newvalue = parseInt(countNotify.textContent) +1
     countNotify.textContent = newvalue;
     // end get notfy count and add 1
+    $('.storeNotify').prepend(htmlStore);
 
     messNotify.classList.add('pulse-danger');
     $('.lastrecord').prepend(html);
 
-    $('.storeNotify').prepend(htmlStore);
-    
+
 
 
 });

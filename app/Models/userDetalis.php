@@ -25,6 +25,11 @@ class userDetalis extends Model
     }
 
 
+    public function testttt()
+    {
+        return $this->hasOne(User::class,'userDetalis');
+    }
+
 
 
 }
