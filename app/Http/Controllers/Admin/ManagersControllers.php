@@ -45,9 +45,9 @@ class ManagersControllers extends Controller
             'email' => [ 'string','nullable', 'email', 'max:255', 'unique:'.User::class],
             'userCode' => ['required','string', 'max:8', 'unique:'.User::class],
             'password' => ['required', Rules\Password::defaults()],
-            'phone' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
-            'whatsapp' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
-            'nationalId' => ['numeric', 'max_digits:10','nullable', 'unique:'.userDetalis::class],
+            'phone' => ['numeric', 'max_digits:20','nullable', 'unique:'.userDetalis::class],
+            'whatsapp' => ['numeric', 'max_digits:20','nullable', 'unique:'.userDetalis::class],
+            'nationalId' => ['numeric', 'max_digits:20','nullable', 'unique:'.userDetalis::class],
             'roles_name' => 'required',
         ]);
 
@@ -123,9 +123,9 @@ class ManagersControllers extends Controller
                 'email' => [ 'string', 'email', 'max:255', Rule::unique('users')->ignore($userId)],
                 'userCode' => ['required','string', 'max:8', Rule::unique('users')->ignore($userId)],
                 // 'password' => ['required', Rules\Password::defaults()],
-                'phone' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
-                'whatsapp' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
-                'nationalId' => ['numeric', 'max_digits:10','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
+                'phone' => ['numeric', 'max_digits:20','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
+                'whatsapp' => ['numeric', 'max_digits:20','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
+                'nationalId' => ['numeric', 'max_digits:20','nullable', Rule::unique('user_detalis')->ignore($userDetailsId)],
             ]);
 
             userDetalis::where('id',$userDetailsId)->update([
