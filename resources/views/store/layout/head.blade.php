@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+    <meta name="google-site-verification" content="BWfA1XxsiZ39CSSqPSFFBiWF-DHAiPE_UjyyMFw-PkM" />
 
     <!-- Custom Google Fonts-->
 
