@@ -141,7 +141,7 @@
 
 									<div class="col-md-4 mt-4">
 										<label for="validationCustom01" class="form-label">ايميل</label>
-										<input type="email" minlength="3" name="email" maxlength="20" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
+										<input type="email" minlength="3" name="email" maxlength="60" value="{{old('email')}}" class="form-control" placeholder="karam@karam.com" id="validationCustom01" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>

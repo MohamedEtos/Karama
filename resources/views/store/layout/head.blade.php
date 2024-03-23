@@ -54,6 +54,6 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Karama-SC</title>
+    <title> نادي الكرامة - Karama-SC </title>
 
   </head>
