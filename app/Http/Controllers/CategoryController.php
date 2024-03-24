@@ -69,16 +69,26 @@ class CategoryController extends Controller
 
     public function subCatUpdate(Request $request)
     {
-        $explode = explode(',',$request->subCat);
-        subCat::where('categoryId',$request->category)->delete();
-        foreach($explode as $index){
+        // return $request->all();
+        $oldValues = subCat::where('categoryId',1)->get('name');
+        foreach($oldValues as $datas){
+          $collectionToArray[] =    trim($datas->name);
+        };
+
+        
+        $newvlaues = explode(',',$request->subCat);
+        $trimmedArray = array_map('trim', $newvlaues);
+        $array_diffs = array_diff($trimmedArray, $collectionToArray);
+
+        foreach($array_diffs as $string){
             $subCat = subCat::create([
                 'categoryId'=> $request->category,
-                'name'=> $index,
+                'name'=> $string,
             ]);
         }
 
-        return redirect()->back();
+
+        return redirect()->back()->with('success','تم اضافه القسم الفرعي');
     }
 
 
