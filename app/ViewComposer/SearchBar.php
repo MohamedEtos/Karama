@@ -33,9 +33,18 @@ Class SearchBar
 
         $query = merchant::query();
 
+        $query->where('append',1);
+
         if(isset($title) && ($title != null))
         {
             $query->where('name', 'like', '%' . $title . '%')
+
+            ->whereHas(
+                'userToProduct',
+                function (Builder $query)  {
+                    $query->where('status','active');
+            })
+
 
             ->orWhere('productDescription', 'like', '%' . $title . '%')
 
@@ -50,13 +59,13 @@ Class SearchBar
             ->orWhereHas(
 				'productionToCategoryRealtions',
 				function (Builder $query) use ($title) {
-					$query->where('name', 'like', '%'.$title.'%');
+					$query->where('name', 'like', '%'.$title.'%')->where('append','1');
             })
 
             ->orWhereHas(
 				'userToProduct',
 				function (Builder $query) use ($title) {
-					$query->where('name', 'like', '%'.$title.'%');
+					$query->where('status','active')->where('name', 'like', '%'.$title.'%');
             });
 
         }
@@ -86,8 +95,18 @@ Class SearchBar
         }
 
 
-        $products = $query->inRandomOrder()->where('append','1')->paginate(16)->withQueryString();
 
+
+        $products = $query->inRandomOrder()
+        ->whereHas(
+            'userToProduct',
+            function (Builder $query)  {
+                $query->where('status','active');
+        })->where('append','1')->paginate(16)->withQueryString();
+
+        $mainCat = subCat::inRandomOrder()->get();
+
+        $mainCatindex = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(20)->get();
 
         // $serch = request('search');
         // $serchpersent = request('persent');
@@ -122,9 +141,7 @@ Class SearchBar
         // }
 
 
-        $mainCat = subCat::inRandomOrder()->get();
 
-        $mainCatindex = subCat::select('categoryId')->distinct()->inRandomOrder()->limit(20)->get();
 
 
         $view->with('products', $products)

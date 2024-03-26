@@ -166,9 +166,9 @@
                 <h2 class=" mt-5 d-flex justify-content-center text-center text-danger">لا يوجد منتجات تحت المراجعه</h2>
 
                 @endforelse
-                <div class="col-12  d-flex justify-content-center">
+                {{-- <div class="col-12  d-flex justify-content-center">
                     {{$products->links()}}
-                </div>
+                </div> --}}
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->

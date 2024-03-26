@@ -70,16 +70,13 @@ class CategoryController extends Controller
     public function subCatUpdate(Request $request)
     {
         // return $request->all();
-        $oldValues = subCat::where('categoryId',1)->get('name');
+        $oldValues = subCat::where('categoryId',$request->category)->get('name');
         foreach($oldValues as $datas){
           $collectionToArray[] =    trim($datas->name);
         };
-
-        
         $newvlaues = explode(',',$request->subCat);
         $trimmedArray = array_map('trim', $newvlaues);
         $array_diffs = array_diff($trimmedArray, $collectionToArray);
-
         foreach($array_diffs as $string){
             $subCat = subCat::create([
                 'categoryId'=> $request->category,
@@ -164,12 +161,10 @@ class CategoryController extends Controller
 
         }
 
-
-
-
-
         return to_route('all.category');
     }
+
+
     public function DeleteCategory($id){
         Category::findorfail($id)->delete();
         return to_route('all.category');

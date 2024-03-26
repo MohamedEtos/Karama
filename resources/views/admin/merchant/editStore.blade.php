@@ -178,7 +178,7 @@
 
 									<div class="col-md-4 mt-4 ">
 										<label for="validationCustom01" class="form-label">تخصص المتجر</label>
-                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$subCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
+                                        <input type="text" style="width: 100%" minlength="4" name="subCat" data-role="tagsinput"  value="{{$toStringSubCat}}"  class="form-control"  placeholder=" اكتب التخصص ثم Enter" id="subCat" required>
 										<div class="valid-feedback">
 										  ممتاز !
 										</div>

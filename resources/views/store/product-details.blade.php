@@ -31,10 +31,10 @@
                 </nav>            </div>
         </div>
         <!-- / Breadcrumbs-->
-        <div class="container-fluid mt-5 overflow-hidden">
+        <div class="container-fluid mt-5 ">
 
             <!-- Product Top Section-->
-            <div class="row g-9" data-sticky-container>
+            <div class="row " data-sticky-container>
 
                 <!-- Product Images-->
                 <div class="col-12 col-md-6 col-xl-7">
@@ -44,17 +44,22 @@
                                 <img class="img-fluid w-100 max-h-product" data-zoomable src="{{asset($product_details->productionToImgRealtions->mainImage)}}" style="max-height: auto"  alt="Karama-SC">
                             </picture>
                         </div>
+                        @if ( $product_details->productionToImgRealtions->img2 != '')
                         <div class="col-12">
                             <picture>
                                 <img class="img-fluid w-100 max-h-product" data-zoomable src="{{asset($product_details->productionToImgRealtions->img2)}}"  style="max-height: auto" alt="Karama-SC">
                             </picture>
                         </div>
+                        @endif
+
+
+                        @if ( $product_details->productionToImgRealtions->img3 != '')
                         <div class="col-12">
                             <picture>
                                 <img class="img-fluid w-100 max-h-product" data-zoomable src="{{asset($product_details->productionToImgRealtions->img3)}}"  style="max-height: auto" alt="Karama-SC">
                             </picture>
                         </div>
-
+                        @endif
                     </div>
                 </div>
                 <!-- /Product Images-->

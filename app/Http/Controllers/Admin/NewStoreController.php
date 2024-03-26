@@ -147,18 +147,22 @@ class NewStoreController extends Controller
             ]);
         }
 
-
-
-        $explode = explode(',',$request->subCat);
-        subCat::where('categoryId',$request->category)->delete();
-        foreach($explode as $index){
+        $oldValues = subCat::where('categoryId',$request->category)->get('name');
+        foreach($oldValues as $datas){
+          $collectionToArray[] =    trim($datas->name);
+        };
+        $newvlaues = explode(',',$request->subCat);
+        $trimmedArray = array_map('trim', $newvlaues);
+        $array_diffs = array_diff($trimmedArray, $collectionToArray);
+        foreach($array_diffs as $string){
             $subCat = subCat::create([
                 'categoryId'=> $request->category,
-                'name'=> $index,
+                'name'=> $string,
             ]);
         }
 
     });
+
 
 
         // event(new Registered($user));
@@ -175,11 +179,16 @@ class NewStoreController extends Controller
     {
         $categorylist = category::get();
         $UserData = User::where('id',Crypt::decrypt($id))->first();
-        $subCat = subCat::where('categoryId',$UserData->userToDetalis->userToCategory->id)->first()->name;
+        $subCat = subCat::where('categoryId',$UserData->userToDetalis->userToCategory->id)->get('name');
+        foreach($subCat as $datas){
+            $collectionToArray[] =    trim($datas->name);
+          };
+
+          $toStringSubCat = implode(',',$collectionToArray);
         return view('admin.merchant.editStore',compact(
             'categorylist',
             'UserData',
-            'subCat'
+            'toStringSubCat'
         ));
     }
 
@@ -224,26 +233,24 @@ class NewStoreController extends Controller
         ]);
 
 
-        // $oldSubCat = category::select('subCat')->where('id',$request->categoryId)->first();
-
-        // $array1 = explode(",", $oldSubCat->subCat);
-        // $array2 = explode(",", $request->subCat);
-
-        // $mergedArray = array_merge($array1, $array2);
-        // $uniqueArray = array_unique($mergedArray);
-        // $trimmedArray = array_map('trim', $uniqueArray);
-        // $arrayunique = array_unique($trimmedArray);
-        // $text = implode(',', $arrayunique);
 
 
-        $explode = explode(',',$request->subCat);
-        subCat::where('categoryId',$request->category)->delete();
-        foreach($explode as $index){
+        $oldValues = subCat::where('categoryId',$request->category)->get('name');
+        foreach($oldValues as $datas){
+          $collectionToArray[] =    trim($datas->name);
+        };
+        
+        $newvlaues = explode(',',$request->subCat);
+        $trimmedArray = array_map('trim', $newvlaues);
+        $array_diffs = array_diff($trimmedArray, $collectionToArray);
+        foreach($array_diffs as $string){
             $subCat = subCat::create([
                 'categoryId'=> $request->category,
-                'name'=> $index,
+                'name'=> $string,
             ]);
         }
+
+
 
         User::where('id',$userId)->update([
             'name' => $request->name,

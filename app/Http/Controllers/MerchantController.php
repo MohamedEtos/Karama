@@ -221,8 +221,8 @@ class MerchantController extends Controller
             'discount'=>'required|numeric',
             'ThePriceAfterDiscount'=>'required| numeric',
             'mainImage'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'img2'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'img3'=>'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'img2'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'img3'=>'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
         ],[
             'name.required'=>'لا يمكن ترك الاسم فارغ',
@@ -240,10 +240,10 @@ class MerchantController extends Controller
             'mainImage.required'=>'ضع صوره للمنتج',
             'mainImage.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'mainImage.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
-            'img2.required'=>'ضع صوره للمنتج',
+            'img2.nullable'=>'ضع صوره للمنتج',
             'img2.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img2.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
-            'img3.required'=>'ضع صوره للمنتج',
+            'img3.nullable'=>'ضع صوره للمنتج',
             'img3.mimes'=>'الامتدادات المسموح بها فقط (jpeg,png,jpg,gif,webp)',
             'img3.max'=>'يجب الا يكون حجم الصوره اكبر من 2048 MB',
             ]);
@@ -262,12 +262,16 @@ class MerchantController extends Controller
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img2 = 'upload/products/img/'. $imageName;
+        }else{
+            $img2 = '';
         }
         if($request->hasFile('img3')){
             $image  = ImageManagerStatic::make($request->file('img3'))->encode('webp')->resize(600,600);
             $imageName = Str::random().'.webp';
             $image->save(public_path('upload/products/img/'. $imageName));
             $img3 = 'upload/products/img/'. $imageName;
+        }else{
+            $img3 = '';
         }
 
         productImg::create([
@@ -297,29 +301,38 @@ class MerchantController extends Controller
 
 
 
-        $adminsId = User::where('subtype','admin')->first()->id;
+        $adminsId = User::where('subtype','admin')->get();
 
-        $notify = notify::create([
-            'reseverId'=>$adminsId,
-            'senderId'=>Auth::User()->id,
-            'messages'=>'لقد قمت باضافه منتج برجاء المراجعه   ',
-        ]);
+        foreach($adminsId as $adminsIds){
+            $notify = notify::create([
+                'reseverId'=>$adminsIds->id,
+                'senderId'=>Auth::User()->id,
+                'messages'=>'لقد قمت باضافه منتج برجاء المراجعه   ',
+            ]);
+
+            $data = [
+                'reseverId' => $adminsIds->id,
+                'senderName' => Auth::User()->name,
+                'senderImg' => Auth::User()->userToDetalis->ProfileImage,
+                'senderId' => Auth::User()->id,
+                'messages' => $notify->messages,
+                'price' => '',
+                'points' => '',
+                'type'=>'',
+                'time'=>$notify->created_at->diffForHumans(),
+            ];
 
 
-        $data = [
-            'reseverId' => $adminsId,
-            'senderName' => Auth::User()->name,
-            'senderImg' => Auth::User()->userToDetalis->ProfileImage,
-            'senderId' => Auth::User()->id,
-            'messages' => $notify->messages,
-            'price' => '',
-            'points' => '',
-            'type'=>'',
-            'time'=>$notify->created_at->diffForHumans(),
-        ];
+            event(new pointNofication($data));
 
 
-        event(new pointNofication($data));
+
+        }
+
+
+
+
+
 
         });
 
@@ -449,6 +462,7 @@ class MerchantController extends Controller
     {
         // check max number in cateogry
 
+        $id = Crypt::decrypt($id);
 
 
 
@@ -519,6 +533,8 @@ class MerchantController extends Controller
                 'img3'=>$img3,
             ]);
         }
+
+
 
         $rejectId = merchant::where('id',$id)->first()->rejectId;
 

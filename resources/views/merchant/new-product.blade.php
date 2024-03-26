@@ -133,12 +133,12 @@
 									</div>
 
 									<div class="col-sm-12 col-md-4 mt-4">
-										<input type="file" name="img2" required class="dropify" data-height="200" />
+										<input type="file" name="img2"  class="dropify" data-height="200" />
 										<h6 id="img2_error" class="mt-2 text-danger"></h6>
 									</div>
 
 									<div class="col-sm-12 col-md-4 mt-4">
-										<input type="file" name='img3' required class="dropify" data-height="200" />
+										<input type="file" name='img3'  class="dropify" data-height="200" />
 										<h6 id="img3_error" class="mt-2 text-danger"></h6>
 									</div>
 

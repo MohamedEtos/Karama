@@ -350,7 +350,7 @@
                                                       @endforeach
 
                                                   </div>
-                                                  <a href="products" class="btn btn-link p-0 fw-bolder text-link-border mt-5 text-dark mx-auto d-table">كل الاقسام</a>
+                                                  <a href="/products" class="btn btn-link p-0 fw-bolder text-link-border mt-5 text-dark mx-auto d-table">كل الاقسام</a>
                                               </div>
                                           </div>
                                           <!-- Menswear Dropdown Menu Images Section-->
