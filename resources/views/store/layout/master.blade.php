@@ -13,6 +13,7 @@
 
     @include('store.layout.footer')
     @include('store.layout.footer_script')
+    @yield('js')
 
 </body>
 

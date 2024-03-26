@@ -179,7 +179,7 @@
                     </div>
                     <div class="input-group mb-0 ms-2 border">
                         <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">₪</span>
-                        <input type="number" name="endPrice" min="00" max="10000" step="any" class="filter-max form-control-sm flex-grow-1 text-muted border-0">
+                        <input type="number" name="endPrice" min="00" max="100000" step="any" class="filter-max form-control-sm flex-grow-1 text-muted border-0">
                     </div>
                 </div>
 
@@ -348,4 +348,8 @@
       </div>
     </div>
 
+@endsection
+
+
+@section('js')
 @endsection
