@@ -8,7 +8,7 @@
 
         <!-- Category Top Banner -->
         <div class="py-10 bg-img-cover bg-overlay-dark position-relative overflow-hidden bg-pos-center-center rounded-0"
-            style="background-image: url({{asset('Front-store/images/banners/banner-category-top.jpg')}});">
+            style="background-image: url('{{asset('Front-store/images/banners/banner-category-top.jpg')}}');">
             <div class="container-fluid position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
                 <h1 class="fw-bold display-6 mb-4 text-white">منتجات نادي الكرامه </h1>
                 <div class="col-12 col-md-6">
